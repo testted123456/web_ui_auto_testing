@@ -13,9 +13,7 @@ public class WebTable extends BaseWebElement {
 
 	 public WebTable(WebDriver driver, String xpath){
 		 super(driver, xpath);
-		 
 		 rows=this.getWebElement().findElements(By.tagName("tr"));
-	        
 		 columns=this.getWebElement().findElements(By.tagName("td"));
 	 }
 

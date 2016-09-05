@@ -18,14 +18,12 @@ public class WebCheckBox extends BaseWebElement {
 	}
 
 	public void check() {
-		logger.info("选中checkbox :" + this.getXpath());
 		if (!isSelected()) {
 			click();
 		}
 	}
 
 	public void uncheck() {
-		logger.info("不选中checkbox :" + this.getXpath());
 		if (isSelected()) {
 			click();
 		}

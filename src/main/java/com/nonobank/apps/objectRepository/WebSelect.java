@@ -19,33 +19,23 @@ public class WebSelect extends BaseWebElement {
 	
 	public WebSelect(WebDriver driver, String xpath){
 		super(driver, xpath);
-		
 		this.select = new Select(getWebElement());
-
 		options=select.getOptions();
 	}
 	
     public void deselectAll(){
-    	logger.info("deselect all :" + this.getXpath());
-    	
         select.deselectAll();
     }
 
 	public void deselectByIndex(int index) {
-		logger.info("deselect by index :" + this.getXpath());
-		
         select.deselectByIndex(index);
 	}
 
 	public void deselectByText(String text) {
-		logger.info("deselect by text :" + this.getXpath());
-		
 	    select.deselectByVisibleText(text);
 	}
 
 	public void deselectByValue(String value) {
-		logger.info("deselect by value :" + this.getXpath());
-		
 	    select.deselectByValue(value);
 	}
 
@@ -60,6 +50,7 @@ public class WebSelect extends BaseWebElement {
 
 	public List<String> getSelectTexts() {
 		List<String> textList = new ArrayList<String>();
+		
 		for (WebElement option : options) {
 			if (option.isSelected()) {
 				textList.add(option.getText());
@@ -79,14 +70,15 @@ public class WebSelect extends BaseWebElement {
 	}
 
 	public List<String> getSelectValues() {
-
 		List<String> valueList = new ArrayList<String>();
+		
 		for (WebElement option : options) {
 			if (option.isSelected()) {
 				valueList.add(option.getAttribute("value"));
 			}
 		}
-        return valueList;
+       
+		return valueList;
 	}
 
 	public boolean isMultiple() {
@@ -95,7 +87,6 @@ public class WebSelect extends BaseWebElement {
 	}
 
 	public void selectByIndex(int index) {
-		logger.info("select by index : " + index + " : " + this.getXpath());
 	    select.selectByIndex(index);
 	}
 
@@ -111,10 +102,7 @@ public class WebSelect extends BaseWebElement {
 	}
 
 	public void selectByVisibleText(String value){
-		logger.info("select by visible text :" + this.getXpath());
-
 		List<WebElement> options = select.getOptions();
-		
 		String v = null;
 		
 		for(WebElement e : options){
@@ -128,7 +116,6 @@ public class WebSelect extends BaseWebElement {
 	}
 	
 	public void selectByValue(String value) {
-		logger.info("select by value :" + this.getXpath());
         select.selectByValue(value);
 	}
 

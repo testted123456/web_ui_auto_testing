@@ -9,7 +9,6 @@ public class WebRadioBox extends BaseWebElement {
 	}
 	
 	public void check() {
-		logger.info("选中radiobox :" + this.getXpath());
         if (!isSelected()) {
             click();
         }
@@ -20,7 +19,6 @@ public class WebRadioBox extends BaseWebElement {
     }
 
     public void uncheck() {
-    	logger.info("选中radionbox :" + this.getXpath());
         if (isSelected()) {
         	click();
         }

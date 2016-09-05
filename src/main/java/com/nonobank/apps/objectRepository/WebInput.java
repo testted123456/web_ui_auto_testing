@@ -11,8 +11,6 @@ public class WebInput extends BaseWebElement {
 	public void input(String text) {
 		super.getWebElement().sendKeys(text);
 	}
-
-
 	
 	public void clear(){
 		super.getWebElement().clear();

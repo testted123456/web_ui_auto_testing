@@ -13,6 +13,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import junit.framework.Assert;
+
 public class BaseWebElement {
 
 	protected static final Logger logger = LogManager.getLogger(BaseWebElement.class);
@@ -55,9 +57,7 @@ public class BaseWebElement {
 	 */
 	public BaseWebElement(WebDriver driver, final String xpath) {
 		this.driver = driver;
-
 		this.xpath = xpath;
-
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 
 		this.webElement = wait.until(new ExpectedCondition<WebElement>() {
@@ -66,6 +66,10 @@ public class BaseWebElement {
 				return d.findElement(By.xpath(xpath));
 			}
 		});
+		
+		if(this.webElement == null){
+			Assert.fail("找不到对象元素，xpath：" + xpath);
+		}
 	}
 
 	/**
@@ -95,17 +99,8 @@ public class BaseWebElement {
 	 * 函数说明：点击元素
 	 */
 	public void click() {
-
-		logger.info("click on : " + this.xpath);
-
 		this.webElement.click();
-
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sleep(500);
 	}
 
 	/**
