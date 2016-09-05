@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 用户名 -->
+	<WebInput name="mobile" xpath="//input[@id='mobile']">
+	</WebInput>
+	<!-- -->
+	<WebLabel name="error" xpath="//label[@class='error']">
+	</WebLabel>
+	<!-- 用户名 -->
+	<WebInput name="username" xpath="//input[@id='username']">
+	</WebInput>
+	<!-- 密码 -->
+	<WebInput name="password" xpath="//input[@id='password']">
+	</WebInput>
+	<!-- 再次输入密码 -->
+	<WebInput name="password2" xpath="//input[@id='password2']">
+	</WebInput>
+	<!-- 邀请码 -->
+	<WebInput name="invite" xpath="//input[@id='invite']">
+	</WebInput>
+	<!-- 下一步 -->
+	<WebButton name="nextStep" xpath="//button[@onclick='nextStep(1)']">
+	</WebButton>
+	<!-- 图片验证码 -->
+	<WebInput name="checkCode" xpath="//input[@id='checkCode']">
+	</WebInput>
+	<!-- 免费获取验证码 -->
+	<WebLink name="countdown" xpath="//a[@id='countdown']">
+	</WebLink>
+	<!-- 验证码 -->
+	<WebInput name="validation" xpath="//input[@id='validation']">
+	</WebInput>
+	<!-- 下一步 -->
+	<WebButton name="reg_over_btn" xpath="//button[@id='reg_over_btn']">
+	</WebButton>
+	<!-- 立即加入 -->
+	<WebButton name="join"
+		xpath="//button[contains(@onclick,'javascript:location.href')]">
+	</WebButton>
+	<!-- 退出 -->
+	<WebLink name="logout" xpath="//a[@class='logout']">
+	</WebLink>
+	<!-- 登录 -->
+	<WebLink name="login" xpath="//a[@class='login_btn2']">
+	</WebLink>
+</elements>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebCommon name="视频签约终审列表" xpath="//div[@class='bodytitletxt-hover']">
+	</WebCommon>
+	<WebLink name="视频签约" xpath="//a[@href='/Admin/Audit/VideoAuditTsrial']">
+	</WebLink>
+	<WebInput name="手机号码" xpath="//input[@name='mobilenum']">
+	</WebInput>
+	<WebInput name="查询" xpath="//input[@name='imageField' and @type='submit']">
+	</WebInput>
+</elements>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 邮箱 -->
+	<!-- <WebInput name="email" tag="input">
+		<property name="id" value="email"/>
+	</WebInput> -->
+	<WebInput name="email" xpath="//input[@id='email']">
+	</WebInput>
+	<!-- 地址 -->
+	<!-- <WebInput name="home_address" tag="input">
+		<property name="id" value="home_address"/>
+	</WebInput> -->
+	<WebInput name="home_address" xpath="//input[@id='home_address']">
+	</WebInput>
+	<!-- 年收入 -->
+	<!-- <WebInput name="income1" tag="input">
+		<property name="value" value="1"/>
+		<property name="type" value="radio"/>
+	</WebInput> -->
+	<WebInput name="income1" xpath="//input[@value='1'and@type='radio']">
+	</WebInput>
+	<!-- <WebInput name="income2" tag="input">
+		<property name="value" value="2"/>
+		<property name="type" value="radio"/>
+	</WebInput> -->
+	<WebInput name="income2" xpath="//input[@value='2'and@type='radio']">
+	</WebInput>
+	<!-- <WebInput name="income3" tag="input">
+		<property name="value" value="3"/>
+		<property name="type" value="radio"/>
+	</WebInput> -->
+	<WebInput name="income3" xpath="//input[@value='3'and@type='radio']">
+	</WebInput>
+	<!-- <WebInput name="income4" tag="input">
+		<property name="value" value="4"/>
+		<property name="type" value="radio"/>
+	</WebInput> -->
+	<WebInput name="income4" xpath="//input[@value='4'and@type='radio']">
+	</WebInput>
+	<!-- 父母姓名 -->
+	<!-- <WebInput name="parent_name" tag="input">
+		<property name="id" value="parent"/>
+	</WebInput> -->
+	<WebInput name="parent_name" xpath="//input[@id='parent']">
+	</WebInput>
+	<!-- 父母手机 -->
+	<!-- <WebInput name="parent_mobile" tag="input">
+		<property name="id" value="parent_mobile"/>
+	</WebInput> -->
+	<WebInput name="parent_mobile" xpath="//input[@id='parent_mobile']">
+	</WebInput>
+	<!-- 辅导员姓名 -->
+	<!-- <WebInput name="counselor_name" tag="input">
+		<property name="id" value="counselor"/>
+	</WebInput> -->
+	<WebInput name="counselor_name" xpath="//input[@id='counselor']">
+	</WebInput>
+	<!-- 辅导员手机 -->
+	<!-- <WebInput name="counselor_mobile" tag="input">
+		<property name="id" value="counselor_mobile"/>
+	</WebInput> -->
+	<WebInput name="counselor_mobile" xpath="//input[@id='counselor_mobile']">
+	</WebInput>
+	<!-- 好友1姓名 -->
+	<!-- <WebInput name="friend1_name" tag="input">
+		<property name="id" value="friend1"/>
+	</WebInput> -->
+	<WebInput name="friend1_name" xpath="//input[@id='friend1']">
+	</WebInput>
+	<!-- 好友1手机 -->
+	<!-- <WebInput name="friend1_mobile" tag="input">
+		<property name="id" value="friend1_mobile"/>
+	</WebInput> -->
+	<WebInput name="friend1_mobile" xpath="//input[@id='friend1_mobile']">
+	</WebInput>
+	<!-- 好友2姓名 -->
+	<!-- <WebInput name="friend2_name" tag="input">
+		<property name="id" value="friend2"/>
+	</WebInput> -->
+	<WebInput name="friend2_name" xpath="//input[@id='friend2']">
+	</WebInput>
+	<!-- 好友2手机 -->
+	<!-- <WebInput name="friend2_mobile" tag="input">
+		<property name="id" value="friend2_mobile"/>
+	</WebInput> -->
+	<WebInput name="friend2_mobile" xpath="//input[@id='friend2_mobile']">
+	</WebInput>
+	<!-- 好友3姓名 -->
+	<!-- <WebInput name="friend3_name" tag="input">
+		<property name="id" value="friend3"/>
+	</WebInput> -->
+	<WebInput name="friend3_name" xpath="//input[@id='friend3']">
+	</WebInput>
+	<!-- 好友3手机 -->
+	<!-- <WebInput name="friend3_mobile" tag="input">
+		<property name="id" value="friend3_mobile"/>
+	</WebInput> -->
+	<WebInput name="friend3_mobile" xpath="//input[@id='friend3_mobile']">
+	</WebInput>
+	<!-- 上传文件 -->
+	<!-- <WebInput name="fileupload" tag="input">
+		<property name="id" value="fileupload"/>
+	</WebInput> -->
+	<WebInput name="fileupload" xpath="//input[@id='fileupload']">
+	</WebInput>
+	<!-- 上传文件按钮 -->
+	<!-- <WebInput name="submit" tag="input">
+		<property name="name" value="submit"/>
+	</WebInput> -->
+	<WebInput name="submit" xpath="//input[@name='submit']">
+	</WebInput>
+	<!-- 银行卡号 -->
+	<!-- <WebInput name="banks_account" tag="input">
+		<property name="id" value="banks_account"/>
+	</WebInput> -->
+	<WebInput name="banks_account" xpath="//input[@id='banks_account']">
+	</WebInput>
+	<!-- 银行名称 -->
+	<WebSelect name="banks_cat" xpath="//select[@id='banks_cat']">
+	</WebSelect>
+	<!-- 银行预留手机号 -->
+	<WebInput name="mobilenum" xpath="//input[@id='mobilenum']">
+	</WebInput>
+	<!-- 获取验证码 -->
+	<WebLink name="getValidate" xpath="//a[@id='getValidate']">
+	</WebLink>
+	<!-- 验证码 -->
+	<WebInput name="validNo" xpath="//input[@id='validNo']">
+	</WebInput>
+	<!-- 同意并提交 -->
+	<WebButton name="btnsubmit" xpath="//button[@id='btnsubmit']">
+	</WebButton>
+	<!-- 账户连接 -->
+	<WebLink name="account" xpath="//a[@href='/Account']">
+	</WebLink>
+	<!-- 银行卡号码错误信息-->
+	<WebSpan name="loadingText" xpath="//span[@id='loadingText']">
+	</WebSpan>
+</elements>

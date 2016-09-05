@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 储蓄卡号 -->
+	<WebInput name="bankCard_Input" xpath="//input[@id='bankCard_Input']">
+	</WebInput>
+	<!-- 点击获取验证码 -->
+	<WebLink name="getValidate" xpath="//a[@id='getValidate']">
+	</WebLink>
+	<!-- 短信验证码 -->
+	<WebInput name="validNo" xpath="//input[@id='validNo']">
+	</WebInput>
+	<!-- 提交 -->
+	<WebButton name="submit" xpath="//input[@value='同意协议并开通']">
+	</WebButton>
+	<!-- 绑卡成功后的提示信息 -->
+	<WebCommon name="success" xpath="//div[@class='bc_right_box']">
+	</WebCommon>
+</elements>

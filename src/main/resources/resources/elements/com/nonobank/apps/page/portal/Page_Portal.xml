@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 我的账户 -->
+	<WebLink name="myaccount" xpath="//a[@href='/Account']">
+	</WebLink>
+	<!-- 登录 -->
+	<WebLink name="register" xpath="//a[@href='/Register']">
+	</WebLink>
+	<WebLink name="dialog_close" xpath="//a[@class='dialog_close']">
+	</WebLink>
+</elements>

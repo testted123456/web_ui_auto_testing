@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 支付密码 -->
+	<WebInput name="accountpwd" xpath="//input[@id='accountpwd']">
+	</WebInput>
+	<!-- 提交 -->
+	<WebButton name="t_con_btn" xpath="//input[@id='t_con_btn']">
+	</WebButton>
+	<!-- 继续提现 -->
+	<WebLink name="withdrawal" xpath="//a[@href='/User/withdrawal/1']">
+	</WebLink>
+	<!-- 到账金额 -->
+	<WebSpan name="amount" xpath="//div[@class='con_card']/div[2]/span[2]">
+	</WebSpan>
+	<!-- 手续费 -->
+	<WebSpan name="fee" xpath="//div[@class='con_card']/div[4]/span[2]">
+	</WebSpan>
+</elements>

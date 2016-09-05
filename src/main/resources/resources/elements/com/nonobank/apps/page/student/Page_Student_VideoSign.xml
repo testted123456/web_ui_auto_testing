@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 获取优先审核权 -->
+	<!-- <WebButton name="sbt" tag="button">
+		<property name="id" value="sbt"/>
+		<property name="onclick" value="showWeiXinQQ();"/>
+	</WebButton> -->
+	<WebButton name="sbt" xpath="//button[@id='sbt'and@onclick='showWeiXinQQ();']">
+	</WebButton>
+</elements>

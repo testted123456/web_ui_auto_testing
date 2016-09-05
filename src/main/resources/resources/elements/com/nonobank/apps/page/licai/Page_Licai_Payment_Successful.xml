@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 查看投资记录 -->
+	<!-- <WebLink name="查看投资记录" xpath="//a[contains(@href,'/Vip/VipList')]"> -->
+	<WebLabel name="查看投资记录" xpath="//h1">
+	</WebLabel>
+</elements>

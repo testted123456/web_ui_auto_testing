@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 添加银行卡按钮 -->
+	<WebLink name="addBankCard" xpath="//a[@href='/User/BindCard1']">
+	</WebLink>
+	<!-- 实名认证 -->
+	<!-- 姓名 -->
+	<WebInput name="verifyrealname" xpath="//input[@id='verifyrealname']">
+	</WebInput>
+	<!-- 身份证号 -->
+	<WebInput name="verifyidnum" xpath="//input[@id='verifyidnum']">
+	</WebInput>
+	<WebButton name="bind" xpath="//button[@class='ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only']">
+	</WebButton>
+	<!-- 支付密码 -->
+	<WebInput name="newZFPwd" xpath="//input[@id='newZFPwd']">
+	</WebInput>
+	<WebInput name="newZFPassword" xpath="//input[@id='newZFPassword']">
+	</WebInput>
+	<WebInput name="pay_btn" xpath="//input[@value='确定']">
+	</WebInput>
+</elements>

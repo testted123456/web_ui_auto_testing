@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 确认购买 -->
+	<WebButton name="确认购买" xpath="//input[@type='button' and @value='确认购买']">
+	</WebButton>
+</elements>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebInput name="初审通过" xpath="//input[@id='button' and @value='初审通过']">
+	</WebInput>
+	<WebInput name="初审回退" xpath="//input[@id='button' and @value='初审回退']">
+	</WebInput>
+	<WebInput name="初审拒绝" xpath="//input[@id='button' and @value='初审拒绝']">
+	</WebInput>
+	<WebInput name="初审取消" xpath="//input[@id='button' and @value='初审取消']">
+	</WebInput>
+</elements>

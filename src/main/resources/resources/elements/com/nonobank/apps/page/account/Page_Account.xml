@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 银行账户 -->
+	<WebLink name="Banks" xpath="//a[@href='/User/Banks']">
+	</WebLink>
+	<!-- 提现 -->
+	<WebButton name="withdrawal" xpath="//input[@class='account_button_blue']">
+	</WebButton>
+	<!-- 充值 -->
+	<WebButton name="recharge" xpath="//input[@class='account_button_yellow']">
+	</WebButton>
+	<!-- 认证管理 -->
+	<WebLink name="degreeCard" xpath="//a[@href='/Account/degreeCard']">
+	</WebLink>
+	<!-- 真实姓名  -->
+	<WebInput name="myname" xpath="//input[@id='myname']">
+	</WebInput>
+	<!-- 身份证号  -->
+	<WebInput name="mycard" xpath="//input[@id='mycard']">
+	</WebInput>
+	<!-- 身份证号  -->
+	<WebInput name="ok" xpath="//input[@name='ok']">
+	</WebInput>
+	<!-- 身份证有误 -->
+	<WebSpan name="cardMsg" xpath="//span[@id='cardMsg']">
+	</WebSpan>
+	<!-- 个人设置 -->
+	<WebLink name="profile" xpath="//a[@href='/User/Profile']">
+	</WebLink>
+	<!-- 密码设置 -->
+	<!-- <WebCommon name="passwordSetting" xpath="//li[@onclick=\"javascript:window.location.href='/User/ChangePassword/login'\"]" -->>
+	<WebCommon name="passwordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/login')]">
+	</WebCommon>
+	<!-- 支付密码设置 -->
+	<!-- <WebCommon name="payPasswordSetting" xpath="//li[@onclick=\"javascript:window.location.href='/User/ChangePassword/pay'\"]"> -->
+	<WebCommon name="payPasswordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/pay')]">
+    </WebCommon>
+	<!-- 支付密码新密码  -->
+	<WebInput name="newZFPwd" xpath="//input[@id='newZFPwd']">
+	</WebInput>
+	<!-- 支付密码确认密码  -->
+	<WebInput name="newZFPassword" xpath="//input[@id='newZFPassword']">
+	</WebInput>
+	<!-- 支付密码修改确认  -->
+	<WebInput name="setPasswordbtn" xpath="//input[@id='setPasswordbtn']">
+	</WebInput>
+</elements>

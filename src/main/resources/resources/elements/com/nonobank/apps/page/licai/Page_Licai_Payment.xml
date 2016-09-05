@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+    <!-- 账户余额checkbox -->
+    <WebCheckBox name="账户余额" xpath="//input[@id='userAccount' and @type='checkbox']">
+    </WebCheckBox>
+    
+    <!-- 选择其他银行卡 -->
+    <WebLink name="选择其他银行卡" xpath="//a[@id='reSelectCard3']">
+    </WebLink>
+    <!-- 其他银行卡，短信验证码  -->
+    <WebInput name="短信验证码" xpath="//input[@id='validnum' and @type='text' and @class='codeNum']">
+    </WebInput>
+    <!-- 提交短信验证码 -->
+    <WebButton name="提交短信验证码" xpath="//input[@class='btn_submit' and @type='button' and @value='提交']">
+	</WebButton>
+	<!-- 老银行卡支付密码 -->
+	<WebInput name="老银行卡支付密码" xpath="//input[@id='accountpwd' and @type='password']">
+	</WebInput>
+    
+    <!--
+    
+    使用新银行卡 
+    
+    -->
+    <!-- 使用新银行卡 -->
+    <WebLink name="使用新银行卡" xpath="//a[@id='reSelectCard4']">
+    </WebLink>
+    <!-- 选择新银行卡下一步 -->
+    <!-- <WebButton name="选择新银行卡下一步" xpath="//div[@id='dialog_fastquick_bank']/div[@class='dialog_content']/div[@class='clearfix']/input[@id='btpay_bank' and @value='下一步']">
+    </WebButton> -->
+    <WebButton name="选择新银行卡下一步" xpath="//input[@id='btpay_bank' and @value='下一步' and @class='pay_btn' and @type='button' and @onclick='selectwy1()']">
+    </WebButton>
+    <!-- 新银行卡卡号 -->
+    <WebInput name="新银行卡卡号" xpath="//input[@id='bankCard_Input']">
+	</WebInput>
+	<!-- 获取验证码 -->
+	<WebLink name="获取验证码" xpath="//a[@id='getValidate']">
+	</WebLink>
+	<!-- 输入验证码 -->
+    <WebInput name="输入验证码" xpath="//input[@id='validNo']">
+	</WebInput>
+	<!-- 新银行卡卡号 -->
+    <WebInput name="新银行卡支付密码" xpath="//input[@id='accountpwd2']">
+	</WebInput>
+	<!-- 同意协议并付款 -->
+	<WebButton name="同意协议并付款" xpath="//input[@id='bindcard_btn' and @type='button']">
+	</WebButton>
+	
+	<!-- 下一步 -->
+	<WebButton name="下一步" xpath="//div[@id='nextstep_div']/input[@type='button' and @value='下一步' and @class='pay_btn']">
+	</WebButton>
+	<!-- 支付密码-->
+	<WebInput name="支付密码" xpath="//input[@id='accountpwd']">
+	</WebInput>
+	<!-- 确认支付 -->
+	<WebButton name="确认支付" xpath="//input[@id='paybtn'and@value='确认支付']">
+	</WebButton>
+</elements>

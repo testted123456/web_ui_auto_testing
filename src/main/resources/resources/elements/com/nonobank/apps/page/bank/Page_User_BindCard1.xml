@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 按钮 ’下一步‘ -->
+	<WebLink name="next_step" xpath="//a[@onclick='nextStep()']">
+	</WebLink>
+</elements>

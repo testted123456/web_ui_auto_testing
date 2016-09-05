@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- Login -->
+	<WebLink name="Login" xpath="//a[@href='/Login']">
+	</WebLink>
+	<!-- Logout -->
+	<WebLink name="Logout" xpath="//a[@href='/Login/logout']">
+	</WebLink>
+    <!-- Register -->
+	<WebLink name="Register" xpath="//a[@href='/Register']">
+	</WebLink>
+</elements>

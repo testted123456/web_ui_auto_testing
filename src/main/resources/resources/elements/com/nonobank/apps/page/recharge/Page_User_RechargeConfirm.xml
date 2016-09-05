@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 确认充值 -->
+	<!-- <WebButton name="paybtn" tag="input">
+		<property name="id" value="paybtn"/>
+	</WebButton> -->
+	<WebButton name="paybtn" xpath="//input[@id='paybtn']">
+	</WebButton>
+	<!-- 充值金额 -->
+	<!-- <WebInput name="amount" tag="input">
+		<property name="id" value="amount"/>
+	</WebInput> -->
+	<WebInput name="amount" xpath="//input[@id='amount']">
+	</WebInput>
+	<!-- 支付密码 -->
+	<!-- <WebInput name="accountpwd" tag="input">
+		<property name="id" value="accountpwd"/>
+	</WebInput> -->
+	<WebInput name="accountpwd" xpath="//input[@id='accountpwd']">
+	</WebInput>
+	<!-- 输入短信验证码 -->
+	<WebInput name="validnum" xpath="//input[@id='validnum']">
+	</WebInput>
+	<!-- 输入短信验证码后提交 -->
+	<WebInput name="btn_submit" xpath="//input[@class='btn_submit']">
+	</WebInput>
+	<!-- 金额限额提示信息 -->
+	<!-- <WebLabel name="msg" tag="label">
+		<property name="id" value="msg"/>
+	</WebLabel> -->
+	<WebLabel name="msg" xpath="//label[@id='msg']">
+	</WebLabel>
+	<!-- <WebSpan name="messageInfo" tag="span">
+		<property name="id" value="messageInfo"/>
+	</WebSpan> -->
+	<WebSpan name="messageInfo" xpath="//span[@id='messageInfo']">
+	</WebSpan>
+	<!-- 充值后“马上投资”按钮 -->
+	<WebLink name="rechargebtn" xpath="//a[@class='btn1 rechargebtn']">
+	</WebLink>
+	<!-- 充值后显示的充值金额 -->
+	<WebCommon name="number" xpath="//b[@class='number']">
+	</WebCommon>
+</elements>

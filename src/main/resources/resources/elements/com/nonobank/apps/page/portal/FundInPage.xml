@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 转入金额 -->
+	<WebInput name="amount" xpath="//input[@id='amount']">
+	</WebInput>
+	<!-- 确定转入按钮 -->
+	<WebButton name="submit" xpath="//input[@class='fund_button_yellow']">
+	</WebButton>
+</elements>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 用户名 -->
+	<WebInput name="loginname" xpath="//input[@id='loginname']">
+	</WebInput>
+	<!-- 密码 -->
+	<WebInput name="loginpwd" xpath="//input[@id='loginpwd']">
+	</WebInput>
+	<!-- 登录 -->
+	<WebButton name="btnlogin" xpath="//button[@id='btnlogin']">
+	</WebButton>
+	<!-- 图片验证码 -->
+	<WebInput name="checkCode" xpath="//input[@id='checkCode']">
+	</WebInput>
+	<!-- logout -->
+	<WebLink name="logout" xpath="//a[@href='/Login/logout']">
+	</WebLink>
+</elements>

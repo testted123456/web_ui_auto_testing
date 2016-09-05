@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 下一步按钮 -->
+	<WebButton name="pay_btn" xpath="//input[@id='pay_btn']">
+	</WebButton>
+	<!-- 选择银行卡 -->
+	<WebLink name="reSelectCard3" xpath="//a[@id='reSelectCard3']">
+	</WebLink>
+	<!-- 确认充值页面的确认按钮 -->
+	<WebButton name="paybtn" xpath="//input[@id='paybtn']">
+	</WebButton>
+	
+</elements>

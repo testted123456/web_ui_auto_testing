@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 购买分数-->
+	<WebInput name="购买份数" xpath="//input[@id='amount']">
+	</WebInput>
+	<!-- 购买 -->
+	<WebButton name="购买" xpath="//button[@type='submit']">
+	</WebButton>
+</elements>
