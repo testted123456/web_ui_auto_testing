@@ -3,18 +3,23 @@ package com.nonobank.apps.listener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+
 import com.nonobank.apps.business.portal.Biz_Logout;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
-import org.apache.logging.log4j.*;
 
 public class TestngListener extends TestListenerAdapter {
 
@@ -68,7 +73,18 @@ public class TestngListener extends TestListenerAdapter {
 
 	@Override
 	public void onFinish(ITestContext testContext) {
-		super.onFinish(testContext);
+		Iterator<ITestResult> listOfFailedTests = testContext.getFailedTests().getAllResults().iterator();
+        while (listOfFailedTests.hasNext()) {
+            ITestResult failedTest = listOfFailedTests.next();
+            ITestNGMethod method = failedTest.getMethod();
+            if (testContext.getFailedTests().getResults(method).size() > 1) {
+                listOfFailedTests.remove();
+            } else {
+                if (testContext.getPassedTests().getResults(method).size() > 0) {
+                    listOfFailedTests.remove();
+                }
+            }
+        }
 	}
 
 	/**
