@@ -199,32 +199,44 @@ public class ObjectFactory {
 			constructor = Class.forName("com.nonobank.apps.objectRepository." + elementType)
 					.getConstructor(WebDriver.class, String.class);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		}
 		try {
 			object = constructor.newInstance(driver, xpath);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			Assert.fail(e.getMessage());
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
-			logger.info("can't get web element by elementPath : " + elementPath);
-			Assert.fail(e.getMessage());
+			logger.error("调用构造函数生成页面对象失败，xpath : " + elementPath);
+			Assert.fail("调用构造函数生成页面对象失败，xpath : " + elementPath);
 		}
 		return (E) object;
+	}
+	
+	public WebElement getWebElement(String xpath) {
+		final By by = By.xpath(xpath);
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			return wait.until(new ExpectedCondition<WebElement>() {
+				@Override
+				public WebElement apply(WebDriver d) {
+					return d.findElement(by);
+				}
+			});
+		} catch (NoSuchElementException e) {
+			logger.info("找不页面对象，xpath : " + by.toString());
+			Assert.fail("找不页面对象，xpath : " + by.toString());
+			return null;
+		}
 	}
 
 	public WebElement getWebElement(final By by) {
@@ -237,12 +249,18 @@ public class ObjectFactory {
 				}
 			});
 		} catch (NoSuchElementException e) {
-			logger.info("Can't find element by : " + by.toString());
+			logger.info("找不页面对象，xpath : " + by.toString());
+			Assert.fail("找不页面对象，xpath : " + by.toString());
 			return null;
 		}
 	}
 
 	public List<WebElement> getWebElements(By by) {
+		return driver.findElements(by);
+	}
+	
+	public List<WebElement> getWebElements(String xpath) {
+		By by = By.xpath(xpath);
 		return driver.findElements(by);
 	}
 }

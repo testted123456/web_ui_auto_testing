@@ -18,6 +18,7 @@ import org.testng.TestListenerAdapter;
 
 import com.nonobank.apps.business.portal.Biz_Logout;
 import com.nonobank.apps.testcase.base.BaseCase;
+import com.nonobank.apps.utils.db.DBUtils;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 
@@ -41,9 +42,13 @@ public class TestngListener extends TestListenerAdapter {
 		logger.error(tr.getInstanceName() + " : " + tr.getName() + " Failure...");
 		takeScreenShot(tr);
 
-		// 退出登录
-		Biz_Logout biz_Logout = new Biz_Logout();
-		biz_Logout.logout();
+		// 关闭浏览器
+		logger.info("关闭浏览器...");
+		WebDriverUtils.getWebDriver().quit();
+		// 每个testcase执行完成后把webdriver置空
+		WebDriverUtils.destoryWebDriver();
+		// 关闭数据库连接
+		DBUtils.closeConnection();
 	}
 
 	@Override
@@ -74,17 +79,17 @@ public class TestngListener extends TestListenerAdapter {
 	@Override
 	public void onFinish(ITestContext testContext) {
 		Iterator<ITestResult> listOfFailedTests = testContext.getFailedTests().getAllResults().iterator();
-        while (listOfFailedTests.hasNext()) {
-            ITestResult failedTest = listOfFailedTests.next();
-            ITestNGMethod method = failedTest.getMethod();
-            if (testContext.getFailedTests().getResults(method).size() > 1) {
-                listOfFailedTests.remove();
-            } else {
-                if (testContext.getPassedTests().getResults(method).size() > 0) {
-                    listOfFailedTests.remove();
-                }
-            }
-        }
+		while (listOfFailedTests.hasNext()) {
+			ITestResult failedTest = listOfFailedTests.next();
+			ITestNGMethod method = failedTest.getMethod();
+			if (testContext.getFailedTests().getResults(method).size() > 1) {
+				listOfFailedTests.remove();
+			} else {
+				if (testContext.getPassedTests().getResults(method).size() > 0) {
+					listOfFailedTests.remove();
+				}
+			}
+		}
 	}
 
 	/**
