@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test name="Test">
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+<suite name="Nonobank" preserve-order="true">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="com.nonobank.apps.listener.TestngListener" />
+		<listener class-name="org.testng.reporters.FailedReporter" />
+		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
+	</listeners>
+		<test name="portal" preserve-order="true"> 
+			<classes> 
+				<class name ="com.nonobank.apps.testcase.portal.RegisterSuccess"/> 
+			</classes> 
+		</test>
+		<test name="Nonobank_Student_loan" preserve-order="true"> 
+			<classes> 
+				<class name="com.nonobank.apps.testcase.studentRegisterLoan.StudentRegisterLoan"/> 
+				<!-- <class name="com.nonobank.apps.testcase.studentRegisterLoan.ValidateStudentRegisterInfo"/>  -->
+			</classes> 
+		</test> 
+		<test name="Nonobank_BindCard" preserve-order="true"> 
+			<classes> 
+				<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess"/> 
+			</classes> 
+		</test>
+		<test name="Nonobank_Recharge" preserve-order="true"> 
+			<classes> 
+				<class name="com.nonobank.apps.testcase.recharge.RechargeSuccess"/>
+				<!-- <class name="com.nonobank.apps.testcase.recharge.RechargeCheck"/> --> 
+			</classes> 
+		</test> 
+		<test name="Nonobank_WithDrawal" preserve-order="true"> 
+			<classes> 
+				<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+				<!-- <class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck"/> --> 
+			</classes> 
+		</test>
+		<test name="licai" preserve-order="true">
+			<classes>
+				<class name="com.nonobank.apps.testcase.licai.JingxuanByBalanceSuccessful" />  
+				<class name="com.nonobank.apps.testcase.licai.JingxuanByNewBankCardSuccessful"/> 
+				<class name="com.nonobank.apps.testcase.licai.JingxuanByOldBankCardSuccessful" />  
+				<class name="com.nonobank.apps.testcase.licai.TiexinByBalanceSuccessful" /> 
+				<class name="com.nonobank.apps.testcase.licai.TiexinByNewBankCardSuccessful" /> 
+				<class name="com.nonobank.apps.testcase.licai.TiexinByOldBankCardSuccessful" /> 
+				<class name="com.nonobank.apps.testcase.licai.LanrenByBalanceSuccessful" /> 
+				<class name="com.nonobank.apps.testcase.licai.LanrenByNewBankCardSuccessful" /> 
+				<class name="com.nonobank.apps.testcase.licai.LanrenByOldBankCardSuccessful" /> 
+			</classes>
+		</test>
+		<!-- <test name="Nonobank_Portal" preserve-order="true" > 
+			<classes> 
+				<class name="com.nonobank.apps.testcase.portal.RegisterValidateMobile"/> 
+			</classes> 
+		</test> -->
+</suite>
