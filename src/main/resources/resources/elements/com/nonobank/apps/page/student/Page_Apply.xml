@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebSelect name="借款用途" xpath="//select[@id='useway']">
+	</WebSelect>
+	<WebTextArea name="详细用途" xpath="//textarea[@id='useway1']">
+	</WebTextArea>
+	<WebInput name="借款金额" xpath="//input[@id='price']">
+	</WebInput>
+	<WebInput name="验证码" xpath="//input[@name='validate']">
+	</WebInput>
+	<WebInput name="普通包12期" xpath="//input[@id='expect1']">
+	</WebInput>
+	<WebInput name="普通包24期" xpath="//input[@id='expect2']">
+	</WebInput>
+	<WebInput name="普通包36期" xpath="//input[@id='expect3']">
+	</WebInput>
+	<WebInput name="应急包1期" xpath="//input[@id='expect4']">
+	</WebInput>
+	<WebInput name="应急包2期" xpath="//input[@id='expect5']">
+	</WebInput>
+	<WebInput name="应急包3期" xpath="//input[@id='expect6']">
+	</WebInput>
+	<WebInput name="白领包12期" xpath="//input[@id='expect7']">
+	</WebInput>
+	<WebInput name="白领包24期" xpath="//input[@id='expect8']">
+	</WebInput>
+	<WebInput name="白领包36期" xpath="//input[@id='expect9']">
+	</WebInput>
+	<WebInput name="专科包12期" xpath="//input[@id='expect10']">
+	</WebInput>
+	<WebInput name="专科包24期" xpath="//input[@id='expect11']">
+	</WebInput>
+	<WebInput name="专科包36期" xpath="//input[@id='expect12']">
+	</WebInput>
+	<WebButton name="提交" xpath="//button[@id='btnsubmit']">
+	</WebButton>
+	<WebLink name="增加减息券" xpath="//a[@id='addCoupon']">
+	</WebLink>
+	<WebCommon name="每期需还金额" xpath="//div[@id='bank_list_kuaiqian']">
+	</WebCommon>
+	<WebCommon name="借款产品" xpath="//span[id='dialog_product']">
+	</WebCommon>
+	<WebCommon name="借款期数" xpath="//span[id='dialog_expect']">
+	</WebCommon>
+	<WebCommon name="借款金额" xpath="//span[id='dialog_amount']">
+	</WebCommon>
+	<WebButton name="返回修改" xpath="//button[@id='goBack']">
+	</WebButton>
+	<WebButton name="下一步" xpath="//button[@id='goNext']">
+	</WebButton>
+	
+</elements>

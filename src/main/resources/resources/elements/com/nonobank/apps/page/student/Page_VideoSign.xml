@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebButton name="点击获得优先审核权" xpath="//button[@id='sbt'and@onclick='showWeiXinQQ();']">
+	</WebButton>
+	<WebLink name="点击获得优先审核权—视频签约完成" xpath="//a[@onclick='showWeiXinQQ();']">
+	</WebLink>
+</elements>

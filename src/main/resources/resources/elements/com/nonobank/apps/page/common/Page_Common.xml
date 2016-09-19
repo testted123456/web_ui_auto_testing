@@ -1,0 +1,14 @@
+<elements>
+	<WebLink name="登录链接"  xpath="//a[@href='/Login?locationUrl=/Student/Register'and@rel='nofollow']">
+	</WebLink>
+	<WebLink name="信用证书查询" xpath="//a[@href='/Student/CreditBookSearch']">
+	</WebLink>
+	<WebLink name="安全退出" xpath="//a[@href='/Login/logout']">
+	</WebLink>
+	<WebLink name="合作请联系邮箱" xpath="//a[@href='mailto:bd@mingxiaodai.com']">
+	</WebLink>
+	<WebLink name="投诉及建议请联系邮箱" xpath="//a[@href='mailto:jianyi@mingxiaodai.com']">
+	</WebLink>
+	<WebLink name="你好：账号名" xpath="//a[@href='/Account']">
+	</WebLink>
+</elements>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebLink name="取消本次申请" xpath="//a[@href='javascript:ReApply()']">
+	</WebLink>
+	<WebInput name="常用邮箱" xpath="//input[@id='email']">
+	</WebInput>
+	<WebInput name="家庭地址" xpath="//input[@id='home_address']">
+	</WebInput>
+	<WebInput name="5万以下" xpath="//input[@value='1'and@type='radio']">
+	</WebInput>
+	<WebInput name="5-10万" xpath="//input[@value='2'and@type='radio']">
+	</WebInput>
+	<WebInput name="10-20万" xpath="//input[@value='3'and@type='radio']">
+	</WebInput>
+	<WebInput name="20万以上" xpath="//input[@value='4'and@type='radio']">
+	</WebInput>
+	<WebInput name="父亲或母亲姓名" xpath="//input[@id='parent']">
+	</WebInput>
+	<WebInput name="父亲或母亲手机号" xpath="//input[@id='parent_mobile']">
+	</WebInput>
+	<WebInput name="辅导员姓名" xpath="//input[@id='counselor']">
+	</WebInput>
+	<WebInput name="辅导员手机号" xpath="//input[@id='counselor_mobile']">
+	</WebInput>
+	<WebInput name="好友1姓名" xpath="//input[@id='friend1']">
+	</WebInput>
+	<WebInput name="好友1手机号" xpath="//input[@id='friend1_mobile']">
+	</WebInput>
+	<WebInput name="好友2姓名" xpath="//input[@id='friend2']">
+	</WebInput>
+	<WebInput name="好友2手机号" xpath="//input[@id='friend2_mobile']">
+	</WebInput>
+	<WebInput name="好友3姓名" xpath="//input[@id='friend3']">
+	</WebInput>
+	<WebInput name="好友3手机号" xpath="//input[@id='friend3_mobile']">
+	</WebInput>
+	<WebInput name="选择文件" xpath="//input[@id='fileupload']">
+	</WebInput>
+	<WebInput name="上传" xpath="//input[@name='submit']">
+	</WebInput>
+	<WebInput name="账号" xpath="//input[@id='banks_account']">
+	</WebInput>
+	<WebSelect name="银行类型" xpath="//select[@id='banks_cat']">
+	</WebSelect>
+	<WebInput name="银行预留手机号" xpath="//input[@id='mobilenum']">
+	</WebInput>
+	<WebLink name="获取验证码" xpath="//a[@id='getValidate']">
+	</WebLink>
+	<WebInput name="验证码" xpath="//input[@id='validNo']">
+	</WebInput>
+	<WebButton name="同意并提交" xpath="//button[@id='btnsubmit']">
+	</WebButton>
+	<WebLink name="银行卡预留手机号问号" xpath="//a[@class='icon_question']">
+	</WebLink>
+	<WebSpan name="银行卡预留手机号码问号提示内容" xpath="//span[@class='question_box']">
+	</WebSpan>
+	<WebSpan name="loadingText" xpath="//span[@id='loadingText']">
+	</WebSpan>
+</elements>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebImage name="Iwantloan" xpath="//img[@src='/Public/v4/images/menu_arrow.png']">
+	</WebImage>
+	<WebLink name="mxloan" xpath="//a[@href='http://mx.idc.nonobank.com']">
+	</WebLink>
+	<WebInput name="用户名" xpath="//input[@id='m_username']">
+	</WebInput>
+	<WebInput name="QQ号" xpath="//input[@id='qq']">
+	</WebInput>
+	<WebInput name="手机号码" xpath="//input[@id='mobile']">
+	</WebInput>
+	<WebInput name="安全码" xpath="//input[@id='checkCode1']">
+	</WebInput>
+	<WebInput name="免费获取验证码" xpath="//input[@id='countdown']">
+	</WebInput>
+	<WebInput name="短信验证码" xpath="//input[@id='validation']">
+	</WebInput>
+	<WebInput name="输入密码" xpath="//input[@id='m_password']">
+	</WebInput>
+	<WebInput name="确认密码" xpath="//input[@id='m_password_1']">
+	</WebInput>
+	<WebSelect name="省市" xpath="//select[@id='province']">
+	</WebSelect>
+	<WebSelect name="院校" xpath="//select[@id='institution']">
+	</WebSelect>
+	<WebInput name="校区" xpath="//input[@id='address_school']">
+	</WebInput>
+	<WebSelect name="入学年份" xpath="//select[@id='into_school_time']">
+	</WebSelect>
+	<WebSelect name="学历" xpath="//select[@id='education']">
+	</WebSelect>
+	<WebInput name="学号" xpath="//input[@id='mfd_student_sn']">
+	</WebInput>
+	<WebInput name="姓名" xpath="//input[@id='realname']">
+	</WebInput>
+	<WebInput name="身份证号" xpath="//input[@id='idnum']">
+	</WebInput>
+	<WebSelect name="专业" xpath="//select[@id='major']">
+	</WebSelect>
+	<WebSelect name="了解渠道" xpath="//select[@id='my_server']">
+	</WebSelect>
+	<WebButton name="提交" xpath="//button[@id='btnsubmit']">
+	</WebButton>
+	<WebInput name="我已阅读勾选框" xpath="//input[@id='reg_check']">
+	</WebInput>
+	<WebLink name="登录链接"  xpath="//a[@href='/Login?locationUrl=/Student/Register'and@rel='nofollow']">
+	</WebLink>
+	<WebLink name="登录链接2" xpath="//a[@href='/Login?locationUrl=/Student/Register'">
+	</WebLink>
+	<WebLink name="信用证书查询" xpath="//a[@href='/Student/CreditBookSearch']">
+	</WebLink>
+	<WebLink name="语音验证码" xpath="//a[@onclick='validateVoiceVerify()']">
+	</WebLink>
+</elements>
