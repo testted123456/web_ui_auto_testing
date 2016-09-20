@@ -28,11 +28,9 @@
 	<WebLink name="profile" xpath="//a[@href='/User/Profile']">
 	</WebLink>
 	<!-- 密码设置 -->
-	<!-- <WebCommon name="passwordSetting" xpath="//li[@onclick=\"javascript:window.location.href='/User/ChangePassword/login'\"]" -->>
 	<WebCommon name="passwordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/login')]">
 	</WebCommon>
 	<!-- 支付密码设置 -->
-	<!-- <WebCommon name="payPasswordSetting" xpath="//li[@onclick=\"javascript:window.location.href='/User/ChangePassword/pay'\"]"> -->
 	<WebCommon name="payPasswordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/pay')]">
     </WebCommon>
 	<!-- 支付密码新密码  -->

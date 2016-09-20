@@ -67,5 +67,13 @@ public class Biz_Apply {
 		page_Apply.click_goNext();
 		logger.info("--------------结束：借款申请----------------");
 	}
+	
+	public void borrowsUseBus(String purpose_apply,String detailPurpose_apply,String money_apply){
+		logger.info("--------------开始：借款用途、金额----------------");
+		page_Apply.select_purposeByValue(purpose_apply);
+		page_Apply.input_detailPurpose(detailPurpose_apply);
+		page_Apply.input_money(money_apply);
 
+		logger.info("--------------结束：借款用途、金额----------------");
+	}
 }

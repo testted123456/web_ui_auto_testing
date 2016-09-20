@@ -8,6 +8,7 @@ import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.objectRepository.WebTextArea;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.page.PageUtils;
 
 /**
  * 类说明：借款申请页面
@@ -53,6 +54,12 @@ public class Page_Apply extends BasePage{
 		logger.info("输入验证码...");
 		WebInput input_smsCode = objectFactory.getWebInput("验证码");
 		input_smsCode.input(smsCode);
+	}
+	//检查验证码输入框是否存在
+	public void isExist_smsCode(){
+		logger.info("检查验证码输入框是否存在...");
+		WebInput input_smsCode = objectFactory.getWebInput("验证码");
+		
 	}
 	//名校贷普通包借款期数
 	public void select_pieceOfCommonLoan(int index){

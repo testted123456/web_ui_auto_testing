@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class BorrowsTestCase {
 	
@@ -32,12 +33,22 @@ public class BorrowsTestCase {
 		Biz_Register biz_register=new Biz_Register();
 		Biz_Apply biz_Apply=new Biz_Apply();
 		Biz_Improve biz_Improve=new Biz_Improve();
+		// 注册流程--注册信息
+		biz_register.registerInformationBus(userName_register, qq_register, mobile_register,
+				checkCode_register, smsCode_register, password_register, confirmPassword_register);
+		// 注册流程--信息验证
+		biz_register.informationVerifyBus(province_register, institution_register, schoolArea_register,
+				year_register, education_register, studentNumber_register, realName_register, 
+				idCard_register, major_register);
+		//注册流程-了解渠道
+		biz_register.channelBus(channel_register);
+		//注册流程-提交
+		biz_register.submitBus();
+		//注册成功信息验证
+		biz_register.registerPromptBus();
+		PageUtils.sleep(10000);
 		
-		biz_register.registerBus(userName_register, qq_register, mobile_register, checkCode_register, 
-				password_register, confirmPassword_register, province_register, institution_register, 
-				schoolArea_register, year_register, education_register, studentNumber_register, 
-				realName_register, idCard_register, major_register, 
-				channel_register, smsCode_register);
+		//
 		biz_Apply.applyBus(purpose_apply, detailPurpose_apply, money_apply, smsCode_apply, 
 				int_productIndex_apply, int_pieces_apply);
 		biz_Improve.improveBus(email_improve, address_improve, income_index_improve, parentName_improve,

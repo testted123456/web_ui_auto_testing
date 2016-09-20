@@ -44,11 +44,7 @@
 	</WebButton>
 	<WebInput name="我已阅读勾选框" xpath="//input[@id='reg_check']">
 	</WebInput>
-	<WebLink name="登录链接"  xpath="//a[@href='/Login?locationUrl=/Student/Register'and@rel='nofollow']">
-	</WebLink>
-	<WebLink name="登录链接2" xpath="//a[@href='/Login?locationUrl=/Student/Register'">
-	</WebLink>
-	<WebLink name="信用证书查询" xpath="//a[@href='/Student/CreditBookSearch']">
+	<WebLink name="登录" xpath="//a[@href='/Login?locationUrl=/Student/Register'">
 	</WebLink>
 	<WebLink name="语音验证码" xpath="//a[@onclick='validateVoiceVerify()']">
 	</WebLink>

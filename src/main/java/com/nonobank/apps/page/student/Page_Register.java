@@ -75,9 +75,15 @@ public class Page_Register extends BasePage {
 		WebInput get_sms_code = objectFactory.getWebInput("免费获取验证码");
 		get_sms_code.click();
 	}
-
-	// 输入短信验证码
-	public void input_smsCode(String smsCode) {
+	//获取安全码错误按钮文本信息
+	public String getText_checkCodeError(){
+		logger.info("获取安全码错误按钮文本信息......");
+		WebInput get_sms_code = objectFactory.getWebInput("免费获取验证码");
+		String checkCodeError=get_sms_code.getValue();
+		return checkCodeError;
+	}
+	 // 输入短信验证码
+	public void input_smsCode(String smsCode){
 		logger.info("输入短信验证码...");
 		WebInput input_sms_code = objectFactory.getWebInput("短信验证码");
 		input_sms_code.clearAndInput(smsCode);
@@ -216,9 +222,8 @@ public class Page_Register extends BasePage {
 		WebButton button_submit = objectFactory.getWebButton("提交");
 		button_submit.click();
 	}
-
-	// 点击语音验证码
-	public void click_voiceVerificationCode() {
+	//点击语音验证码
+	public void click_voiceVerificationCode(){
 		logger.info("点击语音验证码...");
 		WebLink click_voiceVerificationCode = objectFactory.getWebLink("语音验证码");
 		click_voiceVerificationCode.click();
@@ -235,4 +240,17 @@ public class Page_Register extends BasePage {
 		}
 	}
 
+	//点击登录
+	public void click_login(){
+		logger.info("点击登录...");
+		WebLink click_login=objectFactory.getWebLink("登录");
+		click_login.click();
+	}
+	//点击我已阅读勾选框
+	public void click_checkBox(){
+		logger.info("点击我已阅读勾选框...");
+		WebInput click_checkBox=objectFactory.getWebInput("我已阅读勾选框");
+		click_checkBox.click();
+	}
+	
 }
