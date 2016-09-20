@@ -122,7 +122,7 @@ public class Page_Licai_Payment extends BasePage {
 	// *********************************************************************使用新银行卡**********************************************************************************
 
 	public boolean is_NewBankCard_exist() {
-		if (objectFactory.isElementExists("使用新银行卡", WebElementType.WebLink)) {
+		if (isElementExists("使用新银行卡", WebElementType.WebLink, 15)) {
 			WebLink link_reSelectCard = objectFactory.getWebLink("使用新银行卡");
 			if (link_reSelectCard.isDisplayed()) {
 				return true;
@@ -189,19 +189,6 @@ public class Page_Licai_Payment extends BasePage {
 	public void submitForNewCard() {
 		WebButton button = objectFactory.getWebButton("同意协议并付款");
 		button.click();
-		sleep(3000);
-	}
-
-	// 关闭alter提示框
-	public void acceptAlert() {
-		if (objectFactory.isAlertExists(10000)) {
-			Alert alert = driver.switchTo().alert();
-			String text = alert.getText();
-			if (!text.startsWith("本次开通快捷并支付")) {
-				Assert.fail("支付提示信息错误...");
-			}
-			alert.accept();
-		}
 		sleep(3000);
 	}
 }

@@ -36,10 +36,10 @@ public class Page_User_WithdrawalConfirm extends BasePage {
 	 */
 	public void isWithDrawalConfirmSuccess(){
 		//继续提现连接是否存在
-		if(objectFactory.isElementExists("withdrawal", WebElementType.WebLink)){
+		if(isElementExists("withdrawal", WebElementType.WebLink, 15)){
 			logger.info("widthdrawal successful.");
 		}else{
-			logger.info("widthdrawal failed.");
+			logger.error("widthdrawal failed.");
 			Assert.fail();
 		}
 	}

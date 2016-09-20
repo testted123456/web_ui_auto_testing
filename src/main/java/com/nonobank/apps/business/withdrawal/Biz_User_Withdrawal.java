@@ -33,7 +33,7 @@ public class Biz_User_Withdrawal {
 		String fee = page_User_Withdrawal.getFee();
 		String amount = page_User_Withdrawal.get_amount();
 		page_User_Withdrawal.goNext();
-		page_User_Withdrawal.accept_alert();
+		page_User_Withdrawal.closeAlert();
 		return fee + ":" + amount;
 	}
 

@@ -25,7 +25,7 @@ public class Page_User_Banks extends BasePage {
 	
 	//实名认证
 	public void verifyNameID(String name, String idNo){
-		if(objectFactory.isElementExists("verifyrealname", WebElementType.WebInput)){
+		if(isElementExists("verifyrealname", WebElementType.WebInput, 15)){
 			WebInput input_realName = objectFactory.getWebInput("verifyrealname");
 			if(name.equals("random")){
 //				name = RandomUtils.getInstance().generateUserName();

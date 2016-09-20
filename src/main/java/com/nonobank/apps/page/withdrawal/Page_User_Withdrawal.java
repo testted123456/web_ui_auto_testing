@@ -148,10 +148,10 @@ public class Page_User_Withdrawal extends BasePage {
 	 * 判断点击“下一步”按钮是否跳转到提现确认页面
 	 */
 	public void isGoNextSuccess(){
-		if(objectFactory.isElementExists("t_con_btn", WebElementType.WebButton)){
+		if(isElementExists("t_con_btn", WebElementType.WebButton, 15)){
 			logger.info("跳转到提现确认页面成功.");
 		}else{
-			logger.info("跳转到提现确认页面失败.");
+			logger.error("跳转到提现确认页面失败.");
 			Assert.fail("go to withdrawal page failed.");
 		}
 	}
@@ -174,15 +174,6 @@ public class Page_User_Withdrawal extends BasePage {
 		WebFont  font_fee = objectFactory.getWebFont("poundage");
 		String fee = font_fee.getText();
 		return fee;
-	}
-	
-	/**
-	 * 提交后出现的alert
-	 */
-	public void accept_alert(){
-		if(objectFactory.isAlertExists(15000)){
-			driver.switchTo().alert().accept();
-		}
 	}
 	
 	/**

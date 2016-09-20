@@ -39,11 +39,12 @@ public class Biz_Register {
 	}
 
 	public boolean isRegisterSuccess() {
-		boolean flag = page_Register.isDisplayed(WebElementType.WebButton, "join");
+		boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
+
 		if (flag == true) {
 			logger.info("注册成功...");
 		} else {
-			logger.info("注册失败...");
+			logger.error("注册失败...");
 		}
 		return flag;
 	}

@@ -70,7 +70,7 @@ public class Page_User_BindCard1 extends BasePage {
 
 	//校验选择银行点下一步是否成功
 	public void verify_select_bank(String bank_name){
-		if(objectFactory.isElementExists(By.xpath("//span[@data-bankname='" + bank_name + "']"))){
+		if(isElementExists(By.xpath("//span[@data-bankname='" + bank_name + "']"), 15)){
 			logger.info("选择银行成功.");
 		}else{
 			logger.error("选择银行失败.");

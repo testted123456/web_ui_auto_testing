@@ -3,6 +3,7 @@ package com.nonobank.apps.business.portal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.nonobank.apps.objectRepository.ObjectFactory;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 
@@ -26,11 +27,12 @@ public class Biz_Login {
 	}
 
 	public boolean is_login_success() {
-		boolean flag = page_Login.isDisplayed(WebElementType.WebLink, "logout");
+		boolean flag = page_Login.isElementDisplayed("logout", WebElementType.WebLink, 15);
+		
 		if (flag == true) {
 			logger.info("登录成功...");
 		} else {
-			logger.info("登录失败...");
+			logger.error("登录失败...");
 		}
 		return flag;
 	}

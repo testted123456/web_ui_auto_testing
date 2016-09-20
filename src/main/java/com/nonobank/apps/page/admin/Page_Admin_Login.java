@@ -50,11 +50,11 @@ public class Page_Admin_Login extends BasePage{
 		
 		for(int i=0;i<10;i++){
 			driver.switchTo().frame("topFrame");
-			if(objectFactory.isElementExists("logout", WebElementType.WebLink)){
+			if(isElementExists("logout", WebElementType.WebLink, 15)){
 				logger.info("登录后台成功1...");
 				break;
 			}
-			if(objectFactory.isElementExists("login", WebElementType.WebInput)){
+			if(isElementExists("login", WebElementType.WebInput, 15)){
 				logger.info("登录后台失败...");
 				input_login = objectFactory.getWebInput("login");
 				if(input_login.isDisplayed()){
@@ -71,7 +71,7 @@ public class Page_Admin_Login extends BasePage{
 	}
 	
 	public void login_admin(){
-		if(objectFactory.isElementExists(By.xpath("//input[@name='username']"))){
+		if(isElementExists(By.xpath("//input[@name='username']"), 15)){
 			
 			Properties prop = ParseProperties.getInstance();
 			String username = prop.getProperty("admin_user");

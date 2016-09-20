@@ -50,7 +50,7 @@ public class Page_User_BindCard2 extends BasePage {
 	
 	//判断绑卡是否成功
 	public void isBindCardSuccess(){
-		if(objectFactory.isElementExists("success", WebElementType.WebCommon)){
+		if(isElementExists("success", WebElementType.WebCommon, 15)){
 			logger.info("绑卡成功.");
 		}else{
 			logger.error("绑卡失败");

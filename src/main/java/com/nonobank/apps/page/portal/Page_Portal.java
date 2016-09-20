@@ -40,7 +40,7 @@ public class Page_Portal extends BasePage {
 	}
 
 	public void close_dialog() {
-		if (objectFactory.isElementExists("dialog_close", WebElementType.WebLink)) {
+		if (isElementExists("dialog_close", WebElementType.WebLink, 15)) {
 			WebLink link_close_dialog = objectFactory.getWebLink("dialog_close");
 			if (link_close_dialog.isDisplayed()) {
 				link_close_dialog.click();

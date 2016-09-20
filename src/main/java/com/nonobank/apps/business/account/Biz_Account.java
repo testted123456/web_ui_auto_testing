@@ -34,8 +34,8 @@ public class Biz_Account {
 		page_Account.input_mycard(newMyCard);
 		page_Account.submit();
 		
-		if(page_Account.isAlertExist()){
-			page_Account.acceptAlert();
+		if(page_Account.isAlertExists(10000)){
+			page_Account.closeAlert();
 		}else{
 			while(page_Account.isCardNoError()){
 				if(mycard.equals("random")){
@@ -44,8 +44,8 @@ public class Biz_Account {
 				}
 				page_Account.input_mycard(newMyCard);
 				page_Account.submit();
-				if(page_Account.isAlertExist()){
-					page_Account.acceptAlert();
+				if(page_Account.isAlertExists(1000)){
+					page_Account.closeAlert();
 					break;
 				}
 			}
@@ -61,7 +61,7 @@ public class Biz_Account {
 		page_Account.input_payPassword(payPassword);
 		page_Account.input_payPassword_again(payPassword1);
 		page_Account.setPasswordbtn();
-		page_Account.acceptAlert();
+		page_Account.closeAlert();
 	}
 	
 

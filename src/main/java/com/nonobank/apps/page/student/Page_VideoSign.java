@@ -11,13 +11,12 @@ public class Page_VideoSign extends BasePage {
 
 	//判断(获得优先审核权—视频签约完成)按钮是否存在
 	public boolean exist_getFirstAuditRight(){
-		if(objectFactory.isElementExists("点击获得优先审核权—视频签约完成",WebElementType.WebLink)){
+		if(isElementExists("点击获得优先审核权—视频签约完成",WebElementType.WebLink, 15)){
 			logger.info("(获得优先审核权—视频签约完成)按钮存在.....");
 			return true;
 		}else{
-			logger.info("(获得优先审核权—视频签约完成)按钮不存在.....");
+			logger.error("(获得优先审核权—视频签约完成)按钮不存在.....");
 			return false;
 		}
 	}
-
 }

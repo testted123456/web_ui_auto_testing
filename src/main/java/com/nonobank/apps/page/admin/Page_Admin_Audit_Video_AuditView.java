@@ -33,7 +33,7 @@ public class Page_Admin_Audit_Video_AuditView extends BasePage {
 		}
 
 		for (int i = 0; i < 15; i++) {
-			if (objectFactory.isElementExists(audit, WebElementType.WebInput)) {
+			if (isElementExists(audit, WebElementType.WebInput, 15)) {
 				break;
 			} else {
 				sleep(20000);
@@ -45,9 +45,9 @@ public class Page_Admin_Audit_Video_AuditView extends BasePage {
 
 	// 审核页面出现的alert框
 	public String accept_alert() {
-		if (objectFactory.isAlertExists(5000)) {
-			String text = objectFactory.getAlertText();
-			objectFactory.closeAlert();
+		if (isAlertExists(5000)) {
+			String text = getAlertText();
+			closeAlert();
 			return text;
 		} else {
 			return null;

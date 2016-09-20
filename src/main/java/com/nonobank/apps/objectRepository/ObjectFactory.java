@@ -36,106 +36,106 @@ public class ObjectFactory {
 		this.xmlFile = xmlFile;
 	}
 
-	public boolean isElementExists(final By by) {
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, 15);
-
-			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
-
-				@Override
-				public WebElement apply(WebDriver d) {
-					try {
-						return d.findElement(by);
-					} catch (Exception e) {
-						return null;
-					}
-				}
-			});
-			return (null != element);
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	public boolean isElementExists(final By by, long time) {
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, time);
-
-			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
-
-				@Override
-				public WebElement apply(WebDriver d) {
-					try {
-						return d.findElement(by);
-					} catch (Exception e) {
-						return null;
-					}
-				}
-			});
-			return (null != element);
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	public boolean isElementExists(String elementPath, WebElementType elementType) {
-		String xpath = ParseXML.getXPath(elementPath, elementType, xmlFile);
-
-		final By by = By.xpath(xpath);
-
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, 15);
-
-			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
-
-				@Override
-				public WebElement apply(WebDriver d) {
-					try {
-						return d.findElement(by);
-					} catch (Exception e) {
-						return null;
-					}
-				}
-			});
-			return (null != element);
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	/**
-	 * 函数说明：alert窗口是否存在
-	 * 
-	 * @param driver
-	 * @return
-	 */
-	public boolean isAlertExists(long ms) {
-		int round = (int) ms / 1000;
-		for (int i = 0; i <= round; i++) {
-			try {
-				driver.switchTo().alert();
-				return true;
-			} catch (NoAlertPresentException ex) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return false;
-	}
-
-	// 关闭alert
-	public void closeAlert() {
-		driver.switchTo().alert().accept();
-	}
-
-	// 获取alert内容
-	public String getAlertText() {
-		return driver.switchTo().alert().getText();
-	}
+//	public boolean isElementExists(final By by) {
+//		try {
+//			WebDriverWait wait = new WebDriverWait(driver, 15);
+//
+//			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
+//
+//				@Override
+//				public WebElement apply(WebDriver d) {
+//					try {
+//						return d.findElement(by);
+//					} catch (Exception e) {
+//						return null;
+//					}
+//				}
+//			});
+//			return (null != element);
+//		} catch (Exception e) {
+//			return false;
+//		}
+//	}
+//	
+//	public boolean isElementExists(final By by, long time) {
+//		try {
+//			WebDriverWait wait = new WebDriverWait(driver, time);
+//
+//			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
+//
+//				@Override
+//				public WebElement apply(WebDriver d) {
+//					try {
+//						return d.findElement(by);
+//					} catch (Exception e) {
+//						return null;
+//					}
+//				}
+//			});
+//			return (null != element);
+//		} catch (Exception e) {
+//			return false;
+//		}
+//	}
+//
+//	public boolean isElementExists(String elementPath, WebElementType elementType) {
+//		String xpath = ParseXML.getXPath(elementPath, elementType, xmlFile);
+//
+//		final By by = By.xpath(xpath);
+//
+//		try {
+//			WebDriverWait wait = new WebDriverWait(driver, 15);
+//
+//			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
+//
+//				@Override
+//				public WebElement apply(WebDriver d) {
+//					try {
+//						return d.findElement(by);
+//					} catch (Exception e) {
+//						return null;
+//					}
+//				}
+//			});
+//			return (null != element);
+//		} catch (Exception e) {
+//			return false;
+//		}
+//	}
+//
+//	/**
+//	 * 函数说明：alert窗口是否存在
+//	 * 
+//	 * @param driver
+//	 * @return
+//	 */
+//	public boolean isAlertExists(long ms) {
+//		int round = (int) ms / 1000;
+//		for (int i = 0; i <= round; i++) {
+//			try {
+//				driver.switchTo().alert();
+//				return true;
+//			} catch (NoAlertPresentException ex) {
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		return false;
+//	}
+//
+//	// 关闭alert
+//	public void closeAlert() {
+//		driver.switchTo().alert().accept();
+//	}
+//
+//	// 获取alert内容
+//	public String getAlertText() {
+//		return driver.switchTo().alert().getText();
+//	}
 
 	public WebButton getWebButton(String elementPath) {
 		return (WebButton) getWebElement(WebElementType.WebButton, elementPath);
@@ -186,10 +186,10 @@ public class ObjectFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <E extends BaseWebElement> E getWebElement(WebElementType elementType, String elementPath) {
+	public <E extends BaseWebElement> E getWebElement(WebElementType elementType, String elementName) {
 		String xpath = null;
 
-		xpath = ParseXML.getXPath(elementPath, elementType, xmlFile);
+		xpath = ParseXML.getXPath(elementName, elementType, xmlFile);
 
 		Object object = null;
 
@@ -215,8 +215,8 @@ public class ObjectFactory {
 			Assert.fail(e.getMessage());
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
-			logger.error("调用构造函数生成页面对象失败，xpath : " + elementPath);
-			Assert.fail("调用构造函数生成页面对象失败，xpath : " + elementPath);
+			logger.error("调用构造函数生成页面对象失败，xpath : " + elementName);
+			Assert.fail("调用构造函数生成页面对象失败，xpath : " + elementName);
 		}
 		return (E) object;
 	}

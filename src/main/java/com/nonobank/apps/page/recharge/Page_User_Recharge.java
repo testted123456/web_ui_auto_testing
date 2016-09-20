@@ -25,7 +25,7 @@ public class Page_User_Recharge extends BasePage {
 		driver.navigate().to(url_recharge);
 
 		// 判断跳转充值页面是否成功
-		if (!objectFactory.isElementExists("pay_btn", WebElementType.WebButton)) {
+		if (!isElementExists("pay_btn", WebElementType.WebButton, 15)) {
 			logger.info("跳转充值页面失败...");
 			Assert.fail("navigate to recharge page failed.");
 		}
@@ -66,7 +66,7 @@ public class Page_User_Recharge extends BasePage {
 
 	// 判断点击下一步是否成功
 	public void isNextStepSuccess() {
-		if (!objectFactory.isElementExists("paybtn", WebElementType.WebButton)) {
+		if (!isElementExists("paybtn", WebElementType.WebButton, 15)) {
 			logger.info("点击下一步失败...");
 			Assert.fail("click next step failed.");
 		}

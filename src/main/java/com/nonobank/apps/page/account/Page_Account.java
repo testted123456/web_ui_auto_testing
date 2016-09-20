@@ -59,7 +59,7 @@ public class Page_Account extends BasePage {
 
 	// 身份证有误
 	public boolean isCardNoError() {
-		if (objectFactory.isElementExists("cardMsg", WebElementType.WebSpan)) {
+		if (isElementExists("cardMsg", WebElementType.WebSpan, 15)) {
 			WebSpan span_carMsg = objectFactory.getWebSpan("cardMsg");
 			if (span_carMsg.isDisplayed()) {
 				String text = span_carMsg.getText();
@@ -69,14 +69,6 @@ public class Page_Account extends BasePage {
 			}
 		}
 		return false;
-	}
-
-	public boolean isAlertExist() {
-		return objectFactory.isAlertExists(5000);
-	}
-
-	public void acceptAlert() {
-		objectFactory.closeAlert();
 	}
 
 	// *****************************设置支付密码***************************************//

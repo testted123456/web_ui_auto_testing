@@ -20,7 +20,7 @@ public class Page_Logout extends BasePage {
 		PageUtils.refreshPage();
 		//尝试10次退出
 		for(int i=0;i<10;i++){
-			if(objectFactory.isElementExists("Login", WebElementType.WebLink)){
+			if(isElementExists("Login", WebElementType.WebLink, 15)){
 				WebLink link_login = objectFactory.getWebLink("Login");
 				if(link_login.isDisplayed()){
 					break;
@@ -33,7 +33,7 @@ public class Page_Logout extends BasePage {
 	}
 
 	public boolean isLoginExist(){
-		if(objectFactory.isElementExists("Login", WebElementType.WebLink)){
+		if(isElementExists("Login", WebElementType.WebLink, 15)){
 			WebLink link_login = objectFactory.getWebLink("Login");
 			if(link_login.isDisplayed()){
 				return true;

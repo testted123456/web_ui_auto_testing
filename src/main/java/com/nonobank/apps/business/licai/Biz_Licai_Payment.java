@@ -61,6 +61,6 @@ public class Biz_Licai_Payment {
 		page_Licai_Payment.input_validationCodeForNewCard(validationCode);
 		page_Licai_Payment.input_payPasswordForNewCard(payPassword);
 		page_Licai_Payment.submitForNewCard();
-		page_Licai_Payment.acceptAlert();
+		page_Licai_Payment.closeAlert();
 	}
 }

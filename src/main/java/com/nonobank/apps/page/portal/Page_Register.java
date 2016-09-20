@@ -16,8 +16,6 @@ public class Page_Register extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_Register.class);
 
-
-
 	// 输入手机号
 	public void input_mobile(String mobile) {
 		if (mobile.equals("random_register")) {
@@ -57,7 +55,7 @@ public class Page_Register extends BasePage {
 
 	// 输入错误的号码提示信息
 	public boolean is_error_exist() {
-		if (objectFactory.isElementExists("error", WebElementType.WebLabel)) {
+		if (isElementExists("error", WebElementType.WebLabel, 15)) {
 			WebLabel label_error = objectFactory.getWebLabel("error");
 			String text = label_error.getText();
 			if (text.equals("请输入有效的手机号码，以便找回密码")) {
@@ -89,9 +87,9 @@ public class Page_Register extends BasePage {
 		sleep(1500);
 
 		for (int i = 0; i < 15; i++) {
-			if (objectFactory.isElementExists("checkCode", WebElementType.WebInput)) {
+			if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 				break;
-			} else if (objectFactory.isElementExists("nextStep", WebElementType.WebButton)) {
+			} else if (isElementExists("nextStep", WebElementType.WebButton, 15)) {
 				button_next_step = objectFactory.getWebButton("nextStep");
 				button_next_step.click();
 				PageUtils.waitForPageLoad();
@@ -126,7 +124,5 @@ public class Page_Register extends BasePage {
 		button.click();
 		PageUtils.waitForPageLoad();
 	}
-	
-
 
 }

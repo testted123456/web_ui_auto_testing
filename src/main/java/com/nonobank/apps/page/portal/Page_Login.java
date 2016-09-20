@@ -38,7 +38,7 @@ public class Page_Login extends BasePage {
 	}
 
 	public void input_CheckCode() {
-		if (objectFactory.isElementExists("checkCode", WebElementType.WebInput)) {
+		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
 			input_checkCode.clearAndInput("a1b0");
 		}
@@ -50,7 +50,7 @@ public class Page_Login extends BasePage {
 		button.click();
 		sleep(1000);
 
-		if (objectFactory.isElementExists("logout", WebElementType.WebLink)) {
+		if (isElementExists("logout", WebElementType.WebLink, 15)) {
 			WebLink logout = objectFactory.getWebLink("logout");
 			if (logout.isDisplayed()) {
 				return;
