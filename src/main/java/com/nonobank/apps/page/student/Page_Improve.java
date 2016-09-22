@@ -2,9 +2,11 @@ package com.nonobank.apps.page.student;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -33,7 +35,40 @@ import junit.framework.Assert;
  */
 public class Page_Improve extends BasePage{
 	public static Logger logger = LogManager.getLogger(Page_Improve.class);
-
+	//借款信息检查
+	public HashMap<String, String> check_borrows(){
+		logger.info("借款信息检查...");
+		HashMap<String, String> hashMap = new HashMap<>();
+		List<WebElement> list =objectFactory.getWebElements("借款信息-金额检查");
+		
+		for (int i=0;i<list.size();i++) {
+			switch(i){
+			case 0:hashMap.put("borrowsMoney", list.get(i).getText());
+			        break;
+			case 1:hashMap.put("periods", list.get(i).getText());
+					break;
+			case 2:hashMap.put("perMoney", list.get(i).getText());
+					break;
+			case 3:hashMap.put("consultingFees", list.get(i).getText());
+					break;
+			case 4:hashMap.put("creditRewards", list.get(i).getText());
+					break;
+			}
+		}
+		return hashMap;
+	}
+	//点击获取优先审核权
+	public void click_getFirstReviewPower(){
+		logger.info("点击获取优先审核权...");
+		WebButton click_getFirstReviewPower=objectFactory.getWebButton("点击获得优先审核权");
+		click_getFirstReviewPower.click();
+	}
+	//点击取消本次申请
+	public void click_cancelApply(){
+		logger.info("点击取消本次申请...");
+		WebLink click_cancelApply=objectFactory.getWebLink("取消本次申请");
+		click_cancelApply.click();
+	}
 	// 输入常用邮箱
 	public void input_email(String email){
 		logger.info("输入常用邮箱...");
@@ -137,7 +172,7 @@ public class Page_Improve extends BasePage{
 		WebElement iFrame = 
 				objectFactory.getWebElement(By.xpath("//iframe[@src='/Student/PicUpload']"));
 		driver.switchTo().frame(iFrame);
-		WebElement input_fileupload = objectFactory.getWebElement(By.xpath("//input[@id='fileupload']"));
+		WebElement input_fileupload = objectFactory.getWebElement("选择文件");
 		URL url = ParseXLSX.class.getClassLoader().getResource(file);
 		String file_path = url.getFile();
 		input_fileupload.sendKeys(file_path);

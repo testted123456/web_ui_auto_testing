@@ -1,7 +1,10 @@
 package com.nonobank.apps.business.student;
 
+import java.util.HashMap;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 
 import com.nonobank.apps.page.student.Page_Improve;
 
@@ -12,32 +15,40 @@ public class Biz_Improve {
 
 	Page_Improve page_Improve = new Page_Improve();
 
-	/**
-	 * 类说明:联系人信息、省份证照片、银行卡号
-	 * 
-	 * @param email：邮箱
-	 * @param address：家庭住址
-	 * @param income_index：选择家庭收入，1:5万以下；2:5~10万；3:10~20万；4:20万以上
-	 * @param parent_name：父母姓名
-	 * @param parent_mobile：父母电话
-	 * @param counselor_name：辅导员姓名
-	 * @param counselor_mobile：辅导员电话
-	 * @param friend1_name：朋友一姓名
-	 * @param friend1_mobile：朋友一电话
-	 * @param friend2_name：朋友二姓名
-	 * @param friend2_mobile：朋友二电话
-	 * @param friend3_name：朋友三姓名
-	 * @param friend3_mobile：朋友三电话
-	 * @param file：身份证照片路径
-	 * @param bankcard_account：银行卡号
-	 */
-	public void improveBus(String email_improve, String address_improve, String income_index_improve,
-			String parentName_improve,String parentMobile_improve, String counselorName_improve, 
-			String counselorMobile_improve, String friend1Name_improve,String friend1Mobile_improve,
+	
+	public void borrowsInformationVerifyBus(int int_money_apply,int int_pieces_apply){
+		logger.info("------------开始：借款信息检查-----------------");
+		HashMap<String, String> hashMap=page_Improve.check_borrows();
+		String borrowsMoney_value=hashMap.get("borrowsMoney");
+		String periods_value=hashMap.get("periods");
+		String perMoney_value=hashMap.get("perMoney");
+		String consultingFees_value=hashMap.get("consultingFees");
+		String creditRewards_value=hashMap.get("creditRewards");
+		
+		int int_borrowsMoney_value=Integer.parseInt(borrowsMoney_value);
+		int int_periods_value=Integer.parseInt(periods_value);
+	
+		int int_consultingFees_value=Integer.parseInt(consultingFees_value);
+		int int_creditRewards_value=Integer.parseInt(creditRewards_value);
+		
+		Assert.assertEquals(int_borrowsMoney_value,int_money_apply);
+		Assert.assertEquals(int_periods_value,int_pieces_apply);
+		double expectedMoney=(int_money_apply/int_pieces_apply)+(int_money_apply*0.99/100);
+		String expectedMoneyValue=Double.toString(expectedMoney);
+		Assert.assertEquals(perMoney_value,expectedMoneyValue);
+		int consultingFees=(int) (int_money_apply*0.2);
+		Assert.assertEquals(int_consultingFees_value, consultingFees);
+		int creditRewards=(int)(int_money_apply*0.2);
+		Assert.assertEquals(int_creditRewards_value, creditRewards);
+		
+		logger.info("------------结束：借款信息检查-----------------");
+	}
+	public void personalInformationBus(String email_improve, String address_improve, 
+			String income_index_improve,String parentName_improve,String parentMobile_improve, 
+			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
+			String friend1Mobile_improve,
 			String friend2Name_improve, String friend2Mobile_improve, String friend3Name_improve,
-			String friend3Mobile_improve, String file_improve, String bankcardAccount_improve,
-			String banksType_improve,String bankMobile_improve,String smsCode_improve) {
-
+			String friend3Mobile_improve){
 		logger.info("------------开始：联系人-----------------");
 		page_Improve.input_email(email_improve);
 		page_Improve.input_address(address_improve);
@@ -53,9 +64,14 @@ public class Biz_Improve {
 		page_Improve.input_friend3Name(friend3Name_improve);
 		page_Improve.input_friend3Mobile(friend3Mobile_improve);
 		logger.info("------------结束：联系人-----------------");
-		logger.info("------------开始：上传图片-----------------");
+	}
+	public void uploadingBus(String file_improve){
+		logger.info("------------开始：资料上传-----------------");
 		page_Improve.uploadfile(file_improve);
-		logger.info("------------结束：上传图片-----------------");
+		logger.info("------------结束：资料上传-----------------");
+	}
+	public void bankCardBus(String bankcardAccount_improve,
+			String banksType_improve,String bankMobile_improve,String smsCode_improve){
 		logger.info("------------开始：银行卡信息-----------------");
 		page_Improve.input_bankCard(bankcardAccount_improve);
 		page_Improve.select_banksType(banksType_improve);
@@ -64,7 +80,20 @@ public class Biz_Improve {
 		page_Improve.sleep(3000);
 		page_Improve.input_SmsCode(smsCode_improve);
 		logger.info("------------结束：银行卡信息-----------------");
+	}
+	public void submitBus(){
+		logger.info("------------开始：提交-----------------");
 		page_Improve.submit();
-
+		logger.info("------------结束：提交-----------------");
+	}
+	public void getPriorityReview(){
+		logger.info("------------开始：点击获得优先审核权-----------------");
+		page_Improve.click_getFirstReviewPower();
+		logger.info("------------结束：点击获得优先审核权-----------------");
+	}
+	public void cancelApply(){
+		logger.info("------------开始：点击取消本次申请-----------------");
+		page_Improve.click_cancelApply();
+		logger.info("------------结束：点击取消本次申请-----------------");
 	}
 }

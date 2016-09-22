@@ -4,4 +4,14 @@
 	</WebButton>
 	<WebLink name="点击获得优先审核权—视频签约完成" xpath="//a[@onclick='showWeiXinQQ();']">
 	</WebLink>
+	<WebCommon name="视频签约文案" xpath="//div[@class='video']">
+	</WebCommon>
+	<WebSpan name="姓名" xpath=".//*[@id='main']/div[3]/div[2]/span[1]">
+	</WebSpan>
+	<WebSpan name="身份证号码" xpath=".//*[@id='main']/div[3]/div[2]/span[2]">
+	</WebSpan>
+	<WebSpan name="借款金额" xpath=".//*[@id='main']/div[3]/div[2]/span[3]">
+	</WebSpan>
+	<WebSpan name="咨询费" xpath=".//*[@id='main']/div[3]/div[2]/span[4]">
+	</WebSpan>
 </elements>

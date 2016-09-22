@@ -7,9 +7,15 @@ import org.testng.annotations.Test;
 import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
+import com.nonobank.apps.business.student.Biz_VideoSign;
+import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class BorrowsTestCase {
+public class BorrowsTestCase extends BaseCase{
+	Biz_Register biz_register;
+	Biz_Apply biz_Apply;
+	Biz_Improve biz_Improve;
+	Biz_VideoSign biz_VideoSign;
 	
 	public static Logger logger=LogManager.getLogger(BorrowsTestCase.class);
 	@Test(dataProvider = "dataSource")
@@ -19,7 +25,7 @@ public class BorrowsTestCase {
 			String year_register,String education_register,String studentNumber_register,
 			String realName_register,String idCard_register,String major_register,
 			String channel_register,String smsCode_register,
-			String purpose_apply,String detailPurpose_apply,String money_apply,
+			String purpose_apply,String detailPurpose_apply,int int_money_apply,
 			String smsCode_apply,int int_productIndex_apply,int int_pieces_apply,
 			String email_improve,String address_improve,String income_index_improve,
 			String parentName_improve,String parentMobile_improve,String counselorName_improve,
@@ -30,9 +36,7 @@ public class BorrowsTestCase {
 			String smsCode_improve
 			){
 		logger.info("begin to test...");
-		Biz_Register biz_register=new Biz_Register();
-		Biz_Apply biz_Apply=new Biz_Apply();
-		Biz_Improve biz_Improve=new Biz_Improve();
+		
 		// 注册流程--注册信息
 		biz_register.registerInformationBus(userName_register, qq_register, mobile_register,
 				checkCode_register, smsCode_register, password_register, confirmPassword_register);
@@ -48,16 +52,35 @@ public class BorrowsTestCase {
 		biz_register.registerPromptBus();
 		PageUtils.sleep(10000);
 		
-		//
-		biz_Apply.applyBus(purpose_apply, detailPurpose_apply, money_apply, smsCode_apply, 
-				int_productIndex_apply, int_pieces_apply);
-		biz_Improve.improveBus(email_improve, address_improve, income_index_improve, parentName_improve,
-				parentMobile_improve, counselorName_improve, counselorMobile_improve, friend1Name_improve, 
-				friend1Mobile_improve, friend2Name_improve, friend2Mobile_improve, friend3Name_improve, 
-				friend3Mobile_improve, file_improve, bankcardAccount_improve, banksType_improve, 
-				bankMobile_improve, smsCode_improve);	
+		//申请流程--借款用途、金额
+		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
+		//申请流程--借款产品
+		biz_Apply.selectBorrowsProductBus(int_money_apply, int_productIndex_apply, int_pieces_apply);
+		//申请流程--提交
+		biz_Apply.submitBus(int_productIndex_apply, int_pieces_apply, int_money_apply);
+		PageUtils.sleep(10000);
 		
+		//完善资料--借款信息检查
+		biz_Improve.borrowsInformationVerifyBus(int_pieces_apply, int_pieces_apply);
+		//完善资料--完善联系人信息
+		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve,
+				parentName_improve, parentMobile_improve, counselorName_improve, counselorMobile_improve, 
+				friend1Name_improve, friend1Mobile_improve, friend2Name_improve, friend2Mobile_improve, 
+				friend3Name_improve, friend3Mobile_improve);
+		//完善资料--上传身份证照片
+		biz_Improve.uploadingBus(file_improve);
+		//完善资料--完善银行卡信息
+		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
+		//完善资料--提交
+		biz_Improve.submitBus();
+		PageUtils.sleep(10000);
 		
+		//视频录制--借款信息检查
+		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
+		//视频录制--用户录制视频
+		
+		//视频录制--视频录制完成检查
+		biz_VideoSign.checkVideoSignSuccessBus();
 	}
 	
 

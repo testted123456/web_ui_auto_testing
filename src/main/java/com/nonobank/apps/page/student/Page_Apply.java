@@ -4,7 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebCommon;
+import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
+import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.objectRepository.WebTextArea;
 import com.nonobank.apps.page.base.BasePage;
@@ -44,7 +46,7 @@ public class Page_Apply extends BasePage{
 		textArea_detail_purpose.input(value);
 	}
 	//金额
-	public void input_money(String money){
+	public void input_money(int money){
 		logger.info("借款金额..." + money);
 		WebInput input_money = objectFactory.getWebInput("借款金额");
 		input_money.input(String.valueOf(money));
@@ -56,10 +58,13 @@ public class Page_Apply extends BasePage{
 		input_smsCode.input(smsCode);
 	}
 	//检查验证码输入框是否存在
-	public void isExist_smsCode(){
+	public Boolean isExist_smsCode(){
 		logger.info("检查验证码输入框是否存在...");
-		WebInput input_smsCode = objectFactory.getWebInput("验证码");
-		
+		if(isElementExists("验证码", WebElementType.WebInput, 10)){
+			return true;
+		}else{
+			return false;
+		}		
 	}
 	//名校贷普通包借款期数
 	public void select_pieceOfCommonLoan(int index){
@@ -181,6 +186,24 @@ public class Page_Apply extends BasePage{
 		String LoanMoney=check_LoanMoney.getText();
 		return LoanMoney;
 	}
+	//点击增加减息券
+	public void click_addInterestCut(){
+		logger.info("点击增加减息券...");
+		WebLink click_addInterestCut=objectFactory.getWebLink("增加减息券");
+		click_addInterestCut.click();
+	}
+	//输入减息券码
+	public void input_InterestCutCode(String interestCutCode){
+		logger.info("输入减息券码...");
+		WebInput input_InterestCutCode=objectFactory.getWebInput("减息券码");
+		input_InterestCutCode.clearAndInput(interestCutCode);
+	}
+	//点击确定
+	public void click_enter(){
+		logger.info("点击确定...");
+		WebButton click_enter=objectFactory.getWebButton("确定");
+		click_enter.click();
+	}
 	//下一步
 	public void click_goNext(){
 		logger.info("下一步...");
@@ -193,4 +216,18 @@ public class Page_Apply extends BasePage{
 		WebButton button_goBack = objectFactory.getWebButton("返回修改");
 		button_goBack.click();	
 	}
+	//镑客码验证页面提交按钮
+	public void click_submitBank(){
+		logger.info("镑客码验证页面提交按钮...");
+		WebButton click_submitBank=objectFactory.getWebButton("镑客码页面提交按钮");
+		click_submitBank.click();
+	}
+	//镑客码验证页面取消按钮
+	public void click_cancelBank(){
+		logger.info("镑客码验证页面取消按钮...");
+		WebButton click_cancelBank=objectFactory.getWebButton("镑客码页面提交按钮");
+		click_cancelBank.click();
+	}
+	
+	
 }

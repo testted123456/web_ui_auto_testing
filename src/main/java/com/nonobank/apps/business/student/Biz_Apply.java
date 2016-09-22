@@ -10,14 +10,20 @@ public class Biz_Apply {
 
 	public static Logger logger = LogManager.getLogger(Biz_Apply.class);
 	Page_Apply page_Apply = new Page_Apply();
-	//申请流程
-	public void applyBus(String purpose_apply,String detailPurpose_apply,String money_apply,
-			String smsCode_apply,int int_productIndex_apply,int int_pieces_apply){
-		logger.info("--------------开始：借款申请----------------");
+	
+	public void borrowsUseBus(String purpose_apply,String detailPurpose_apply, int int_money_apply,
+			String smsCode_apply){
+		logger.info("--------------开始：借款用途、金额----------------");
 		page_Apply.select_purposeByValue(purpose_apply);
 		page_Apply.input_detailPurpose(detailPurpose_apply);
-		page_Apply.input_money(money_apply);
-		page_Apply.input_smsCode(smsCode_apply);
+		page_Apply.input_money(int_money_apply);
+		if(page_Apply.isExist_smsCode()){
+			page_Apply.input_smsCode(smsCode_apply);
+		}
+		logger.info("--------------结束：借款用途、金额----------------");
+	}
+	public void selectBorrowsProductBus(int int_money_apply,int int_productIndex_apply,int int_pieces_apply){
+		logger.info("--------------开始：借款产品----------------");
 		switch (int_productIndex_apply) {
 		// 1:普通包，2：应急包，3：白领包，4：专科包
 		case 1:
@@ -37,9 +43,23 @@ public class Biz_Apply {
 		}
 		// 获取每期需还款金额
 		String perMoney=page_Apply.check_perMoney();
+		double expectedMoney=(int_money_apply/int_pieces_apply)+(int_money_apply*0.99/100);
+		String expectMoney=Double.toString(expectedMoney);
 		// 验证每期需还款金额
-		
-		
+		Assert.assertEquals(expectedMoney, perMoney);
+		logger.info("--------------结束：借款产品----------------");
+	}
+	public void interestrateCutBus(String interestCutCode){
+		logger.info("--------------开始：优惠券----------------");
+		page_Apply.click_addInterestCut();
+		page_Apply.sleep(2000);
+		page_Apply.input_InterestCutCode(interestCutCode);
+		page_Apply.sleep(2000);
+		page_Apply.click_enter();
+		logger.info("--------------开始：优惠券----------------");
+	}
+	public void submitBus(int int_productIndex_apply,int int_pieces_apply,int int_money_apply){
+		logger.info("--------------开始：提交----------------");
 		page_Apply.click_submit();
 		page_Apply.sleep(3000);
 		// 验证借款信息
@@ -60,20 +80,43 @@ public class Biz_Apply {
 			Assert.assertEquals(expectProduct,loanProduct);
 		}
 		String loanPeriods=page_Apply.check_loanPeriods();
-		Assert.assertEquals(int_pieces_apply,loanPeriods+"期");
+		int intloanPeriods=Integer.parseInt(loanPeriods);
+		Assert.assertEquals(int_pieces_apply,intloanPeriods);
 		String loanMoney=page_Apply.check_loanMoney();
-		Assert.assertEquals(money_apply,loanMoney+"元");
+		int intloanMoney=Integer.parseInt(loanMoney);
+		Assert.assertEquals(int_money_apply,intloanMoney);
 		// 点击下一步
 		page_Apply.click_goNext();
-		logger.info("--------------结束：借款申请----------------");
+		logger.info("--------------结束：提交----------------");
+	}
+	//详细用途少于10个字
+	public void detailedUseErrorBus(String detailPurpose_apply){
+		String detailedUseError=page_Apply.getAlertText();
+		Assert.assertEquals(detailedUseError, "详细用途不少于10字");
+		page_Apply.closeAlert();
+		page_Apply.input_detailPurpose(detailPurpose_apply);	
+	}
+	//借款金额<1000或者>50000
+	public void borrowsMoneyErrorBus(int int_money_apply ){
+		String borrowsMoney=page_Apply.getAlertText();
+		Assert.assertEquals(borrowsMoney, "借款需介于1千元~5万元之间");
+		page_Apply.closeAlert();
+		page_Apply.input_money(int_money_apply);
+	}
+	//100<=借款金额为<1000，借款产品为普通包，专科包
+	public void borrowsProductMoneyDisagreeErrorBus(int int_money_apply){
+		String borrowsProductMoneyDisagree=page_Apply.getAlertText();
+		Assert.assertEquals(borrowsProductMoneyDisagree, "借款需介于1千元~5万元之间");
+		page_Apply.closeAlert();
+		page_Apply.input_money(int_money_apply);
+	}
+	//1000<借款金额,借款产品为应急借
+	public void borrowsProductMoneyDisagree2ErrorBus(int int_money_apply){
+		String borrowsProductMoneyDisagree=page_Apply.getAlertText();
+		Assert.assertEquals(borrowsProductMoneyDisagree, "名校贷应急包金额要在1百元~1千元之间");
+		page_Apply.closeAlert();
+		page_Apply.input_money(int_money_apply);
 	}
 	
-	public void borrowsUseBus(String purpose_apply,String detailPurpose_apply,String money_apply){
-		logger.info("--------------开始：借款用途、金额----------------");
-		page_Apply.select_purposeByValue(purpose_apply);
-		page_Apply.input_detailPurpose(detailPurpose_apply);
-		page_Apply.input_money(money_apply);
-
-		logger.info("--------------结束：借款用途、金额----------------");
-	}
+	
 }

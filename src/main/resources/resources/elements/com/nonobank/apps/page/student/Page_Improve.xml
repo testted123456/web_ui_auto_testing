@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
+	<WebButton name="点击获得优先审核权" xpath="//button[@id='openJxlDialogBtn']">
+	</WebButton>
+	<WebCommon name="借款信息" xpath="//div[@class='style3']">
+	</WebCommon>
+	<WebSpan name="借款信息-金额检查" xpath="//span[@class='moneyNum']">
+	</WebSpan>
 	<WebLink name="取消本次申请" xpath="//a[@href='javascript:ReApply()']">
 	</WebLink>
 	<WebInput name="常用邮箱" xpath="//input[@id='email']">
