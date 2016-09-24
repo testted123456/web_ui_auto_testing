@@ -61,7 +61,8 @@ public class BorrowsTestCase extends BaseCase{
 		//申请流程--借款产品
 		biz_Apply.selectBorrowsProductBus(int_money_apply, int_productIndex_apply, int_pieces_apply);
 		//申请流程--提交
-		biz_Apply.submitBus(int_productIndex_apply, int_pieces_apply, int_money_apply);
+		biz_Apply.submitBus();
+		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
 		PageUtils.sleep(5000);
 		//申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();

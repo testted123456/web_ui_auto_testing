@@ -100,14 +100,23 @@ public class Biz_Improve {
 		page_Improve.submit();
 		logger.info("------------结束：提交-----------------");
 	}
-	public void getPriorityReview(){
+	public void getPriorityReviewBus(){
 		logger.info("------------开始：点击获得优先审核权-----------------");
 		page_Improve.click_getFirstReviewPower();
 		logger.info("------------结束：点击获得优先审核权-----------------");
 	}
-	public void cancelApply(){
+	public void cancelApplyBus(){
 		logger.info("------------开始：点击取消本次申请-----------------");
 		page_Improve.click_cancelApply();
 		logger.info("------------结束：点击取消本次申请-----------------");
 	}
+	//银行卡信息已存在
+	public void bankCardExistBus(){
+		logger.info("------------开始：银行卡信息已存在-----------------");
+		
+		
+		logger.info("------------结束：银行卡信息已存在-----------------");
+	}
+	
+	
 }

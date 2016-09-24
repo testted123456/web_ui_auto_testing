@@ -65,10 +65,15 @@ public class Biz_Apply {
 		page_Apply.click_enter();
 		logger.info("--------------开始：优惠券----------------");
 	}
-	public void submitBus(int int_productIndex_apply,int int_pieces_apply,int int_money_apply){
+	public void submitBus(){
 		logger.info("--------------开始：提交----------------");
 		page_Apply.click_submit();
 		page_Apply.sleep(3000);
+		logger.info("--------------结束：提交----------------");
+	}
+	//提交后借款信息验证
+	public void submitAfterVerify(int int_productIndex_apply,int int_pieces_apply,int int_money_apply){
+		logger.info("--------------开始：提交后借款信息验证----------------");
 		// 验证借款信息
 		String loanProduct=page_Apply.check_loanProduct();
 		String expectProduct="名校贷";
@@ -98,7 +103,7 @@ public class Biz_Apply {
 		Assert.assertEquals(int_money_apply,intloanMoney);
 		// 点击下一步
 		page_Apply.click_goNext();
-		logger.info("--------------结束：提交----------------");
+		logger.info("--------------结束：提交后借款信息验证----------------");
 	}
 	//镑客码验证提示框
 	public void bankCodeVerifyBus(){
@@ -116,6 +121,7 @@ public class Biz_Apply {
 	//借款金额<1000或者>50000
 	public void borrowsMoneyErrorBus(int int_money_apply ){
 		String borrowsMoney=page_Apply.getAlertText();
+		//提示应该为：借款需介于1百~5万元之间
 		Assert.assertEquals(borrowsMoney, "借款需介于1千元~5万元之间");
 		page_Apply.closeAlert();
 		page_Apply.input_money(int_money_apply);
