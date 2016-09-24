@@ -2,8 +2,6 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.nonobank.apps.objectRepository.ObjectFactory;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 
@@ -19,6 +17,7 @@ public class Biz_Login {
 	}
 
 	public void login(String arg, String password, String param) {
+		nagivate_to_login();
 		logger.info("登录...");
 		page_Login.input_username(arg, param);
 		page_Login.input_password(password);
@@ -28,7 +27,7 @@ public class Biz_Login {
 
 	public boolean is_login_success() {
 		boolean flag = page_Login.isElementDisplayed("logout", WebElementType.WebLink, 15);
-		
+
 		if (flag == true) {
 			logger.info("登录成功...");
 		} else {

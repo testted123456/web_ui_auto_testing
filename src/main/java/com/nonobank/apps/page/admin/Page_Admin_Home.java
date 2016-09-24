@@ -33,6 +33,12 @@ public class Page_Admin_Home extends BasePage {
 		WebLink link_VideoAuditTsrial = objectFactory.getWebLink("视频签约");
 		link_VideoAuditTsrial.click();
 	}
+	
+	// 点击投资计划收益列表
+	public void click_financePlanProfit() {
+		WebLink link_financePlanProfit = objectFactory.getWebLink("投资计划收益列表");
+		link_financePlanProfit.click();
+	}
 
 	// 视频签约初审列表，输入手机号码
 	public void input_mobile(String mobile_no) {

@@ -27,6 +27,7 @@ public class Biz_User_Recharge {
 	 * @param cardno
 	 */
 	public void recharge(String cardno, String mobile) {
+		navigateToRecharge();
 		if (cardno.equals("random")) {
 			cardno = BankCardUtils.getBankCardByMobile(mobile);
 			if (cardno != null) {

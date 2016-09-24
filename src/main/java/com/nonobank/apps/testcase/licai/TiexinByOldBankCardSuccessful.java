@@ -8,17 +8,17 @@ import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment_Successful;
+import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.recharge.Biz_User_Recharge;
 import com.nonobank.apps.business.recharge.Biz_User_RechargeConfirm;
-import com.nonobank.apps.testcase.action.LoginAction;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.data.BankCardUtils;
 
 public class TiexinByOldBankCardSuccessful extends BaseCase {
 
 	public static Logger logger = LogManager.getLogger(TiexinByOldBankCardSuccessful.class);
-	LoginAction loginAction = new LoginAction();
+	Biz_Login biz_Login = new Biz_Login();
 
 	Biz_Portal biz_Portal;
 	Biz_User_Recharge biz_User_Recharge1;
@@ -32,7 +32,8 @@ public class TiexinByOldBankCardSuccessful extends BaseCase {
 	public void test(String mobile, String password, String id, String amount, String cardNO, String payPassword,
 			String smsCode) {
 
-		boolean loginResult = loginAction.login(mobile, password, "mobile_num");
+		biz_Login.login(mobile, password, "mobile_num");
+		boolean loginResult = biz_Login.is_login_success();
 		Assert.assertEquals(loginResult, true);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();

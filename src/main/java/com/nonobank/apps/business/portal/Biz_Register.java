@@ -17,6 +17,7 @@ public class Biz_Register {
 	// 注册操作
 	public void register(String mobile, String user_name, String password, String password2, String check_code,
 			String sms_code, String... strs) {
+		navigate_to_register();
 		logger.info("开始输入注册信息...");
 		page_Register.input_mobile(mobile);
 		page_Register.input_username(user_name);
