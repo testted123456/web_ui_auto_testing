@@ -4,7 +4,7 @@
 	</WebButton>
 	<WebCommon name="借款信息" xpath="//div[@class='style3']">
 	</WebCommon>
-	<WebSpan name="借款信息-金额检查" xpath="//span[@class='moneyNum']">
+	<WebSpan name="借款信息金额检查" xpath="//span[@class='moneyNum']">
 	</WebSpan>
 	<WebLink name="取消本次申请" xpath="//a[@href='javascript:ReApply()']">
 	</WebLink>
@@ -40,9 +40,9 @@
 	</WebInput>
 	<WebInput name="好友3手机号" xpath="//input[@id='friend3_mobile']">
 	</WebInput>
-	<WebInput name="选择文件" xpath="//input[@id='fileupload']">
+	<WebInput name="选择文件" xpath=".//*[@id='fileupload']">
 	</WebInput>
-	<WebInput name="上传" xpath="//input[@name='submit']">
+	<WebInput name="上传" xpath="html/body/form/table/tbody/tr/td[1]/div/input[4]">
 	</WebInput>
 	<WebInput name="账号" xpath="//input[@id='banks_account']">
 	</WebInput>
@@ -62,4 +62,6 @@
 	</WebSpan>
 	<WebSpan name="loadingText" xpath="//span[@id='loadingText']">
 	</WebSpan>
+	<WebInput name="submit" xpath="//input[@name='submit']">
+	</WebInput>
 </elements>

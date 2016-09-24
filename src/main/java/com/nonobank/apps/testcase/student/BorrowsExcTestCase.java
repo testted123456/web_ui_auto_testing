@@ -2,6 +2,7 @@ package com.nonobank.apps.testcase.student;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.velocity.test.BaseTestCase;
 import org.testng.annotations.Test;
 
 import com.nonobank.apps.business.student.Biz_Apply;
@@ -9,7 +10,7 @@ import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class BorrowsExcTestCase {
+public class BorrowsExcTestCase{
 
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
@@ -59,6 +60,8 @@ public class BorrowsExcTestCase {
 		//注册成功信息验证
 		biz_register.registerPromptBus();
 		PageUtils.sleep(10000);
+		
+		//申请流程--
 		
 	}
 }

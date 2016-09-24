@@ -36,18 +36,18 @@
 	</WebButton>
 	<WebLink name="增加减息券" xpath="//a[@id='addCoupon']">
 	</WebLink>
-	<WebInput name="减息券码" xpath="//input[id='serial_number_input']">
+	<WebInput name="减息券码" xpath="//input[@id='serial_number_input']">
 	</WebInput>
-	<WebButton name="确定" xpath="//button[id='confirm_button']">
+	<WebButton name="确定" xpath="//button[@id='confirm_button']">
 	</WebButton>
 	<WebCommon name="每期需还金额" xpath="//div[@id='bank_list_kuaiqian']">
 	</WebCommon>
-	<WebCommon name="借款产品" xpath="//span[id='dialog_product']">
-	</WebCommon>
-	<WebCommon name="借款期数" xpath="//span[id='dialog_expect']">
-	</WebCommon>
-	<WebCommon name="借款金额" xpath="//span[id='dialog_amount']">
-	</WebCommon>
+	<WebSpan name="借款产品" xpath="//span[@id='dialog_product']">
+	</WebSpan>
+	<WebSpan name="借款期数" xpath="//span[@id='dialog_expect']">
+	</WebSpan>
+	<WebSpan name="借款金额" xpath="//span[@id='dialog_amount']">
+	</WebSpan>
 	<WebButton name="返回修改" xpath="//button[@id='goBack']">
 	</WebButton>
 	<WebButton name="下一步" xpath="//button[@id='goNext']">

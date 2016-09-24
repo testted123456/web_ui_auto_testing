@@ -25,8 +25,8 @@ public class BorrowsTestCase extends BaseCase{
 			String year_register,String education_register,String studentNumber_register,
 			String realName_register,String idCard_register,String major_register,
 			String channel_register,String smsCode_register,
-			String purpose_apply,String detailPurpose_apply,int int_money_apply,
-			String smsCode_apply,int int_productIndex_apply,int int_pieces_apply,
+			String purpose_apply,String detailPurpose_apply,String money_apply,
+			String smsCode_apply,String productIndex_apply,String pieces_apply,
 			String email_improve,String address_improve,String income_index_improve,
 			String parentName_improve,String parentMobile_improve,String counselorName_improve,
 			String counselorMobile_improve,String friend1Name_improve,
@@ -35,7 +35,10 @@ public class BorrowsTestCase extends BaseCase{
 			String bankcardAccount_improve,String banksType_improve,String bankMobile_improve,
 			String smsCode_improve
 			){
-		logger.info("begin to test...");
+		logger.info("开始进行借款流程测试........");
+		int int_money_apply=Integer.parseInt(money_apply);
+		int int_productIndex_apply=Integer.parseInt(productIndex_apply);
+		int int_pieces_apply=Integer.parseInt(pieces_apply);
 		
 		// 注册流程--注册信息
 		biz_register.registerInformationBus(userName_register, qq_register, mobile_register,
@@ -48,6 +51,7 @@ public class BorrowsTestCase extends BaseCase{
 		biz_register.channelBus(channel_register);
 		//注册流程-提交
 		biz_register.submitBus();
+		PageUtils.sleep(10000);
 		//注册成功信息验证
 		biz_register.registerPromptBus();
 		PageUtils.sleep(10000);
@@ -58,10 +62,13 @@ public class BorrowsTestCase extends BaseCase{
 		biz_Apply.selectBorrowsProductBus(int_money_apply, int_productIndex_apply, int_pieces_apply);
 		//申请流程--提交
 		biz_Apply.submitBus(int_productIndex_apply, int_pieces_apply, int_money_apply);
+		PageUtils.sleep(5000);
+		//申请流程--镑客码验证框存在通过
+		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(10000);
 		
 		//完善资料--借款信息检查
-		biz_Improve.borrowsInformationVerifyBus(int_pieces_apply, int_pieces_apply);
+		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		//完善资料--完善联系人信息
 		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve,
 				parentName_improve, parentMobile_improve, counselorName_improve, counselorMobile_improve, 

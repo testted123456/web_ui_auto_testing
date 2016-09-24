@@ -24,23 +24,36 @@ public class Biz_Improve {
 		String perMoney_value=hashMap.get("perMoney");
 		String consultingFees_value=hashMap.get("consultingFees");
 		String creditRewards_value=hashMap.get("creditRewards");
-		
-		int int_borrowsMoney_value=Integer.parseInt(borrowsMoney_value);
-		int int_periods_value=Integer.parseInt(periods_value);
-	
-		int int_consultingFees_value=Integer.parseInt(consultingFees_value);
-		int int_creditRewards_value=Integer.parseInt(creditRewards_value);
-		
-		Assert.assertEquals(int_borrowsMoney_value,int_money_apply);
-		Assert.assertEquals(int_periods_value,int_pieces_apply);
-		double expectedMoney=(int_money_apply/int_pieces_apply)+(int_money_apply*0.99/100);
-		String expectedMoneyValue=Double.toString(expectedMoney);
-		Assert.assertEquals(perMoney_value,expectedMoneyValue);
-		int consultingFees=(int) (int_money_apply*0.2);
-		Assert.assertEquals(int_consultingFees_value, consultingFees);
-		int creditRewards=(int)(int_money_apply*0.2);
-		Assert.assertEquals(int_creditRewards_value, creditRewards);
-		
+		//借款金额
+		double double_borrowsMoney_value=Double.parseDouble(borrowsMoney_value);
+		double double_money_apply=int_money_apply;
+		double d_value_applyMoney=double_borrowsMoney_value-double_money_apply;
+		if(int_money_apply>1000){
+			if(d_value_applyMoney==0){
+				logger.info("借款金额与预期一致");
+			}else{
+				Assert.fail("借款金额与预期不一致，期望值为："+double_money_apply+"实际值为："+double_borrowsMoney_value);
+			}
+		}
+		//期数
+		double double_periods_value=Double.parseDouble(periods_value);
+		double double_pieces_apply=int_pieces_apply;
+		if(double_periods_value-double_pieces_apply==0){
+			logger.info("借款期数与预期一致");
+		}else{
+			Assert.fail("借款期数与预期不一致，期望值为："+double_pieces_apply+"实际值为："+double_periods_value);
+		}
+		//每月还款金额
+		double float_perMoney_value=Double.parseDouble(perMoney_value);
+		double float_perMoney_apply=(double_money_apply/double_pieces_apply)+(double_money_apply*0.99/100);
+		double d_value=Math.abs(float_perMoney_value-float_perMoney_apply);
+		if(int_money_apply>1000){
+			if(d_value<0.01){
+				logger.info("每期还款金额与预期值一致");
+			}else{
+				Assert.fail("每期还款金额与预期值不一致，期望值为："+float_perMoney_apply+"实际值为："+float_perMoney_value);
+			}	
+		}	
 		logger.info("------------结束：借款信息检查-----------------");
 	}
 	public void personalInformationBus(String email_improve, String address_improve, 
@@ -76,6 +89,7 @@ public class Biz_Improve {
 		page_Improve.input_bankCard(bankcardAccount_improve);
 		page_Improve.select_banksType(banksType_improve);
 		page_Improve.input_bankMobile(bankMobile_improve);
+		page_Improve.sleep(3000);
 		page_Improve.click_getSmsCode();
 		page_Improve.sleep(3000);
 		page_Improve.input_SmsCode(smsCode_improve);
