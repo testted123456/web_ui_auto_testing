@@ -26,7 +26,7 @@ public class Biz_Login {
 	}
 
 	public boolean is_login_success() {
-		boolean flag = page_Login.isElementDisplayed("logout", WebElementType.WebLink, 15);
+		boolean flag = page_Login.isElementDisplayed("username", WebElementType.WebLink, 15);
 
 		if (flag == true) {
 			logger.info("登录成功...");
