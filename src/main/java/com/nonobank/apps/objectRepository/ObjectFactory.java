@@ -162,5 +162,11 @@ public class ObjectFactory {
 		By by = By.xpath(xpath);
 		return driver.findElements(by);
 	}
+	
+	public List<WebElement> getWebElements(String elementName, WebElementType elementType, String xmlFile) {
+		String xpath = ParseXML.getXPath(elementName, elementType, xmlFile);
+		By by = By.xpath(xpath);
+		return driver.findElements(by);
+	}
 }
 

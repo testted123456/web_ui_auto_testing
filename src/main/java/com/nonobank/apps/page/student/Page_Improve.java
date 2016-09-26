@@ -39,7 +39,7 @@ public class Page_Improve extends BasePage{
 	public HashMap<String, String> check_borrows(){
 		logger.info("借款信息检查...");
 		HashMap<String, String> hashMap = new HashMap<>();
-		List<WebElement> list =objectFactory.getWebElements("借款信息-金额检查");
+		List<WebElement> list =objectFactory.getWebElements("借款信息金额检查",WebElementType.WebSpan,xmlFile);
 		
 		for (int i=0;i<list.size();i++) {
 			switch(i){
@@ -172,11 +172,11 @@ public class Page_Improve extends BasePage{
 		WebElement iFrame = 
 				objectFactory.getWebElement(By.xpath("//iframe[@src='/Student/PicUpload']"));
 		driver.switchTo().frame(iFrame);
-		WebElement input_fileupload = objectFactory.getWebElement("选择文件");
+		WebElement input_fileupload = objectFactory.getWebElement(By.xpath("//input[@id='fileupload']"));
 		URL url = ParseXLSX.class.getClassLoader().getResource(file);
 		String file_path = url.getFile();
 		input_fileupload.sendKeys(file_path);
-		WebInput input_submit = objectFactory.getWebInput("上传按钮");
+		WebInput input_submit = objectFactory.getWebInput("submit");
 		input_submit.click();
 	    driver.switchTo().defaultContent();
 	}

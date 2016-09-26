@@ -8,6 +8,7 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSelect;
+import com.nonobank.apps.objectRepository.WebSpan;
 import com.nonobank.apps.objectRepository.WebTextArea;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.page.PageUtils;
@@ -156,8 +157,11 @@ public class Page_Apply extends BasePage{
 	public String check_perMoney(){
 		logger.info("检查每期需还金额...");
 		WebCommon check_PerMoney=objectFactory.getWebCommon("每期需还金额");
-		String moneyPer=check_PerMoney.getText();
-		return moneyPer;
+		String moneyPerValue=check_PerMoney.getText();
+		//每期需还：932.33元
+		String[] moneyPerArray=moneyPerValue.split("：");
+		String[] moneyPer=moneyPerArray[1].split("元");
+		return moneyPer[0];
 	}
 	//提交
 	public void click_submit(){
@@ -168,21 +172,21 @@ public class Page_Apply extends BasePage{
 	// 检查借款产品
 	public String check_loanProduct(){
 		logger.info("检查借款产品...");
-		WebCommon check_LoanProduct=objectFactory.getWebCommon("借款产品");
+		WebSpan check_LoanProduct=objectFactory.getWebSpan("借款产品");
 		String LoanProduct=check_LoanProduct.getText();
 		return LoanProduct;
 	}
 	// 检查借款期数
 	public String check_loanPeriods(){
-		logger.info("检查借款产品...");
-		WebCommon check_LoanPeriods=objectFactory.getWebCommon("借款期数");
+		logger.info("检查借款期数...");
+		WebSpan check_LoanPeriods=objectFactory.getWebSpan("借款期数");
 		String LoanPeriods=check_LoanPeriods.getText();
 		return LoanPeriods;
 	}
 	// 检查借款金额
 	public String check_loanMoney(){
-		logger.info("检查借款产品...");
-		WebCommon check_LoanMoney=objectFactory.getWebCommon("借款期数");
+		logger.info("检查借款金额...");
+		WebSpan check_LoanMoney=objectFactory.getWebSpan("借款金额");
 		String LoanMoney=check_LoanMoney.getText();
 		return LoanMoney;
 	}
@@ -228,6 +232,14 @@ public class Page_Apply extends BasePage{
 		WebButton click_cancelBank=objectFactory.getWebButton("镑客码页面提交按钮");
 		click_cancelBank.click();
 	}
-	
+	//检查镑客码提交按钮是否存在
+	public Boolean isExist_submitBank(){
+		logger.info("检查镑客码提交按钮是否存在...");
+		if(isElementExists("镑客码页面提交按钮", WebElementType.WebButton, 10)){
+			return true;
+		}else{
+			return false;
+		}		
+	}
 	
 }
