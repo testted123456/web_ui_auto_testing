@@ -13,9 +13,9 @@ import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class Page_Admin_Login extends BasePage{
+public class Page_Login extends BasePage{
 
-	public static Logger logger = LogManager.getLogger(Page_Admin_Login.class);
+	public static Logger logger = LogManager.getLogger(Page_Login.class);
 	
 	/**
 	 * 跳转到后台Admin页面

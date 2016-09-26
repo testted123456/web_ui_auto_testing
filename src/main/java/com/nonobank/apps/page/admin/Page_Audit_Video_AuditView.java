@@ -10,9 +10,9 @@ import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class Page_Admin_Audit_Video_AuditView extends BasePage {
+public class Page_Audit_Video_AuditView extends BasePage {
 
-	public static Logger logger = LogManager.getLogger(Page_Admin_Audit_Video_AuditView.class);
+	public static Logger logger = LogManager.getLogger(Page_Audit_Video_AuditView.class);
 
 	// 初审通过 初审回退 初审拒绝 初审取消
 	public void audit(String audit) {
