@@ -3,12 +3,12 @@ package com.nonobank.apps.business.admin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import com.nonobank.apps.page.admin.Page_Admin_Audit_Video_AuditView;
+import com.nonobank.apps.page.admin.Page_Audit_Video_AuditView;
 
-public class Biz_Admin_Audit_VideoAuditView {
-	public static Logger logger = LogManager.getLogger(Biz_Admin_Audit_VideoAuditView.class);
+public class Biz_Audit_VideoAuditView {
+	public static Logger logger = LogManager.getLogger(Biz_Audit_VideoAuditView.class);
 	
-	Page_Admin_Audit_Video_AuditView page_Admin_Audit_Video_AuditView = new Page_Admin_Audit_Video_AuditView();
+	Page_Audit_Video_AuditView page_Admin_Audit_Video_AuditView = new Page_Audit_Video_AuditView();
 	
 	//初审通过
 	public void first_audit_pass(){
