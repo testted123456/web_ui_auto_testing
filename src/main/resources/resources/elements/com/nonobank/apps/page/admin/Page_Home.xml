@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebLink name="视频签约" xpath="//a[@href='/Admin/Audit/VideoAuditTsrial']">
+	</WebLink>
+	<WebLink name="financePlanProfit" xpath="//a[@href='/Admin/Licai/FinancePlanProfit']">
+	</WebLink>
+	<WebInput name="手机号码" xpath="//input[@name='mobilenum']">
+	</WebInput>
+	<WebInput name="查询" xpath="//input[@name='imageField' and @type='submit']">
+	</WebInput>
+	<WebSelect name="精选" xpath="//select[@name='fp_id']">
+	</WebSelect>
+	<WebLink name="username" xpath="//a[@href='/Admin/Home/changePassword']">
+	</WebLink>
+</elements>
