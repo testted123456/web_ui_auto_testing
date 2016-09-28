@@ -7,7 +7,6 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.data.UserInfoUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
@@ -21,15 +20,9 @@ public class Page_Login extends BasePage {
 		logger.info(PageUtils.getUrl());
 	}
 
-	public void input_username(String arg,String param) {
-		if (arg.equals("random_register")) {
-			arg = UserInfoUtils.getBindedCard(param);
-		}
-		if (arg.equals("random_unregister")) {
-			arg = UserInfoUtils.getUnregisterMobile();
-		}
+	public void input_username(String usernmae, String param) {
 		WebInput input_username = objectFactory.getWebInput("loginname");
-		input_username.clearAndInput(arg);
+		input_username.clearAndInput(usernmae);
 	}
 
 	public void input_password(String password) {
@@ -37,7 +30,7 @@ public class Page_Login extends BasePage {
 		input_password.clearAndInput(password);
 	}
 
-	public void input_CheckCode() {
+	public void input_checkCode() {
 		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
 			input_checkCode.clearAndInput("a1b0");

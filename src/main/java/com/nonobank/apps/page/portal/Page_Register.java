@@ -8,8 +8,6 @@ import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLabel;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.data.ActivityProlocutorCodeUtils;
-import com.nonobank.apps.utils.data.UserInfoUtils;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Register extends BasePage {
@@ -18,37 +16,19 @@ public class Page_Register extends BasePage {
 
 	// 输入手机号
 	public void input_mobile(String mobile) {
-		if (mobile.equals("random_register")) {
-			mobile = UserInfoUtils.getBindedCard("mobile_num");
-		} else if (mobile.equals("random_unregister")) {
-			mobile = UserInfoUtils.getUnregisterMobile();
-		} else if (mobile.equals("random_unregister")) {
-			mobile = UserInfoUtils.getUnregisterMobile();
-		}
 		WebInput input_mobile = objectFactory.getWebInput("mobile");
 		input_mobile.clearAndInput(mobile);
 	}
 
 	// 输入用户名
 	public void input_username(String user_name) {
-		if (user_name.equals("random_register")) {
-			user_name = UserInfoUtils.getBindedCard("user_name");
-		}
-		if (user_name.equals("random_unregister")) {
-			WebInput input_mobile = objectFactory.getWebInput("mobile");
-			user_name = input_mobile.getValue();
-		}
+
 		WebInput input_username = objectFactory.getWebInput("username");
 		input_username.clearAndInput(user_name);
 	}
 
 	public void input_invite(String invite) {
-		if (invite.equals("random_exist")) {
-			invite = ActivityProlocutorCodeUtils.getProlocutorCode();
-		}
-		if (invite.equals("random_notexist")) {
-			invite = ActivityProlocutorCodeUtils.genNotexistProlocutorCode();
-		}
+
 		WebInput input_invite = objectFactory.getWebInput("invite");
 		input_invite.clearAndInput(invite);
 	}

@@ -12,4 +12,13 @@ public class Biz_Debt {
 		page_Debt.select_targetFpid(targetFpid);
 		page_Debt.select_targetVip(targetVip);
 	}
+
+	public void debt(String search_username) {
+		
+		page_Debt.input_username(search_username);
+		page_Debt.click_query();
+
+		
+		
+	}
 }

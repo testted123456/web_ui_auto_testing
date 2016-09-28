@@ -15,9 +15,9 @@ public class DebtSuccess extends BaseCase {
 	Biz_Debt biz_Debt = new Biz_Debt();
 
 	@Test(dataProvider = "dataSource")
-	public void test(String username, String password, String cardno, String pay_password) {
-		biz_Login.login(username, pay_password);
-		biz_Home.navigate_to_financePlanProfit();
+	public void test(String username, String password, String search_username) {
+		biz_Login.login(username, password);
+		biz_Home.navigate_to_financePlanProfit();										
 		biz_Debt.debt("a219855", "3036：精选计划3036期", "3033：精选计划3033期", "a219852:金额1000");
 	}
 }
