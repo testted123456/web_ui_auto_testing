@@ -1,8 +1,12 @@
 package com.nonobank.apps.page.admin;
 
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import com.nonobank.apps.business.admin.Biz_Debt;
+import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.page.base.BasePage;
@@ -44,8 +48,31 @@ public class Page_Debt extends BasePage {
 
 	// 视频签约初审列表，点击"查询"按钮
 	public void click_query() {
+		logger.info("查询债转产品......");
 		WebInput input_query = objectFactory.getWebInput("查询");
 		input_query.click();
 	}
 
+	public void click_debtDetail() {
+		logger.info("查询债转详情......");
+		switch_to_frameSet();
+		WebCommon common_uname = objectFactory.getWebCommon("uname");
+		common_uname.click();
+	}
+
+	public void click_debt() {
+		logger.info("执行债转......");
+		switch_to_frameSet();
+		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+		for (WebElement webElement : lstElements) {
+			if (webElement.getText().equals("债转")) {
+				WebElement web = objectFactory.getWebElement("//table[@id='table_1']//table//tr/td[1]//a");
+				String text = web.getText();
+				int endIndex = text.indexOf("】");
+				Biz_Debt.bo_id = text.substring(1, endIndex);
+				webElement.click();
+				return;
+			}
+		}
+	}
 }

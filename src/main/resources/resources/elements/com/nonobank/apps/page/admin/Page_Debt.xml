@@ -10,4 +10,7 @@
 	</WebSelect>
 	<WebInput name="查询" xpath="//input[@name='search' and @type='submit']">
 	</WebInput>
+	<WebCommon name="uname"
+		xpath="//td[contains(@onclick,'javascript:unfold') and contains(@onclick,'true')]">
+	</WebCommon>
 </elements>

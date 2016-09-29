@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.nonobank.apps.objectRepository.BaseWebElement;
 import com.nonobank.apps.objectRepository.ObjectFactory;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.utils.driver.WebDriverUtils;

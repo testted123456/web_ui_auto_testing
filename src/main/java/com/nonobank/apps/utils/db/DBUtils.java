@@ -104,7 +104,6 @@ public class DBUtils {
 	 * @return
 	 */
 	public static Object[] getOneLine(Connection con, String sql) {
-
 		QueryRunner qr = new QueryRunner();
 		Object[] objArr = null;
 
@@ -121,7 +120,7 @@ public class DBUtils {
 		QueryRunner qr = new QueryRunner();
 
 		try {
-			 qr.update(con, sql);
+			qr.update(con, sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -148,21 +147,25 @@ public class DBUtils {
 		}
 	}
 
-	public static void main(String[] args) {
-		Connection con = getNonoConnection();
-
-		String sql = "SELECT ui.user_name,ui.mobile_num,uid.qq " + "FROM user_info ui, user_info_detail uid "
-				+ "WHERE ui.id=uid.user_id AND " + "ui.user_name IS NOT NULL AND " + "ui.mobile_num IS NOT NULL AND "
-				+ "uid.qq IS NOT NULL AND qq <> '' limit 1";
-
-		String username = "ZTL593sb";
-
-		sql = "SELECT uid.education,ui.mobile_num FROM user_info ui,user_info_detail uid WHERE ui.id=uid.user_id AND ui.user_name='"
-				+ username + "'";
-		Object[] objs = getOneLine(con, sql);
-
-		for (Object o : objs) {
-			System.out.println(o);
+	public static String getValues(String dbname, String sql) {
+		Connection con = getConnection(dbname);
+		Object obj = getOneLine(con, sql);
+		String str = null;
+		if (obj instanceof Object[]) {
+			Object[] objs = (Object[]) obj;
+			for (int i = 0; i < objs.length; i++) {
+				if (i == 0) {
+					str = objs[i].toString();
+				} else {
+					str = str + "," + objs[i];
+				}
+			}
 		}
+		return str;
+	}
+
+	public static void main(String[] args) {
+		String str = getValues("nono", "SELECT * from invt_debt_sale_task where `status` = 5 and bo_id = '561313'");
+		System.out.println("*****************str=" + str);
 	}
 }
