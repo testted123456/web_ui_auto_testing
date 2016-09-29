@@ -42,4 +42,16 @@
 	<!-- 支付密码修改确认  -->
 	<WebInput name="setPasswordbtn" xpath="//input[@id='setPasswordbtn']">
 	</WebInput>
+	<WebCommon name="我的账单" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[3]/a">
+	</WebCommon>
+	<WebCommon name="借款记录" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[2]/a">
+	</WebCommon>
+	<WebCommon name="借款资料" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[4]/a">
+	</WebCommon>
+	
+	
+	
+	
+	
+	
 </elements>

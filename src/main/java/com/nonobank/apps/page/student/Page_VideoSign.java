@@ -2,6 +2,8 @@ package com.nonobank.apps.page.student;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebSpan;
@@ -46,6 +48,11 @@ public class Page_VideoSign extends BasePage {
 		String consultingFee=getText_getText_consultingFee.getText();
 		return consultingFee;
 	}
-	
+	public String getText_lastViewPrompt(){
+		logger.info("终审通过提示.....");
+		WebCommon getText_lastViewPrompt=objectFactory.getWebCommon("终审通过提示");
+		String lastViewPrompt=getText_lastViewPrompt.getText();
+		return lastViewPrompt;
+	}
 	
 }

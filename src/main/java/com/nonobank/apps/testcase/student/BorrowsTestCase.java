@@ -10,6 +10,7 @@ import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.business.student.Biz_VideoSign;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
+import com.nonobank.apps.utils.sql.SqlUtils;
 
 public class BorrowsTestCase extends BaseCase{
 	Biz_Register biz_register;
@@ -82,11 +83,17 @@ public class BorrowsTestCase extends BaseCase{
 		//完善资料--提交
 		biz_Improve.submitBus();
 		PageUtils.sleep(10000);
+		// 照片检验不合格提示
+		biz_Improve.photoNoQualifiedPromptBus(email_improve);
+		PageUtils.sleep(10000);	
 		
 		//视频录制--借款信息检查
 		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
 		//视频录制--用户录制视频
-		
+		SqlUtils.recordVideo(mobile_register);
+		PageUtils.sleep(3000);	
+		PageUtils.refreshPage();
+		PageUtils.sleep(10000);
 		//视频录制--视频录制完成检查
 		biz_VideoSign.checkVideoSignSuccessBus();
 	}

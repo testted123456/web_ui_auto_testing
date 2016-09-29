@@ -208,7 +208,7 @@ public class Page_Improve extends BasePage{
 	public void input_bankMobile(String bankMobile){
 		logger.info("输入银行预留手机号.....");
 		WebInput input_bankMobile = objectFactory.getWebInput("银行预留手机号");
-		input_bankMobile.input(bankMobile);
+		input_bankMobile.clearAndInput(bankMobile);
 	}
 	//点击获取验证码
 	public void click_getSmsCode(){
@@ -228,6 +228,15 @@ public class Page_Improve extends BasePage{
 		WebButton button_submit = objectFactory.getWebButton("同意并提交");
 		button_submit.click();
 	}
+	//银行卡提示信息
+	public String getText_bankCardPrompt(){
+		logger.info("获取银行卡提示信息...");
+		WebSpan getText_bankCardPrompt=objectFactory.getWebSpan("银行卡提示信息");
+		String bankCardPrompt=getText_bankCardPrompt.getText();
+		return bankCardPrompt;
+	}
+
+
 }
 
 

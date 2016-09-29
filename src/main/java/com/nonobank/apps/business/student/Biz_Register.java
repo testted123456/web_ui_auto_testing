@@ -45,26 +45,36 @@ public class Biz_Register {
 		logger.info("--------------开始：注册信息----------------");
 		logger.info("-----开始：用户名检查------");
 		page_Register.input_userName(userName_exist_register);
+		PageUtils.sleep(3000);
 		PageUtils.sendKeys(Keys.TAB);
+		PageUtils.sleep(5000);
 		String userNamePrompt=page_Register.getAlertText();
 		Assert.assertEquals(userNamePrompt,"用户名已被注册");
+		PageUtils.sleep(3000);
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_userName(userName_register);
 		logger.info("-----结束：用户名检查------");
 		logger.info("-----开始：QQ检查------");
 		page_Register.input_qq(qq_exist_register);
+		PageUtils.sleep(3000);
 		PageUtils.sendKeys(Keys.TAB);
+		PageUtils.sleep(3000);
 		String qqPrompt=page_Register.getAlertText();
 		Assert.assertEquals(qqPrompt, "QQ号已被注册");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_qq(qq_register);
+		PageUtils.sleep(3000);
 		logger.info("-----结束：QQ检查------");
 		logger.info("-----开始：手机号检查------");
 		page_Register.input_mobile(mobile_exist_register);
 		PageUtils.sendKeys(Keys.TAB);
+		PageUtils.sleep(3000);
 		String mobliePrompt=page_Register.getAlertText();
 		Assert.assertEquals(mobliePrompt, "手机号已被注册");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_mobile(mobile_register);
 		logger.info("-----结束：手机号检查------");
 		logger.info("-----开始：安全码检查------");
@@ -120,6 +130,7 @@ public class Biz_Register {
 		String idCardPrompt=page_Register.getAlertText();
 		Assert.assertEquals(idCardPrompt, "身份证已被注册");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_idCard(idCard_register);
 	}
 	//身份证号码格式不正确
@@ -127,6 +138,7 @@ public class Biz_Register {
 		String idCardPrompt=page_Register.getAlertText();
 		Assert.assertEquals(idCardPrompt, "身份证格式不正确，请重新输入");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_idCard(idCard_register);		
 	}
 	//密码不符合要求
@@ -134,6 +146,7 @@ public class Biz_Register {
 		String passwordPrompt=page_Register.getAlertText();
 		Assert.assertEquals(passwordPrompt, "密码必须为6-16的字母和数字组合");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_password(password_register);
 		page_Register.input_password1(confirmassword_register);
 	}
@@ -142,6 +155,7 @@ public class Biz_Register {
 		String passwordPrompt=page_Register.getAlertText();
 		Assert.assertEquals(passwordPrompt, "两次输入的密码不一致！");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.input_password(password_register);
 		page_Register.input_password1(confirmassword_register);
 	}
@@ -153,6 +167,7 @@ public class Biz_Register {
 		String checkBoxPrompt=page_Register.getAlertText();
 		Assert.assertEquals(checkBoxPrompt, "请确认您已阅读并已同意诺诺镑客《服务协议》！");
 		page_Register.closeAlert();
+		PageUtils.sleep(3000);
 		page_Register.click_checkBox();
 	}
 	public void registerPromptBus(){
@@ -166,7 +181,13 @@ public class Biz_Register {
 		page_Register.click_login();
 		logger.info("--------------结束：点击登录----------------");
 	}
-
+	//新生提示信息
+	public void newStudentPromptBus(){
+		logger.info("--------------开始：新生提示信息----------------");
+		String newStudentPrompt=page_Register.getText_newStudentPromptContent();
+		Assert.assertEquals(newStudentPrompt, "今年入学的新童鞋，您已注册成功！新生申请借款，请使用名校贷app哦~");
+		logger.info("--------------结束：新生提示信息----------------");
+	}
 	
 	
 	
