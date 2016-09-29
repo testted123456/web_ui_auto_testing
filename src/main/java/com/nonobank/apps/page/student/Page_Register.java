@@ -6,10 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import com.nonobank.apps.objectRepository.WebButton;
+import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSelect;
+import com.nonobank.apps.objectRepository.WebSpan;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
@@ -136,7 +138,7 @@ public class Page_Register extends BasePage {
 	public void input_schoolArea(String schoolArea) {
 		logger.info("校区...");
 		WebInput input_address = objectFactory.getWebInput("校区");
-		input_address.input(schoolArea);
+		input_address.clearAndInput(schoolArea);
 	}
 
 	// 根据下拉框的index选择入学年份
@@ -171,21 +173,21 @@ public class Page_Register extends BasePage {
 	public void input_studentNum(String number) {
 		logger.info("输入学号...");
 		WebInput input_mfd_student_sn = objectFactory.getWebInput("学号");
-		input_mfd_student_sn.input(number);
+		input_mfd_student_sn.clearAndInput(number);
 	}
 
 	// 输入姓名
 	public void input_realName(String name) {
 		logger.info("输入姓名...");
 		WebInput input_realname = objectFactory.getWebInput("姓名");
-		input_realname.input(name);
+		input_realname.clearAndInput(name);
 	}
 
 	// 输入身份证
 	public void input_idCard(String idCard) {
 		logger.info("输入身份证...");
 		WebInput input_idnum = objectFactory.getWebInput("身份证号");
-		input_idnum.input(idCard);
+		input_idnum.clearAndInput(idCard);
 	}
 
 	// 根据下拉框index选择专业
@@ -251,6 +253,20 @@ public class Page_Register extends BasePage {
 		logger.info("点击我已阅读勾选框...");
 		WebInput click_checkBox=objectFactory.getWebInput("我已阅读勾选框");
 		click_checkBox.click();
+	}
+	//获取新生学籍提示框内容
+	public String getText_newStudentPromptContent(){
+		logger.info("获取新生学籍提示框内容...");
+		WebSpan getText_newStudentPromptContent=objectFactory.getWebSpan("新生学籍提示框");
+		String promptContent=getText_newStudentPromptContent.getText();
+		return promptContent;
+	}
+	//获取语音提示
+	public String getText_voicePrompt(){
+		logger.info("获取语音提示...");
+		WebCommon getText_voicePrompt=objectFactory.getWebCommon("语音提示");
+		String voicePrompt=getText_voicePrompt.getText();
+		return voicePrompt;
 	}
 	
 }

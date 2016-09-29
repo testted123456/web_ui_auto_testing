@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
 import com.nonobank.apps.page.student.Page_Improve;
+import com.nonobank.apps.utils.page.PageUtils;
 
 
 public class Biz_Improve {
@@ -111,12 +112,54 @@ public class Biz_Improve {
 		logger.info("------------结束：点击取消本次申请-----------------");
 	}
 	//银行卡信息已存在
-	public void bankCardExistBus(){
+	public void bankCardExistBus(String bankcardAccount_improve,String banksType_improve,
+			String bankMobile_improve){
 		logger.info("------------开始：银行卡信息已存在-----------------");
-		
-		
+		page_Improve.input_bankCard(bankcardAccount_improve);
+		page_Improve.select_banksType(banksType_improve);
+		page_Improve.input_bankMobile(bankMobile_improve);
+		page_Improve.sleep(3000);
+		page_Improve.click_getSmsCode();
+		page_Improve.sleep(3000);
+		String bankCardExistPrompt=page_Improve.getAlertText();
+		Assert.assertEquals(bankCardExistPrompt, "银行卡已存在！");
+		page_Improve.closeAlert();
 		logger.info("------------结束：银行卡信息已存在-----------------");
 	}
-	
-	
+	//银行卡号码有误
+	public void bankCardErrorBus(){
+		logger.info("------------开始：银行卡号码有误-----------------");
+		String bankCardPrompt=page_Improve.getText_bankCardPrompt();
+		Assert.assertEquals(bankCardPrompt, "银行卡号码有误");
+		logger.info("------------结束：银行卡号码有误-----------------");
+	}
+	//联系人信息重复
+	public void linkedListRepeatBus(){
+		logger.info("------------开始：联系人信息重复-----------------");
+		
+		logger.info("------------结束：联系人信息重复-----------------");
+	}
+	//联系人手机号码格式错误
+	public void linkedListErrorBus(){
+		logger.info("------------开始：联系人手机号码格式错误-----------------");
+		String linkedListError=page_Improve.getAlertText();
+		Assert.assertEquals(linkedListError, "手机号位数不对！");
+		page_Improve.closeAlert();
+		logger.info("------------结束：联系人手机号码格式错误-----------------");
+	}
+	//获取照片检验不合格，请重新提交
+	public void photoNoQualifiedPromptBus(String email){
+		if(page_Improve.isAlertExists(3000)){
+			logger.info("------------开始：照片检验不合格-----------------");
+			String getText_photoSubmit=page_Improve.getAlertText();
+			Assert.assertEquals(getText_photoSubmit, "照片检验不合格，请重新上传。务必：将证件放平后垂直拍摄；使照片清晰文字可辨识。");
+			PageUtils.sleep(3000);
+			page_Improve.closeAlert();
+			logger.info("------------开始：照片检验不合格-----------------");
+			PageUtils.sleep(3000);
+			page_Improve.input_email(email);
+			PageUtils.sleep(3000);
+			page_Improve.submit();
+		}
+	}
 }

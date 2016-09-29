@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
 import com.nonobank.apps.page.student.Page_Apply;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_Apply {
 
@@ -116,6 +117,7 @@ public class Biz_Apply {
 		String detailedUseError=page_Apply.getAlertText();
 		Assert.assertEquals(detailedUseError, "详细用途不少于10字");
 		page_Apply.closeAlert();
+		PageUtils.sleep(2000);
 		page_Apply.input_detailPurpose(detailPurpose_apply);	
 	}
 	//借款金额<1000或者>50000
@@ -124,6 +126,7 @@ public class Biz_Apply {
 		//提示应该为：借款需介于1百~5万元之间
 		Assert.assertEquals(borrowsMoney, "借款需介于1千元~5万元之间");
 		page_Apply.closeAlert();
+		PageUtils.sleep(2000);
 		page_Apply.input_money(int_money_apply);
 	}
 	//100<=借款金额为<1000，借款产品为普通包，专科包
@@ -131,6 +134,7 @@ public class Biz_Apply {
 		String borrowsProductMoneyDisagree=page_Apply.getAlertText();
 		Assert.assertEquals(borrowsProductMoneyDisagree, "借款需介于1千元~5万元之间");
 		page_Apply.closeAlert();
+		PageUtils.sleep(2000);
 		page_Apply.input_money(int_money_apply);
 	}
 	//1000<借款金额,借款产品为应急借
@@ -138,8 +142,14 @@ public class Biz_Apply {
 		String borrowsProductMoneyDisagree=page_Apply.getAlertText();
 		Assert.assertEquals(borrowsProductMoneyDisagree, "名校贷应急包金额要在1百元~1千元之间");
 		page_Apply.closeAlert();
+		PageUtils.sleep(2000);
 		page_Apply.input_money(int_money_apply);
 	}
-	
+	//借款产品为白领包相关提示
+	public void whiteCollarPromptBus(){
+		String whiteCollarPrompt=page_Apply.getAlertText();
+		Assert.assertEquals(whiteCollarPrompt, "很遗憾，您没有名校贷产品的借款记录，暂时不能申请白领包产品，请咨询在线客服！");
+		page_Apply.closeAlert();
+	}
 	
 }

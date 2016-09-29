@@ -44,19 +44,19 @@ public class Page_Apply extends BasePage{
 	public void input_detailPurpose(String value){
 		logger.info("详细用途...");
 		WebTextArea textArea_detail_purpose = objectFactory.getWebTextArea("详细用途");
-		textArea_detail_purpose.input(value);
+		textArea_detail_purpose.clearAndInput(value);
 	}
 	//金额
 	public void input_money(int money){
 		logger.info("借款金额..." + money);
 		WebInput input_money = objectFactory.getWebInput("借款金额");
-		input_money.input(String.valueOf(money));
+		input_money.clearAndInput(String.valueOf(money));
 	}
 	//输入验证码
 	public void input_smsCode(String smsCode){
 		logger.info("输入验证码...");
 		WebInput input_smsCode = objectFactory.getWebInput("验证码");
-		input_smsCode.input(smsCode);
+		input_smsCode.clearAndInput(smsCode);
 	}
 	//检查验证码输入框是否存在
 	public Boolean isExist_smsCode(){
