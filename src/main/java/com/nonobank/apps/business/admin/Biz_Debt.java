@@ -155,7 +155,7 @@ public class Biz_Debt {
 				"SELECT count(*) from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
 						+ bo_id + "') and status = 1");
 		String str2 = getActualValue(
-				"SELECT * from invt_proof where biz_type = 2 and status = 1 and biz_id in (SELECT id from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+				"SELECT count(*) from invt_proof where biz_type = 2 and status = 1 and biz_id in (SELECT id from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
 						+ bo_id + "') and status = 1)");
 		double debtBuyLogCount = Double.parseDouble(str);
 		double invtProofCount = Double.parseDouble(str2);
@@ -172,7 +172,21 @@ public class Biz_Debt {
 		return except_holdNum == HOLD_NUM ? true : false;
 	}
 
-//	public boolean 
+	public boolean validate_sumPricePrincipal_sumPriceInterest_sumPrice() {
+		String str = getActualValue(
+				"SELECT sum(ba.price_principal),sum(ba.price_interest),sum(ba.price) FROM borrows_accept ba LEFT JOIN invt_debt_sale_task it ON it.from_id = ba.va_id and ba.bo_id = it.bo_id WHERE  ba.is_pay = 0 AND it.from_type = 1 and it.from_id =(SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "') and it.bo_id = " + bo_id);
+		String[] strs = str.split(",");
+		for (int i = 0; i < strs.length; i++) {
+			double value = Double.parseDouble(strs[i]);
+			System.out.println("*****************************value=" + value);
+			if (value > 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public String getActualValue(String sql) {
 		String str = null;
 		do {

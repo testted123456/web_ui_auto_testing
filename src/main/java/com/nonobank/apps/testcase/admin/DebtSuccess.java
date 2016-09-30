@@ -41,7 +41,7 @@ public class DebtSuccess extends BaseCase {
 		boolean result_transferNum_sumBuyNum = biz_Debt.validate_transferNum_sumBuyNum();
 		Assert.assertEquals(true, result_transferNum_sumBuyNum);
 
-		// 校验invt_debt_sale_task_log记录=invt_proof
+		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
 				.validate_invtDebtSaleTaskLogCount_invtProofCount();
 		Assert.assertEquals(true, result_invtDebtSaleTaskLogCount_invtProofCount);
@@ -54,5 +54,21 @@ public class DebtSuccess extends BaseCase {
 		boolean result_sumBuyNum_transferNum = biz_Debt.validate_sumBuyNum_transferNum();
 		Assert.assertEquals(true, result_sumBuyNum_transferNum);
 
+		// 校验debt_buy_log记录=invt_trd_order记录
+		boolean result_debtBuyLogCount_invtTrdOrderCount = biz_Debt.validate_debtBuyLogCount_invtTrdOrderCount();
+		Assert.assertEquals(true, result_debtBuyLogCount_invtTrdOrderCount);
+
+		// 校验debt_buy_log记录=invt_proof记录
+		boolean result_debtBuyLogCount_invtProofCount = biz_Debt.validate_debtBuyLogCount_invtProofCount();
+		Assert.assertEquals(true, result_debtBuyLogCount_invtProofCount);
+
+		// 校验hold_num=0
+		boolean result_holdNum = biz_Debt.validate_holdNum();
+		Assert.assertEquals(true, result_holdNum);
+
+		// 校验sum(price_principal)=sum(price_interest)=sum(price)=0
+		boolean result_sumPricePrincipal_sumPriceInterest_sumPrice = biz_Debt
+				.validate_sumPricePrincipal_sumPriceInterest_sumPrice();
+		Assert.assertEquals(true, result_sumPricePrincipal_sumPriceInterest_sumPrice);
 	}
 }
