@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebInput name="开始时间" xpath="//input[@id='starttime']">
+	</WebInput>
+	<WebInput name="结束时间" xpath="//input[@id='endtime']">
+	</WebInput>
+	<WebSelect name="借款类型" xpath="//select[@id='m_borrow_type']">
+	</WebSelect>
+	<WebInput name="查询" xpath="//input[@id='account_button_yellow' and@value='查询']">
+	</WebInput>
+	
+</elements>

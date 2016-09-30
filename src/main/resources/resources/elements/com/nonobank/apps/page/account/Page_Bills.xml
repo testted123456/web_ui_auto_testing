@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebCommon name="我的账单" xpath="//div[@class='top_title bill_tit']">
+	</WebCommon>
+	<WebLi name="已出账单" xpath="//li[@class='active']">
+	</WebLi>
+	<WebLi name="未出账单" xpath="//li[@onclick='window.location.href='/AccountBorrow/Bills/Unpaid?i=1'']">
+	</WebLi>
+	<WebLink name="提前还款" xpath="//a[@href='/AccountBorrow/BorrowList' and@title='只有逾期期数已全部归还，才适用提前还款']">
+	</WebLink>
+	<WebInput name="立即还款-期数1" xpath="//div[@class='bill_list']/table/tbody/tr[1]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数2" xpath="//div[@class='bill_list']/table/tbody/tr[4]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数3" xpath="//div[@class='bill_list']/table/tbody/tr[7]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数4" xpath="//div[@class='bill_list']/table/tbody/tr[10]/td/div/div[3]/input">
+	</WebInput>	
+	<WebInput name="立即还款-期数5" xpath="//div[@class='bill_list']/table/tbody/tr[13]/td/div/div[3]/input">
+	</WebInput>	
+	<WebInput name="立即还款-期数6" xpath="//div[@class='bill_list']/table/tbody/tr[16]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数7" xpath="//div[@class='bill_list']/table/tbody/tr[19]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数8" xpath="//div[@class='bill_list']/table/tbody/tr[22]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数9" xpath="//div[@class='bill_list']/table/tbody/tr[25]/td/div/div[3]/input">
+	</WebInput>
+	<WebInput name="立即还款-期数10" xpath="//div[@class='bill_list']/table/tbody/tr[28]/td/div/div[3]/input">
+	</WebInput>						
+	<WebSpan name="本次应还金额" xpath="//span[@id='br_price']">
+	</WebSpan>
+	<WebSpan name="您的账户余额" xpath="//span[@id='re_m_money_html']">
+	</WebSpan>
+	<WebCommon name="还款详情-确定" xpath="//input[@src='/Public/images/member/confirm_button_02.gif']">
+	</WebCommon>
+</elements>

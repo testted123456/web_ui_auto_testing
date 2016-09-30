@@ -83,6 +83,10 @@ public class ObjectFactory {
 		return (WebCommon) getWebElement(WebElementType.WebCommon, elementPath);
 	}
 
+	public WebLi getWebLi(String elementPath){
+		return (WebLi) getWebElement(WebElementType.WebLi, elementPath);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public <E extends BaseWebElement> E getWebElement(WebElementType elementType, String elementName) {
 		String xpath = null;

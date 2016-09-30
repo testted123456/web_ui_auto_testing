@@ -112,4 +112,5 @@ public class Page_Account extends BasePage {
 		WebCommon click_borrowsData=objectFactory.getWebCommon("借款资料");
 		click_borrowsData.click();
 	}
+	
 }
