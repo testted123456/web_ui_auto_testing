@@ -70,5 +70,9 @@ public class DebtSuccess extends BaseCase {
 		boolean result_sumPricePrincipal_sumPriceInterest_sumPrice = biz_Debt
 				.validate_sumPricePrincipal_sumPriceInterest_sumPrice();
 		Assert.assertEquals(true, result_sumPricePrincipal_sumPriceInterest_sumPrice);
+
+		// 校验amount
+		boolean result_amount = biz_Debt.validate_amount();
+		Assert.assertEquals(true, result_amount);
 	}
 }
