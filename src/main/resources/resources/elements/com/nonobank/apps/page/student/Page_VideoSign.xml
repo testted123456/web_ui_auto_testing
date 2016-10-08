@@ -6,12 +6,14 @@
 	</WebLink>
 	<WebCommon name="视频签约文案" xpath="//div[@class='video']">
 	</WebCommon>
-	<WebSpan name="姓名" xpath=".//*[@id='main']/div[3]/div[2]/span[1]">
+	<WebSpan name="姓名" xpath="//span[@id='main']/div[3]/div[2]/span[1]">
 	</WebSpan>
-	<WebSpan name="身份证号码" xpath=".//*[@id='main']/div[3]/div[2]/span[2]">
+	<WebSpan name="身份证号码" xpath="//span[@id='main']/div[3]/div[2]/span[2]">
 	</WebSpan>
-	<WebSpan name="借款金额" xpath=".//*[@id='main']/div[3]/div[2]/span[3]">
+	<WebSpan name="借款金额" xpath="//span[@id='main']/div[3]/div[2]/span[3]">
 	</WebSpan>
-	<WebSpan name="咨询费" xpath=".//*[@id='main']/div[3]/div[2]/span[4]">
+	<WebSpan name="咨询费" xpath="//span[@id='main']/div[3]/div[2]/span[4]">
 	</WebSpan>
+	<WebCommon name="审核通过提示语" xpath="//div[@class='video']">  
+	</WebCommon>
 </elements>

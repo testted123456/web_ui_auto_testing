@@ -66,7 +66,11 @@ public class ObjectFactory {
 	public WebRadioBox getWebRadioBox(String elementPath) {
 		return (WebRadioBox) getWebElement(WebElementType.WebRadioBox, elementPath);
 	}
-
+	
+	public WebTable getWebTable( String elementPath){
+		return (WebTable) getWebElement(WebElementType.WebTable,elementPath);
+	}
+	
 	public WebTextArea getWebTextArea(String elementPath) {
 		return (WebTextArea) getWebElement(WebElementType.WebTextArea, elementPath);
 	}
@@ -83,6 +87,10 @@ public class ObjectFactory {
 		return (WebCommon) getWebElement(WebElementType.WebCommon, elementPath);
 	}
 
+	public WebLi getWebLi(String elementPath){
+		return (WebLi) getWebElement(WebElementType.WebLi, elementPath);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public <E extends BaseWebElement> E getWebElement(WebElementType elementType, String elementName) {
 		String xpath = null;

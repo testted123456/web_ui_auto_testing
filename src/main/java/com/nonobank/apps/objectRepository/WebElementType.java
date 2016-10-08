@@ -7,6 +7,7 @@ public enum WebElementType {
 	WebImage,
 	WebInput,
 	WebLabel,
+	WebLi,
 	WebLink,
 	WebRadioBox,
 	WebSelect,

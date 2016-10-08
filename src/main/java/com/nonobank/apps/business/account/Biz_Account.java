@@ -63,6 +63,19 @@ public class Biz_Account {
 		page_Account.setPasswordbtn();
 		page_Account.closeAlert();
 	}
-	
-
+	//点击我的账单
+	public void clickMyBillsBus(){
+		logger.info("点击我的账单...");
+		page_Account.click_myBill();
+	}
+	//点击借款记录
+	public void clickBorrowsRecordBus(){
+		logger.info("点击借款记录...");
+		page_Account.click_borrowsRecord();
+	}
+	//点击借款资料
+	public void clickBorrowsData(){
+		logger.info("点击借款资料...");
+		page_Account.click_borrowsData();
+	}
 }
