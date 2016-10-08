@@ -212,9 +212,12 @@ public class Biz_Debt {
 				values2[i] = Double.parseDouble(strs2[i]);
 			}
 			flag = values2[1] == (values[1] / values[0]) * values2[0] ? true : false;
+			if (flag == false) {
+				return false;
+			}
 		}
 
-		return flag;
+		return true;
 	}
 
 	public String getActualValue(String sql) {
