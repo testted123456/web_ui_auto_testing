@@ -200,7 +200,7 @@ public class Biz_Debt {
 	public boolean validate_holdNum() {
 		String str = getActualValue(
 				"SELECT sum(hold_num) from debt_exchange_account where  va_id = (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+						+ bo_id + "') and bo_id = " + bo_id);
 		double except_holdNum = Double.parseDouble(str);
 		System.out.println("************except_holdNum=" + except_holdNum + "********RESIDUE_NUM=" + RESIDUE_NUM);
 		return except_holdNum == HOLD_NUM ? true : false;
