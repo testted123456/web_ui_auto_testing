@@ -8,5 +8,25 @@
 	</WebSelect>
 	<WebInput name="查询" xpath="//input[@id='account_button_yellow' and@value='查询']">
 	</WebInput>
+	<WebLink name="提前还款" xpath="//a[@onclick='return confirm('您确定要提前还款吗？')']">
+	</WebLink>
+	<WebLink name="还款详情" xpath="//a[@id='bo_detail']">
+	</WebLink>
+	<WebLink name="查看借款协议" xpath="//a[@target='_blank' and@title='查看借款协议']"> 
+	</WebLink>
+	<WebLink name="查看咨询及管理服务协议" xpath="//a[@target='_blank' and@title='查看咨询及管理服务协议']"> 
+	</WebLink>
+	<WebTable name="借款金额" xpath="//table[@class='stripe']/tbody/tr[2]/td[2]">
+	</WebTable>
+	<WebTable name="年费率" xpath="//table[@class='stripe']/tbody/tr[2]/td[3]">
+	</WebTable>
+	<WebTable name="借款状态" xpath="//table[@class='stripe']/tbody/tr[2]/td[7]">
+	</WebTable>
+	<WebSpan name="本次应还金额" xpath="//span[@id='br_price']">
+	</WebSpan>
+	<WebSpan name="您的账户余额" xpath="//span[@id='re_m_money_html']">
+	</WebSpan>
+	<WebInput name="确定" xpath="//input[@type='image']">
+	</WebInput>
 	
 </elements>

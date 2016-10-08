@@ -55,4 +55,8 @@ public class WebTable extends BaseWebElement {
         List<WebElement> column = rows.get(rowIndex).findElements(By.tagName("td"));
         return column.get(columnIndex).getText().trim();
     }
+    
+	public String getText(){
+		return super.getWebElement().getText();
+	}
 }

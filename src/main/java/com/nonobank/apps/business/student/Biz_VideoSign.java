@@ -26,9 +26,6 @@ public class Biz_VideoSign {
 		int int_consultingFee=(int) float_consultingFee;
 		Assert.assertEquals(realName_register, realName);
 		Assert.assertEquals(idCard_register, idCard);
-//		Assert.assertEquals(int_money_apply, int_borrowsMoney);
-//		int int_consultingFee_value=(int) (int_money_apply*0.2);
-//		Assert.assertEquals(int_consultingFee_value, int_consultingFee);
 		logger.info("--------------结束：视频签约信息检查----------------");
 	}
 	public void checkVideoSignSuccessBus(){
