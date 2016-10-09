@@ -126,6 +126,19 @@ public class Biz_Debt {
 		return transferNum == sumBuyNum ? true : false;
 	}
 
+	public boolean validate_sumBuyNum_transferNum2() {
+		String str = getActualValue(
+				"SELECT sum(buy_num) from debt_buy_log where ds_id  = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "') and status = 1");
+		String str2 = getActualValue(
+				"SELECT transfer_num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "') and status = 1");
+		double sumBuyNum = Double.parseDouble(str);
+		double transferNum = Double.parseDouble(str2);
+		System.out.println("****sumBuyNum=" + sumBuyNum + "****transferNum=" + transferNum);
+		return sumBuyNum == transferNum ? true : false;
+	}
+
 	public boolean validate_invtDebtSaleTaskLogCount_invtProofCount(String task_status, String status) {
 		String str = getActualValue(
 				"SELECT count(*) from invt_debt_sale_task_log where task_id in (SELECT id from invt_debt_sale_task where `status` = "
@@ -149,8 +162,6 @@ public class Biz_Debt {
 		double transAmount = Double.parseDouble(str2);
 		return sumPriceIn == transAmount ? true : false;
 	}
-
-
 
 	public boolean validate_debtBuyLogCount_invtTrdOrderCount() {
 		String str = getActualValue(
@@ -195,9 +206,11 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_holdNum_transferNum() {
-		String str = getActualValue("");
-
-		return false;
+		String str = getActualValue(
+				"SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and dea.bo_id = ds.bo_id AND idst.id in (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
+						+ bo_id + ")");
+		String[] strs = str.split(",");
+		return strs[1] == strs[0];
 	}
 
 	public boolean validate_debtBuyLogCount_invtProofCount() {
@@ -220,7 +233,7 @@ public class Biz_Debt {
 		return except_holdNum == HOLD_NUM ? true : false;
 	}
 
-	public boolean validate_sumPricePrincipal_sumPriceInterest_sumPrice() {
+	public boolean validate_sumPrice_sumPriceInterest_sumPricePrincipal() {
 		String str = getActualValue(
 				"SELECT sum(ba.price_principal),sum(ba.price_interest),sum(ba.price) FROM borrows_accept ba LEFT JOIN invt_debt_sale_task it ON it.from_id = ba.va_id and ba.bo_id = it.bo_id WHERE  ba.is_pay = 0 AND it.from_type = 1 and it.from_id  in (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
 						+ bo_id + "') and it.bo_id = " + bo_id);
@@ -234,7 +247,7 @@ public class Biz_Debt {
 		return true;
 	}
 
-	public boolean validate_sumPricePrincipal_subPriceAndPayAmount() {
+	public boolean validate_subPriceAndPayAmount_sumPricePrincipal() {
 		String str = getActualValue(
 				"SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and ba.bo_id = ds.bo_id and ba.is_pay =0 and idst.id in (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
 						+ bo_id + ")");

@@ -43,12 +43,12 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_price_sumTransAmountAndPayAmount);
 
 		// 校验trans_amount=sum(amount)
-		boolean result_transAmount_sumAmount = biz_Debt.validate_sumAmount_transAmount();
-		Assert.assertEquals(true, result_transAmount_sumAmount);
+		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount();
+		Assert.assertEquals(true, result_sumAmount_transAmount);
 
 		// 校验transfer_num=sum(buy_num)
-		boolean result_transferNum_sumBuyNum = biz_Debt.validate_sumBuyNum_transferNum();
-		Assert.assertEquals(true, result_transferNum_sumBuyNum);
+		boolean result_sumBuyNum_transferNum = biz_Debt.validate_sumBuyNum_transferNum();
+		Assert.assertEquals(true, result_sumBuyNum_transferNum);
 
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
@@ -60,8 +60,8 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_sumPriceIn_transAmount);
 
 		// 校验sum(buy_num)=transfer_num
-		boolean result_sumBuyNum_transferNum = biz_Debt.validate_sumBuyNum_transferNum();
-		Assert.assertEquals(true, result_sumBuyNum_transferNum);
+		boolean result_sumBuyNum_transferNum2 = biz_Debt.validate_sumBuyNum_transferNum2();
+		Assert.assertEquals(true, result_sumBuyNum_transferNum2);
 
 		// 校验debt_buy_log记录=invt_trd_order记录
 		boolean result_debtBuyLogCount_invtTrdOrderCount = biz_Debt.validate_debtBuyLogCount_invtTrdOrderCount();
@@ -80,9 +80,9 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_holdNum);
 
 		// 校验sum(price_principal)=sum(price_interest)=sum(price)=0
-		boolean result_sumPricePrincipal_sumPriceInterest_sumPrice = biz_Debt
-				.validate_sumPricePrincipal_sumPriceInterest_sumPrice();
-		Assert.assertEquals(true, result_sumPricePrincipal_sumPriceInterest_sumPrice);
+		boolean result_sumPrice_sumPriceInterest_sumPricePrincipal = biz_Debt
+				.validate_sumPrice_sumPriceInterest_sumPricePrincipal();
+		Assert.assertEquals(true, result_sumPrice_sumPriceInterest_sumPricePrincipal);
 
 	}
 }
