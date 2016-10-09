@@ -27,6 +27,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 
+import com.nonobank.apps.utils.variable.ReplaceVariable;
+
 public class ParseXLSX {
 
 	private static Logger logger = LogManager.getLogger(ParseXLSX.class);
@@ -155,6 +157,8 @@ public class ParseXLSX {
 		default:
 			cellValue = null;
 		}
+		
+		cellValue = ReplaceVariable.handleVarible(cellValue);
 		return cellValue;
 	}
 
