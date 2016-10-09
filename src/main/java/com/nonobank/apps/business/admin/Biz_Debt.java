@@ -26,7 +26,7 @@ public class Biz_Debt {
 					"SELECT  DISTINCT ui.user_name FROM  borrows_accept ba  LEFT JOIN user_info ui on ui.id = ba.user_id WHERE ba.is_pay =0 and ba.va_id>500  AND ba.price_principal>0  LIMIT 100");
 		}
 		page_Debt.input_username(search_username);
-		// debt_common();
+		debt_common();
 
 	}
 
@@ -60,126 +60,126 @@ public class Biz_Debt {
 
 	public boolean validate_status(String exceptValue, String task_status) {
 		String actualValue = getActualValue(
-				"SELECT status from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = "
-						+ task_status + " and bo_id = '" + bo_id + "')");
+				"SELECT status from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = "
+						+ task_status + " and bo_id = '" + bo_id + "' limit 1)");
 		return actualValue.equals(exceptValue);
 	}
 
 	public boolean validate_lockNum(double exceptValue, String task_status) {
 		String str = getActualValue(
-				"SELECT lock_num from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = "
-						+ task_status + " and bo_id = '" + bo_id + "')");
+				"SELECT lock_num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = "
+						+ task_status + " and bo_id = '" + bo_id + "' limit 1)");
 		double actualValue = Double.parseDouble(str);
-		return actualValue == exceptValue ? true : false;
+		return actualValue == exceptValue;
 	}
 
 	public boolean validate_residueNum() {
 		String str = getActualValue(
-				"SELECT residue_num from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT residue_num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		double except_residueNum = Double.parseDouble(str);
 		return except_residueNum == RESIDUE_NUM ? true : false;
 	}
 
 	public boolean validate_residueNum_transferNum() {
 		String str = getActualValue(
-				"SELECT residue_num,transfer_Num from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT residue_num,transfer_Num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		String[] strs = str.split(",");
 
-		return strs[0] == strs[1] ? true : false;
+		return strs[0] == strs[1];
 	}
 
 	public boolean validate_price_sumTransAmountAndPayAmount() {
 		String str = getActualValue(
-				"SELECT price from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT price from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		String str2 = getActualValue(
-				"SELECT sum(trans_amount+pay_amount) from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT sum(trans_amount+pay_amount) from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		double price = Double.parseDouble(str);
 		double amount = Double.parseDouble(str2);
-		return price == amount ? true : false;
+		return price == amount;
 	}
 
 	public boolean validate_sumAmount_transAmount() {
 		String str = getActualValue(
-				"SELECT trans_amount from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT trans_amount from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		String str2 = getActualValue(
-				"SELECT sum(amount) from invt_debt_sale_task_log where task_id in (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and `status` = 2");
+				"SELECT sum(amount) from invt_debt_sale_task_log where task_id = (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and `status` = 2");
 		double transAmount = Double.parseDouble(str);
 		double sumAmount = Double.parseDouble(str2);
-		return transAmount == sumAmount ? true : false;
+		return transAmount == sumAmount;
 	}
 
 	public boolean validate_sumBuyNum_transferNum() {
 		String str = getActualValue(
-				"SELECT transfer_num from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT transfer_num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		String str2 = getActualValue(
-				"SELECT sum(buy_num) from invt_debt_sale_task_log where task_id in (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and `status` = 2");
+				"SELECT sum(buy_num) from invt_debt_sale_task_log where task_id = (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and `status` = 2");
 		double transferNum = Double.parseDouble(str);
 		double sumBuyNum = Double.parseDouble(str2);
-		return transferNum == sumBuyNum ? true : false;
+		return transferNum == sumBuyNum;
 	}
 
 	public boolean validate_sumBuyNum_transferNum2() {
 		String str = getActualValue(
 				"SELECT sum(buy_num) from debt_buy_log where ds_id  = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+						+ bo_id + "' limit 1) and status = 1");
 		String str2 = getActualValue(
 				"SELECT transfer_num from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+						+ bo_id + "' limit 1) and status = 1");
 		double sumBuyNum = Double.parseDouble(str);
 		double transferNum = Double.parseDouble(str2);
 		System.out.println("****sumBuyNum=" + sumBuyNum + "****transferNum=" + transferNum);
-		return sumBuyNum == transferNum ? true : false;
+		return sumBuyNum == transferNum;
 	}
 
 	public boolean validate_invtDebtSaleTaskLogCount_invtProofCount(String task_status, String status) {
 		String str = getActualValue(
-				"SELECT count(*) from invt_debt_sale_task_log where task_id in (SELECT id from invt_debt_sale_task where `status` = "
-						+ task_status + " and bo_id = '" + bo_id + "') and `status` = " + status);
+				"SELECT count(*) from invt_debt_sale_task_log where task_id = (SELECT id from invt_debt_sale_task where `status` = "
+						+ task_status + " and bo_id = '" + bo_id + "' limit 1) and `status` = " + status);
 		String str2 = getActualValue(
-				"SELECT count(*) from invt_proof where biz_type = 1 and status = 1 and biz_id in (SELECT id from invt_debt_sale_task_log where task_id in (SELECT id from invt_debt_sale_task where `status` = "
-						+ task_status + " and bo_id = '" + bo_id + "') and `status` = " + status + ")");
+				"SELECT count(*) from invt_proof where biz_type = 1 and status = 1 and biz_id = (SELECT id from invt_debt_sale_task_log where task_id = (SELECT id from invt_debt_sale_task where `status` = "
+						+ task_status + " and bo_id = '" + bo_id + "' limit 1) and `status` = " + status + ")");
 		double invtDebtSaleTaskLogCount_ = Double.parseDouble(str);
 		double invtProofCount = Double.parseDouble(str2);
-		return invtDebtSaleTaskLogCount_ == invtProofCount ? true : false;
+		return invtDebtSaleTaskLogCount_ == invtProofCount;
 	}
 
 	public boolean validate_sumPriceIn_transAmount() {
 		String str = getActualValue(
-				"SELECT sum(price_in) from debt_buy_log where ds_id  in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+				"SELECT sum(price_in) from debt_buy_log where ds_id  = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1");
 		String str2 = getActualValue(
-				"SELECT trans_amount from debt_sale where id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+				"SELECT trans_amount from debt_sale where id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1");
 		double sumPriceIn = Double.parseDouble(str);
 		double transAmount = Double.parseDouble(str2);
-		return sumPriceIn == transAmount ? true : false;
+		return sumPriceIn == transAmount;
 	}
 
 	public boolean validate_debtBuyLogCount_invtTrdOrderCount() {
 		String str = getActualValue(
-				"SELECT count(*) from debt_buy_log where ds_id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+				"SELECT count(*) from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1");
 		String str2 = getActualValue(
-				"SELECT count(*) from invt_trd_order where status= 2 and  trans_id in (SELECT trans_id from debt_buy_log where ds_id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1)");
+				"SELECT count(*) from invt_trd_order where status= 2 and  trans_id = (SELECT trans_id from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1)");
 		double debtBuyLogCount = Double.parseDouble(str);
 		double invtTrdOrderCount = Double.parseDouble(str2);
-		return debtBuyLogCount == invtTrdOrderCount ? true : false;
+		return debtBuyLogCount == invtTrdOrderCount;
 	}
 
 	public boolean validate_amount() {
 		boolean flag = false;
 		List<Object> lst = DBUtils.geMulLineValues("nono",
-				"SELECT id from invt_debt_sale_task_log where `status` = 2 and task_id in (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "')");
+				"SELECT id from invt_debt_sale_task_log where `status` = 2 and task_id = (SELECT id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1)");
 		for (Object object : lst) {
 			String str = getActualValue(
 					"SELECT dea.hold_num,tl.buy_num FROM debt_exchange_account dea LEFT JOIN invt_debt_sale_task_log tl on dea.va_id= tl.from_id  LEFT JOIN debt_sale ds on ds.id = tl.ds_id WHERE  tl.status = 2 and tl.from_type = 1 and tl.id = "
@@ -207,36 +207,36 @@ public class Biz_Debt {
 
 	public boolean validate_holdNum_transferNum() {
 		String str = getActualValue(
-				"SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and dea.bo_id = ds.bo_id AND idst.id in (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
-						+ bo_id + ")");
+				"SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and dea.bo_id = ds.bo_id AND idst.id = (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
+						+ bo_id + " limit 1)");
 		String[] strs = str.split(",");
-		return strs[1] == strs[0];
+		return Double.parseDouble(strs[1]) == Double.parseDouble(strs[0]);
 	}
 
 	public boolean validate_debtBuyLogCount_invtProofCount() {
 		String str = getActualValue(
-				"SELECT count(*) from debt_buy_log where ds_id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1");
+				"SELECT count(*) from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1");
 		String str2 = getActualValue(
-				"SELECT count(*) from invt_proof where biz_type = 2 and status = 1 and biz_id in (SELECT id from debt_buy_log where ds_id in (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and status = 1)");
+				"SELECT count(*) from invt_proof where biz_type = 2 and status = 1 and biz_id = (SELECT id from debt_buy_log where ds_id = (SELECT ds_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and status = 1)");
 		double debtBuyLogCount = Double.parseDouble(str);
 		double invtProofCount = Double.parseDouble(str2);
-		return debtBuyLogCount == invtProofCount ? true : false;
+		return debtBuyLogCount == invtProofCount;
 	}
 
 	public boolean validate_holdNum() {
 		String str = getActualValue(
-				"SELECT sum(hold_num) from debt_exchange_account where  va_id in (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and bo_id = " + bo_id);
+				"SELECT sum(hold_num) from debt_exchange_account where  va_id = (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and bo_id = " + bo_id);
 		double except_holdNum = Double.parseDouble(str);
-		return except_holdNum == HOLD_NUM ? true : false;
+		return except_holdNum == HOLD_NUM;
 	}
 
 	public boolean validate_sumPrice_sumPriceInterest_sumPricePrincipal() {
 		String str = getActualValue(
-				"SELECT sum(ba.price_principal),sum(ba.price_interest),sum(ba.price) FROM borrows_accept ba LEFT JOIN invt_debt_sale_task it ON it.from_id = ba.va_id and ba.bo_id = it.bo_id WHERE  ba.is_pay = 0 AND it.from_type = 1 and it.from_id  in (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
-						+ bo_id + "') and it.bo_id = " + bo_id);
+				"SELECT sum(ba.price_principal),sum(ba.price_interest),sum(ba.price) FROM borrows_accept ba LEFT JOIN invt_debt_sale_task it ON it.from_id = ba.va_id and ba.bo_id = it.bo_id WHERE  ba.is_pay = 0 AND it.from_type = 1 and it.from_id  = (SELECT from_id from invt_debt_sale_task where `status` = 5 and bo_id = '"
+						+ bo_id + "' limit 1) and it.bo_id = " + bo_id);
 		String[] strs = str.split(",");
 		for (int i = 0; i < strs.length; i++) {
 			double value = Double.parseDouble(strs[i]);
@@ -249,10 +249,11 @@ public class Biz_Debt {
 
 	public boolean validate_subPriceAndPayAmount_sumPricePrincipal() {
 		String str = getActualValue(
-				"SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and ba.bo_id = ds.bo_id and ba.is_pay =0 and idst.id in (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
-						+ bo_id + ")");
+				"SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type=1 and ba.bo_id = ds.bo_id and ba.is_pay =0 and idst.id = (SELECT id from invt_debt_sale_task where `status` = 99 and bo_id = "
+						+ bo_id + " limit 1)");
 		String[] strs = str.split(",");
-		return strs[1] == strs[0];
+
+		return Double.parseDouble(strs[1]) == Double.parseDouble(strs[0]);
 	}
 
 	public String getActualValue(String sql) {
