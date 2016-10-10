@@ -22,6 +22,8 @@ public class DBUtils {
 
 	public static Connection connection_pay;
 
+	public static Connection connection;
+
 	/**
 	 * 函数说明：返回db_nono的数据库连接
 	 * 
@@ -165,8 +167,10 @@ public class DBUtils {
 	}
 
 	public static String getOneLineValues(String dbname, String sql) {
-		Connection con = getConnection(dbname);
-		Object obj = getOneLine(con, sql);
+		if (connection == null) {
+			connection = getConnection(dbname);
+		}
+		Object obj = getOneLine(connection, sql);
 		String str = null;
 		if (obj instanceof Object[]) {
 			Object[] objs = (Object[]) obj;
@@ -191,4 +195,9 @@ public class DBUtils {
 		return lst;
 	}
 
+	public static void main(String[] args) {
+		String str = getOneLineValues("nono",
+				"SELECT * from invt_debt_sale_task where bo_id = 708152 order by create_time desc limit 1");
+		System.out.println(str);
+	}
 }
