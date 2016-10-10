@@ -33,6 +33,12 @@ public class Biz_VideoSign {
 		page_VideoSign.exist_getFirstAuditRight();
 		logger.info("---------------结束：检查视频签约是否完成------------------");	
 	}
+	public void checkLastAuditPassBus(String realName){
+		logger.info("---------------开始：检查终审是否通过------------------");
+		String lastAuditPassPrompt=page_VideoSign.getText_lastViewPrompt();
+		Assert.assertEquals(lastAuditPassPrompt, "恭喜"+realName+"同学，您的视频签约认证已通过审核！");
+		logger.info("---------------结束：检查终审是否通过------------------");
+	}
 	
 	
 }

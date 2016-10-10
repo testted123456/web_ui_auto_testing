@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import com.nonobank.apps.business.account.Biz_Account;
+import com.nonobank.apps.business.admin.Biz_Audit_VideoAuditView;
+import com.nonobank.apps.business.admin.Biz_Home;
+import com.nonobank.apps.business.admin.Biz_Login;
 import com.nonobank.apps.business.common.Biz_Common;
 import com.nonobank.apps.business.repayment.Biz_Repayment;
 import com.nonobank.apps.business.student.Biz_Apply;
@@ -24,7 +27,10 @@ public class RepaymentTestCase extends BaseCase{
 	Biz_Common biz_Common;
 	Biz_Account biz_Account;
 	Biz_Repayment biz_Repayment;
-	public static Logger logger=LogManager.getLogger(BorrowsTestCase.class);
+	Biz_Audit_VideoAuditView biz_Audit_VideoAuditView;
+	Biz_Home biz_Home;
+	Biz_Login biz_Login;
+	public static Logger logger=LogManager.getLogger(RepaymentTestCase.class);
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_register,String qq_register,String mobile_register,
 			String checkCode_register,String password_register,String confirmPassword_register,
@@ -40,7 +46,7 @@ public class RepaymentTestCase extends BaseCase{
 			String friend1Mobile_improve,String friend2Name_improve,String friend2Mobile_improve,
 			String friend3Name_improve,String friend3Mobile_improve,String file_improve,
 			String bankcardAccount_improve,String banksType_improve,String bankMobile_improve,
-			String smsCode_improve
+			String smsCode_improve,String username_admin,String password_admin
 			){
 		logger.info("开始进行借款流程测试........");
 		int int_money_apply=Integer.parseInt(money_apply);
@@ -65,12 +71,15 @@ public class RepaymentTestCase extends BaseCase{
 		
 		//申请流程--借款用途、金额
 		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
+		PageUtils.sleep(2000);
 		//申请流程--借款产品
 		biz_Apply.selectBorrowsProductBus(int_money_apply, int_productIndex_apply, int_pieces_apply);
+		PageUtils.sleep(2000);
 		//申请流程--提交
 		biz_Apply.submitBus();
+		PageUtils.sleep(3000);
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
-		PageUtils.sleep(5000);
+		PageUtils.sleep(3000);
 		//申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(10000);
@@ -92,20 +101,43 @@ public class RepaymentTestCase extends BaseCase{
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
 		PageUtils.sleep(10000);	
-		
 		//视频录制--借款信息检查
 		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
-		//视频录制--终审通过
-		SqlUtils.lastAuditPass(mobile_register);
-		PageUtils.sleep(3000);	
+		PageUtils.sleep(3000);
+		//视频录制--上传视频信息
+		SqlUtils.recordVideo(mobile_register);
+		PageUtils.sleep(5000);
 		PageUtils.refreshPage();
-		PageUtils.sleep(10000);
+		PageUtils.sleep(5000);
 		//视频录制--视频录制完成检查
 		biz_VideoSign.checkVideoSignSuccessBus();
-		PageUtils.sleep(3000);	
+		PageUtils.sleep(5000);
+		
+		//后台登录
+		biz_Login.login(username_admin, password_admin);
+		PageUtils.sleep(10000);
+		//后台进行初审
+		biz_Home.navigate_to_firstAudit(mobile_register, userName_register);
+		PageUtils.sleep(200000);
+		biz_Audit_VideoAuditView.first_audit_pass();
+		PageUtils.sleep(60000);
+		//初审结束后，需要切换到后台管理系统页面
+		biz_Home.switch_adminHome();
+		PageUtils.sleep(5000);
+		//后台进行终审
+		biz_Home.navigate_to_lastAudit(mobile_register, userName_register);
+		PageUtils.sleep(10000);
+		biz_Audit_VideoAuditView.last_audit_pass();
+		PageUtils.sleep(60000);
+		//初审结束后，需要切换到后台管理系统页面
+		biz_Home.switch_adminHome();
+		PageUtils.sleep(5000);
+		//切换到后台管理系统主菜单页面
+		biz_Home.switch_adminMenu();
 		//执行名校贷非V3
-		
-		
+		biz_Home.navigate_to_v3();
+		PageUtils.sleep(10000);
+
 		//点击用户名
 		biz_Common.click_userNameBus();
 		PageUtils.sleep(3000);	

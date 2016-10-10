@@ -11,7 +11,7 @@ import com.nonobank.apps.page.account.Page_Bills;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_Repayment {
-	public static Logger logger = LogManager.getLogger(Biz_Apply.class);
+	public static Logger logger = LogManager.getLogger(Biz_Repayment.class);
 	Page_Account page_Account=new Page_Account();
 	Page_Bills page_Bills=new Page_Bills();
 	

@@ -153,4 +153,8 @@ public class BasePage {
 	public String getAlertText() {
 		return driver.switchTo().alert().getText();
 	}
+	
+	public void acceptAlert(){
+		driver.switchTo().alert().accept();
+	}
 }

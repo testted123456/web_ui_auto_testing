@@ -14,8 +14,11 @@ public class Biz_Login {
 
 	public void login(String username, String password) {
 		page_Admin_Login.nagivate_to_adminpage();
+		page_Admin_Login.sleep(10000);
 		page_Admin_Login.input_username(username);
+		page_Admin_Login.sleep(3000);
 		page_Admin_Login.input_password(password);
+		page_Admin_Login.sleep(3000);
 		page_Admin_Login.login();
 	}
 

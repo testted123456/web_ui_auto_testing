@@ -9,18 +9,21 @@ public class Biz_Audit_VideoAuditView {
 	public static Logger logger = LogManager.getLogger(Biz_Audit_VideoAuditView.class);
 	
 	Page_Audit_Video_AuditView page_Admin_Audit_Video_AuditView = new Page_Audit_Video_AuditView();
-	
+
 	//初审通过
 	public void first_audit_pass(){
 		page_Admin_Audit_Video_AuditView.audit("初审通过");
-		String text = page_Admin_Audit_Video_AuditView.accept_alert();
-		if(text.contains("确定通过") && text.contains("初审么")){
-			text = page_Admin_Audit_Video_AuditView.accept_alert();
-			if(!text.contains("操作成功")){
-				Assert.fail("初审失败...");
-			}
-		}
-		page_Admin_Audit_Video_AuditView.close_this_page();
+		page_Admin_Audit_Video_AuditView.sleep(5000);
+		page_Admin_Audit_Video_AuditView.select_CA("CA01:初审无问题");
+		page_Admin_Audit_Video_AuditView.sleep(5000);
+		page_Admin_Audit_Video_AuditView.click_submit();
+		page_Admin_Audit_Video_AuditView.sleep(3000);
+		//提示框
+		String alertPrompt=page_Admin_Audit_Video_AuditView.getAlertText();
+		page_Admin_Audit_Video_AuditView.sleep(2000);
+		Assert.assertEquals(alertPrompt, "操作成功！");
+		page_Admin_Audit_Video_AuditView.sleep(2000);
+		page_Admin_Audit_Video_AuditView.closeAlert();
 	}
 	
 	//初审拒绝
@@ -41,13 +44,17 @@ public class Biz_Audit_VideoAuditView {
 	//终审通过
 	public void last_audit_pass(){
 		page_Admin_Audit_Video_AuditView.audit("终审通过");
-		String text = page_Admin_Audit_Video_AuditView.accept_alert();
-		if(text.contains("确定通过") && text.contains("终审么")){
-			text = page_Admin_Audit_Video_AuditView.accept_alert();
-			if(!text.contains("操作成功")){
-				Assert.fail("初审失败...");
-			}
-		}
-		page_Admin_Audit_Video_AuditView.close_this_page();
+		page_Admin_Audit_Video_AuditView.sleep(5000);
+		page_Admin_Audit_Video_AuditView.select_CA("CA01:终审无问题");
+		page_Admin_Audit_Video_AuditView.sleep(5000);
+		page_Admin_Audit_Video_AuditView.click_submit();
+		page_Admin_Audit_Video_AuditView.sleep(3000);
+		//提示框
+		String alertPrompt=page_Admin_Audit_Video_AuditView.getAlertText();
+		page_Admin_Audit_Video_AuditView.sleep(2000);
+		Assert.assertEquals(alertPrompt, "操作成功！");
+		page_Admin_Audit_Video_AuditView.sleep(2000);
+		page_Admin_Audit_Video_AuditView.closeAlert();
 	}
+
 }

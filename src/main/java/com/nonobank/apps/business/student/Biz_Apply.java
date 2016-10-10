@@ -42,6 +42,7 @@ public class Biz_Apply {
 		default:
 			break;
 		}
+		page_Apply.sleep(3000);
 		// 获取每期需还款金额
 		String perMoney=page_Apply.check_perMoney();
 		double double_money_apply=int_money_apply;
@@ -69,7 +70,6 @@ public class Biz_Apply {
 	public void submitBus(){
 		logger.info("--------------开始：提交----------------");
 		page_Apply.click_submit();
-		page_Apply.sleep(3000);
 		logger.info("--------------结束：提交----------------");
 	}
 	//提交后借款信息验证

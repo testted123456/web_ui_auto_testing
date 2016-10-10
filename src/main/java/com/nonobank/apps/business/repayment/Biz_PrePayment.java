@@ -11,7 +11,7 @@ import com.nonobank.apps.page.account.Page_BorrowList;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_PrePayment {
-	public static Logger logger = LogManager.getLogger(Biz_Apply.class);
+	public static Logger logger = LogManager.getLogger(Biz_PrePayment.class);
 	Page_Account page_Account=new Page_Account();
 	Page_BorrowList page_BorrowList=new Page_BorrowList();
 	

@@ -105,13 +105,21 @@ public class Biz_Register {
 			){
 		logger.info("--------------开始：信息验证----------------");
 		page_Register.select_provinceByValue(province_register);
+		page_Register.sleep(1000);
 		page_Register.select_institutionByValue(institution_register);
+		page_Register.sleep(1000);
 		page_Register.input_schoolArea(schoolArea_register);
+		page_Register.sleep(1000);
 		page_Register.select_intoSchoolYearByValue(year_register);
+		page_Register.sleep(1000);
 		page_Register.select_educationByValue(education_register);
+		page_Register.sleep(1000);
 		page_Register.input_studentNum(studentNumber_register);
+		page_Register.sleep(1000);
 		page_Register.input_realName(realName_register);
+		page_Register.sleep(1000);
 		page_Register.input_idCard(idCard_register);
+		page_Register.sleep(1000);
 		page_Register.select_majorByValue(major_register);
 		logger.info("--------------结束：信息验证----------------");
 	}
