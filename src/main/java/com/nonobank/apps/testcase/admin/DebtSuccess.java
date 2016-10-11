@@ -23,13 +23,6 @@ public class DebtSuccess extends BaseCase {
 		// biz_Debt.debt(search_username);
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id);
 
-		// 校验invt_debt_sale_task.status=5
-		biz_Debt.validate_status(STATUS);
-
-		// 校验status=0
-		boolean result_status = biz_Debt.validate_status("1", STATUS);
-		Assert.assertEquals(true, result_status);
-
 		// 校验lock_num=0
 		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS);
 		Assert.assertEquals(true, result_lockNum);

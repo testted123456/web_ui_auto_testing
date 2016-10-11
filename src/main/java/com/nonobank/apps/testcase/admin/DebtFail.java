@@ -23,20 +23,13 @@ public class DebtFail extends BaseCase {
 		biz_Debt.debt(search_username, targetFpid);
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id);
 
-		// 校验invt_debt_sale_task.status=99
-		biz_Debt.validate_status(STATUS);
-
-		// 校验status=3
-		biz_Debt.validate_status("3", STATUS);
-
 		// 校验lock_num=0
-		biz_Debt.validate_lockNum(0, STATUS);
-
+		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS);
+		Assert.assertEquals(true, result_lockNum);
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
 				.validate_invtDebtSaleTaskLogCount_invtProofCount(STATUS, "3");
 		Assert.assertEquals(true, result_invtDebtSaleTaskLogCount_invtProofCount);
-
 		// 校验price_principal=price-pay_amount
 		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt
 				.validate_subPriceAndPayAmount_sumPricePrincipal();
@@ -45,5 +38,6 @@ public class DebtFail extends BaseCase {
 		// 校验hold_num=transfer_num
 		boolean result_holdNum_transferNum = biz_Debt.validate_holdNum_transferNum();
 		Assert.assertEquals(true, result_holdNum_transferNum);
+
 	}
 }
