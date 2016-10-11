@@ -61,8 +61,7 @@ public class Page_Debt extends BasePage {
 	}
 
 	public void click_debt() {
-		logger.info("执行债转......");
-		switch_to_frameSet();
+		logger.info("点击债转......");
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 		for (WebElement webElement : lstElements) {
 			if (webElement.getText().equals("债转")) {
@@ -71,7 +70,7 @@ public class Page_Debt extends BasePage {
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
 				webElement.click();
-				return;
+				break;
 			}
 		}
 	}

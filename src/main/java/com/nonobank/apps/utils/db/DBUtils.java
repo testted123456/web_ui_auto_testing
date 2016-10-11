@@ -3,8 +3,12 @@ package com.nonobank.apps.utils.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.dbutils.DbUtils;
@@ -116,6 +120,19 @@ public class DBUtils {
 		return objArr;
 	}
 
+	public static List<Object[]> getMulLine(Connection con, String sql) {
+		QueryRunner qr = new QueryRunner();
+		List<Object[]> objArr = null;
+
+		try {
+			objArr = qr.query(con, sql, new ArrayListHandler());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return objArr;
+	}
+
 	public static void update(Connection con, String sql) {
 		QueryRunner qr = new QueryRunner();
 
@@ -147,7 +164,7 @@ public class DBUtils {
 		}
 	}
 
-	public static String getValues(String dbname, String sql) {
+	public static String getOneLineValues(String dbname, String sql) {
 		Connection con = getConnection(dbname);
 		Object obj = getOneLine(con, sql);
 		String str = null;
@@ -164,8 +181,14 @@ public class DBUtils {
 		return str;
 	}
 
-	public static void main(String[] args) {
-		String str = getValues("nono", "SELECT * from invt_debt_sale_task where `status` = 5 and bo_id = '561313'");
-		System.out.println("*****************str=" + str);
+	public static List<Object> geMulLineValues(String dbname, String sql) {
+		Connection con = getConnection(dbname);
+		List<Object[]> obj = getMulLine(con, sql);
+		List<Object> lst = new ArrayList<>();
+		for (Object[] objects : obj) {
+			lst.add(objects[0]);
+		}
+		return lst;
 	}
+
 }
