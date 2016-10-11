@@ -107,11 +107,11 @@ public class Page_Home extends BasePage {
 		Set<String> handles = driver.getWindowHandles();
 		for (String handle : handles) {
 			try {
+				String handleId=driver.switchTo().window("后台管理系统").getWindowHandle();
 				String title = driver.switchTo().window(handle).getTitle();
 				if (!title.equals("后台管理系统")) {
 					driver.switchTo().window(handle).close();
 					PageUtils.sleep(2000);
-					String handleId=driver.switchTo().window("后台管理系统").getWindowHandle();
 					driver.switchTo().window(handleId);
 					break;
 				}

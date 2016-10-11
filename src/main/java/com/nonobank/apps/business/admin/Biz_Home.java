@@ -26,8 +26,6 @@ public class Biz_Home {
 
 	// 跳转到终审页面， 终审通过
 	public void navigate_to_lastAudit(String mobile_no, String username) {
-
-		page_admin_home.sleep(3000);
 		page_admin_home.click_videoLastCheckList();
 //		page_admin_home.sleep(3000);
 //		page_admin_home.click_VideoAuditTsrial();
