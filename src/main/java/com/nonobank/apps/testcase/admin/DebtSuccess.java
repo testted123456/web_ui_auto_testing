@@ -18,9 +18,9 @@ public class DebtSuccess extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username) {
-		// biz_Login.login(username, password);
-		// biz_Home.navigate_to_financePlanProfit();
-		// biz_Debt.debt(search_username);
+		biz_Login.login(username, password);
+		biz_Home.navigate_to_financePlanProfit();
+		biz_Debt.debt(search_username, "Success");
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id);
 
 		// 校验lock_num=0
