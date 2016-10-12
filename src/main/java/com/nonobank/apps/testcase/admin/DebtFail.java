@@ -28,7 +28,7 @@ public class DebtFail extends BaseCase {
 		Assert.assertEquals(true, result_lockNum);
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
-				.validate_invtDebtSaleTaskLogCount_invtProofCount(STATUS, "3");
+				.validate_CountinvtDebtSaleTaskLog_CountinvtProof(STATUS, "3");
 		Assert.assertEquals(true, result_invtDebtSaleTaskLogCount_invtProofCount);
 		// 校验price_principal=price-pay_amount
 		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt

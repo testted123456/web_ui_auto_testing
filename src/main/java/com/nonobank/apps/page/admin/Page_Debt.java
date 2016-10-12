@@ -67,6 +67,8 @@ public class Page_Debt extends BasePage {
 			if (!lstElements.get(i).getText().equals("0.00(0/0)")) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[17]/span[1]/a");
+				web.click();
+				break;
 			}
 		}
 	}

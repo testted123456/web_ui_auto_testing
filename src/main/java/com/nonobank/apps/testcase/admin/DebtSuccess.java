@@ -45,7 +45,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
-				.validate_invtDebtSaleTaskLogCount_invtProofCount(STATUS, "2");
+				.validate_CountinvtDebtSaleTaskLog_CountinvtProof(STATUS, "2");
 		Assert.assertEquals(true, result_invtDebtSaleTaskLogCount_invtProofCount);
 
 		// 校验sum(price_in)=trans_amount
@@ -57,11 +57,11 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_sumBuyNum_transferNum2);
 
 		// 校验debt_buy_log记录=invt_trd_order记录
-		boolean result_debtBuyLogCount_invtTrdOrderCount = biz_Debt.validate_debtBuyLogCount_invtTrdOrderCount();
-		Assert.assertEquals(true, result_debtBuyLogCount_invtTrdOrderCount);
+		boolean result_CountdebtBuyLog_CountinvtTrdOrder = biz_Debt.validate_CountdebtBuyLog_CountinvtTrdOrder();
+		Assert.assertEquals(true, result_CountdebtBuyLog_CountinvtTrdOrder);
 
 		// 校验debt_buy_log记录=invt_proof记录
-		boolean result_debtBuyLogCount_invtProofCount = biz_Debt.validate_debtBuyLogCount_invtProofCount();
+		boolean result_debtBuyLogCount_invtProofCount = biz_Debt.validate_CountdebtBuyLog_CountinvtProof();
 		Assert.assertEquals(true, result_debtBuyLogCount_invtProofCount);
 
 		// 校验amount
@@ -69,13 +69,20 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_amount);
 
 		// 校验hold_num=0
-		boolean result_holdNum = biz_Debt.validate_holdNum();
-		Assert.assertEquals(true, result_holdNum);
+		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum();
+		Assert.assertEquals(true, result_sumHoldNum);
 
-		// 校验sum(price_principal)=sum(price_interest)=sum(price)=0
-		boolean result_sumPrice_sumPriceInterest_sumPricePrincipal = biz_Debt
-				.validate_sumPrice_sumPriceInterest_sumPricePrincipal();
-		Assert.assertEquals(true, result_sumPrice_sumPriceInterest_sumPricePrincipal);
+		// 校验sum(price_principal)=0
+		boolean result_sumpricePrincipal = biz_Debt.validate_sumPricePrincipal(0);
+		Assert.assertEquals(true, result_sumpricePrincipal);
+
+		// 校验sum(price_interest)=0
+		boolean result_sumPriceInterest = biz_Debt.validate_sumPriceInterest(0);
+		Assert.assertEquals(true, result_sumPriceInterest);
+
+		// 校验sum(price)=0
+		boolean result_sumPrice = biz_Debt.validate_sumPrice(0);
+		Assert.assertEquals(true, result_sumPrice);
 
 	}
 }
