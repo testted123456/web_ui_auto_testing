@@ -1,6 +1,8 @@
 package com.nonobank.apps.page.admin;
 
 import java.sql.Connection;
+import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -21,32 +23,19 @@ public class Page_Home extends BasePage {
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame(driver.findElement(By.id("mainFrame")));
 	}
-
-	// 视频签约终审列表
-	public void switch_to_lastAuditLists() {
-		WebCommon div = objectFactory.getWebCommon("视频签约终审列表");
-		div.click();
+	
+	// 点击投资计划收益列表
+	public void click_financePlanProfit() {
+		switch_to_frameSet();
+		WebLink link_financePlanProfit = objectFactory.getWebLink("financePlanProfit");
+		link_financePlanProfit.click();
 	}
-
+	
 	// 点击视频签约
 	public void click_VideoAuditTsrial() {
 		WebLink link_VideoAuditTsrial = objectFactory.getWebLink("视频签约");
 		link_VideoAuditTsrial.click();
 	}
-
-	// 点击投资计划收益列表
-	public void click_financePlanProfit() {
-		switch_to_frameSet();
-//		try {
-//			Thread.sleep(60000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		WebLink link_financePlanProfit = objectFactory.getWebLink("financePlanProfit");
-		link_financePlanProfit.click();
-	}
-
 	// 视频签约初审列表，输入手机号码
 	public void input_mobile(String mobile_no) {
 		WebInput input_mobile = objectFactory.getWebInput("手机号码");
@@ -92,4 +81,57 @@ public class Page_Home extends BasePage {
 		link_videoAuditView.click();
 		PageUtils.waitForPageLoad();
 	}
+	//点击视频签约终审列表
+	public void click_videoLastCheckList(){
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("mainFrame");
+		WebCommon click_videoLastCheckList=objectFactory.getWebCommon("视频签约终审列表");
+		click_videoLastCheckList.click();
+		driver.switchTo().defaultContent();
+	}
+	//点击计划任务
+	public void click_taskScheduler(){
+		logger.info("点击计划任务。。。。。。。。");
+		WebLink click_taskScheduler=objectFactory.getWebLink("计划任务");
+		click_taskScheduler.click();
+	}
+	//点击名校贷非V3自动匹配
+	public void click_V3(){
+		logger.info("点击名校贷非V3自动匹配。。。。。。。。");
+		WebInput click_V3=objectFactory.getWebInput("名校贷非v3自动匹配");
+		click_V3.click();
+	}
+	//切换到后台管理系统页面
+	public void switch_adminHome(){
+		//将页面上所有的windowshandle放在入set集合当中
+		Set<String> handles = driver.getWindowHandles();
+		for (String handle : handles) {
+			try {
+				String handleId=driver.switchTo().window("后台管理系统").getWindowHandle();
+				String title = driver.switchTo().window(handle).getTitle();
+				if (!title.equals("后台管理系统")) {
+					driver.switchTo().window(handle).close();
+					PageUtils.sleep(2000);
+					driver.switchTo().window(handleId);
+					break;
+				}
+			} catch (Exception e) {
+				if (e.getClass().getName().equals("org.openqa.selenium.TimeoutException")) {
+					sleep(30000);
+					driver.switchTo().window(handle);
+//					PageUtils.refreshPage();
+				}
+			}
+		}
+	}
+	//点击菜单tab回到主菜单页面
+	public void click_menu(){
+		logger.info("点击菜单tab回到主菜单页面。。。。。。。。");
+		WebLink click_menu=objectFactory.getWebLink("菜单");
+		click_menu.click();
+	}
+	//
+	
+	
+	
 }

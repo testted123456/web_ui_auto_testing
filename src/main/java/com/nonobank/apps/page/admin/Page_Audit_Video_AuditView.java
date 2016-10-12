@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
+import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.page.PageUtils;
 
@@ -42,22 +43,19 @@ public class Page_Audit_Video_AuditView extends BasePage {
 		WebInput input_audit = objectFactory.getWebInput(audit);
 		input_audit.click();
 	}
-
-	// 审核页面出现的alert框
-	public String accept_alert() {
-		if (isAlertExists(5000)) {
-			String text = getAlertText();
-			closeAlert();
-			return text;
-		} else {
-			return null;
-		}
+	//选择CA
+	//CA01:初审无问题  CA02:可能存在问题，请终审严审
+	public void select_CA(String CACode){
+		logger.info("选择CA........");
+		WebSelect select_CA=objectFactory.getWebSelect("初审通过选择框");
+		select_CA.selectByExactValue(CACode);
+	}
+	//提交
+	public void click_submit(){
+		logger.info("提交.......");
+		WebInput click_submit=objectFactory.getWebInput("提交");
+		click_submit.click();
 	}
 
-	// 关闭当前页面
-	public void close_this_page() {
-		String h = null;
-		logger.info(driver.getCurrentUrl());
-		driver.switchTo().window(h);
-	}
+	
 }

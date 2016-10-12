@@ -160,6 +160,7 @@ public class Page_Apply extends BasePage{
 		String moneyPerValue=check_PerMoney.getText();
 		//每期需还：932.33元
 		String[] moneyPerArray=moneyPerValue.split("：");
+		
 		String[] moneyPer=moneyPerArray[1].split("元");
 		return moneyPer[0];
 	}

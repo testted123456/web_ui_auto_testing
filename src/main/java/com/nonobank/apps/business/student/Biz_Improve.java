@@ -64,19 +64,33 @@ public class Biz_Improve {
 			String friend2Name_improve, String friend2Mobile_improve, String friend3Name_improve,
 			String friend3Mobile_improve){
 		logger.info("------------开始：联系人-----------------");
+		int int_income_index_improve=Integer.parseInt(income_index_improve);
 		page_Improve.input_email(email_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_address(address_improve);
-		page_Improve.select_income(Double.valueOf(income_index_improve).intValue());
+		PageUtils.sleep(2000);
+		page_Improve.select_income(int_income_index_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_parentName(parentName_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_parentMobile(parentMobile_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_counselorName(counselorName_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_counselorMobile(counselorMobile_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend1Name(friend1Name_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend1Mobile(friend1Mobile_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend2Name(friend2Name_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend2Mobile(friend2Mobile_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend3Name(friend3Name_improve);
+		PageUtils.sleep(2000);
 		page_Improve.input_friend3Mobile(friend3Mobile_improve);
+		PageUtils.sleep(2000);
 		logger.info("------------结束：联系人-----------------");
 	}
 	public void uploadingBus(String file_improve){
@@ -88,7 +102,9 @@ public class Biz_Improve {
 			String banksType_improve,String bankMobile_improve,String smsCode_improve){
 		logger.info("------------开始：银行卡信息-----------------");
 		page_Improve.input_bankCard(bankcardAccount_improve);
+		page_Improve.sleep(3000);
 		page_Improve.select_banksType(banksType_improve);
+		page_Improve.sleep(3000);
 		page_Improve.input_bankMobile(bankMobile_improve);
 		page_Improve.sleep(3000);
 		page_Improve.click_getSmsCode();

@@ -8,4 +8,8 @@
 	</WebInput>
 	<WebInput name="初审取消" xpath="//input[@id='button' and @value='初审取消']">
 	</WebInput>
+	<WebSelect name="初审通过选择框" xpath="//select[@id='id_tsrial_success']">
+	</WebSelect>
+	<WebInput name="提交" xpath="//input[@id='auditsubmitbtn' and @onclick='saveTsrialSuccess()']">
+	</WebInput>
 </elements>
