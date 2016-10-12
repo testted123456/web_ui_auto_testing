@@ -2,3 +2,4 @@
 .settings
 target/*
 testng.xml
+test-output/*
