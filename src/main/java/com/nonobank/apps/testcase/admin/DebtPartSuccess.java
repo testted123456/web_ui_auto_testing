@@ -28,8 +28,41 @@ public class DebtPartSuccess extends BaseCase {
 		Assert.assertEquals(true, result_lockNum);
 
 		// 校验residue_num=Transfer_num-sum(buy_num)
-		biz_Debt.validate_residueNum_subTransferNumSumBuyNum();
-		
-		
+		boolean result_residueNum_subTransferNumSumBuyNum = biz_Debt.validate_residueNum_subTransferNumSumBuyNum();
+		Assert.assertEquals(true, result_residueNum_subTransferNumSumBuyNum);
+
+		// 校验amount值
+		boolean result_amount2 = biz_Debt.validate_amount2();
+		Assert.assertEquals(true, result_amount2);
+
+		/**
+		 * // 校验sum(amount)=trans_amount boolean result_sumAmount_transAmount =
+		 * biz_Debt.validate_sumAmount_transAmount(); Assert.assertEquals(true,
+		 * result_sumAmount_transAmount);
+		 **/
+
+		// 校验sum(amount)=trans_amount
+		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
+				.validate_CountInvtDebtSaleTaskLog_CountInvtProof(STATUS, "2");
+		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
+
+		// 校验sum(price_in)=trans_amount
+		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount();
+		Assert.assertEquals(true, result_sumPriceIn_transAmount);
+
+		// 校验sum(buy_num)=transfer_num-residue_num
+		boolean result_sumBuyNum_subTransferNumAndResidueNum = biz_Debt
+				.validate_sumBuyNum_subTransferNumAndResidueNum();
+		Assert.assertEquals(true, result_sumBuyNum_subTransferNumAndResidueNum);
+
+		// 校验debt_buy_log表记录=invt_trd_order表记录
+		boolean result_CountdebtBuyLog_CountInvtTrdOrder = biz_Debt.validate_CountdebtBuyLog_CountInvtTrdOrder();
+		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtTrdOrder);
+
+		boolean result_amounut = biz_Debt.validate_amount();
+		Assert.assertEquals(true, result_amounut);
+
+		boolean result_residueNum_sumHoldNum = biz_Debt.validate_residueNum_sumHoldNum();
+		Assert.assertEquals(true, result_residueNum_sumHoldNum);
 	}
 }

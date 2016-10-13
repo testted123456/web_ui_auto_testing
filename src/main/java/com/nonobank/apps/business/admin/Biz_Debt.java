@@ -174,7 +174,7 @@ public class Biz_Debt {
 		return Double.parseDouble(str) == Double.parseDouble(str2);
 	}
 
-	public boolean validate_CountdebtBuyLog_CountinvtTrdOrder() {
+	public boolean validate_CountdebtBuyLog_CountInvtTrdOrder() {
 		String str = getActualValue(
 				"SELECT count(*) from debt_buy_log dbl where  status = 1 and ds_id = (SELECT ds_id from invt_debt_sale_task where status = 5 and bo_id = '"
 						+ bo_id + "' and from_id = '" + from_id
@@ -187,7 +187,6 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_amount() {
-		boolean flag = false;
 		List<Object> lst = DBUtils.geMulLineValues("nono",
 				"SELECT id from invt_debt_sale_task_log idstl where status = 2 and task_id = (SELECT id from invt_debt_sale_task where status = 5 and bo_id = '"
 						+ bo_id + "' and from_id = '" + from_id
@@ -210,7 +209,30 @@ public class Biz_Debt {
 				values2[i] = Double.parseDouble(strs2[i]);
 			}
 			System.out.println("************object=" + object + "*******str=" + str + "************str2" + str2);
-			flag = values2[1] == (values[1] / values[0]) * values2[0];
+			boolean flag = values2[1] == (values[1] / values[0]) * values2[0];
+			if (flag == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean validate_amount2() {
+		List<Object> taskIds = DBUtils.geMulLineValues("nono",
+				"SELECT id from invt_debt_sale_task where status= 6  and from_id=" + from_id);
+		for (Object taskId : taskIds) {
+			String str = getActualValue(
+					"SELECT sum(idstl.amount),sum(idstl.buy_num),idstl.ds_id,dea.hold_num FROM invt_debt_sale_task_log idstl LEFT JOIN debt_sale ds on ds.id = idstl.ds_id  LEFT JOIN debt_exchange_account dea on dea.bo_id = ds.bo_id  WHERE idstl.status = 2 AND idstl.task_id = "
+							+ taskId + " and dea.va_id = idstl.from_id GROUP BY  idstl.from_id,idstl.ds_id ");
+			String[] strs = str.split(",");
+			double[] values = new double[2];
+			for (int i = 0; i < strs.length; i++) {
+				values[i] = Double.parseDouble(strs[i]);
+			}
+			String str2 = getActualValue(
+					"SELECT sum(price_principal) FROM borrows_accept  ba LEFT JOIN  invt_debt_sale_task_log idstl on idstl.from_id = ba.va_id  LEFT JOIN debt_sale ds on ds.id = idstl.ds_id  WHERE  ba.bo_id = ds.bo_id and idstl.task_id = "
+							+ taskId);
+			boolean flag = values[0] == (values[1] / values[2]) * Double.parseDouble(str2);
 			if (flag == false) {
 				return false;
 			}
@@ -280,10 +302,9 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_residueNum_subTransferNumSumBuyNum() {
-		String value = getActualValue(
+		List<Object> values = DBUtils.geMulLineValues("nono",
 				"SELECT ds_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
-		String[] values = value.split(",");
-		for (String string : values) {
+		for (Object string : values) {
 			String str = getActualValue(
 					"SELECT ds.transfer_num- sum(idstl.buy_num),ds.residue_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = 2 and idstl.ds_id = "
 							+ string);
@@ -294,6 +315,42 @@ public class Biz_Debt {
 			}
 		}
 
+		return true;
+	}
+
+	public boolean validate_sumBuyNum_subTransferNumAndResidueNum() {
+		List<Object> values = DBUtils.geMulLineValues("nono",
+				"SELECT bo_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
+		for (Object boId : values) {
+			String str = getActualValue(
+					"SELECT sum(buy_num) from debt_buy_log dbl where status = 1 and ds_id  = (SELECT ds_id from invt_debt_sale_task where status = 6 and bo_id = "
+							+ boId + "  and from_id=" + from_id + ")");
+			String str2 = getActualValue(
+					"SELECT transfer_num-residue_num from debt_sale ds where id = (SELECT ds_id from invt_debt_sale_task where status = 6 and bo_id = "
+							+ boId + "  and from_id=" + from_id + ")");
+			boolean flag = Double.parseDouble(str) == Double.parseDouble(str2);
+			if (flag == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean validate_residueNum_sumHoldNum() {
+		List<Object> object = DBUtils.geMulLineValues("nono",
+				"SELECT bo_id,ds_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
+		for (Object oneLineValues : object) {
+			String value = oneLineValues.toString();
+			String[] strs = value.split(",");
+			String str = getActualValue("SELECT sum(hold_num) from debt_exchange_account dea where  va_id =" + from_id
+					+ " and bo_id = " + strs[0]);
+			String str2 = getActualValue("SELECT residue_num FROM   debt_sale ds WHERE  id = " + strs[1]);
+
+			boolean flag = Double.parseDouble(str) == Double.parseDouble(str2);
+			if (flag == false) {
+				return false;
+			}
+		}
 		return true;
 	}
 
