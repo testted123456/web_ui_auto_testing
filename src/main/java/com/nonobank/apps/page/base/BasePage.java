@@ -67,12 +67,10 @@ public class BasePage {
 	 * @return
 	 */
 	public boolean isElementExists(final By by, long time) {
-		
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, time);
 
 			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
-
 				@Override
 				public WebElement apply(WebDriver d) {
 					try {
@@ -108,22 +106,27 @@ public class BasePage {
 	 * @return
 	 */
 	public boolean isElementDisplayed(final By by, long time){
-		boolean is_exists = isElementExists(by, time);
-		if(is_exists == true){
-			return objectFactory.getWebElement(by).isDisplayed();
-		}else{
-			return false;
+		for(int i=0;i<time;i++){
+			if(objectFactory.getWebElement(by).isDisplayed()){
+				return true;
+			}else{
+				sleep(1000);
+			}
 		}
+		return false;
 	}
 	
 	public boolean isElementDisplayed(String elementName, WebElementType elementType, long time){
-		boolean is_exists = isElementExists(elementName, elementType, time);
-		
-		if(is_exists == true){
-			return objectFactory.getWebElement(elementType, elementName).isDisplayed();
-		}else{
-			return false;
+		for(int i=0;i<time;i++){
+			WebElement element = objectFactory.getWebElement(elementName, elementType);
+			
+			if(element.isDisplayed()){
+				return true;
+			}else{
+				sleep(1000);
+			}
 		}
+		return false;
 	}
 
 	/**

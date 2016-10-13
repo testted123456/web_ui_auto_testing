@@ -44,8 +44,7 @@ public class PageUtils {
 	public static void navigateToURL(String url){
 		WebDriver driver = WebDriverUtils.getWebDriver();
 		driver.navigate().to(url);
-		sleep(100);
-		refreshPage();
+//		refreshPage();
 		waitForPageLoad();
 		sleep(100);
 	}

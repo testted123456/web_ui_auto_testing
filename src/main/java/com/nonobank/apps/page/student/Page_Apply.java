@@ -233,8 +233,8 @@ public class Page_Apply extends BasePage{
 		WebButton click_cancelBank=objectFactory.getWebButton("镑客码页面提交按钮");
 		click_cancelBank.click();
 	}
-	//检查镑客码提交按钮是否存在
-	public Boolean isExist_submitBank(){
+	//检查镑客码提交按钮是否存在并显示
+	public Boolean is_submitBank_Exist(){
 		logger.info("检查镑客码提交按钮是否存在...");
 		if(isElementExists("镑客码页面提交按钮", WebElementType.WebButton, 10)){
 			return true;
@@ -243,4 +243,14 @@ public class Page_Apply extends BasePage{
 		}		
 	}
 	
+	public Boolean is_submitBank_Displayed(){
+		logger.info("检查镑客码提交按钮是否显示...");
+		PageUtils.waitForPageLoad();
+		
+		if(isElementDisplayed("镑客码页面提交按钮", WebElementType.WebButton, 10)){
+			return true;
+		}else{
+			return false;
+		}		
+	}
 }

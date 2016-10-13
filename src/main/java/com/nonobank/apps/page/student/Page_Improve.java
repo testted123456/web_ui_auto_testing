@@ -1,18 +1,12 @@
 package com.nonobank.apps.page.student;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
-
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
 import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
@@ -20,13 +14,7 @@ import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.objectRepository.WebSpan;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.data.BankCardUtils;
-import com.nonobank.apps.utils.db.DBUtils;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
-import com.nonobank.apps.utils.page.PageUtils;
-
-import junit.framework.Assert;
 
 /**
  * 类说明：获取额度并完善资料页面
@@ -35,6 +23,12 @@ import junit.framework.Assert;
  */
 public class Page_Improve extends BasePage{
 	public static Logger logger = LogManager.getLogger(Page_Improve.class);
+	
+	//页面是否加载完成
+	public boolean isImprovePageLoaded(){
+		return isElementExists("常用邮箱", WebElementType.WebInput, 10);
+	}
+	
 	//借款信息检查
 	public HashMap<String, String> check_borrows(){
 		logger.info("借款信息检查...");
@@ -235,8 +229,6 @@ public class Page_Improve extends BasePage{
 		String bankCardPrompt=getText_bankCardPrompt.getText();
 		return bankCardPrompt;
 	}
-
-
 }
 
 

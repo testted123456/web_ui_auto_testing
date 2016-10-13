@@ -101,4 +101,18 @@ public class BankCardUtils {
 		int res = sum%10;
 		return res == 0;
 	}
+	
+	public static String getUnUsedBankCard(String prefix){
+		Connection con = DBUtils.getNonoConnection();
+		
+		while(true){
+			String bankCard = getBankCard(prefix);
+			String sql = "select count(*) from user_bankcard_info WHERE bank_card_no='" + bankCard + "'";
+			String count = DBUtils.getOneObject(con, sql).toString();
+			
+			if(count.equals("0")){
+				return bankCard;
+			}
+		}
+	}
 }
