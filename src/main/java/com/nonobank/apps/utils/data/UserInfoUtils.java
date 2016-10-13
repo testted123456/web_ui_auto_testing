@@ -67,4 +67,18 @@ public class UserInfoUtils {
 		DBUtils.closeConnection();
 		return user_name;
 	}
+	
+	public static String getUnUserdUserNname(){
+		Connection con = DBUtils.getNonoConnection();
+		RandomUtils randomUtils = new RandomUtils();
+		while(true){
+			String user_name = randomUtils.generateUserName();
+			String sql = "select count(*) from user_info where user_name=" + "'" + user_name + "'";
+			String count = DBUtils.getOneObject(con, sql).toString();
+			
+			if(count.equals("0")){
+				return user_name;
+			}
+		}
+	}
 }
