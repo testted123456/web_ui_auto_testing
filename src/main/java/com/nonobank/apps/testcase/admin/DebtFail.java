@@ -20,16 +20,16 @@ public class DebtFail extends BaseCase {
 	public void test(String username, String password, String search_username, String targetFpid) {
 		biz_Login.login(username, password);
 		biz_Home.navigate_to_financePlanProfit();
-		biz_Debt.debt(search_username, targetFpid,"Fail");
+		biz_Debt.debt(search_username, targetFpid, "Fail");
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
 		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, STATUS);
 		Assert.assertEquals(true, result_lockNum);
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
-		boolean result_invtDebtSaleTaskLogCount_invtProofCount = biz_Debt
-				.validate_CountinvtDebtSaleTaskLog_CountinvtProof(STATUS, "3");
-		Assert.assertEquals(true, result_invtDebtSaleTaskLogCount_invtProofCount);
+		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
+				.validate_CountInvtDebtSaleTaskLog_CountInvtProof(STATUS, "3");
+		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 		// 校验price_principal=price-pay_amount
 		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt
 				.validate_subPriceAndPayAmount_sumPricePrincipal();
