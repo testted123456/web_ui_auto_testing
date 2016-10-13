@@ -6,7 +6,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class QQUtils {
 	
-	public static String genUnRegisterMobile(){
+	public static String genUnRegisterQQ(){
 		String qq = RandomUtils.getInstance().generateQQNumber();
 		Connection con = DBUtils.getNonoConnection();
 		String sql = "select count(*) from user_info_detail where qq='" + qq + "'";
@@ -21,7 +21,7 @@ public class QQUtils {
 		return qq;
 	}
 	
-	public static String genRegisterMobile(){
+	public static String genRegisterQQ(){
 		Connection con = DBUtils.getNonoConnection();
 		String sql = "select qq from user_info_detail where qq is not null limit 1";
 		String qq = DBUtils.getOneObject(con, sql).toString();

@@ -15,10 +15,10 @@ public class Biz_Improve {
 	public static Logger logger = LogManager.getLogger(Biz_Improve.class);
 
 	Page_Improve page_Improve = new Page_Improve();
-
 	
 	public void borrowsInformationVerifyBus(int int_money_apply,int int_pieces_apply){
 		logger.info("------------开始：借款信息检查-----------------");
+		page_Improve.isImprovePageLoaded();
 		HashMap<String, String> hashMap=page_Improve.check_borrows();
 		String borrowsMoney_value=hashMap.get("borrowsMoney");
 		String periods_value=hashMap.get("periods");
@@ -136,7 +136,7 @@ public class Biz_Improve {
 		page_Improve.input_bankMobile(bankMobile_improve);
 		page_Improve.sleep(3000);
 		page_Improve.click_getSmsCode();
-		page_Improve.sleep(3000);
+		page_Improve.sleep(5000);
 		String bankCardExistPrompt=page_Improve.getAlertText();
 		Assert.assertEquals(bankCardExistPrompt, "银行卡已存在！");
 		page_Improve.closeAlert();

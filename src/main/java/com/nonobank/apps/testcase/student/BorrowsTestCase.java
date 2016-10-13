@@ -52,10 +52,10 @@ public class BorrowsTestCase extends BaseCase{
 		biz_register.channelBus(channel_register);
 		//注册流程-提交
 		biz_register.submitBus();
-		PageUtils.sleep(10000);
+		PageUtils.sleep(1000);
 		//注册成功信息验证
 		biz_register.registerPromptBus();
-		PageUtils.sleep(10000);
+		PageUtils.sleep(1000);
 		
 		//申请流程--借款用途、金额
 		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
@@ -64,10 +64,10 @@ public class BorrowsTestCase extends BaseCase{
 		//申请流程--提交
 		biz_Apply.submitBus();
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
-		PageUtils.sleep(5000);
+		PageUtils.sleep(1000);
 		//申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();
-		PageUtils.sleep(10000);
+		PageUtils.sleep(1000);
 		
 		//完善资料--借款信息检查
 		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
@@ -82,7 +82,7 @@ public class BorrowsTestCase extends BaseCase{
 		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
 		//完善资料--提交
 		biz_Improve.submitBus();
-		PageUtils.sleep(10000);
+//		PageUtils.sleep(10000);
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
 		PageUtils.sleep(10000);	
@@ -93,7 +93,7 @@ public class BorrowsTestCase extends BaseCase{
 		SqlUtils.recordVideo(mobile_register);
 		PageUtils.sleep(3000);	
 		PageUtils.refreshPage();
-		PageUtils.sleep(10000);
+		PageUtils.sleep(1000);
 		//视频录制--视频录制完成检查
 		biz_VideoSign.checkVideoSignSuccessBus();
 	}

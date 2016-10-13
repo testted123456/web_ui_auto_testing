@@ -108,8 +108,14 @@ public class Biz_Apply {
 	}
 	//镑客码验证提示框
 	public void bankCodeVerifyBus(){
-		if(page_Apply.isExist_submitBank()){
-			page_Apply.click_submitBank();
+		if(page_Apply.is_submitBank_Exist()){
+			logger.info("");
+			if(page_Apply.is_submitBank_Displayed()){
+				page_Apply.click_submitBank();
+				PageUtils.waitForPageLoad();
+			}else{
+				Assert.fail();
+			}
 		}
 	}
 	//详细用途少于10个字

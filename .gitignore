@@ -3,3 +3,4 @@
 target/*
 testng.xml
 test-output/*
+ui_auto.log

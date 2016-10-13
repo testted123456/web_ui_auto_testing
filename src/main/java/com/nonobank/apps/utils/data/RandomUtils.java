@@ -9,23 +9,23 @@ import java.util.*;
  */
 public class RandomUtils {
 
-	private static RandomUtils instance = new RandomUtils();
-	private static Random random = new Random();
-	private static String NUMBERS = "0123456789";
-	private static Map<String, List<String>> MOBILE_OPERATOR_MAP = new HashMap<String, List<String>>();
+	public static RandomUtils instance = new RandomUtils();
+	public static Random random = new Random();
+	public static String NUMBERS = "0123456789";
+	public static Map<String, List<String>> MOBILE_OPERATOR_MAP = new HashMap<String, List<String>>();
 	static {
 		MOBILE_OPERATOR_MAP.put("CM", Lists.newArrayList("137", "138", "139"));
 		MOBILE_OPERATOR_MAP.put("CU", Lists.newArrayList("186", "187", "189", "188"));
 		MOBILE_OPERATOR_MAP.put("CT", Lists.newArrayList("150", "151", "152", "153"));
 	}
-	private static List<String> USERNAME_PREFIX = Lists.newArrayList("ZZZ", "VVV", "ZTV", "ZTL");
-	private static List<String> USERNAME_POSTFIX = Lists.newArrayList("tb", "sb", "nb");
+	public static List<String> USERNAME_PREFIX = Lists.newArrayList("ZZZ", "VVV", "ZTV", "ZTL");
+	public static List<String> USERNAME_POSTFIX = Lists.newArrayList("tb", "sb", "nb");
 
 	public static RandomUtils getInstance() {
 		return instance;
 	}
 
-	private RandomUtils() {
+	public RandomUtils() {
 	}
 
 	public String generateMobilePhoneNumber() {

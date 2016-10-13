@@ -36,63 +36,63 @@ public class ObjectFactory {
 	}
 
 	public WebButton getWebButton(String elementPath) {
-		return (WebButton) getWebElement(WebElementType.WebButton, elementPath);
+		return (WebButton) getBaseWebElement(WebElementType.WebButton, elementPath);
 	}
 
 	public WebInput getWebInput(String elementPath) {
-		return (WebInput) getWebElement(WebElementType.WebInput, elementPath);
+		return (WebInput) getBaseWebElement(WebElementType.WebInput, elementPath);
 	}
 
 	public WebLink getWebLink(String elementPath) {
-		return (WebLink) getWebElement(WebElementType.WebLink, elementPath);
+		return (WebLink) getBaseWebElement(WebElementType.WebLink, elementPath);
 	}
 
 	public WebSelect getWebSelect(String elementPath) {
-		return (WebSelect) getWebElement(WebElementType.WebSelect, elementPath);
+		return (WebSelect) getBaseWebElement(WebElementType.WebSelect, elementPath);
 	}
 
 	public WebImage getWebImage(String elementPath) {
-		return (WebImage) getWebElement(WebElementType.WebImage, elementPath);
+		return (WebImage) getBaseWebElement(WebElementType.WebImage, elementPath);
 	}
 
 	public WebCheckBox getWebCheckBox(String elementPath) {
-		return (WebCheckBox) getWebElement(WebElementType.WebCheckBox, elementPath);
+		return (WebCheckBox) getBaseWebElement(WebElementType.WebCheckBox, elementPath);
 	}
 
 	public WebLabel getWebLabel(String elementPath) {
-		return (WebLabel) getWebElement(WebElementType.WebLabel, elementPath);
+		return (WebLabel) getBaseWebElement(WebElementType.WebLabel, elementPath);
 	}
 
 	public WebRadioBox getWebRadioBox(String elementPath) {
-		return (WebRadioBox) getWebElement(WebElementType.WebRadioBox, elementPath);
+		return (WebRadioBox) getBaseWebElement(WebElementType.WebRadioBox, elementPath);
 	}
 	
 	public WebTable getWebTable( String elementPath){
-		return (WebTable) getWebElement(WebElementType.WebTable,elementPath);
+		return (WebTable) getBaseWebElement(WebElementType.WebTable,elementPath);
 	}
 	
 	public WebTextArea getWebTextArea(String elementPath) {
-		return (WebTextArea) getWebElement(WebElementType.WebTextArea, elementPath);
+		return (WebTextArea) getBaseWebElement(WebElementType.WebTextArea, elementPath);
 	}
 
 	public WebSpan getWebSpan(String elementPath) {
-		return (WebSpan) getWebElement(WebElementType.WebSpan, elementPath);
+		return (WebSpan) getBaseWebElement(WebElementType.WebSpan, elementPath);
 	}
 
 	public WebFont getWebFont(String elementPath) {
-		return (WebFont) getWebElement(WebElementType.WebFont, elementPath);
+		return (WebFont) getBaseWebElement(WebElementType.WebFont, elementPath);
 	}
 
 	public WebCommon getWebCommon(String elementPath) {
-		return (WebCommon) getWebElement(WebElementType.WebCommon, elementPath);
+		return (WebCommon) getBaseWebElement(WebElementType.WebCommon, elementPath);
 	}
 
 	public WebLi getWebLi(String elementPath){
-		return (WebLi) getWebElement(WebElementType.WebLi, elementPath);
+		return (WebLi) getBaseWebElement(WebElementType.WebLi, elementPath);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <E extends BaseWebElement> E getWebElement(WebElementType elementType, String elementName) {
+	public <E extends BaseWebElement> E getBaseWebElement(WebElementType elementType, String elementName) {
 		String xpath = null;
 
 		xpath = ParseXML.getXPath(elementName, elementType, xmlFile);
@@ -121,12 +121,18 @@ public class ObjectFactory {
 			Assert.fail(e.getMessage());
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
-			logger.error("调用构造函数生成页面对象失败，xpath : " + elementName);
-			Assert.fail("调用构造函数生成页面对象失败，xpath : " + elementName);
+			String msg = "调用构造函数生成页面对象失败，xpath : " + elementName;
+			logger.error(msg);
+			Assert.fail(msg);
 		}
 		return (E) object;
 	}
 
+	public WebElement getWebElement(String elementName, WebElementType elementType){
+		String xpath  = ParseXML.getXPath(elementName, elementType, xmlFile);
+		return getWebElement(xpath);
+	}
+	
 	public WebElement getWebElement(String xpath) {
 		final By by = By.xpath(xpath);
 
@@ -139,8 +145,9 @@ public class ObjectFactory {
 				}
 			});
 		} catch (NoSuchElementException e) {
-			logger.info("找不页面对象，xpath : " + by.toString());
-			Assert.fail("找不页面对象，xpath : " + by.toString());
+			String msg = "找不页面对象，xpath : " + by.toString();
+			logger.info(msg);
+			Assert.fail(msg);
 			return null;
 		}
 	}
@@ -155,8 +162,9 @@ public class ObjectFactory {
 				}
 			});
 		} catch (NoSuchElementException e) {
-			logger.info("找不页面对象，xpath : " + by.toString());
-			Assert.fail("找不页面对象，xpath : " + by.toString());
+			String msg = "找不页面对象，xpath : " + by.toString();
+			logger.info(msg);
+			Assert.fail(msg);
 			return null;
 		}
 	}

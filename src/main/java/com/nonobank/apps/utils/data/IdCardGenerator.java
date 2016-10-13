@@ -1,11 +1,14 @@
 package com.nonobank.apps.utils.data;
 
 import java.io.*;
+import java.sql.Connection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+
+import com.nonobank.apps.utils.db.DBUtils;
 
 /**
  * 身份证自动生成工具
@@ -3677,5 +3680,19 @@ public class IdCardGenerator {
     public String generateIdCardNumber(){
         IdCardGenerator generator = new IdCardGenerator();
         return generator.generate(generateAge());
+    }
+    
+    public String generateUnUsedIdCardNumberByAge(String age){
+    	Connection con = DBUtils.getNonoConnection();
+    	
+    	while(true){
+    		String idCard = generateIdCardNumberByAge(Integer.parseInt(age));
+    		String sql = "select count(*) from user_info WHERE id_num='" + idCard + "'";
+    		String count = DBUtils.getOneObject(con, sql).toString();
+    		
+    		if(count.equals("0")){
+				return idCard;
+			}
+    	}
     }
 }

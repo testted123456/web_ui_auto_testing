@@ -178,7 +178,12 @@ public class Biz_Register {
 		PageUtils.sleep(3000);
 		page_Register.click_checkBox();
 	}
+	//注册成功提示框关闭
 	public void registerPromptBus(){
+		if(!page_Register.isAlertExists(10000)){
+			logger.error("注册成功提示框不存在...");
+			Assert.fail();
+		}
 		String registerPromptBus=page_Register.getAlertText();
 		Assert.assertEquals(registerPromptBus, "诺诺提醒：您已注册成功；信息验证通过");
 		page_Register.closeAlert();
@@ -196,7 +201,4 @@ public class Biz_Register {
 		Assert.assertEquals(newStudentPrompt, "今年入学的新童鞋，您已注册成功！新生申请借款，请使用名校贷app哦~");
 		logger.info("--------------结束：新生提示信息----------------");
 	}
-	
-	
-	
 }
