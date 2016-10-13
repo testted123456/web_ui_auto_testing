@@ -60,9 +60,23 @@ public class Page_Debt extends BasePage {
 		common_uname.click();
 	}
 
-	public void click_debt() {
+	public void click_debtMain() {
+		logger.info("点击大债转......");
+		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
+		for (int i = 0; i < lstElements.size(); i++) {
+			if (!lstElements.get(i).getText().equals("0.00(0/0)")) {
+				WebElement web = objectFactory
+						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[17]/span[1]/a");
+				web.click();
+				break;
+			}
+		}
+	}
 
-		logger.info("点击债转......");
+	public void click_debt() {
+		logger.info("点击小债转......");
+		WebInput input_vaId = objectFactory.getWebInput("vaId");
+		Biz_Debt.from_id = input_vaId.getValue();
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 		while (lstElements.size() == 0) {
 			try {
@@ -72,15 +86,27 @@ public class Page_Debt extends BasePage {
 				e.printStackTrace();
 			}
 		}
-		for (WebElement webElement : lstElements) {
-			if (webElement.getText().equals("债转")) {
-				WebElement web = objectFactory.getWebElement("//table[@id='table_1']//table//tr/td[1]//a");
+
+		do {
+			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+			try {
+				Thread.sleep(3000);
+				lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} while (lstElements.size() == 0);
+		for (int i = 0; i < lstElements.size(); i++) {
+			if (lstElements.get(i).getText().equals("债转")) {
+				WebElement web = objectFactory
+						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
 				String text = web.getText();
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
-				webElement.click();
+				lstElements.get(i).click();
 				break;
 			}
 		}
+
 	}
 }
