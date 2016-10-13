@@ -8,7 +8,7 @@ import com.nonobank.apps.page.student.Page_Improve;
 import com.nonobank.apps.page.student.Page_VideoSign;
 
 public class Biz_VideoSign {
-	public static Logger logger = LogManager.getLogger(Biz_Improve.class);
+	public static Logger logger = LogManager.getLogger(Biz_VideoSign.class);
 
 	Page_VideoSign page_VideoSign=new Page_VideoSign();
 	
@@ -30,7 +30,9 @@ public class Biz_VideoSign {
 	}
 	public void checkVideoSignSuccessBus(){
 		logger.info("---------------开始：检查视频签约是否完成------------------");
-		page_VideoSign.exist_getFirstAuditRight();
+		if(!page_VideoSign.exist_getFirstAuditRight()){
+			Assert.fail("(获得优先审核权—视频签约完成)按钮存在.....");
+		}
 		logger.info("---------------结束：检查视频签约是否完成------------------");	
 	}
 	public void checkLastAuditPassBus(String realName){

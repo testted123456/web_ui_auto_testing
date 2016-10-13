@@ -68,7 +68,6 @@ public class BorrowsTestCase extends BaseCase{
 		//申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(1000);
-		
 		//完善资料--借款信息检查
 		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		//完善资料--完善联系人信息
@@ -82,11 +81,8 @@ public class BorrowsTestCase extends BaseCase{
 		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
 		//完善资料--提交
 		biz_Improve.submitBus();
-//		PageUtils.sleep(10000);
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
-		PageUtils.sleep(10000);	
-		
 		//视频录制--借款信息检查
 		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
 		//视频录制--用户录制视频
@@ -97,6 +93,4 @@ public class BorrowsTestCase extends BaseCase{
 		//视频录制--视频录制完成检查
 		biz_VideoSign.checkVideoSignSuccessBus();
 	}
-	
-
 }
