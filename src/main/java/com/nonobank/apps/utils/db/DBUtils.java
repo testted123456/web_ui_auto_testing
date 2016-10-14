@@ -196,8 +196,9 @@ public class DBUtils {
 	}
 
 	public static void main(String[] args) {
-		String str = getOneLineValues("nono",
-				"SELECT * from invt_debt_sale_task where bo_id = 708152 order by create_time desc limit 1");
-		System.out.println(str);
+		List<Object> lst = getMulLineValues("nono", "SELECT bo_id,ds_id from invt_debt_sale_task where `status` =6");
+		for (Object object : lst) {
+			System.out.println("*******************object=" + object);
+		}
 	}
 }

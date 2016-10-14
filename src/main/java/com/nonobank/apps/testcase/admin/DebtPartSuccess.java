@@ -22,22 +22,19 @@ public class DebtPartSuccess extends BaseCase {
 		// biz_Home.navigate_to_financePlanProfit();
 		// biz_Debt.debt(search_username, targetFpid, "PartSuccess");
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
-
-		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS, "3");
-		System.out.println("************************result_lockNum=" + result_lockNum);
-		Assert.assertEquals(true, result_lockNum);
-
+		/**
+		 * // 校验lock_num=0 boolean result_lockNum = biz_Debt.validate_lockNum(0,
+		 * STATUS, "3");
+		 * System.out.println("************************result_lockNum=" +
+		 * result_lockNum); Assert.assertEquals(true, result_lockNum);
+		 **/
 		// 校验residue_num=Transfer_num-sum(buy_num)
 		boolean result_residueNum_subTransferNumSumBuyNum = biz_Debt.validate_residueNum_subTransferNumSumBuyNum();
-		System.out.println("************************result_residueNum_subTransferNumSumBuyNum="
-				+ result_residueNum_subTransferNumSumBuyNum);
 		Assert.assertEquals(true, result_residueNum_subTransferNumSumBuyNum);
 
 		// 校验amount值
-		boolean result_amount2 = biz_Debt.validate_amount2();
-		System.out.println("************************result_amount2=" + result_amount2);
-		Assert.assertEquals(true, result_amount2);
+		boolean result_pricePrincipal = biz_Debt.validate_pricePrincipal();
+		Assert.assertEquals(true, result_pricePrincipal);
 
 		/**
 		 * // 校验sum(amount)=trans_amount boolean result_sumAmount_transAmount =
@@ -48,33 +45,30 @@ public class DebtPartSuccess extends BaseCase {
 		// 校验sum(amount)=trans_amount
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
 				.validate_CountInvtDebtSaleTaskLog_CountInvtProof(STATUS, "2");
-		System.out.println("************************result_CountInvtDebtSaleTaskLog_CountInvtProof="
-				+ result_CountInvtDebtSaleTaskLog_CountInvtProof);
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 校验sum(price_in)=trans_amount
-		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount();
+		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount("6");
 		Assert.assertEquals(true, result_sumPriceIn_transAmount);
 
 		// 校验sum(buy_num)=transfer_num-residue_num
 		boolean result_sumBuyNum_subTransferNumAndResidueNum = biz_Debt
 				.validate_sumBuyNum_subTransferNumAndResidueNum();
-		System.out.println("************************result_sumBuyNum_subTransferNumAndResidueNum="
-				+ result_sumBuyNum_subTransferNumAndResidueNum);
 		Assert.assertEquals(true, result_sumBuyNum_subTransferNumAndResidueNum);
 
 		// 校验debt_buy_log表记录=invt_trd_order表记录
 		boolean result_CountdebtBuyLog_CountInvtTrdOrder = biz_Debt.validate_CountdebtBuyLog_CountInvtTrdOrder();
-		System.out.println("************************result_CountdebtBuyLog_CountInvtTrdOrder="
-				+ result_CountdebtBuyLog_CountInvtTrdOrder);
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtTrdOrder);
 
-		boolean result_amounut = biz_Debt.validate_amount();
-		System.out.println("************************result_lockNum=" + result_lockNum);
-		Assert.assertEquals(true, result_amounut);
+		boolean result_amount = biz_Debt.validate_amount();
+		Assert.assertEquals(true, result_amount);
 
-		boolean result_residueNum_sumHoldNum = biz_Debt.validate_residueNum_sumHoldNum();
-		System.out.println("************************result_residueNum_sumHoldNum=" + result_residueNum_sumHoldNum);
-		Assert.assertEquals(true, result_residueNum_sumHoldNum);
+		/**
+		 * boolean result_residueNum_sumHoldNum =
+		 * biz_Debt.validate_residueNum_sumHoldNum(); System.out.println(
+		 * "************************result_residueNum_sumHoldNum=" +
+		 * result_residueNum_sumHoldNum); Assert.assertEquals(true,
+		 * result_residueNum_sumHoldNum);
+		 **/
 	}
 }
