@@ -7,12 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import com.nonobank.apps.objectRepository.ObjectFactory;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
-import com.nonobank.apps.utils.file.ParseXML;
 
 /**
  * 类说明：所有page的基类
@@ -59,7 +56,6 @@ public class BasePage {
 		}
 	}
 
-	
 	/** 
 	 * 元素是否存在
 	 * @param by
@@ -68,18 +64,7 @@ public class BasePage {
 	 */
 	public boolean isElementExists(final By by, long time) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, time);
-
-			WebElement element = wait.until(new ExpectedCondition<WebElement>() {
-				@Override
-				public WebElement apply(WebDriver d) {
-					try {
-						return d.findElement(by);
-					} catch (Exception e) {
-						return null;
-					}
-				}
-			});
+			WebElement element = objectFactory.getWebElement(by, time);
 			return (null != element);
 		} catch (Exception e) {
 			return false;
@@ -94,9 +79,12 @@ public class BasePage {
 	 * @return
 	 */
 	public boolean isElementExists(String elementName, WebElementType elementType, long time) {
-		String xpath = ParseXML.getXPath(elementName, elementType, xmlFile);
-		final By by = By.xpath(xpath);
-		return isElementExists(by, time);
+		try {
+			WebElement element = objectFactory.getWebElement(elementName, elementType, time);
+			return (null != element);
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	/**

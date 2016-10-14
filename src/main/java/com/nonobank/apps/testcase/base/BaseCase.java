@@ -7,13 +7,11 @@ import java.util.Properties;
 import java.util.TreeMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-
-import com.nonobank.apps.utils.db.DBUtils;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
@@ -93,7 +91,6 @@ public class BaseCase {
 		}
 	}
 
-
 	@AfterClass
 	public void closeDriver() {
 		// 保存测试结果
@@ -106,7 +103,5 @@ public class BaseCase {
 		driver.quit();
 		//每个testcase执行完成后把webdriver置空
 		WebDriverUtils.destoryWebDriver();
-		//关闭数据库连接
-		DBUtils.closeConnection();
 	}
 }

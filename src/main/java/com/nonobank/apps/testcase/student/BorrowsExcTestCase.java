@@ -2,10 +2,7 @@ package com.nonobank.apps.testcase.student;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.velocity.runtime.directive.Parse;
-import org.apache.velocity.test.BaseTestCase;
 import org.testng.annotations.Test;
-
 import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;

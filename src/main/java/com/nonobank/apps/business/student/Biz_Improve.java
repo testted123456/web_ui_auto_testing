@@ -9,7 +9,6 @@ import org.junit.Assert;
 import com.nonobank.apps.page.student.Page_Improve;
 import com.nonobank.apps.utils.page.PageUtils;
 
-
 public class Biz_Improve {
 
 	public static Logger logger = LogManager.getLogger(Biz_Improve.class);

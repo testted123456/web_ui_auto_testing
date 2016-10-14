@@ -129,15 +129,26 @@ public class ObjectFactory {
 	}
 
 	public WebElement getWebElement(String elementName, WebElementType elementType){
+		return getWebElement(elementName, elementType, 20);
+	}
+	
+	public WebElement getWebElement(String elementName, WebElementType elementType, final long time){
 		String xpath  = ParseXML.getXPath(elementName, elementType, xmlFile);
-		return getWebElement(xpath);
+		return getWebElement(xpath, time);
 	}
 	
 	public WebElement getWebElement(String xpath) {
+		return getWebElement(xpath, 20);
+	}
+	
+	public WebElement getWebElement(String xpath, final long time) {
 		final By by = By.xpath(xpath);
-
+		return getWebElement(by, time);
+	}
+	
+	public WebElement getWebElement(final By by, final long time) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 20);
+			WebDriverWait wait = new WebDriverWait(driver, time);
 			return wait.until(new ExpectedCondition<WebElement>() {
 				@Override
 				public WebElement apply(WebDriver d) {
@@ -147,26 +158,12 @@ public class ObjectFactory {
 		} catch (NoSuchElementException e) {
 			String msg = "找不页面对象，xpath : " + by.toString();
 			logger.info(msg);
-			Assert.fail(msg);
 			return null;
 		}
 	}
 
 	public WebElement getWebElement(final By by) {
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, 20);
-			return wait.until(new ExpectedCondition<WebElement>() {
-				@Override
-				public WebElement apply(WebDriver d) {
-					return d.findElement(by);
-				}
-			});
-		} catch (NoSuchElementException e) {
-			String msg = "找不页面对象，xpath : " + by.toString();
-			logger.info(msg);
-			Assert.fail(msg);
-			return null;
-		}
+		return getWebElement(by, 20);
 	}
 
 	public List<WebElement> getWebElements(By by) {
