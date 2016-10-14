@@ -36,7 +36,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_price_sumTransAmountAndPayAmount);
 
 		// 校验trans_amount=sum(amount)
-		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount();
+		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount(STATUS);
 		Assert.assertEquals(true, result_sumAmount_transAmount);
 
 		// 校验transfer_num=sum(buy_num)

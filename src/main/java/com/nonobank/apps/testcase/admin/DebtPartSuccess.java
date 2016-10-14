@@ -22,25 +22,22 @@ public class DebtPartSuccess extends BaseCase {
 		// biz_Home.navigate_to_financePlanProfit();
 		// biz_Debt.debt(search_username, targetFpid, "PartSuccess");
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
-		/**
-		 * // 校验lock_num=0 boolean result_lockNum = biz_Debt.validate_lockNum(0,
-		 * STATUS, "3");
-		 * System.out.println("************************result_lockNum=" +
-		 * result_lockNum); Assert.assertEquals(true, result_lockNum);
-		 **/
+
+		// 校验lock_num=0
+		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS, "3");
+		Assert.assertEquals(true, result_lockNum);
+
 		// 校验residue_num=Transfer_num-sum(buy_num)
-		boolean result_residueNum_subTransferNumSumBuyNum = biz_Debt.validate_residueNum_subTransferNumSumBuyNum();
+		boolean result_residueNum_subTransferNumSumBuyNum = biz_Debt.validate_residueNum_subTransferNumSumBuyNum("6");
 		Assert.assertEquals(true, result_residueNum_subTransferNumSumBuyNum);
 
 		// 校验amount值
-		boolean result_pricePrincipal = biz_Debt.validate_pricePrincipal();
+		boolean result_pricePrincipal = biz_Debt.validate_pricePrincipal("6");
 		Assert.assertEquals(true, result_pricePrincipal);
 
-		/**
-		 * // 校验sum(amount)=trans_amount boolean result_sumAmount_transAmount =
-		 * biz_Debt.validate_sumAmount_transAmount(); Assert.assertEquals(true,
-		 * result_sumAmount_transAmount);
-		 **/
+		// 校验sum(amount)=trans_amount
+		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount(STATUS);
+		Assert.assertEquals(true, result_sumAmount_transAmount);
 
 		// 校验sum(amount)=trans_amount
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
@@ -53,7 +50,7 @@ public class DebtPartSuccess extends BaseCase {
 
 		// 校验sum(buy_num)=transfer_num-residue_num
 		boolean result_sumBuyNum_subTransferNumAndResidueNum = biz_Debt
-				.validate_sumBuyNum_subTransferNumAndResidueNum();
+				.validate_sumBuyNum_subTransferNumAndResidueNum("6");
 		Assert.assertEquals(true, result_sumBuyNum_subTransferNumAndResidueNum);
 
 		// 校验debt_buy_log表记录=invt_trd_order表记录
