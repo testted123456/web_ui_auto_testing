@@ -185,7 +185,7 @@ public class DBUtils {
 		return str;
 	}
 
-	public static List<Object> geMulLineValues(String dbname, String sql) {
+	public static List<Object> getMulLineValues(String dbname, String sql) {
 		Connection con = getConnection(dbname);
 		List<Object[]> obj = getMulLine(con, sql);
 		List<Object> lst = new ArrayList<>();

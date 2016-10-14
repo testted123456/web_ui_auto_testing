@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id = "561313";
-	public static String from_id = "207724";
+	public static String bo_id;
+	public static String from_id = "205792";
 	public static final double LOCK_NUM = 0;
 	public static final double RESIDUE_NUM = 0;
 	public static final double HOLD_NUM = 0;
@@ -63,15 +63,22 @@ public class Biz_Debt {
 
 	}
 
-	public boolean validate_lockNum(double exceptValue, String task_status) {
+	public boolean validate_lockNum(double exceptValue, String task_status, String status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where status = " + task_status;
 		StringBuffer sb = getSql(sql);
-		String str = getActualValue("SELECT lock_num from debt_sale where id = (" + sb.toString() + ")");
-		double actualValue = Double.parseDouble(str);
-		return actualValue == exceptValue;
+		List<Object> lst = DBUtils.getMulLineValues("nono",
+				"SELECT lock_num from debt_sale where status = " + status + " and id in (" + sb.toString() + ")");
+		for (Object object : lst) {
+			double actualValue = Double.parseDouble(object.toString());
+			if (actualValue != exceptValue) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private StringBuffer getSql(String sql) {
+		String str = " order by create_time desc limit 1";
 		StringBuffer sb = new StringBuffer();
 		sb.append(sql);
 		if (bo_id != null) {
@@ -80,7 +87,10 @@ public class Biz_Debt {
 		if (from_id != null) {
 			sb.append(" and from_id = '" + from_id + "'");
 		}
-		sb.append(" order by create_time desc limit 1");
+		if (bo_id == null) {
+			str = " order by create_time desc";
+		}
+		sb.append(str);
 		return sb;
 	}
 
@@ -187,7 +197,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_amount() {
-		List<Object> lst = DBUtils.geMulLineValues("nono",
+		List<Object> lst = DBUtils.getMulLineValues("nono",
 				"SELECT id from invt_debt_sale_task_log idstl where status = 2 and task_id = (SELECT id from invt_debt_sale_task where status = 5 and bo_id = '"
 						+ bo_id + "' and from_id = '" + from_id
 						+ "' order by create_time desc limit 1) order by idstl.create_time desc");
@@ -209,8 +219,7 @@ public class Biz_Debt {
 				values2[i] = Double.parseDouble(strs2[i]);
 			}
 			System.out.println("************object=" + object + "*******str=" + str + "************str2" + str2);
-			boolean flag = values2[1] == (values[1] / values[0]) * values2[0];
-			if (flag == false) {
+			if (values2[1] != (values[1] / values[0]) * values2[0]) {
 				return false;
 			}
 		}
@@ -218,7 +227,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_amount2() {
-		List<Object> taskIds = DBUtils.geMulLineValues("nono",
+		List<Object> taskIds = DBUtils.getMulLineValues("nono",
 				"SELECT id from invt_debt_sale_task where status= 6  and from_id=" + from_id);
 		for (Object taskId : taskIds) {
 			String str = getActualValue(
@@ -232,8 +241,7 @@ public class Biz_Debt {
 			String str2 = getActualValue(
 					"SELECT sum(price_principal) FROM borrows_accept  ba LEFT JOIN  invt_debt_sale_task_log idstl on idstl.from_id = ba.va_id  LEFT JOIN debt_sale ds on ds.id = idstl.ds_id  WHERE  ba.bo_id = ds.bo_id and idstl.task_id = "
 							+ taskId);
-			boolean flag = values[0] == (values[1] / values[2]) * Double.parseDouble(str2);
-			if (flag == false) {
+			if (values[0] != (values[1] / values[2]) * Double.parseDouble(str2)) {
 				return false;
 			}
 		}
@@ -302,15 +310,14 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_residueNum_subTransferNumSumBuyNum() {
-		List<Object> values = DBUtils.geMulLineValues("nono",
+		List<Object> values = DBUtils.getMulLineValues("nono",
 				"SELECT ds_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
 		for (Object string : values) {
 			String str = getActualValue(
 					"SELECT ds.transfer_num- sum(idstl.buy_num),ds.residue_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = 2 and idstl.ds_id = "
 							+ string);
 			String[] strs = str.split(",");
-			boolean flag = Double.parseDouble(strs[1]) == Double.parseDouble(strs[0]);
-			if (flag == false) {
+			if (Double.parseDouble(strs[1]) != Double.parseDouble(strs[0])) {
 				return false;
 			}
 		}
@@ -319,7 +326,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_sumBuyNum_subTransferNumAndResidueNum() {
-		List<Object> values = DBUtils.geMulLineValues("nono",
+		List<Object> values = DBUtils.getMulLineValues("nono",
 				"SELECT bo_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
 		for (Object boId : values) {
 			String str = getActualValue(
@@ -328,8 +335,7 @@ public class Biz_Debt {
 			String str2 = getActualValue(
 					"SELECT transfer_num-residue_num from debt_sale ds where id = (SELECT ds_id from invt_debt_sale_task where status = 6 and bo_id = "
 							+ boId + "  and from_id=" + from_id + ")");
-			boolean flag = Double.parseDouble(str) == Double.parseDouble(str2);
-			if (flag == false) {
+			if (Double.parseDouble(str) != Double.parseDouble(str2)) {
 				return false;
 			}
 		}
@@ -337,7 +343,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_residueNum_sumHoldNum() {
-		List<Object> object = DBUtils.geMulLineValues("nono",
+		List<Object> object = DBUtils.getMulLineValues("nono",
 				"SELECT bo_id,ds_id from invt_debt_sale_task where `status` =6  and from_id = " + from_id);
 		for (Object oneLineValues : object) {
 			String value = oneLineValues.toString();
@@ -346,8 +352,7 @@ public class Biz_Debt {
 					+ " and bo_id = " + strs[0]);
 			String str2 = getActualValue("SELECT residue_num FROM   debt_sale ds WHERE  id = " + strs[1]);
 
-			boolean flag = Double.parseDouble(str) == Double.parseDouble(str2);
-			if (flag == false) {
+			if (Double.parseDouble(str) != Double.parseDouble(str2)) {
 				return false;
 			}
 		}

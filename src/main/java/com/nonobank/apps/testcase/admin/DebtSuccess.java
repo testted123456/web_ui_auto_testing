@@ -24,7 +24,7 @@ public class DebtSuccess extends BaseCase {
 		 System.out.println("**************bo_id=" + Biz_Debt.bo_id);
 
 		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS);
+		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS,"1");
 		Assert.assertEquals(true, result_lockNum);
 
 		// 校验residue_num字段
