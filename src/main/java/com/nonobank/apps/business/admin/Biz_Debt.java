@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id = "561313";
-	public static String from_id = "207724";
+	public static String bo_id;
+	public static String from_id;
 	public static double amount;
 	public static final double LOCK_NUM = 0;
 	public static final double RESIDUE_NUM = 0;
