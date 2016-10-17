@@ -48,10 +48,4 @@
 	</WebCommon>
 	<WebCommon name="借款资料" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[4]/a">
 	</WebCommon>
-</elements>	
-	
-	
-	
-	
-	
 </elements>
