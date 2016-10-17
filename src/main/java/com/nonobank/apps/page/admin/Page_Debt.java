@@ -60,17 +60,25 @@ public class Page_Debt extends BasePage {
 		common_uname.click();
 	}
 
-	public void click_debtMain() {
+	public WebElement get_debtMain() {
 		logger.info("点击大债转......");
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
-			if (!lstElements.get(i).getText().equals("0.00(0/0)")) {
+			int endIndex = lstElements.get(i).getText().indexOf("(");
+			String text = lstElements.get(i).getText().substring(0, endIndex);
+			Biz_Debt.amount = Double.parseDouble(text);
+			if (!text.equals("0.00")) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[17]/span[1]/a");
-				web.click();
-				break;
+				return web;
 			}
 		}
+		return null;
+	}
+
+	public void click_debtMain() {
+		WebElement web = get_debtMain();
+		web.click();
 	}
 
 	public void click_debt() {

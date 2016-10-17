@@ -20,8 +20,8 @@ public class DebtSuccess extends BaseCase {
 	public void test(String username, String password, String search_username) {
 		biz_Login.login(username, password);
 		biz_Home.navigate_to_financePlanProfit();
-		biz_Debt.debt(search_username, "Success");
-		System.out.println("**************bo_id=" + Biz_Debt.bo_id);
+		biz_Debt.debt("Success", search_username, null);
+		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
 		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS, "1");
@@ -45,7 +45,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_CountInvtDebtSaleTaskLog_CountInvtProof(STATUS, "2");
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(STATUS, "2");
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 校验sum(price_in)=trans_amount
@@ -57,11 +57,11 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_sumBuyNum_transferNum2);
 
 		// 校验debt_buy_log记录=invt_trd_order记录
-		boolean result_CountdebtBuyLog_CountInvtTrdOrder = biz_Debt.validate_CountdebtBuyLog_CountInvtTrdOrder();
+		boolean result_CountdebtBuyLog_CountInvtTrdOrder = biz_Debt.validate_countdebtBuyLog_countInvtTrdOrder("5");
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtTrdOrder);
 
 		// 校验debt_buy_log记录=invt_proof记录
-		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_CountDebtBuyLog_CountInvtProof();
+		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof("5");
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		/**
