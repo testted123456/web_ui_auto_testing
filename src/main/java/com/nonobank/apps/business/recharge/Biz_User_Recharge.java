@@ -35,7 +35,7 @@ public class Biz_User_Recharge {
 				cardno = cardno.substring(len - 4, len);
 			}
 		}
-
+		System.out.println("*********************************************cardno=" + cardno);
 		logger.info("选择银行卡");
 		page_User_Recharge.select_card(cardno);
 		page_User_Recharge.nextStep();
