@@ -56,8 +56,8 @@ public class Page_Debt extends BasePage {
 	public void click_debtDetail() {
 		logger.info("查询债转详情......");
 		switch_to_frameSet();
-		WebCommon common_uname = objectFactory.getWebCommon("uname");
-		common_uname.click();
+		WebElement element = get_debtMain();
+		element.click();
 	}
 
 	public WebElement get_debtMain() {
