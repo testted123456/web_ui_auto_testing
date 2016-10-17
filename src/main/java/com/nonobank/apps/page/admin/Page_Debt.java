@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.nonobank.apps.business.admin.Biz_Debt;
-import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.page.base.BasePage;
