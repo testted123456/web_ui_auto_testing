@@ -20,19 +20,17 @@ public class Biz_Login {
 	public void login(String username, String password, String param) {
 		nagivate_to_login();
 		logger.info("登录...");
-		if (username.equals("random_register")) {
-			username = UserInfoUtils.getBindedCard(param);
-		} else if (username.equals("random_unregister")) {
-			username = UserInfoUtils.getUnregisterMobile();
-		}
+		username = UserInfoUtils.getUserName(username, param);
 		page_Login.input_username(username, param);
 		page_Login.input_password(password);
 		page_Login.input_checkCode();
 		page_Login.submit();
 	}
 
+
+
 	public boolean is_login_success() {
-		boolean flag = page_Login.isElementDisplayed("username", WebElementType.WebLink, 15);
+		boolean flag = page_Login.isElementDisplayed("head_name", WebElementType.WebLink, 15);
 
 		if (flag == true) {
 			logger.info("登录成功...");

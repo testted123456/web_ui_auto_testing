@@ -44,10 +44,8 @@ public class Page_User_Recharge extends BasePage {
 		// 选择银行卡
 		for (WebElement e : elements) {
 			text = e.getText();
-			if (text.endsWith(cardno)) {
-				e.click();
-				break;
-			}
+			e.click();
+			break;
 		}
 		// 判断选择银行卡是否成功
 		if (!text.endsWith(cardno)) {

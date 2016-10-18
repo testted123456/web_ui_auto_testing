@@ -30,7 +30,6 @@ public class DBUtils {
 	 * @return Connection
 	 */
 	public static Connection getNonoConnection() {
-		closeConnection();
 		if (connection_nono != null) {
 			return connection_nono;
 		} else {

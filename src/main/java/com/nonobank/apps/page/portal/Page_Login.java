@@ -33,7 +33,7 @@ public class Page_Login extends BasePage {
 	public void input_checkCode() {
 		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
-			input_checkCode.clearAndInput("****");
+			input_checkCode.clearAndInput("a1b0");
 		}
 		sleep(6000);
 	}

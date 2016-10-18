@@ -1,6 +1,5 @@
 package com.nonobank.apps.testcase.recharge;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Portal;
@@ -18,14 +17,8 @@ public class RechargeSuccess extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode) {
 		biz_Login.login(mobile, password, "mobile_num");
-		boolean loginResult = biz_Login.is_login_success();
-		Assert.assertEquals(loginResult, true);
 		biz_Portal.navigate_to_myaccount();
-		biz_User_Recharge.navigateToRecharge();
 		biz_User_Recharge.recharge(cardno, mobile);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, smsCode);
-		boolean rechargeResult = biz_User_RechargeConfirm.isRechargeConfirmSuccess(money);
-		Assert.assertEquals(rechargeResult, true);
-
 	}
 }

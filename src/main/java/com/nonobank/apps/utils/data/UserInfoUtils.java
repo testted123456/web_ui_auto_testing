@@ -4,6 +4,14 @@ import java.sql.Connection;
 import com.nonobank.apps.utils.db.DBUtils;
 
 public class UserInfoUtils {
+	public static String getUserName(String username, String param) {
+		if (username.equals("random_register")) {
+			username = UserInfoUtils.getBindedCard(param);
+		} else if (username.equals("random_unregister")) {
+			username = UserInfoUtils.getUnregisterMobile();
+		}
+		return username;
+	}
 
 	public static String getUnregisterMobile() {
 		RandomUtils random = RandomUtils.getInstance();
@@ -67,16 +75,16 @@ public class UserInfoUtils {
 		DBUtils.closeConnection();
 		return user_name;
 	}
-	
-	public static String getUnUserdUserNname(){
+
+	public static String getUnUserdUserNname() {
 		Connection con = DBUtils.getNonoConnection();
 		RandomUtils randomUtils = new RandomUtils();
-		while(true){
+		while (true) {
 			String user_name = randomUtils.generateUserName();
 			String sql = "select count(*) from user_info where user_name=" + "'" + user_name + "'";
 			String count = DBUtils.getOneObject(con, sql).toString();
-			
-			if(count.equals("0")){
+
+			if (count.equals("0")) {
 				return user_name;
 			}
 		}
