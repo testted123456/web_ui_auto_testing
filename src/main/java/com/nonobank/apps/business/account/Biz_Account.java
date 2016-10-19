@@ -22,7 +22,6 @@ public class Biz_Account {
 		logger.info("身份实名认证...");
 		page_Account.click_degreeCard();
 		page_Account.input_name(myname);
-
 		page_Account.input_mycard(identity_ID);
 		page_Account.submit();
 
