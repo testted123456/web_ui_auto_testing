@@ -27,6 +27,8 @@ public class Biz_Register {
 		}
 		if (user_name.equals("random_register")) {
 			user_name = UserInfoUtils.getBindedCard("user_name");
+		} else if (user_name.equals("random_unregister")) {
+			user_name = UserInfoUtils.getUnregisterMobile();
 		}
 		page_Register.input_mobile(mobile);
 		page_Register.input_username(user_name);
