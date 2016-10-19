@@ -8,8 +8,6 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.withdrawal.Biz_User_Withdrawal;
 import com.nonobank.apps.business.withdrawal.Biz_User_WithdrawalConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.BankCardUtils;
-import com.nonobank.apps.utils.data.UserInfoUtils;
 
 public class WithDrawalSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(WithDrawalSuccess.class);
@@ -26,12 +24,6 @@ public class WithDrawalSuccess extends BaseCase {
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Withdrawal.navigate_to_withdrawal();
-
-		if (cardno.equals("random")) {
-			mobile = UserInfoUtils.getUserName(mobile, "mobile_num");
-			cardno = BankCardUtils.getBankCardByMobile(mobile);
-		}
-
 		biz_User_Withdrawal.withDrawal(cardno, money);
 		biz_User_WithdrawalConfirm.confirm(pay_password);
 		biz_User_WithdrawalConfirm.isWithDrawalConfirmSuccess();

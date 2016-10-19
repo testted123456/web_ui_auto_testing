@@ -4,14 +4,7 @@ import java.sql.Connection;
 import com.nonobank.apps.utils.db.DBUtils;
 
 public class UserInfoUtils {
-	public static String getUserName(String username, String param) {
-		if (username.equals("random_register")) {
-			username = UserInfoUtils.getBindedCard(param);
-		} else if (username.equals("random_unregister")) {
-			username = UserInfoUtils.getUnregisterMobile();
-		}
-		return username;
-	}
+	
 
 	public static String getUnregisterMobile() {
 		RandomUtils random = RandomUtils.getInstance();

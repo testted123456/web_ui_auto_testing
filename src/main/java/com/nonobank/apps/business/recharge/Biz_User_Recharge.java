@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.page.recharge.Page_User_Recharge;
 import com.nonobank.apps.utils.data.BankCardUtils;
-import com.nonobank.apps.utils.data.UserInfoUtils;
-
 public class Biz_User_Recharge {
 
 	public static Logger logger = LogManager.getLogger(Biz_User_Recharge.class);
@@ -30,7 +28,6 @@ public class Biz_User_Recharge {
 	public void recharge(String cardno, String mobile) {
 		navigateToRecharge();
 		if (cardno.equals("random")) {
-			mobile = UserInfoUtils.getUserName(mobile, "mobile_num");
 			cardno = BankCardUtils.getBankCardByMobile(mobile);
 			if (cardno != null) {
 				int len = cardno.length();

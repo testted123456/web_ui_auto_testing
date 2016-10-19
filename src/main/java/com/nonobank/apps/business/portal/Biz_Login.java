@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
-import com.nonobank.apps.utils.data.UserInfoUtils;
 
 public class Biz_Login {
 
@@ -20,14 +19,11 @@ public class Biz_Login {
 	public void login(String username, String password, String param) {
 		nagivate_to_login();
 		logger.info("登录...");
-		username = UserInfoUtils.getUserName(username, param);
 		page_Login.input_username(username, param);
 		page_Login.input_password(password);
 		page_Login.input_checkCode();
 		page_Login.submit();
 	}
-
-
 
 	public boolean is_login_success() {
 		boolean flag = page_Login.isElementDisplayed("head_name", WebElementType.WebLink, 15);
