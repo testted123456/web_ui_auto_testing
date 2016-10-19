@@ -3682,7 +3682,7 @@ public class IdCardGenerator {
         return generator.generate(generateAge());
     }
     
-    public String generateUnUsedIdCardNumberByAge(String age){
+    public static String generateUnUsedIdCardNumberByAge(String age){
     	Connection con = DBUtils.getNonoConnection();
     	
     	while(true){

@@ -3,7 +3,6 @@ package com.nonobank.apps.business.account;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.account.Page_Account;
-import com.nonobank.apps.utils.data.IdCardGenerator;
 
 public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
@@ -19,24 +18,19 @@ public class Biz_Account {
 	}
 
 	// 身份认证
-	public void IDVerification(String myname, String mycard) {
+	public void IDVerification(String myname, String identity_ID) {
 		logger.info("身份实名认证...");
 		page_Account.click_degreeCard();
 		page_Account.input_name(myname);
 
-		String newMyCard = null;
-
-		newMyCard = IdCardGenerator.generateIdCardNumberByAge(20);
-
-		page_Account.input_mycard(newMyCard);
+		page_Account.input_mycard(identity_ID);
 		page_Account.submit();
 
 		if (page_Account.isAlertExists(10000)) {
 			page_Account.closeAlert();
 		} else {
 			while (page_Account.isCardNoError()) {
-				newMyCard = IdCardGenerator.generateIdCardNumberByAge(20);
-				page_Account.input_mycard(newMyCard);
+				page_Account.input_mycard(identity_ID);
 				page_Account.submit();
 				if (page_Account.isAlertExists(1000)) {
 					page_Account.closeAlert();
