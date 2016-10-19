@@ -4,6 +4,8 @@
 	</WebImage>
 	<WebLink name="mxloan" xpath="//a[@href='http://mx.idc.nonobank.com']">
 	</WebLink>
+	<WebSpan name="新生学籍提示框" xpath="//div[@id='dialog6']/div[1]/p[2]/span[1]">
+	</WebSpan>
 	<WebInput name="用户名" xpath="//input[@id='m_username']">
 	</WebInput>
 	<WebInput name="QQ号" xpath="//input[@id='qq']">

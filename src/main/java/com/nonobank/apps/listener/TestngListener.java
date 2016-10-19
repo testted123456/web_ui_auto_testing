@@ -68,7 +68,6 @@ public class TestngListener extends TestListenerAdapter {
 		super.onTestSuccess(tr);
 		BaseCase.resultsMap.put(tr.getStartMillis(), tr.getStatus());
 		logger.info(tr.getInstanceName() + " : " + tr.getName() + " Success...");
-		logout();
 	}
 
 	@Override
@@ -92,8 +91,6 @@ public class TestngListener extends TestListenerAdapter {
 				}
 			}
 		}
-		
-		logout();
 	}
 
 	/**

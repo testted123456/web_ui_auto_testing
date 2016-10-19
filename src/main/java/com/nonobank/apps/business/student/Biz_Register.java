@@ -45,7 +45,9 @@ public class Biz_Register {
 		logger.info("--------------开始：注册信息----------------");
 		logger.info("-----开始：用户名检查------");
 		page_Register.input_userName(userName_exist_register);
-		PageUtils.sleep(3000);
+		PageUtils.sleep(1000);
+		page_Register.click_userName();
+		PageUtils.sleep(1000);
 		PageUtils.sendKeys(Keys.TAB);
 		PageUtils.sleep(5000);
 		String userNamePrompt=page_Register.getAlertText();
@@ -57,7 +59,6 @@ public class Biz_Register {
 		logger.info("-----结束：用户名检查------");
 		logger.info("-----开始：QQ检查------");
 		page_Register.input_qq(qq_exist_register);
-		PageUtils.sleep(3000);
 		PageUtils.sendKeys(Keys.TAB);
 		PageUtils.sleep(3000);
 		String qqPrompt=page_Register.getAlertText();

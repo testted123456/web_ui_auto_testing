@@ -1,10 +1,7 @@
 package com.nonobank.apps.page.student;
 
-import java.lang.annotation.ElementType;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
@@ -47,6 +44,12 @@ public class Page_Register extends BasePage {
 		WebInput input_name = objectFactory.getWebInput("用户名");
 		this.username = name;
 		input_name.clearAndInput(name);
+	}
+	
+	public void click_userName(){
+		logger.info("点击用户名输入框....");
+		WebInput input_name = objectFactory.getWebInput("用户名");
+		input_name.click();
 	}
 
 	// * 函数说明：输入qq
@@ -257,9 +260,13 @@ public class Page_Register extends BasePage {
 	//获取新生学籍提示框内容
 	public String getText_newStudentPromptContent(){
 		logger.info("获取新生学籍提示框内容...");
-		WebSpan getText_newStudentPromptContent=objectFactory.getWebSpan("新生学籍提示框");
-		String promptContent=getText_newStudentPromptContent.getText();
-		return promptContent;
+		sleep(2000);
+		if(isElementExists("新生学籍提示框", WebElementType.WebSpan, 30)){
+			WebSpan getText_newStudentPromptContent=objectFactory.getWebSpan("新生学籍提示框");
+			String promptContent=getText_newStudentPromptContent.getText();
+			return promptContent;
+		}
+		return null;
 	}
 	//获取语音提示
 	public String getText_voicePrompt(){
