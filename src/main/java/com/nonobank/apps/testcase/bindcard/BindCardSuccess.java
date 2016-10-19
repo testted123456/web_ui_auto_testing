@@ -10,7 +10,6 @@ import com.nonobank.apps.business.bank.Biz_User_BindCard2;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.portal.Biz_Register;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.RandomUtils;
 
 public class BindCardSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BindCardSuccess.class);
@@ -26,9 +25,6 @@ public class BindCardSuccess extends BaseCase {
 	public void test(String mobile, String user_name, String password, String password2, String check_code,
 			String sms_code, String myname, String mycard, String payPassword, String payPassword1, String bank_name,
 			String bankcard_no) {
-		if (user_name.equals("random")) {
-			user_name = "BCS" + RandomUtils.getInstance().generateUserName();
-		}
 		biz_Register.register(mobile, user_name, password, password2, check_code, sms_code);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();

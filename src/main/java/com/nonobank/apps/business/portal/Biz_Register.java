@@ -6,7 +6,6 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
 import com.nonobank.apps.utils.data.ActivityProlocutorCodeUtils;
-import com.nonobank.apps.utils.data.UserInfoUtils;
 
 public class Biz_Register {
 
@@ -20,16 +19,6 @@ public class Biz_Register {
 			String sms_code, String... strs) {
 		navigate_to_register();
 		logger.info("开始输入注册信息...");
-		if (mobile.equals("random_register")) {
-			mobile = UserInfoUtils.getBindedCard("mobile_num");
-		} else if (mobile.equals("random_unregister")) {
-			mobile = UserInfoUtils.getUnregisterMobile();
-		}
-		if (user_name.equals("random_register")) {
-			user_name = UserInfoUtils.getBindedCard("user_name");
-		} else if (user_name.equals("random_unregister")) {
-			user_name = UserInfoUtils.getUnregisterMobile();
-		}
 		page_Register.input_mobile(mobile);
 		page_Register.input_username(user_name);
 		page_Register.input_password(password);

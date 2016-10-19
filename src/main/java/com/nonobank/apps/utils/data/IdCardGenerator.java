@@ -3665,7 +3665,7 @@ public class IdCardGenerator {
 		writer.close();
 	}
 	
-	public String generateIdCardNumberByAge(int age){
+	public static String generateIdCardNumberByAge(int age){
         IdCardGenerator generator = new IdCardGenerator();
         return generator.generate(age);
     }
