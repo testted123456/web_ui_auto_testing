@@ -1,6 +1,5 @@
 package com.nonobank.apps.testcase.licai;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
@@ -34,19 +33,12 @@ public class DebtByBalanceSuccessful extends BaseCase {
 			String id, String amount, String payPassword) {
 
 		biz_Login.login(mobile, password, "mobile_num");
-		boolean loginResult = biz_Login.is_login_success();
-
-		Assert.assertEquals(loginResult, true);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge(cardno, mobile);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, smsCode);
-		boolean rechargeResult = biz_User_RechargeConfirm.isRechargeConfirmSuccess(money);
-		Assert.assertEquals(rechargeResult, true);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByBalance(payPassword);
-		boolean paymentResult = biz_Licai_Payment_Successful.paymentSuccessful();
-		Assert.assertEquals(paymentResult, true);
 
 	}
 }

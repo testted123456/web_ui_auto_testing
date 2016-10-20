@@ -2,7 +2,6 @@ package com.nonobank.apps.testcase.licai;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
@@ -13,7 +12,6 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.recharge.Biz_User_Recharge;
 import com.nonobank.apps.business.recharge.Biz_User_RechargeConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.BankCardUtils;
 
 public class TiexinByOldBankCardSuccessful extends BaseCase {
 
@@ -33,15 +31,8 @@ public class TiexinByOldBankCardSuccessful extends BaseCase {
 			String smsCode) {
 
 		biz_Login.login(mobile, password, "mobile_num");
-		boolean loginResult = biz_Login.is_login_success();
-		Assert.assertEquals(loginResult, true);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
-
-		if (cardNO.equals("random")) {
-			cardNO = BankCardUtils.getBankCardByMobile(mobile);
-		}
-
 		biz_Licai_Payment.payByOldNewCard(cardNO, payPassword, smsCode);
 		biz_Licai_Payment_Successful.paymentSuccessful();
 	}

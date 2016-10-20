@@ -2,7 +2,6 @@ package com.nonobank.apps.testcase.licai;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
@@ -25,12 +24,8 @@ public class JingxuanByOldBankCardSuccessful extends BaseCase {
 			String smsCode) {
 
 		biz_Login.login(mobile, password, "mobile_num");
-		boolean loginResult = biz_Login.is_login_success();
-		Assert.assertEquals(loginResult, true);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByBalance(payPassword);
-		boolean paymentResult = biz_Licai_Payment_Successful.paymentSuccessful();
-		Assert.assertEquals(paymentResult, true);
 	}
 }
