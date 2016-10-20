@@ -30,7 +30,7 @@ public class Biz_User_Recharge {
 		logger.info("选择银行卡");
 		int len = cardno.length();
 		cardno = cardno.substring(len - 4, len);
-		page_User_Recharge.select_card(cardno);
+//		page_User_Recharge.select_card(cardno);
 		page_User_Recharge.nextStep();
 	}
 }
