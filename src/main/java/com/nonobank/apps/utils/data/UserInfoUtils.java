@@ -4,7 +4,6 @@ import java.sql.Connection;
 import com.nonobank.apps.utils.db.DBUtils;
 
 public class UserInfoUtils {
-	
 
 	public static String getUnregisterMobile() {
 		RandomUtils random = RandomUtils.getInstance();
@@ -29,7 +28,7 @@ public class UserInfoUtils {
 		}
 	}
 
-	public static String getBindedCardBank(String param) {
+	public static String getBindedCardUser(String param) {
 		Connection con = DBUtils.getNonoConnection();
 		String sql = "select " + param + " from user_info where user_name  like " + "'" + "BCS%"
 				+ "' order by id desc limit 1";
