@@ -14,7 +14,7 @@ public class CreditBookVerifyTestCase extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String creditCode_CreditBook, String comments) {
+	public void test(String creditCode_CreditBook) {
 		logger.info("开始进行信用证书查询........");
 		// 点击信用证书查询
 		biz_Common.click_creditBookSearchBus();

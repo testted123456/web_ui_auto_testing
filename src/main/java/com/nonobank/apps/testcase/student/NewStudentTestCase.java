@@ -17,7 +17,7 @@ public class NewStudentTestCase extends BaseCase {
 			String password_register, String confirmPassword_register, String province_register,
 			String institution_register, String schoolArea_register, String year_register, String education_register,
 			String studentNumber_register, String realName_register, String idCard_register, String major_register,
-			String channel_register, String smsCode_register, String comments) {
+			String channel_register, String smsCode_register) {
 		logger.info("开始进行新生借款流程测试........");
 
 		// 注册流程--注册信息

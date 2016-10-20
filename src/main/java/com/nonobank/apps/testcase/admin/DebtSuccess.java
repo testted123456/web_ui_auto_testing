@@ -17,7 +17,7 @@ public class DebtSuccess extends BaseCase {
 	public static final String STATUS = "5";
 
 	@Test(dataProvider = "dataSource")
-	public void test(String username, String password, String search_username,String comments) {
+	public void test(String username, String password, String search_username) {
 		biz_Login.login(username, password);
 		biz_Home.navigate_to_financePlanProfit();
 		biz_Debt.debt("Success", search_username, null);

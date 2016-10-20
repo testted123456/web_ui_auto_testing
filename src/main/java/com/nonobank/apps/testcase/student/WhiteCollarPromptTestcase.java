@@ -20,7 +20,7 @@ public class WhiteCollarPromptTestcase extends BaseCase {
 			String institution_register, String schoolArea_register, String year_register, String education_register,
 			String studentNumber_register, String realName_register, String idCard_register, String major_register,
 			String channel_register, String smsCode_register, String purpose_apply, String detailPurpose_apply,
-			String money_apply, String smsCode_apply, String productIndex_apply, String pieces_apply, String comments) {
+			String money_apply, String smsCode_apply, String productIndex_apply, String pieces_apply) {
 		logger.info("开始进行白领包提示........");
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);

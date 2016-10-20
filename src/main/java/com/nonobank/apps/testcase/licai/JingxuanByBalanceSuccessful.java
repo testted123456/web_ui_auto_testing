@@ -34,7 +34,7 @@ public class JingxuanByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode,
-			String id, String amount, String payPassword,String comments) {
+			String id, String amount, String payPassword) {
 
 		biz_Login.login(mobile, password, "mobile_num");
 

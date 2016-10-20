@@ -18,8 +18,7 @@ public class WithDrawalSuccess extends BaseCase {
 	Biz_User_WithdrawalConfirm biz_User_WithdrawalConfirm;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String cardno, String money, String pay_password,
-			String comments) {
+	public void test(String mobile, String password, String cardno, String money, String pay_password) {
 		logger.info("begin to test...");
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Portal.close_dialog();

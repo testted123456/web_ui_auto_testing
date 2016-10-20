@@ -14,7 +14,7 @@ public class RechargeCheck extends BaseCase {
 	public static Logger logger = LogManager.getLogger(RechargeCheck.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String cardno, String pay_password, String comments) {
+	public void test(String mobile, String password, String cardno, String pay_password) {
 		logger.info("begin to test...");
 
 		Biz_Login biz_Login = new Biz_Login();

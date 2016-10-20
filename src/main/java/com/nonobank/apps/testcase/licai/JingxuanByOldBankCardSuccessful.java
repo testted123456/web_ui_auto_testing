@@ -21,7 +21,7 @@ public class JingxuanByOldBankCardSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String id, String amount, String cardNO, String payPassword,
-			String smsCode,String comments) {
+			String smsCode) {
 
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");

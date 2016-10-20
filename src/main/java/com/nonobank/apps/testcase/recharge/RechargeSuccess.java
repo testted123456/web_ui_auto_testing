@@ -15,8 +15,7 @@ public class RechargeSuccess extends BaseCase {
 	Biz_User_RechargeConfirm biz_User_RechargeConfirm = new Biz_User_RechargeConfirm();
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode,
-			String comments) {
+	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode) {
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge(cardno, mobile);

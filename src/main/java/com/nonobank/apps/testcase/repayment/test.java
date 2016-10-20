@@ -30,7 +30,7 @@ public class test extends BaseCase {
 	public static Logger logger = LogManager.getLogger(test.class);
 
 	@Test(dataProvider = "dataSource")
-	public test(String mobile_register, String userName_register, String comments) {
+	public test(String mobile_register, String userName_register) {
 		// 初审结束后，需要切换到后台管理系统页面
 		biz_Home.switch_adminHome();
 		PageUtils.sleep(5000);

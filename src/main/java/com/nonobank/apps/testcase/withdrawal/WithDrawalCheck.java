@@ -12,7 +12,7 @@ public class WithDrawalCheck extends BaseCase {
 	public static Logger logger = LogManager.getLogger(WithDrawalCheck.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password,String comments) {
+	public void test(String mobile, String password) {
 		logger.info("begin to test...");
 		Biz_Login biz_Login = new Biz_Login();
 		Biz_Portal biz_Portal = new Biz_Portal();

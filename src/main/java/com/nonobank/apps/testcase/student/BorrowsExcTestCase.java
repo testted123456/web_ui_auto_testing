@@ -36,7 +36,7 @@ public class BorrowsExcTestCase extends BaseCase {
 			String friend2Mobile_improve, String friend3Name_improve, String friend3Mobile_improve, String file_improve,
 			String bankcardAccount_error_improve, String banksType_improve, String bankMobile_improve,
 			String smsCode_improve, String bankcardAccount_exist_improve, String bankcardAccount_improve,
-			String parentMobile_improve, String comments) {
+			String parentMobile_improve) {
 		logger.info("开始进行异常借款流程测试...");
 		// 注册流程--注册信息异常
 		biz_register.registerInformationExcBus(userName_exist_register, userName_register, qq_exist_register,

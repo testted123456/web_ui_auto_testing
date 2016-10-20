@@ -42,7 +42,7 @@ public class RepaymentTestCase extends BaseCase {
 			String friend1Name_improve, String friend1Mobile_improve, String friend2Name_improve,
 			String friend2Mobile_improve, String friend3Name_improve, String friend3Mobile_improve, String file_improve,
 			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve, String smsCode_improve,
-			String username_admin, String password_admin, String comments) {
+			String username_admin, String password_admin) {
 		logger.info("开始进行借款流程测试........");
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);
