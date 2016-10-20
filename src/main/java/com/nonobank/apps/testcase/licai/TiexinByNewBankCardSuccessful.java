@@ -21,7 +21,7 @@ public class TiexinByNewBankCardSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String id, String amount, String bank_name, String cardNO,
-			String validationCode, String payPassword) {
+			String validationCode, String payPassword,String comments) {
 
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");

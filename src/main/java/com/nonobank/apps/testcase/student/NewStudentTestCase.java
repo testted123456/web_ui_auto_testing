@@ -13,12 +13,11 @@ public class NewStudentTestCase extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String userName_register,String qq_register,String mobile_register,
-			String checkCode_register,String password_register,String confirmPassword_register,
-			String province_register,String institution_register,String schoolArea_register,
-			String year_register,String education_register,String studentNumber_register,
-			String realName_register,String idCard_register,String major_register,
-			String channel_register,String smsCode_register) {
+	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,
+			String password_register, String confirmPassword_register, String province_register,
+			String institution_register, String schoolArea_register, String year_register, String education_register,
+			String studentNumber_register, String realName_register, String idCard_register, String major_register,
+			String channel_register, String smsCode_register, String comments) {
 		logger.info("开始进行新生借款流程测试........");
 
 		// 注册流程--注册信息
@@ -32,8 +31,8 @@ public class NewStudentTestCase extends BaseCase {
 		// 注册流程-提交
 		biz_register.submitBus();
 		PageUtils.sleep(3000);
-		//新生提示信息
+		// 新生提示信息
 		biz_register.newStudentPromptBus();
-		
+
 	}
 }

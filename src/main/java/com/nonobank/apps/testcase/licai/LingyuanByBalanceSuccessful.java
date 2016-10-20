@@ -33,7 +33,7 @@ public class LingyuanByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode,
-			String id, String amount, String payPassword) {
+			String id, String amount, String payPassword,String comments) {
 		biz_Login.login(mobile, password, "mobile_num");
 
 		biz_Portal.navigate_to_myaccount();

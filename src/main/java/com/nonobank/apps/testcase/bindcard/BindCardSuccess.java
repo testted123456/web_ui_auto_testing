@@ -24,7 +24,7 @@ public class BindCardSuccess extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String check_code,
 			String sms_code, String myname,String identity_ID, String payPassword, String payPassword1, String bank_name,
-			String bankcard_no) {
+			String bankcard_no,String comments) {
 		biz_Register.register(mobile, user_name, password, password2, check_code, sms_code);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();

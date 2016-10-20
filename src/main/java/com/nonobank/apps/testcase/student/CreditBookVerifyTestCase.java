@@ -12,13 +12,14 @@ public class CreditBookVerifyTestCase extends BaseCase {
 	Biz_Common biz_Common;
 	Biz_CreditBook biz_CreditBook;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
+
 	@Test(dataProvider = "dataSource")
-	public void test(String creditCode_CreditBook){
+	public void test(String creditCode_CreditBook, String comments) {
 		logger.info("开始进行信用证书查询........");
-		//点击信用证书查询
+		// 点击信用证书查询
 		biz_Common.click_creditBookSearchBus();
-		//信用证书查询
+		// 信用证书查询
 		biz_CreditBook.creditBookVerifyBus(creditCode_CreditBook);
-		
+
 	}
 }

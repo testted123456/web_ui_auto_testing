@@ -3,7 +3,6 @@ package com.nonobank.apps.testcase.repayment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-
 import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.admin.Biz_Audit_VideoAuditView;
 import com.nonobank.apps.business.admin.Biz_Home;
@@ -15,10 +14,9 @@ import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.business.student.Biz_VideoSign;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.testcase.student.BorrowsTestCase;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class test extends BaseCase{
+public class test extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
 	Biz_Improve biz_Improve;
@@ -29,10 +27,10 @@ public class test extends BaseCase{
 	Biz_Audit_VideoAuditView biz_Audit_VideoAuditView;
 	Biz_Home biz_Home;
 	Biz_Login biz_Login;
-	public static Logger logger=LogManager.getLogger(test.class);
-	
+	public static Logger logger = LogManager.getLogger(test.class);
+
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile_register,String userName_register) {
+	public test(String mobile_register, String userName_register, String comments) {
 		// 初审结束后，需要切换到后台管理系统页面
 		biz_Home.switch_adminHome();
 		PageUtils.sleep(5000);
