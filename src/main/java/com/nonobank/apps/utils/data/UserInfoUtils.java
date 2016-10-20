@@ -29,7 +29,7 @@ public class UserInfoUtils {
 		}
 	}
 
-	public static String getBindedCard(String param) {
+	public static String getBindedCardBank(String param) {
 		Connection con = DBUtils.getNonoConnection();
 		String sql = "select " + param + " from user_info where user_name  like " + "'" + "BCS%"
 				+ "' order by id desc limit 1";
