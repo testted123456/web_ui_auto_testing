@@ -32,13 +32,13 @@ public class DebtByBalanceSuccessful extends BaseCase {
 	public void test(String mobile, String password, String cardno, String money, String pay_password, String smsCode,
 			String id, String amount, String payPassword) {
 
-//		biz_Login.login(mobile, password, "mobile_num");
-//		biz_Portal.navigate_to_myaccount();
-//		biz_User_Recharge.recharge(cardno, mobile);
-//		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, smsCode);
-//		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");
-//		biz_Licai_Order.submit();
-//		biz_Licai_Payment.payByBalance(payPassword);
+		biz_Login.login(mobile, password, "mobile_num");
+		biz_Portal.navigate_to_myaccount();
+		biz_User_Recharge.recharge(cardno, mobile);
+		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, smsCode);
+		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");
+		biz_Licai_Order.submit();
+		biz_Licai_Payment.payByBalance(payPassword);
 
 	}
 }

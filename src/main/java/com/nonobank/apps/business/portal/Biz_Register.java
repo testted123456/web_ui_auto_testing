@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
-import com.nonobank.apps.utils.data.ActivityProlocutorCodeUtils;
 
 public class Biz_Register {
 
@@ -24,11 +23,6 @@ public class Biz_Register {
 		page_Register.input_password(password);
 		page_Register.input_password2(password2);
 		if (strs.length > 0) {
-			if (strs[0].equals("random_exist")) {
-				strs[0] = ActivityProlocutorCodeUtils.getProlocutorCode();
-			} else if (strs[0].equals("random_notexist")) {
-				strs[0] = ActivityProlocutorCodeUtils.genNotexistProlocutorCode();
-			}
 			page_Register.input_invite(strs[0]);
 		}
 		page_Register.click_next_step();
