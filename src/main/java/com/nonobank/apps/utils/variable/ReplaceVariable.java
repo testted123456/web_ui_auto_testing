@@ -43,7 +43,7 @@ public class ReplaceVariable {
 			if (array.length == 2) {
 				String params = array[1].trim();
 				if (!params.equals(")")) {
-					params = params.substring(0, params.length()-1);
+					params = params.substring(0, params.length() - 1);
 					int lenOfParams = params.length();
 					paramsArray = params.split(",");
 				}
@@ -98,5 +98,10 @@ public class ReplaceVariable {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void main(String[] args) {
+		String str1 = handleVarible("${RandomUtils.generateUserName()}");
+		System.out.println("**************************str1=" + str1);
 	}
 }
