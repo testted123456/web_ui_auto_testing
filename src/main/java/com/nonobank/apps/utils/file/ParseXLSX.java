@@ -274,7 +274,7 @@ public class ParseXLSX {
 				setCellValue("", i, result_column, xssfSheet);
 			}
 
-			for (int col = cellStart; col < cellEnd - 1; col++) {
+			for (int col = 1; col < cellEnd - 1; col++) {
 				xssfCell = xssfRow.getCell(col);
 				if (null == xssfCell) {
 					cellValue = "";
@@ -368,7 +368,7 @@ public class ParseXLSX {
 
 	public static void main(String[] args) {
 		Object[][] objects = getDataValue(
-				"resources/TestData/com/nonobank/apps/testcase/licai/DebtByBalanceSuccessful.xlsx", "test");
+				"resources/TestData/com/nonobank/apps/testcase/recharge/RechargeSuccess.xlsx", "test");
 		for (Object[] objects2 : objects) {
 			for (Object object : objects2) {
 				System.out.println("**************object=" + object);
