@@ -24,7 +24,7 @@ public class LingyuanByNewBankCardSuccessful extends BaseCase {
 			String validationCode, String payPassword) {
 		biz_Login.login(mobile, password, "mobile_num");
 
-		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/View/");
+		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByBalance(payPassword);
 

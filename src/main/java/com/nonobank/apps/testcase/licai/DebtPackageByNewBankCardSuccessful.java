@@ -11,7 +11,7 @@ import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.testcase.base.BaseCase;
 
 public class DebtPackageByNewBankCardSuccessful extends BaseCase {
-
+	         
 	public static Logger logger = LogManager.getLogger(DebtPackageByNewBankCardSuccessful.class);
 	Biz_Login biz_Login = new Biz_Login();
 	Biz_Licai_FinancePlan biz_Licai_FinancePlan = new Biz_Licai_FinancePlan();
