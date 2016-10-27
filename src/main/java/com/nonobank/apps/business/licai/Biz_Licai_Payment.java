@@ -33,7 +33,7 @@ public class Biz_Licai_Payment {
 	}
 
 	// 新银行卡支付
-	public void payByNewCard(String bank_name, String cardNO, String validationCode, String payPassword) {
+	public void payByNewCard(String bank_name, String cardNO, String payPassword) {
 		logger.info("新银行卡支付...");
 		page_Licai_Payment.unCheckBanlance();
 
@@ -56,7 +56,7 @@ public class Biz_Licai_Payment {
 
 		page_Licai_Payment.input_newBankCard(cardNO);
 		page_Licai_Payment.click_validationCodeForNewCard();
-		page_Licai_Payment.input_validationCodeForNewCard(validationCode);
+		page_Licai_Payment.input_validationCodeForNewCard("0615");
 		page_Licai_Payment.input_payPasswordForNewCard(payPassword);
 		page_Licai_Payment.submitForNewCard();
 		page_Licai_Payment.closeAlert();

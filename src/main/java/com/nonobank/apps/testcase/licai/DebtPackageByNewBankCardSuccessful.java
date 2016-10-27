@@ -27,7 +27,7 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String myname,
 			String identity_ID, String payPassword, String payPassword2, String id, String amount, String bank_name,
-			String cardNo, String validationCode) {
+			String cardNo) {
 		biz_Register.register(mobile, user_name, password, password2);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
@@ -36,7 +36,7 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
 		biz_Licai_Order.submit();
-		biz_Licai_Payment.payByNewCard(bank_name, cardNo, validationCode, payPassword);
+		biz_Licai_Payment.payByNewCard(bank_name, cardNo, payPassword);
 	}
 
 	// @Test(dataProvider = "dataSource")
