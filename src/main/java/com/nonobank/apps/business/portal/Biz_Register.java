@@ -14,8 +14,7 @@ public class Biz_Register {
 	Page_Register page_Register = new Page_Register();
 
 	// 注册操作
-	public void register(String mobile, String user_name, String password, String password2, String check_code,
-			String sms_code, String... strs) {
+	public void register(String mobile, String user_name, String password, String password2, String... strs) {
 		navigate_to_register();
 		logger.info("开始输入注册信息...");
 		page_Register.input_mobile(mobile);
@@ -26,9 +25,9 @@ public class Biz_Register {
 			page_Register.input_invite(strs[0]);
 		}
 		page_Register.click_next_step();
-		page_Register.input_check_code(check_code);
+		page_Register.input_check_code();
 		page_Register.click_sms_code();
-		page_Register.input_sms_code(sms_code);
+		page_Register.input_sms_code();
 		page_Register.click_reg_over_btn();
 	}
 

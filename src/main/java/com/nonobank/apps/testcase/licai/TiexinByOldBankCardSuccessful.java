@@ -27,13 +27,13 @@ public class TiexinByOldBankCardSuccessful extends BaseCase {
 	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String id, String amount, String cardNO, String payPassword,
+	public void test(String mobile, String password, String id, String amount, String cardNo, String payPassword,
 			String smsCode) {
 
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
-		biz_Licai_Payment.payByOldNewCard(cardNO, payPassword, smsCode);
-		biz_Licai_Payment_Successful.paymentSuccessful();
+		biz_Licai_Payment.payByOldNewCard(cardNo, payPassword, smsCode);
+		
 	}
 }

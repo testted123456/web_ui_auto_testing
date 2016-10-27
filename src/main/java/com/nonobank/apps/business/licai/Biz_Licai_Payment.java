@@ -48,12 +48,10 @@ public class Biz_Licai_Payment {
 			page_Licai_Payment.click_nextStep();
 		}
 
-		if (cardNO.trim().toLowerCase().equals("random")) {
-			if (bank_name.equals("建设银行")) {
-				cardNO = BankCardUtils.getBankCard("436742121737");
-			} else if (bank_name.equals("工商银行")) {
-				cardNO = BankCardUtils.getBankCard("622202100112");
-			}
+		if (bank_name.equals("建设银行")) {
+			cardNO = BankCardUtils.getBankCard("436742121737");
+		} else if (bank_name.equals("工商银行")) {
+			cardNO = BankCardUtils.getBankCard("622202100112");
 		}
 
 		page_Licai_Payment.input_newBankCard(cardNO);

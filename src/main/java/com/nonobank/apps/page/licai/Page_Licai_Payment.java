@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -147,12 +146,17 @@ public class Page_Licai_Payment extends BasePage {
 			xpath = "//li[@data-bankcode='" + bank_code + "']/span[contains(@class,'bank') and contains(@class,'"
 					+ bank_code + "')]";
 		} else {
-			xpath = "//span[" + "@class='bank " + bank_code + "' and " + "@data-bankcode='" + bank_code + "' and "
-					+ "@data-type='2']";
+			xpath = "//li[@data-bankcode='" + bank_code + "' and "
+					+ "@data-banktype='2']/span[contains(@class,'bank') and contains(@class,'" + bank_code + "')]";
+		}
+		List<WebElement> lst = objectFactory.getWebElements(By.xpath(xpath));
+		for (WebElement webElement : lst) {
+			if (webElement.getText().equals("建设银行")) {
+				webElement.click();
+				break;
+			}
 		}
 
-		WebElement span_bank_name = objectFactory.getWebElement(By.xpath(xpath));
-		span_bank_name.click();
 	}
 
 	// 使用新银行卡，点下一步

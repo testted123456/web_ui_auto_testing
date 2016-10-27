@@ -22,14 +22,13 @@ public class BindCardSuccess extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2, String check_code,
-			String sms_code, String myname, String identity_ID, String payPassword, String payPassword1,
-			String bank_name, String bankcard_no) {
-		biz_Register.register(mobile, user_name, password, password2, check_code, sms_code);
+	public void test(String mobile, String user_name, String password, String password2, String myname,
+			String identity_ID, String payPassword, String payPassword2, String bank_name, String bankcard_no) {
+		biz_Register.register(mobile, user_name, password, password2);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.IDVerification(myname, identity_ID);
-		biz_Account.setPayPassword(payPassword, payPassword1);
+		biz_Account.setPayPassword(payPassword, payPassword2);
 		biz_Account.navigate_to_userbanks();
 		biz_User_Banks.add_bankcard();
 		biz_User_BindCard1.select_bank(bank_name);
