@@ -33,7 +33,7 @@ public class LanrenByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password, 
-			String id, String amount, String payPassword) {
+			String id, String amount) {
 
 		biz_Login.login(mobile, password, "mobile_num");
 		biz_Portal.navigate_to_myaccount();
@@ -42,6 +42,6 @@ public class LanrenByBalanceSuccessful extends BaseCase {
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
-		biz_Licai_Payment.payByBalance(payPassword);
+		biz_Licai_Payment.payByBalance(pay_password);
 	}
 }
