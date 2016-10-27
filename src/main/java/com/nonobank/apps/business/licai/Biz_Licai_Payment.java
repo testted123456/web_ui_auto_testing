@@ -20,7 +20,7 @@ public class Biz_Licai_Payment {
 	}
 
 	// 老银行卡支付
-	public void payByOldNewCard(String cardNo, String payPassword, String smsCode) {
+	public void payByOldNewCard(String cardNo, String payPassword) {
 		logger.info("老银行卡支付...");
 		page_Licai_Payment.unCheckBanlance();
 		page_Licai_Payment.click_otherCard();
@@ -28,7 +28,7 @@ public class Biz_Licai_Payment {
 		page_Licai_Payment.click_nextStep();
 		page_Licai_Payment.input_paypasswordForOldBankCard(payPassword);
 		page_Licai_Payment.submit();
-		page_Licai_Payment.input_smsCodeForOldBankCard(smsCode);
+		page_Licai_Payment.input_smsCodeForOldBankCard("0615");
 		page_Licai_Payment.submit_smsCodeForOldBankCard();
 	}
 
