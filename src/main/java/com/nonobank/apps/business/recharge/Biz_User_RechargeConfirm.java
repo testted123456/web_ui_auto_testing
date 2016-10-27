@@ -17,12 +17,12 @@ public class Biz_User_RechargeConfirm {
 	 * @param money
 	 * @param payPassword
 	 */
-	public void rechargeConfirm(String money, String payPassword, String smsCode) {
+	public void rechargeConfirm(String money, String payPassword) {
 		logger.info("充值确认...");
 		page_User_RechargeConfirm.input_money(money);
 		page_User_RechargeConfirm.input_pay_password(payPassword);
 		page_User_RechargeConfirm.submit();
-		page_User_RechargeConfirm.input_smsCode(smsCode);
+		page_User_RechargeConfirm.input_smsCode("0615");
 		page_User_RechargeConfirm.submit_smsCode();
 	}
 
