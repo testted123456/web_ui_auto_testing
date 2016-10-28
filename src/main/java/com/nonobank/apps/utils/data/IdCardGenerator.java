@@ -3566,7 +3566,7 @@ public class IdCardGenerator {
 		StringBuilder builder = new StringBuilder();
 		int month = RandomUtils.getInstance().getBirthMonth();
 		int year = RandomUtils.getInstance().getBirthYear(age);
-		int date = RandomUtils.getInstance().getBirthDay(month,year);
+		int date = RandomUtils.getInstance().getBirthDay(month, year);
 		builder.append(year);
 
 		if (month < 10) {
@@ -3582,14 +3582,12 @@ public class IdCardGenerator {
 	}
 
 	/*
-	 * <p>18位身份证验证</p>
-	 * 根据〖中华人民共和国国家标准 GB 11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。
-	 * 排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。
-	 * 第十八位数字(校验码)的计算方法为：
-	 * 1.将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2
-	 * 2.将这17位数字和系数相乘的结果相加。
-	 * 3.用加出来和除以11，看余数是多少？
-	 * 4.余数只可能有0 1 2 3 4 5 6 7 8 9 10这11个数字。其分别对应的最后一位身份证的号码为1 0 X 9 8 7 6 5 4 3 2。
+	 * <p>18位身份证验证</p> 根据〖中华人民共和国国家标准 GB
+	 * 11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。
+	 * 排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。 第十八位数字(校验码)的计算方法为：
+	 * 1.将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8
+	 * 4 2 2.将这17位数字和系数相乘的结果相加。 3.用加出来和除以11，看余数是多少？ 4.余数只可能有0 1 2 3 4 5 6 7 8 9
+	 * 10这11个数字。其分别对应的最后一位身份证的号码为1 0 X 9 8 7 6 5 4 3 2。
 	 * 5.通过上面得知如果余数是2，就会在身份证的第18位数字上出现罗马数字的Ⅹ。如果余数是10，身份证的最后一位号码就是2。
 	 */
 	public char calcTrailingNumber(char[] chars) {
@@ -3636,12 +3634,12 @@ public class IdCardGenerator {
 			valueBuilder = new StringBuilder();
 			char[] kv = line.toCharArray();
 
-			for (int j = 0; j <kv.length&&kv[i]!=' ' ; j++) {
+			for (int j = 0; j < kv.length && kv[i] != ' '; j++) {
 				valueBuilder.append(kv[i]);
 
 			}
 
-			while(i<kv.length && kv[i]==' '){
+			while (i < kv.length && kv[i] == ' ') {
 				i++;
 			}
 
@@ -3652,11 +3650,10 @@ public class IdCardGenerator {
 
 			try {
 				value = Integer.parseInt(valueBuilder.toString());
-				System.out.println("IdCardGenerator.areaCode.put(\"" + keyBuilder.toString()
-						+ "\", " + value + ");");
+				System.out.println("IdCardGenerator.areaCode.put(\"" + keyBuilder.toString() + "\", " + value + ");");
 				writer.write("areaCode[\"" + keyBuilder.toString() + "\"] = " + value + ";\n");
 			} catch (NumberFormatException e) {
-				// System.out.println(line + "    value: " +
+				// System.out.println(line + " value: " +
 				// valueBuilder.toString());
 			}
 		}
@@ -3664,35 +3661,40 @@ public class IdCardGenerator {
 		reader.close();
 		writer.close();
 	}
-	
-	public static String generateIdCardNumberByAge(int age){
-        IdCardGenerator generator = new IdCardGenerator();
-        return generator.generate(age);
-    }
 
-	public int generateAge() { //more thank 18 and less than 40
+	public static String generateIdCardNumberByAge(int age) {
+		IdCardGenerator generator = new IdCardGenerator();
+		return generator.generate(age);
+	}
+
+	public int generateAge() { // more thank 18 and less than 40
 		Random random = new Random();
-        int age =18;
-        age = age + random.nextInt(40-18);
-        return age;
-    }
-	
-    public String generateIdCardNumber(){
-        IdCardGenerator generator = new IdCardGenerator();
-        return generator.generate(generateAge());
-    }
-    
-    public static String generateUnUsedIdCardNumberByAge(String age){
-    	Connection con = DBUtils.getNonoConnection();
-    	
-    	while(true){
-    		String idCard = generateIdCardNumberByAge(Integer.parseInt(age));
-    		String sql = "select count(*) from user_info WHERE id_num='" + idCard + "'";
-    		String count = DBUtils.getOneObject(con, sql).toString();
-    		
-    		if(count.equals("0")){
+		int age = 18;
+		age = age + random.nextInt(40 - 18);
+		return age;
+	}
+
+	public String generateIdCardNumber() {
+		IdCardGenerator generator = new IdCardGenerator();
+		return generator.generate(generateAge());
+	}
+
+	public static String generateUnUsedIdCardNumberByAge(String age) {
+		Connection con = DBUtils.getNonoConnection();
+
+		while (true) {
+			String idCard = generateIdCardNumberByAge(Integer.parseInt(age));
+			String sql = "select count(*) from user_info WHERE id_num='" + idCard + "'";
+			String count = DBUtils.getOneObject(con, sql).toString();
+
+			if (count.equals("0")) {
 				return idCard;
 			}
-    	}
-    }
+		}
+	}
+
+	public static void main(String[] args) {
+		String str = generateUnUsedIdCardNumberByAge("24");
+		System.out.println(str);
+	}
 }
