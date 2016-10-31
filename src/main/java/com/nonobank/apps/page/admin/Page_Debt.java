@@ -86,15 +86,6 @@ public class Page_Debt extends BasePage {
 		WebInput input_vaId = objectFactory.getWebInput("vaId");
 		Biz_Debt.from_id = input_vaId.getValue();
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
-		while (lstElements.size() == 0) {
-			try {
-				Thread.sleep(3000);
-				lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-
 		do {
 			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 			try {
