@@ -64,9 +64,9 @@ public class DebtPartSuccess extends BaseCase {
 		boolean result_amount = biz_Debt.validate_amount("6");
 		Assert.assertEquals(true, result_amount);
 
-//		// 校验residue_num=sum(hold_hum),测试第11点
-//		boolean result_residueNum_sumHoldNum = biz_Debt.validate_residueNum_sumHoldNum();
-//		Assert.assertEquals(true, result_residueNum_sumHoldNum);
+		// 校验residue_num=sum(hold_hum),测试第11点
+		boolean result_residueNum_sumHoldNum = biz_Debt.validate_residueNum_sumHoldNum();
+		Assert.assertEquals(true, result_residueNum_sumHoldNum);
 
 	}
 }
