@@ -13,16 +13,12 @@ public class Biz_Debt {
 	public static final double RESIDUE_NUM = 0;
 	public static final double HOLD_NUM = 0;
 
-	public void debt(String debtDetail, String search_username, String targetFpid) {
-		if (search_username.equals("random")) {
-			search_username = DBUtils.getOneLineValues("nono",
-					"SELECT  DISTINCT ui.user_name FROM  borrows_accept ba  LEFT JOIN user_info ui on ui.id = ba.user_id WHERE ba.is_pay =0 and ba.va_id>500  AND ba.price_principal>0  LIMIT 100");
-		}
-		page_Debt.input_username(search_username);
+	public void debt(String debtType, String search_username, String targetFpid) {
+
+		page_Debt.input_fpId(search_username);
 		page_Debt.click_query();
-		switch (debtDetail) {
+		switch (debtType) {
 		case "PartSuccess":
-			amount = Double.parseDouble(page_Debt.get_debtMain().getText());
 			if (targetFpid.equals("random")) {
 				targetFpid = DBUtils.getOneLineValues("nono",
 						"SELECT title FROM ( SELECT concat(fp.id,':',fp.title) title ,sum(fa.balance-fa.locking) amount FROM user_info ui LEFT JOIN finance_account fa on fa.user_id = ui.id LEFT JOIN  vip_account va on va.id = fa.owner_id LEFT JOIN  vip_autobidder vab on vab.va_id = va.id  LEFT JOIN finance_plan fp on fp.id = vab.fp_id WHERE  fa.role_id = 13 and date_sub(vab.deadline, INTERVAL 3 DAY) > date(now()) and va.is_cash =0   and fa.balance-fa.locking >100 GROUP BY fp.id) a WHERE  amount<"
@@ -446,8 +442,13 @@ public class Biz_Debt {
 	}
 
 	public static void main(String[] args) {
-		// ************object=10099907*******str=0.0000,2.7486************str20.00,274.86
-		// values2[1] == (values[1] / values[0]) * values2[0]
-		System.out.println((2.7486 / 0.0000) * 20.00);
+		List<Object> object = DBUtils.getMulLineValues("nono",
+				"SELECT bo_id,ds_id from invt_debt_sale_task where `status` =6  and from_id = 327378");
+		for (Object oneLineValues : object) {
+			String value = oneLineValues.toString();
+			String[] strs = value.split(",");
+			System.out.println("strs[0]=" + strs[0]);
+			System.out.println("strs[1]=" + strs[1]);
+		}
 	}
 }

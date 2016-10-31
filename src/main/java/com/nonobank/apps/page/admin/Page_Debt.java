@@ -20,16 +20,16 @@ public class Page_Debt extends BasePage {
 		input_username.clearAndInput(username);
 	}
 
+	public void input_fpId(String username) {
+		logger.info("输入用户名......");
+		switch_to_frameSet();
+		WebInput input_username = objectFactory.getWebInput("fpId");
+		input_username.clearAndInput(username);
+	}
+
 	public void switch_to_frameSet() {
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame(driver.findElement(By.id("mainFrame")));
-	}
-
-	// 选择精选产品
-	public void select_fpId(String fpId) {
-		logger.info("选择精选产品......");
-		WebSelect select_fpId = objectFactory.getWebSelect("fpId");
-		select_fpId.selectByExactValue(fpId);
 	}
 
 	// 选择匹配精选产品
@@ -55,20 +55,21 @@ public class Page_Debt extends BasePage {
 	public void click_debtDetail() {
 		logger.info("查询债转详情......");
 		switch_to_frameSet();
-		WebElement element = get_debtMain();
+		WebElement element = get_debtMain("/td[4]/span");
 		element.click();
 	}
 
-	public WebElement get_debtMain() {
+	public WebElement get_debtMain(String xpath) {
 		logger.info("点击大债转......");
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
 			int endIndex = lstElements.get(i).getText().indexOf("(");
 			String text = lstElements.get(i).getText().substring(0, endIndex);
+			text = text.replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
 			if (!text.equals("0.00")) {
 				WebElement web = objectFactory
-						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[17]/span[1]/a");
+						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
 				return web;
 			}
 		}
@@ -76,7 +77,7 @@ public class Page_Debt extends BasePage {
 	}
 
 	public void click_debtMain() {
-		WebElement web = get_debtMain();
+		WebElement web = get_debtMain("/td[17]/span[1]/a");
 		web.click();
 	}
 

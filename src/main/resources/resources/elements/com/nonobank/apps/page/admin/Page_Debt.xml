@@ -2,8 +2,8 @@
 <elements>
 	<WebInput name="username" xpath="//input[@name='username']">
 	</WebInput>
-	<WebSelect name="fpId" xpath="//select[@name='fp_id']">
-	</WebSelect>
+	<WebInput name="fpId" xpath="//input[@name='fp_id']">
+	</WebInput>
 	<WebSelect name="targetFpid" xpath="//select[@name='target_fpid']">
 	</WebSelect>
 	<WebSelect name="targetVip" xpath="//select[@name='target_vip']">

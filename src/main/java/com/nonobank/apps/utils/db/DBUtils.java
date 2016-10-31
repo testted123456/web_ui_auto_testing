@@ -166,6 +166,7 @@ public class DBUtils {
 	}
 
 	public static String getOneLineValues(String dbname, String sql) {
+		System.out.println("sql=" + sql);
 		if (connection == null) {
 			connection = getConnection(dbname);
 		}
@@ -189,7 +190,12 @@ public class DBUtils {
 		List<Object[]> obj = getMulLine(con, sql);
 		List<Object> lst = new ArrayList<>();
 		for (Object[] objects : obj) {
-			lst.add(objects[0]);
+			Object[] newObjects = objects;
+			StringBuffer sb = new StringBuffer();
+			for (Object object : newObjects) {
+				sb.append(object + ",");
+			}
+			lst.add(sb.substring(0, sb.length() - 1));
 		}
 		return lst;
 	}
