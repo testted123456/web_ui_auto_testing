@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id="882741";
-	public static String from_id="6106";
+	public static String bo_id = "882741";
+	public static String from_id = "6106";
 	public static double amount;
 	public static final double LOCK_NUM = 0;
 	public static final double RESIDUE_NUM = 0;
@@ -108,16 +108,13 @@ public class Biz_Debt {
 
 	public boolean validate_price_sumTransAmountAndPayAmount() {
 		String str = getOneLineValues(
-				"SELECT price from debt_sale ds where id = (SELECT ds_id from invt_debt_sale_task where status = 5 and bo_id = '"
+				"SELECT price,sum(trans_amount+pay_amount) from debt_sale ds where id = (SELECT ds_id from invt_debt_sale_task where status = 5 and bo_id = '"
 						+ bo_id + "' and from_id = '" + from_id
 						+ "' order by create_time desc limit 1) order by ds.create_time desc");
-		String str2 = getOneLineValues(
-				"SELECT sum(trans_amount+pay_amount) from debt_sale ds where id = (SELECT ds_id from invt_debt_sale_task where status = 5 and bo_id = '"
-						+ bo_id + "' and from_id = '" + from_id
-						+ "' order by create_time desc limit 1) order by ds.create_time desc");
-		System.out.println("validate_price_sumTransAmountAndPayAmount********str1=" + Double.parseDouble(str)
-				+ "********str2=" + Double.parseDouble(str2));
-		return Double.parseDouble(str) == Double.parseDouble(str2);
+		String[] strs = str.split(",");
+		System.out.println("validate_price_sumTransAmountAndPayAmount********strs=" + Double.parseDouble(strs[0])
+				+ "********str2=" + Double.parseDouble(strs[1]));
+		return Double.parseDouble(strs[0]) == Double.parseDouble(strs[1]);
 	}
 
 	public boolean validate_sumAmount_transAmount(String status) {
