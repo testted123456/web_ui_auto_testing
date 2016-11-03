@@ -14,7 +14,8 @@ public class DebtSuccess extends BaseCase {
 	Biz_Login biz_Login = new Biz_Login();
 	Biz_Home biz_Home = new Biz_Home();
 	Biz_Debt biz_Debt = new Biz_Debt();
-	public static final String STATUS = "5";
+	public static final String TASK_STATUS = "5";
+	public static final String LOG_STATUS = "2";
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username) {
@@ -24,7 +25,7 @@ public class DebtSuccess extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 1.校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0, STATUS, "1");
+		boolean result_lockNum = biz_Debt.validate_lockNum(0, TASK_STATUS, "1");
 		Assert.assertEquals(true, result_lockNum);
 
 		// 2.校验residue_num字段
@@ -36,7 +37,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_price_sumTransAmountAndPayAmount);
 
 		// 4.校验trans_amount=sum(amount)
-		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount(STATUS);
+		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount(TASK_STATUS, LOG_STATUS);
 		Assert.assertEquals(true, result_sumAmount_transAmount);
 
 		// 5.校验transfer_num=sum(buy_num)
@@ -45,7 +46,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 6.校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(STATUS, "2");
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, "2");
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 7.校验sum(price_in)=trans_amount
@@ -65,7 +66,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		// 11.校验amount
-		boolean result_amount = biz_Debt.validate_amount(STATUS);
+		boolean result_amount = biz_Debt.validate_amount(TASK_STATUS);
 		Assert.assertEquals(true, result_amount);
 
 		// 12.校验hold_num=0

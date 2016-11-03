@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id = "882741";
-	public static String from_id = "6106";
+	public static String bo_id;
+	public static String from_id;
 	public static double amount;
 	public static final double LOCK_NUM = 0;
 	public static final double RESIDUE_NUM = 0;
@@ -67,6 +67,9 @@ public class Biz_Debt {
 			sb.append(" and from_id = '" + from_id + "'");
 		}
 		if (bo_id == null) {
+			sb.append(
+					"and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task  WHERE  invt_debt_sale_task.status=5) AND from_id = "
+							+ from_id + " HAVING count(1)=1");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
@@ -78,8 +81,7 @@ public class Biz_Debt {
 		StringBuffer sb = getSql(sql);
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
-			String str = getOneLineValues(
-					"SELECT lock_num from debt_sale where status = " + status + " and id =" + dsId);
+			String str = getOneLineValues("SELECT lock_num from debt_sale where  id =" + dsId);
 			double actualValue = Double.parseDouble(str);
 			System.out.println("validate_lockNum********str1=" + actualValue + "********str2=" + exceptValue);
 			if (actualValue != exceptValue) {
@@ -119,14 +121,14 @@ public class Biz_Debt {
 		return Double.parseDouble(strs[0]) == Double.parseDouble(strs[1]);
 	}
 
-	public boolean validate_sumAmount_transAmount(String status) {
-		String sql = "SELECT id from invt_debt_sale_task where status = " + status;
+	public boolean validate_sumAmount_transAmount(String task_status, String log_status) {
+		String sql = "SELECT id from invt_debt_sale_task where status = " + task_status;
 		StringBuffer sb = getSql(sql);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object id : lst) {
 			String str = getOneLineValues(
-					"SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE idst.id = "
-							+ id + " and idstl.status = 2");
+					"SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE "
+							+ " idstl.status = " + log_status + " and idst.id = " + id);
 			String[] strs = str.split(",");
 			System.out.println("validate_sumAmount_transAmount********str1=" + Double.parseDouble(strs[0])
 					+ "********str2=" + Double.parseDouble(strs[1]));
@@ -165,18 +167,18 @@ public class Biz_Debt {
 		return Double.parseDouble(str) == Double.parseDouble(str2);
 	}
 
-	public boolean validate_countInvtDebtSaleTaskLog_countInvtProof(String task_status, String status) {
+	public boolean validate_countInvtDebtSaleTaskLog_countInvtProof(String task_status, String log_status) {
 		String sql = "SELECT bo_id from invt_debt_sale_task where status = " + task_status;
 		StringBuffer sb = getSql(sql);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object boId : lst) {
-			String str = getOneLineValues("SELECT count(*) from invt_debt_sale_task_log idstl where status= " + status
-					+ " and task_id = (SELECT id from invt_debt_sale_task where status = " + task_status
+			String str = getOneLineValues("SELECT count(*) from invt_debt_sale_task_log idstl  where status= "
+					+ log_status + " and task_id = (SELECT id from invt_debt_sale_task where status = " + task_status
 					+ " and bo_id = '" + boId + "' and from_id = '" + from_id
 					+ "' order by create_time desc limit 1)  order by idstl.create_time desc");
 			String str2 = getOneLineValues(
 					"SELECT count(*) from invt_proof ip where biz_type = 1 and status = 1 and biz_id in (SELECT id from invt_debt_sale_task_log where status = "
-							+ status + " and task_id = (SELECT id from invt_debt_sale_task where status = "
+							+ log_status + " and task_id = (SELECT id from invt_debt_sale_task where status = "
 							+ task_status + " and bo_id = '" + boId + "' and from_id = '" + from_id
 							+ "' order by create_time desc limit 1)) order by ip.create_time desc");
 			System.out.println("validate_CountInvtDebtSaleTaskLog_CountInvtProof********str1=" + Double.parseDouble(str)

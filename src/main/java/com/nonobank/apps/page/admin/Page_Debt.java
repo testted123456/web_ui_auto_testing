@@ -21,7 +21,7 @@ public class Page_Debt extends BasePage {
 	}
 
 	public void input_fpId(String username) {
-		logger.info("输入用户名......");
+		logger.info("输入精选产品......");
 		switch_to_frameSet();
 		WebInput input_username = objectFactory.getWebInput("fpId");
 		input_username.clearAndInput(username);
@@ -59,25 +59,6 @@ public class Page_Debt extends BasePage {
 		element.click();
 	}
 
-	public WebElement get_debtMain(String xpath) {
-		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
-		for (int i = 0; i < lstElements.size(); i++) {
-			String string = lstElements.get(i).getText();
-			int endIndex = string.indexOf("(");
-			String text = string.substring(0, endIndex).replace(",", "");
-			Biz_Debt.amount = Double.parseDouble(text);
-			String debtCountString = string.substring(endIndex);
-			if (!debtCountString.equals("(0/0)") && xpath == null) {
-				return null;
-			} else if (!debtCountString.equals("(0/0)") && xpath != null) {
-				WebElement web = objectFactory
-						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
-				return web;
-			}
-		}
-		return null;
-	}
-
 	public void click_debtMain() {
 		logger.info("点击大债转......");
 		WebElement web = get_debtMain("/td[17]/span[1]/a");
@@ -86,8 +67,6 @@ public class Page_Debt extends BasePage {
 
 	public void click_debt() {
 		logger.info("点击小债转......");
-		WebInput input_vaId = objectFactory.getWebInput("vaId");
-		Biz_Debt.from_id = input_vaId.getValue();
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 		do {
 			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
@@ -110,5 +89,26 @@ public class Page_Debt extends BasePage {
 			}
 		}
 
+	}
+
+	public WebElement get_debtMain(String xpath) {
+		WebInput input_vaId = objectFactory.getWebInput("vaId");
+		Biz_Debt.from_id = input_vaId.getValue();
+		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
+		for (int i = 0; i < lstElements.size(); i++) {
+			String string = lstElements.get(i).getText();
+			int endIndex = string.indexOf("(");
+			String text = string.substring(0, endIndex).replace(",", "");
+			Biz_Debt.amount = Double.parseDouble(text);
+			String debtCountString = string.substring(endIndex);
+			if (!debtCountString.equals("(0/0)") && xpath == null) {
+				return null;
+			} else if (!debtCountString.equals("(0/0)") && xpath != null) {
+				WebElement web = objectFactory
+						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
+				return web;
+			}
+		}
+		return null;
 	}
 }
