@@ -67,9 +67,8 @@ public class Biz_Debt {
 			sb.append(" and from_id = '" + from_id + "'");
 		}
 		if (bo_id == null) {
-			sb.append(
-					"and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task  WHERE  invt_debt_sale_task.status=5) AND from_id = "
-							+ from_id + " HAVING count(1)=1");
+			sb.append("and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task ) AND from_id = "
+					+ from_id + " HAVING count(1)=1");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
