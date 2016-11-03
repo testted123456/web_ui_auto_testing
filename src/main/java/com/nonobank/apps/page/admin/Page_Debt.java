@@ -60,14 +60,16 @@ public class Page_Debt extends BasePage {
 	}
 
 	public WebElement get_debtMain(String xpath) {
-		logger.info("点击大债转......");
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
-			int endIndex = lstElements.get(i).getText().indexOf("(");
-			String text = lstElements.get(i).getText().substring(0, endIndex);
-			text = text.replace(",", "");
+			String string = lstElements.get(i).getText();
+			int endIndex = string.indexOf("(");
+			String text = string.substring(0, endIndex).replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
-			if (!text.equals("0.00")) {
+			String debtCountString = string.substring(endIndex);
+			if (!debtCountString.equals("(0/0)") && xpath == null) {
+				return null;
+			} else if (!debtCountString.equals("(0/0)") && xpath != null) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
 				return web;
@@ -77,6 +79,7 @@ public class Page_Debt extends BasePage {
 	}
 
 	public void click_debtMain() {
+		logger.info("点击大债转......");
 		WebElement web = get_debtMain("/td[17]/span[1]/a");
 		web.click();
 	}
