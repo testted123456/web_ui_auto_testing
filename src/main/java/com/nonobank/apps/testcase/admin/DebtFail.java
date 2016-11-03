@@ -14,8 +14,13 @@ public class DebtFail extends BaseCase {
 	Biz_Login biz_Login = new Biz_Login();
 	Biz_Home biz_Home = new Biz_Home();
 	Biz_Debt biz_Debt = new Biz_Debt();
-	public static final String STATUS = "99";
-
+	public static final String TASK_STATUS = "99";
+	public static final String PROOF_STATUS = "1";
+	public static final String PROOF_TYPE = "1";
+	public static final String IS_PAY = "0";
+	public static final String SALE_STATUS = "3";
+	public static final String LOG_STATUS = "3";
+	public static final String FROM_TYPE = "1";
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username, String targetFpid) {
 		biz_Login.login(username, password);
@@ -24,19 +29,19 @@ public class DebtFail extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, STATUS, "3");
+		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
 		Assert.assertEquals(true, result_lockNum);
 		// 校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(STATUS, "3");
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, PROOF_TYPE);
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 		// 校验price_principal=price-pay_amount
 		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt
-				.validate_subPriceAndPayAmount_sumPricePrincipal();
+				.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY,FROM_TYPE);
 		Assert.assertEquals(true, result_subPriceAndPayAmount_sumPricePrincipal);
 
 		// 校验hold_num=transfer_num
-		boolean result_holdNum_transferNum = biz_Debt.validate_holdNum_transferNum();
+		boolean result_holdNum_transferNum = biz_Debt.validate_holdNum_transferNum(TASK_STATUS,FROM_TYPE);
 		Assert.assertEquals(true, result_holdNum_transferNum);
 
 	}
