@@ -80,7 +80,7 @@ public class Page_Register extends BasePage {
 	// 输入安全码
 	public void input_check_code() {
 		WebInput input_check_code = objectFactory.getWebInput("checkCode");
-		input_check_code.clearAndInput("****");
+		input_check_code.clearAndInput("8888");
 		sleep(5000);
 	}
 
@@ -95,7 +95,7 @@ public class Page_Register extends BasePage {
 	public void input_sms_code() {
 		WebInput input_sms_code = objectFactory.getWebInput("validation");
 		sleep(3000);
-		input_sms_code.clearAndInput("####");
+		input_sms_code.clearAndInput("8888");
 	}
 
 	// 输入下一步
