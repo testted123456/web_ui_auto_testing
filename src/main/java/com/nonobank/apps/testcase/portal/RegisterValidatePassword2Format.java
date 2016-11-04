@@ -10,6 +10,11 @@ public class RegisterValidatePassword2Format extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2) {
-		biz_Register.register(mobile, user_name, password, password2);
+		try{
+			biz_Register.register(mobile, user_name, password, password2);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 }
