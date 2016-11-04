@@ -9,8 +9,7 @@ public class Biz_Debt {
 	public static String bo_id = "275882";
 	public static String from_id = "15608";
 	public static double amount;
-	public static final double LOCK_NUM = 0;
-	public static final double HOLD_NUM = 0;
+
 
 	public void debt(String debtType, String search_username, String targetFpid) {
 
@@ -355,11 +354,11 @@ public class Biz_Debt {
 		return true;
 	}
 
-	public boolean validate_sumHoldNum() {
+	public boolean validate_sumHoldNum(double exceptValue) {
 		String str = getOneLineValues("SELECT sum(hold_num) from debt_exchange_account dea where  va_id = " + from_id
 				+ " and bo_id = '" + bo_id + "' order by dea.create_time desc");
-		System.out.println("validate_sumHoldNum*****str1=" + HOLD_NUM + "*****str2=" + Double.parseDouble(str));
-		return Double.parseDouble(str) == HOLD_NUM;
+		System.out.println("validate_sumHoldNum*****str1=" + exceptValue + "*****str2=" + Double.parseDouble(str));
+		return Double.parseDouble(str) == exceptValue;
 	}
 
 	public boolean validate_sumPrice(double exceptValue, String is_pay, String from_type) {

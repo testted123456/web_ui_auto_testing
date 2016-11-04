@@ -81,7 +81,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_amount);
 
 		// 12.校验hold_num=0
-		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum();
+		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum(0);
 		Assert.assertEquals(true, result_sumHoldNum);
 
 		// 13.校验sum(price_principal)=0
