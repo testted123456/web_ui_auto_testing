@@ -166,7 +166,6 @@ public class DBUtils {
 	}
 
 	public static String getOneLineValues(String dbname, String sql) {
-		System.out.println("sql=" + sql);
 		if (connection == null) {
 			connection = getConnection(dbname);
 		}
