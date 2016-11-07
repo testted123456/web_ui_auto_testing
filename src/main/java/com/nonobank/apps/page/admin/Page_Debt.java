@@ -85,7 +85,7 @@ public class Page_Debt extends BasePage {
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
 				lstElements.get(i).click();
-				break;
+				return;
 			}
 		}
 

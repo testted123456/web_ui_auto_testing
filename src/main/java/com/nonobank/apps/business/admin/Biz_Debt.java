@@ -6,11 +6,9 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id;
-	public static String from_id;
+	public static String bo_id = "275882";
+	public static String from_id = "15608";
 	public static double amount;
-	public static final double LOCK_NUM = 0;
-	public static final double HOLD_NUM = 0;
 
 	public void debt(String debtType, String search_username, String targetFpid) {
 
@@ -40,6 +38,7 @@ public class Biz_Debt {
 						"SELECT DISTINCT concat(fp.id,'：',fp.title) title FROM  vip_account va  LEFT JOIN  finance_plan fp on fp.id = va.fp_id WHERE  va.is_cash =1 and fp.title is not NULL ORDER BY  fp.id LIMIT  1");
 
 			}
+			targetFpid = "106：诺诺精选投资计划第106期";
 			page_Debt.select_targetFpid(targetFpid);
 			page_Debt.click_debtDetail();
 			page_Debt.click_debt();
@@ -97,7 +96,7 @@ public class Biz_Debt {
 		for (Object dsId : list) {
 			String str = getOneLineValues("SELECT residue_num from debt_sale where  id =" + dsId);
 			double actualValue = Double.parseDouble(str);
-			System.out.println("validate_lockNum********str1=" + actualValue + "********str2=" + exceptValue);
+			System.out.println("validate_residueNum********str1=" + actualValue + "********str2=" + exceptValue);
 			if (actualValue != exceptValue) {
 				return false;
 			}
@@ -106,18 +105,21 @@ public class Biz_Debt {
 
 	}
 
-	// public boolean validate_residueNum_transferNum(String task_status) {
-	// String str = getOneLineValues(
-	// "SELECT residue_num,transfer_Num from debt_sale where id = (SELECT ds_id
-	// from invt_debt_sale_task where status = "
-	// + task_status + " and bo_id = '" + bo_id + "' and from_id = '" + from_id
-	// + "' order by create_time desc limit 1)");
-	// String[] strs = str.split(",");
-	// System.out.println("validate_residueNum_transferNum********str1=" +
-	// strs[0] + "********str2="
-	// + Double.parseDouble(strs[1]));
-	// return Double.parseDouble(strs[0]) == Double.parseDouble(strs[1]);
-	// }
+	public boolean validate_residueNum_transferNum(String task_status) {
+		String sql = "SELECT ds_id from invt_debt_sale_task where status = " + task_status;
+		StringBuffer sb = getSql(sql);
+		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
+		for (Object dsId : list) {
+			String str = getOneLineValues("SELECT residue_num,transfer_Num from debt_sale where id = " + dsId);
+			String[] strs = str.split(",");
+			System.out.println("validate_residueNum_transferNum********str1=" + strs[0] + "********str2="
+					+ Double.parseDouble(strs[1]));
+			if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public boolean validate_price_sumTransAmountAndPayAmount(String task_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where status = " + task_status;
@@ -262,22 +264,15 @@ public class Biz_Debt {
 								+ log_status + " and tl.from_type =" + from_type + " and tl.id = " + id
 								+ " AND dea.bo_id = ds.bo_id order by dea.create_time desc");
 				String[] strs = str.split(",");
-				double[] values = new double[2];
-				for (int i = 0; i < strs.length; i++) {
-					values[i] = Double.parseDouble(strs[i]);
-				}
 				String str2 = getOneLineValues(
 						"SELECT sum(ba.price_principal),tl.amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task_log tl on tl.from_id = ba.va_id LEFT JOIN debt_sale ds on tl.ds_id = ds.id WHERE  ba.bo_id = ds.bo_id and ba.is_pay = "
 								+ is_pay + " and tl.id = " + id + " order by ba.create_time desc");
 				String[] strs2 = str2.split(",");
-				double[] values2 = new double[2];
-				for (int i = 0; i < strs2.length; i++) {
-					values2[i] = Double.parseDouble(strs2[i]);
-				}
-				System.out.println("validate_amount********str1=" + values2[1] + "********str2="
-						+ (values[1] / values[0]) * values2[0]);
+				System.out.println("validate_amount********str1=" + Double.parseDouble(strs2[1]) + "********str2="
+						+ (Double.parseDouble(strs[1]) / Double.parseDouble(strs[0])) * Double.parseDouble(strs2[0]));
 
-				if (values2[1] != (values[1] / values[0]) * values2[0]) {
+				if (Double.parseDouble(strs2[1]) != (Double.parseDouble(strs[1]) / Double.parseDouble(strs[0]))
+						* Double.parseDouble(strs2[0])) {
 					return false;
 				}
 			}
@@ -296,15 +291,12 @@ public class Biz_Debt {
 							+ log_status + " AND idstl.task_id = " + taskId
 							+ " and dea.va_id = idstl.from_id GROUP BY  idstl.from_id,idstl.ds_id");
 			String[] strs = str.split(",");
-			double[] values = new double[3];
-			for (int i = 0; i < strs.length; i++) {
-				values[i] = Double.parseDouble(strs[i]);
-			}
-			String str2 = getOneLineValues("SELECT sum(price_principal) FROM borrows_accept WHERE va_id =" + values[1]
-					+ " and bo_id=" + values[2] + " and borrows_accept.is_pay =" + is_pay);
-			System.out.println(
-					"validate_pricePrincipal********str1=" + values[0] + "********str2=" + Double.parseDouble(str2));
-			if (values[0] != Double.parseDouble(str2)) {
+			String str2 = getOneLineValues(
+					"SELECT sum(price_principal) FROM borrows_accept WHERE va_id =" + Double.parseDouble(strs[1])
+							+ " and bo_id=" + Double.parseDouble(strs[2]) + " and borrows_accept.is_pay =" + is_pay);
+			System.out.println("validate_pricePrincipal********str1=" + Double.parseDouble(strs[0]) + "********str2="
+					+ Double.parseDouble(str2));
+			if (Double.parseDouble(strs[0]) != Double.parseDouble(str2)) {
 				return false;
 			}
 		}
@@ -330,16 +322,18 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_countDebtBuyLog_countInvtProof(String task_status, String buy_status, String biz_type,
-			String proof_status) {
-		String sql = "SELECT ds_id from invt_debt_sale_task where status = " + task_status;
+			String proof_status, String log_status) {
+		String sql = "SELECT id,ds_id from invt_debt_sale_task where status = " + task_status;
 		StringBuffer sb = getSql(sql);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
-		for (Object dsId : lst) {
+		for (Object object : lst) {
+			String[] strs = object.toString().split(",");
 			String str = getOneLineValues(
-					"SELECT count(*) from debt_buy_log dbl where status = " + buy_status + " and ds_id = " + dsId);
+					"SELECT count(*) from debt_buy_log dbl where status = " + buy_status + " and ds_id = " + strs[1]);
 			String str2 = getOneLineValues(
 					"SELECT count(*) from invt_proof ip where biz_type = " + biz_type + " and status = " + proof_status
-							+ " and biz_id in (SELECT id from debt_buy_log where ds_id = " + dsId + ")");
+							+ " and biz_id in (SELECT id from invt_debt_sale_task_log where status = " + log_status
+							+ " and task_id = " + strs[0] + ") ");
 			System.out.println("validate_CountDebtBuyLog_CountInvtProof********str1=" + Double.parseDouble(str)
 					+ "********str2=" + Double.parseDouble(str2));
 			if (Double.parseDouble(str) != Double.parseDouble(str2)) {
@@ -349,11 +343,11 @@ public class Biz_Debt {
 		return true;
 	}
 
-	public boolean validate_sumHoldNum() {
+	public boolean validate_sumHoldNum(double exceptValue) {
 		String str = getOneLineValues("SELECT sum(hold_num) from debt_exchange_account dea where  va_id = " + from_id
 				+ " and bo_id = '" + bo_id + "' order by dea.create_time desc");
-		System.out.println("validate_sumHoldNum*****str1=" + HOLD_NUM + "*****str2=" + Double.parseDouble(str));
-		return Double.parseDouble(str) == HOLD_NUM;
+		System.out.println("validate_sumHoldNum*****str1=" + exceptValue + "*****str2=" + Double.parseDouble(str));
+		return Double.parseDouble(str) == exceptValue;
 	}
 
 	public boolean validate_sumPrice(double exceptValue, String is_pay, String from_type) {
@@ -396,8 +390,7 @@ public class Biz_Debt {
 		for (Object id : lst) {
 			String str = getOneLineValues(
 					"SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
-							+ from_type + " and ba.bo_id = ds.bo_id and ba.is_pay =" + is_pay + " and idst.id = " + id
-							+ ")");
+							+ from_type + " and ba.bo_id = ds.bo_id and ba.is_pay =" + is_pay + " and idst.id = " + id);
 			String[] strs = str.split(",");
 			System.out.println("validate_subPriceAndPayAmount_sumPricePrincipal*****str1=" + Double.parseDouble(strs[1])
 					+ "*****str2=" + Double.parseDouble(strs[0]));

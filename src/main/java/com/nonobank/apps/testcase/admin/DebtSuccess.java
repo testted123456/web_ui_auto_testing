@@ -19,16 +19,16 @@ public class DebtSuccess extends BaseCase {
 	public static final String BUY_STATUS = "1";
 	public static final String SALE_STATUS = "1";
 	public static final String PROOF_STATUS = "1";
-	public static final String BIZ_TYPE = "2";
+	public static final String BIZ_TYPE = "1";
 	public static final String ORDER_STATUS = "2";
 	public static final String FROM_TYPE = "1";
 	public static final String IS_PAY = "0";
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username) {
-		biz_Login.login(username, password);
-		biz_Home.navigate_to_financePlanProfit();
-		biz_Debt.debt("Success", search_username, null);
+//		biz_Login.login(username, password);
+//		biz_Home.navigate_to_financePlanProfit();
+//		biz_Debt.debt("Success", search_username, null);
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 1.校验lock_num=0
@@ -58,7 +58,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 7.校验sum(price_in)=trans_amount
-		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount(TASK_STATUS, LOG_STATUS);
+		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount(TASK_STATUS, BUY_STATUS);
 		Assert.assertEquals(true, result_sumPriceIn_transAmount);
 
 		// 8.校验sum(buy_num)=transfer_num
@@ -73,7 +73,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 10.校验debt_buy_log记录=invt_proof记录
 		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
+				BUY_STATUS, BIZ_TYPE, PROOF_STATUS,LOG_STATUS);
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		// 11.校验amount
@@ -81,7 +81,7 @@ public class DebtSuccess extends BaseCase {
 		Assert.assertEquals(true, result_amount);
 
 		// 12.校验hold_num=0
-		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum();
+		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum(0);
 		Assert.assertEquals(true, result_sumHoldNum);
 
 		// 13.校验sum(price_principal)=0
