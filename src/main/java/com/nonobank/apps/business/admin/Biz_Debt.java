@@ -10,7 +10,6 @@ public class Biz_Debt {
 	public static String from_id = "15608";
 	public static double amount;
 
-
 	public void debt(String debtType, String search_username, String targetFpid) {
 
 		page_Debt.input_fpId(search_username);
@@ -265,22 +264,15 @@ public class Biz_Debt {
 								+ log_status + " and tl.from_type =" + from_type + " and tl.id = " + id
 								+ " AND dea.bo_id = ds.bo_id order by dea.create_time desc");
 				String[] strs = str.split(",");
-				double[] values = new double[2];
-				for (int i = 0; i < strs.length; i++) {
-					values[i] = Double.parseDouble(strs[i]);
-				}
 				String str2 = getOneLineValues(
 						"SELECT sum(ba.price_principal),tl.amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task_log tl on tl.from_id = ba.va_id LEFT JOIN debt_sale ds on tl.ds_id = ds.id WHERE  ba.bo_id = ds.bo_id and ba.is_pay = "
 								+ is_pay + " and tl.id = " + id + " order by ba.create_time desc");
 				String[] strs2 = str2.split(",");
-				double[] values2 = new double[2];
-				for (int i = 0; i < strs2.length; i++) {
-					values2[i] = Double.parseDouble(strs2[i]);
-				}
-				System.out.println("validate_amount********str1=" + values2[1] + "********str2="
-						+ (values[1] / values[0]) * values2[0]);
+				System.out.println("validate_amount********str1=" + Double.parseDouble(strs2[1]) + "********str2="
+						+ (Double.parseDouble(strs[1]) / Double.parseDouble(strs[0])) * Double.parseDouble(strs2[0]));
 
-				if (values2[1] != (values[1] / values[0]) * values2[0]) {
+				if (Double.parseDouble(strs2[1]) != (Double.parseDouble(strs[1]) / Double.parseDouble(strs[0]))
+						* Double.parseDouble(strs2[0])) {
 					return false;
 				}
 			}
@@ -299,15 +291,12 @@ public class Biz_Debt {
 							+ log_status + " AND idstl.task_id = " + taskId
 							+ " and dea.va_id = idstl.from_id GROUP BY  idstl.from_id,idstl.ds_id");
 			String[] strs = str.split(",");
-			double[] values = new double[3];
-			for (int i = 0; i < strs.length; i++) {
-				values[i] = Double.parseDouble(strs[i]);
-			}
-			String str2 = getOneLineValues("SELECT sum(price_principal) FROM borrows_accept WHERE va_id =" + values[1]
-					+ " and bo_id=" + values[2] + " and borrows_accept.is_pay =" + is_pay);
-			System.out.println(
-					"validate_pricePrincipal********str1=" + values[0] + "********str2=" + Double.parseDouble(str2));
-			if (values[0] != Double.parseDouble(str2)) {
+			String str2 = getOneLineValues(
+					"SELECT sum(price_principal) FROM borrows_accept WHERE va_id =" + Double.parseDouble(strs[1])
+							+ " and bo_id=" + Double.parseDouble(strs[2]) + " and borrows_accept.is_pay =" + is_pay);
+			System.out.println("validate_pricePrincipal********str1=" + Double.parseDouble(strs[0]) + "********str2="
+					+ Double.parseDouble(str2));
+			if (Double.parseDouble(strs[0]) != Double.parseDouble(str2)) {
 				return false;
 			}
 		}
