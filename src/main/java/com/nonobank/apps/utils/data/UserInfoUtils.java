@@ -29,8 +29,10 @@ public class UserInfoUtils {
 	}
 
 	public static String getBindedCardUser(String param) {
+		String password = StringUtils.md5("it789123");
 		Connection con = DBUtils.getNonoConnection();
-		String sql = "select "+param+" from user_info ui, user_bankcard_info ubi where   ui.id=ubi.user_id order by ui.id desc limit 1";
+		String sql = "select " + param + " from user_info ui, user_bankcard_info ubi where password = " + password
+				+ " and  ui.id=ubi.user_id order by ui.id desc limit 1";
 		String mobile_num = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();
 		return mobile_num;
