@@ -26,10 +26,40 @@ public class Biz_Register {
 		}
 		page_Register.click_next_step();
 		page_Register.is_password_not_consistent();
-//		page_Register.input_check_code();
-//		page_Register.click_sms_code();
-//		page_Register.input_sms_code();
-//		page_Register.click_reg_over_btn();
+		page_Register.input_check_code();
+		page_Register.click_sms_code();
+		page_Register.input_sms_code();
+		page_Register.click_reg_over_btn();
+	}
+	
+	//注册两次输入密码不一致
+	public void register_pwd_unconsistent(String mobile, String user_name, String password, String password2, String... strs) {
+		navigate_to_register();
+		logger.info("开始输入注册信息...");
+		page_Register.input_mobile(mobile);
+		page_Register.input_username(user_name);
+		page_Register.input_password(password);
+		page_Register.input_password2(password2);
+		if (strs.length > 0) {
+			page_Register.input_invite(strs[0]);
+		}
+		page_Register.click_next_step();
+		page_Register.is_password_not_consistent();
+	}
+	
+	//校验登录用户名格式
+	public void register_username_format(String mobile, String user_name, String password, String password2, String... strs) {
+		navigate_to_register();
+		logger.info("开始输入注册信息...");
+		page_Register.input_mobile(mobile);
+		page_Register.input_username(user_name);
+		page_Register.input_password(password);
+		page_Register.input_password2(password2);
+		if (strs.length > 0) {
+			page_Register.input_invite(strs[0]);
+		}
+		page_Register.click_next_step();
+		page_Register.is_username_not_format();
 	}
 
 	// 跳转到注册页

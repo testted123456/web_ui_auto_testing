@@ -59,6 +59,19 @@ public class Page_Register extends BasePage {
 		}
 		return flag;
 	}
+	
+	//用户名不符合格式信息提示
+	public boolean is_username_not_format(){
+		boolean flag = false;
+		if(isElementExists("error",WebElementType.WebLabel,15)){
+			WebLabel label_error = objectFactory.getWebLabel("error");
+			String text = label_error.getText();
+			if(text.equals("6-16位字符，可以是字母、数字、下划线的组合")){
+				flag = true;
+			}
+		}
+		return flag;
+	}
 
 	// 输入密码
 	public void input_password(String password) {
