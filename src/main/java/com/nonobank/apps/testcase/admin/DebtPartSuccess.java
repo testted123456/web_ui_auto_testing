@@ -15,6 +15,7 @@ public class DebtPartSuccess extends BaseCase {
 	Biz_Home biz_Home = new Biz_Home();
 	Biz_Debt biz_Debt = new Biz_Debt();
 	public static final String TASK_STATUS = "6";
+	public static final String SALE_STATUS = "3";
 	public static final String LOG_STATUS = "2";
 	public static final String PROOF_STATUS = "1";
 	public static final String BIZ_TYPE = "2";
@@ -31,7 +32,7 @@ public class DebtPartSuccess extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0,测试第1点
-		boolean result_lockNum = biz_Debt.validate_lockNum(0, TASK_STATUS, "3");
+		boolean result_lockNum = biz_Debt.validate_lockNum(0, "5", SALE_STATUS);
 		Assert.assertEquals(true, result_lockNum);
 
 		// 校验residue_num=Transfer_num-sum(buy_num),测试第2点
@@ -68,7 +69,7 @@ public class DebtPartSuccess extends BaseCase {
 
 		// 校验debt_buy_log表记录=invt_proof表记录
 		boolean result_countDebtBuyLog_countInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, BIZ_TYPE, PROOF_STATUS,LOG_STATUS);
+				BUY_STATUS, BIZ_TYPE, PROOF_STATUS, LOG_STATUS);
 		Assert.assertEquals(true, result_countDebtBuyLog_countInvtProof);
 		// 校验amount,测试第10点
 		boolean result_amount = biz_Debt.validate_amount(TASK_STATUS, LOG_STATUS, FROM_TYPE, IS_PAY);

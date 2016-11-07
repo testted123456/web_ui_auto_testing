@@ -10,12 +10,10 @@ public class Assertion {
 	public static void fail(String msg, Object expected, Object actual) {
 		try {
 			Assert.assertEquals(expected, actual);
+			logger.info(msg + "成功");
 		} catch (Error e) {
 			logger.error(msg + "预期值:" + expected + ",实际值:" + actual);
 		}
 	}
 
-	public static void main(String[] args) {
-		fail("aaa", 1, 1);
-	}
 }
