@@ -46,6 +46,19 @@ public class Page_Register extends BasePage {
 		}
 		return false;
 	}
+	
+	//两次输入不一致的密码信息提示
+	public boolean is_password_not_consistent(){
+		boolean flag = false;
+		if(isElementExists("error",WebElementType.WebLabel,15)){
+			WebLabel label_error = objectFactory.getWebLabel("error");
+			String text = label_error.getText();
+			if(text.equals("两次输入的密码不一致")){
+				flag = true;
+			}
+		}
+		return flag;
+	}
 
 	// 输入密码
 	public void input_password(String password) {

@@ -25,10 +25,11 @@ public class Biz_Register {
 			page_Register.input_invite(strs[0]);
 		}
 		page_Register.click_next_step();
-		page_Register.input_check_code();
-		page_Register.click_sms_code();
-		page_Register.input_sms_code();
-		page_Register.click_reg_over_btn();
+		page_Register.is_password_not_consistent();
+//		page_Register.input_check_code();
+//		page_Register.click_sms_code();
+//		page_Register.input_sms_code();
+//		page_Register.click_reg_over_btn();
 	}
 
 	// 跳转到注册页
