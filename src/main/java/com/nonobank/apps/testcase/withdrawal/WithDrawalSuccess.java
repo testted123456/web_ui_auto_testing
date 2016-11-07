@@ -20,7 +20,7 @@ public class WithDrawalSuccess extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password) {
 		logger.info("begin to test...");
-		biz_Login.login(mobile, password, "mobile_num");
+		biz_Login.login(mobile, password);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Withdrawal.navigate_to_withdrawal();

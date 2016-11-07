@@ -10,7 +10,7 @@ public class LoginValidateUnRegisterMobile extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password) {
-		biz_Login.login(mobile, password, "mobile_num");
+		biz_Login.login(mobile, password);
 
 	}
 }

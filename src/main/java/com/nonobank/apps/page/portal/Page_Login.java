@@ -20,9 +20,9 @@ public class Page_Login extends BasePage {
 		logger.info(PageUtils.getUrl());
 	}
 
-	public void input_username(String usernmae, String param) {
+	public void input_username(String username) {
 		WebInput input_username = objectFactory.getWebInput("loginname");
-		input_username.clearAndInput(usernmae);
+		input_username.clearAndInput(username);
 	}
 
 	public void input_password(String password) {

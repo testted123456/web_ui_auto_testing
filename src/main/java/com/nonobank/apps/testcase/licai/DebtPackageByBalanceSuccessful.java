@@ -29,10 +29,10 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful = new Biz_Licai_Payment_Successful();
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String cardno, String money, String pay_password,
-			String id, String amount) {
+	public void test(String mobile, String password, String cardno, String money, String pay_password, String id,
+			String amount) {
 
-		biz_Login.login(mobile, password, "mobile_num");
+		biz_Login.login(mobile, password);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge(cardno, mobile);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
