@@ -73,7 +73,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 10.校验debt_buy_log记录=invt_proof记录
 		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, BIZ_TYPE, PROOF_STATUS,LOG_STATUS);
+				BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		// 11.校验amount

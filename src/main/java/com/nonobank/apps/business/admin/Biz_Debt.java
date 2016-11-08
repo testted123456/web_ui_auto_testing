@@ -327,7 +327,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_countDebtBuyLog_countInvtProof(String task_status, String buy_status, String biz_type,
-			String proof_status, String log_status) {
+			String proof_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
