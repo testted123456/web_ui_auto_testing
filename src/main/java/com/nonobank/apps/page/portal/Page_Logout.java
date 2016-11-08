@@ -12,6 +12,9 @@ import com.nonobank.apps.utils.page.PageUtils;
 public class Page_Logout extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_Logout.class);
 	
+	/**
+	 * 退出登录
+	 */
 	public void nagivate_to_logout(){
 		logger.info("退出登录...");
 		String url_logout = ParseProperties.getInstance().getProperty("url") +  "/Login/logout";
@@ -32,6 +35,10 @@ public class Page_Logout extends BasePage {
 		}
 	}
 
+	/**
+	 * 判断是否已退出登录
+	 * @return true:已退出登录 false:未退出登录
+	 */
 	public boolean isLoginExist(){
 		if(isElementExists("Login", WebElementType.WebLink, 15)){
 			WebLink link_login = objectFactory.getWebLink("Login");

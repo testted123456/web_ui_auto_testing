@@ -11,12 +11,17 @@ public class Page_Portal extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_Portal.class);
 
-	// 跳转到注册页
+	/**
+	 * 跳转到注册页
+	 */
 	public void navigate_to_register() {
 		WebLink link_register = objectFactory.getWebLink("register");
 		link_register.click();
 	}
 
+	/**
+	 * 点击进入我的账户
+	 */
 	public void click_my_account() {
 		// String current_url = PageUtils.getUrl();
 		// String url = ParseProperties.getInstance().getProperty("url");
@@ -34,11 +39,17 @@ public class Page_Portal extends BasePage {
 		}
 	}
 
+	/**
+	 * 点击进入注册页面
+	 */
 	public void click_register() {
 		WebLink link_register = objectFactory.getWebLink("register");
 		link_register.click();
 	}
 
+	/**
+	 * 关闭首页悬浮框
+	 */
 	public void close_dialog() {
 		if (isElementExists("dialog_close", WebElementType.WebLink, 15)) {
 			WebLink link_close_dialog = objectFactory.getWebLink("dialog_close");

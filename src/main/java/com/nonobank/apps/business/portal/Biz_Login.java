@@ -11,11 +11,21 @@ public class Biz_Login {
 
 	Page_Login page_Login = new Page_Login();
 
+	/**
+	 * nagivate_to_login 跳转到登录页面
+	 */
 	public void nagivate_to_login() {
 		logger.info("跳转到登录页面...");
 		page_Login.nagivate_to_login();
 	}
 
+	/**
+	 * 
+	 * login 登录
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param param 参数
+	 */
 	public void login(String username, String password, String param) {
 		nagivate_to_login();
 		logger.info("登录...");
@@ -25,6 +35,11 @@ public class Biz_Login {
 		page_Login.submit();
 	}
 
+	/**
+	 * is_login_success 登录成功或失败
+	 * 
+	 * @return true:成功 false:失败
+	 */
 	public boolean is_login_success() {
 		boolean flag = page_Login.isElementDisplayed("head_name", WebElementType.WebLink, 15);
 
