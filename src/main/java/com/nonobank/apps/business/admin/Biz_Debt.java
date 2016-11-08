@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id = "1366522";
-	public static String from_id = "25659";
+	public static String bo_id;
+	public static String from_id;
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
@@ -78,9 +78,8 @@ public class Biz_Debt {
 	public boolean validate_lockNum(double exceptValue, String task_status, String sale_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> list = getMulLineValues(sb.toString());
+		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
-			System.out.println("************************dsId=" + dsId);
 			String str = getOneLineValues(
 					"SELECT lock_num from debt_sale where status = " + sale_status + " and id =" + dsId);
 			double actualValue = Double.parseDouble(str);
@@ -95,7 +94,7 @@ public class Biz_Debt {
 	public boolean validate_residueNum(double exceptValue, String task_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> list = getMulLineValues(sb.toString());
+		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
 			String str = getOneLineValues("SELECT residue_num from debt_sale where  id =" + dsId);
 			double actualValue = Double.parseDouble(str);
@@ -111,7 +110,7 @@ public class Biz_Debt {
 	public boolean validate_residueNum_transferNum(String task_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> list = getMulLineValues(sb.toString());
+		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
 			System.out.println("******************dsId=" + dsId);
 			String str = getOneLineValues("SELECT residue_num,transfer_Num from debt_sale where id = " + dsId);
@@ -128,7 +127,7 @@ public class Biz_Debt {
 	public boolean validate_price_sumTransAmountAndPayAmount(String task_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1 =1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> list = getMulLineValues(sb.toString());
+		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
 			String str = getOneLineValues(
 					"SELECT price,sum(trans_amount+pay_amount) from debt_sale where  id =" + dsId);
@@ -146,7 +145,7 @@ public class Biz_Debt {
 		String sql = "SELECT id from invt_debt_sale_task where 1=1";
 
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object id : lst) {
 			String str = getOneLineValues(
 					"SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE "
@@ -164,7 +163,7 @@ public class Biz_Debt {
 	public boolean validate_sumBuyNum_transferNum(String task_status, String log_status) {
 		String sql = "SELECT id,ds_id from invt_debt_sale_task where 1 = 1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object object : lst) {
 			String[] strs = object.toString().split(",");
 			String str = getOneLineValues("SELECT sum(buy_num) from invt_debt_sale_task_log idstl where status = "
@@ -182,7 +181,7 @@ public class Biz_Debt {
 	public boolean validate_sumBuyNum_transferNum2(String task_status, String buy_log, String sale_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1 =1 ";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = getOneLineValues(
 					"SELECT sum(buy_num) from debt_buy_log dbl where status = " + buy_log + " and ds_id  = " + dsId);
@@ -201,7 +200,7 @@ public class Biz_Debt {
 			String proof_status, String biz_type) {
 		String sql = "SELECT bo_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object boId : lst) {
 
 			String str = getOneLineValues("SELECT count(*) from invt_debt_sale_task_log idstl  where status= "
@@ -223,7 +222,7 @@ public class Biz_Debt {
 	public boolean validate_sumPriceIn_transAmount(String task_status, String log_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = getOneLineValues(
 					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id LEFT JOIN  invt_debt_sale_task idst on idst.ds_id = ds.id WHERE  idst.ds_id = "
@@ -240,7 +239,7 @@ public class Biz_Debt {
 			String order_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = getOneLineValues(
 					"SELECT count(*) from debt_buy_log dbl where  status = " + buy_status + " and ds_id = " + dsId);
@@ -258,10 +257,11 @@ public class Biz_Debt {
 	public boolean validate_amount(String task_status, String log_status, String from_type, String is_pay) {
 		String sql = "SELECT id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> taskIds = getMulLineValues(sb.toString());
+		List<Object> taskIds = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object taskId : taskIds) {
-			List<Object> lst = getMulLineValues("SELECT id from invt_debt_sale_task_log idstl where status = "
-					+ log_status + " and task_id = " + taskId);
+			List<Object> lst = DBUtils.getMulLineValues("nono",
+					"SELECT id from invt_debt_sale_task_log idstl where status = " + log_status + " and task_id = "
+							+ taskId);
 			for (Object id : lst) {
 				String str = getOneLineValues(
 						"SELECT dea.hold_num,tl.buy_num FROM debt_exchange_account dea LEFT JOIN invt_debt_sale_task_log tl on dea.va_id= tl.from_id  LEFT JOIN debt_sale ds on ds.id = tl.ds_id WHERE  tl.status = "
@@ -288,7 +288,7 @@ public class Biz_Debt {
 	public boolean validate_pricePrincipal(String task_status, String log_status, String is_pay) {
 		String sql = "SELECT id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> taskIds = getMulLineValues(sb.toString());
+		List<Object> taskIds = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object taskId : taskIds) {
 			String str = getOneLineValues(
 					"SELECT sum(idstl.amount)/sum(idstl.buy_num)*dea.hold_num price,  idstl.from_id vaid ,dea.bo_id boid FROM invt_debt_sale_task_log idstl  INNER JOIN debt_sale ds on ds.id = idstl.ds_id  INNER JOIN debt_exchange_account dea on dea.bo_id = ds.bo_id  WHERE idstl.status = "
@@ -310,7 +310,7 @@ public class Biz_Debt {
 	public boolean validate_holdNum_transferNum(String task_status, String from_type) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> taskIds = getMulLineValues(sb.toString());
+		List<Object> taskIds = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object taskId : taskIds) {
 			String str = getOneLineValues(
 					"SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
@@ -329,7 +329,7 @@ public class Biz_Debt {
 			String proof_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = getOneLineValues(
 					"SELECT count(*) from debt_buy_log dbl where status = " + buy_status + " and ds_id = " + dsId);
@@ -388,7 +388,7 @@ public class Biz_Debt {
 			String from_type) {
 		String sql = "SELECT id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> lst = getMulLineValues(sb.toString());
+		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object id : lst) {
 			String str = getOneLineValues(
 					"SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
@@ -406,7 +406,7 @@ public class Biz_Debt {
 	public boolean validate_residueNum_subTransferNumSumBuyNum(String task_status, String log_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> values = getMulLineValues(sb.toString());
+		List<Object> values = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object string : values) {
 			String str = getOneLineValues(
 					"SELECT ds.transfer_num- sum(idstl.buy_num),ds.residue_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = "
@@ -425,7 +425,7 @@ public class Biz_Debt {
 	public boolean validate_sumBuyNum_subTransferNumAndResidueNum(String task_status, String buy_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> values = getMulLineValues(sb.toString());
+		List<Object> values = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : values) {
 			String str = getOneLineValues(
 					"SELECT sum(buy_num) from debt_buy_log dbl where status = " + buy_status + " and ds_id  = " + dsId);
@@ -442,7 +442,7 @@ public class Biz_Debt {
 	public boolean validate_residueNum_sumHoldNum(String task_status) {
 		String sql = "SELECT bo_id,ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> object = getMulLineValues(sb.toString());
+		List<Object> object = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object oneLineValues : object) {
 			String value = oneLineValues.toString();
 			String[] strs = value.split(",");
@@ -456,21 +456,6 @@ public class Biz_Debt {
 			}
 		}
 		return true;
-	}
-
-	public List<Object> getMulLineValues(String sql) {
-		List<Object> lst = null;
-		do {
-			lst = DBUtils.getMulLineValues("nono", sql);
-			if (lst == null || lst.size() == 0) {
-				try {
-					Thread.sleep(6000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		} while (lst == null || lst.size() == 0);
-		return lst;
 	}
 
 	public String getOneLineValues(String sql) {

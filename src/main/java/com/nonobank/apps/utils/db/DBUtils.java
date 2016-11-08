@@ -169,7 +169,19 @@ public class DBUtils {
 		if (connection == null) {
 			connection = getConnection(dbname);
 		}
-		Object obj = getOneLine(connection, sql);
+		Object obj = null;
+
+		do {
+			obj = getOneLine(connection, sql);
+			if (obj == null) {
+				try {
+					Thread.sleep(6000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		} while (obj == null);
+
 		String str = null;
 		if (obj instanceof Object[]) {
 			Object[] objs = (Object[]) obj;
@@ -186,7 +198,18 @@ public class DBUtils {
 
 	public static List<Object> getMulLineValues(String dbname, String sql) {
 		Connection con = getConnection(dbname);
-		List<Object[]> obj = getMulLine(con, sql);
+		List<Object[]> obj = null;
+
+		do {
+			obj = getMulLine(con, sql);
+			if (obj == null || obj.size() == 0) {
+				try {
+					Thread.sleep(6000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		} while (obj == null || obj.size() == 0);
 		List<Object> lst = new ArrayList<>();
 		for (Object[] objects : obj) {
 			Object[] newObjects = objects;
