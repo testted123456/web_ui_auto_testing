@@ -2,7 +2,6 @@ package com.nonobank.apps.business.admin;
 
 import java.util.List;
 import com.nonobank.apps.page.admin.Page_Debt;
-import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
@@ -75,9 +74,11 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_lockNum(double exceptValue, String task_status, String sale_status) {
-		String sql = "SELECT ds_id from invt_debt_sale_task where status =5 " + task_status;
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
+		if (task_status != null) {
+			sql = sql.concat("and status =" + task_status);
+		}
 		StringBuffer sb = getSql(sql);
-		System.out.println("********aaa=" + sb.toString());
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
 			String str = getOneLineValues(

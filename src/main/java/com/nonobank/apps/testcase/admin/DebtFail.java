@@ -27,7 +27,7 @@ public class DebtFail extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
+		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, null, SALE_STATUS);
 		Assert.assertEquals(true, result_lockNum);
 		// 校验residue_num=transfer_num
 		boolean result_residueNum_transferNum = biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
