@@ -469,7 +469,7 @@ public class Biz_Debt {
 					e.printStackTrace();
 				}
 			}
-		} while (lst == null);
+		} while (lst == null || lst.size() == 0);
 		return lst;
 	}
 
