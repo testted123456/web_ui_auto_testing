@@ -92,8 +92,9 @@ public class Page_Debt extends BasePage {
 	}
 
 	public WebElement get_debtMain(String xpath) {
-		WebInput input_vaId = objectFactory.getWebInput("vaId");
-		Biz_Debt.from_id = input_vaId.getValue();
+		// WebInput input_vaId = objectFactory.getWebInput("vaId");
+		WebElement element = objectFactory.getWebElement(By.xpath("//table[@id='table_1']/tbody/tr[2]/td[1]"));
+		Biz_Debt.from_id = element.getText();
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
 			String string = lstElements.get(i).getText();
