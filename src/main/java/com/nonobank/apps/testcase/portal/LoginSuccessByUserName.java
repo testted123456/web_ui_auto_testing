@@ -10,7 +10,7 @@ public class LoginSuccessByUserName extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String userName, String password) {
-		biz_Login.login(userName, password, "user_name");
+		biz_Login.login(userName, password);
 	}
 
 }

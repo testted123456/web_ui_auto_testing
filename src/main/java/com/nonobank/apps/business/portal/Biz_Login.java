@@ -19,6 +19,7 @@ public class Biz_Login {
 		page_Login.nagivate_to_login();
 	}
 
+
 	/**
 	 * 
 	 * login 登录
@@ -26,10 +27,10 @@ public class Biz_Login {
 	 * @param password 密码
 	 * @param param 参数
 	 */
-	public void login(String username, String password, String param) {
+	public void login(String username, String password) {
 		nagivate_to_login();
 		logger.info("登录...");
-		page_Login.input_username(username, param);
+		page_Login.input_username(username);
 		page_Login.input_password(password);
 		page_Login.input_checkCode();
 		page_Login.submit();

@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id = "275882";
-	public static String from_id = "15608";
+	public static String bo_id;
+	public static String from_id = "285910";
 	public static double amount;
 
 	public void debt(String debtType, String search_username, String targetFpid) {
@@ -65,8 +65,8 @@ public class Biz_Debt {
 			sb.append(" and from_id = '" + from_id + "'");
 		}
 		if (bo_id == null) {
-			sb.append("and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task ) AND from_id = "
-					+ from_id + " HAVING count(1)=1");
+			sb.append(
+					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =5) HAVING count(1)=1");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
@@ -74,8 +74,9 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_lockNum(double exceptValue, String task_status, String sale_status) {
-		String sql = "SELECT ds_id from invt_debt_sale_task where status = " + task_status;
+		String sql = "SELECT ds_id from invt_debt_sale_task where status =5 " + task_status;
 		StringBuffer sb = getSql(sql);
+		System.out.println("********aaa=" + sb.toString());
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
 			String str = getOneLineValues(

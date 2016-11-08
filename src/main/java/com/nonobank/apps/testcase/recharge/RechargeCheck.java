@@ -21,7 +21,7 @@ public class RechargeCheck extends BaseCase {
 		Biz_Portal biz_Portal = new Biz_Portal();
 		Biz_User_Recharge biz_User_Recharge1 = new Biz_User_Recharge();
 		Biz_User_RechargeConfirm biz_User_RechargeConfirm = new Biz_User_RechargeConfirm();
-		biz_Login.login(mobile, password, "mobile_num");
+		biz_Login.login(mobile, password);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge1.recharge(cardno, mobile);

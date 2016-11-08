@@ -23,14 +23,16 @@ public class Page_Login extends BasePage {
 		logger.info(PageUtils.getUrl());
 	}
 
+
 	/**
 	 * 输入用户名
 	 * @param usernmae 用户名
 	 * @param param
 	 */
-	public void input_username(String usernmae, String param) {
+	public void input_username(String username) {
+
 		WebInput input_username = objectFactory.getWebInput("loginname");
-		input_username.clearAndInput(usernmae);
+		input_username.clearAndInput(username);
 	}
 
 	/**

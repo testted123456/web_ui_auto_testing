@@ -10,6 +10,6 @@ public class LoginSuccessByMobile extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password) {
-		biz_Login.login(loginName, password, "mobile_num");
+		biz_Login.login(loginName, password);
 	}
 }
