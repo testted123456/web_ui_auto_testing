@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id;
-	public static String from_id;
+	public static String bo_id = "1366522";
+	public static String from_id = "25659";
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
@@ -464,7 +464,7 @@ public class Biz_Debt {
 			lst = DBUtils.getMulLineValues("nono", sql);
 			if (lst == null || lst.size() == 0) {
 				try {
-					Thread.sleep(60000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -479,7 +479,7 @@ public class Biz_Debt {
 			str = DBUtils.getOneLineValues("nono", sql);
 			if (str == null) {
 				try {
-					Thread.sleep(60000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
