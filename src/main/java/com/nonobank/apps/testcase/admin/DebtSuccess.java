@@ -19,7 +19,7 @@ public class DebtSuccess extends BaseCase {
 	public static final String BUY_STATUS = "1";
 	public static final String SALE_STATUS = "1";
 	public static final String PROOF_STATUS = "1";
-	public static final String BIZ_TYPE = "1";
+	public static final String BIZ_TYPE = "2";
 	public static final String ORDER_STATUS = "2";
 	public static final String FROM_TYPE = "1";
 	public static final String IS_PAY = "0";
