@@ -6,8 +6,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id;
-	public static String from_id = "285910";
+	public static String bo_id = "1324105";
+	public static String from_id = "15352";
 	public static double amount;
 
 	public void debt(String debtType, String search_username, String targetFpid) {
@@ -59,7 +59,7 @@ public class Biz_Debt {
 		StringBuffer sb = new StringBuffer();
 		sb.append(sql);
 		if (task_status != null) {
-			sb.append("and status =" + task_status);
+			sb.append(" and status =" + task_status);
 		}
 		if (bo_id != null) {
 			sb.append(" and bo_id = '" + bo_id + "'");
@@ -93,7 +93,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_residueNum(double exceptValue, String task_status) {
-		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1 ";
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
@@ -126,7 +126,7 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_price_sumTransAmountAndPayAmount(String task_status) {
-		String sql = "SELECT ds_id from invt_debt_sale_task where 1 =1 ";
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1 =1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
@@ -221,13 +221,13 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_sumPriceIn_transAmount(String task_status, String log_status) {
-		String sql = "SELECT id from invt_debt_sale_task where 1=1";
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
-		for (Object taskId : lst) {
+		for (Object dsId : lst) {
 			String str = getOneLineValues(
-					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id LEFT JOIN  invt_debt_sale_task idst on idst.ds_id = ds.id WHERE  idst.id = "
-							+ taskId + " and dbl.status = " + log_status);
+					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id LEFT JOIN  invt_debt_sale_task idst on idst.ds_id = ds.id WHERE  idst.ds_id = "
+							+ dsId + " and dbl.status = " + log_status);
 			String[] strs = str.split(",");
 			if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
 				return false;
