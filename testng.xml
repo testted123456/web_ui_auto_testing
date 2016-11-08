@@ -8,7 +8,7 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<test name="Nonobank_Debt" preserve-order="true">
+	<!-- <test name="Nonobank_Debt" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.admin.DebtFail" />
 			<class name="com.nonobank.apps.testcase.admin.DebtPartSuccess" />
@@ -98,6 +98,11 @@
 		<classes>
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+		</classes>
+	</test> -->
+	<test name="withdrawal" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
 		</classes>
 	</test>
 </suite>

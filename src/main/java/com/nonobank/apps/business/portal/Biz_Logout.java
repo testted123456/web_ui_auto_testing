@@ -11,6 +11,9 @@ public class Biz_Logout {
 
 	Page_Logout page_Logout = new Page_Logout();
 
+	/**
+	 * 退出登录
+	 */
 	public void logout() {
 		logger.info("退出登录...");
 		page_Logout.nagivate_to_logout();

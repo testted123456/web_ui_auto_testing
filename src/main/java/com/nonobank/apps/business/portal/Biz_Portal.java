@@ -11,11 +11,17 @@ public class Biz_Portal {
 	Page_Portal page_Portal= new Page_Portal();
 
 
+	/**
+	 * 跳转到我的账户页面
+	 */
 	public void navigate_to_myaccount() {
 		logger.info("跳转到我的账户页面...");
 		page_Portal.click_my_account();
 	}
 
+	/**
+	 * 关闭悬浮窗口
+	 */
 	public void close_dialog() {
 		logger.info("关闭首页悬浮窗口...");
 		page_Portal.close_dialog();

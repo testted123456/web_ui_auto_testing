@@ -14,22 +14,39 @@ public class Page_Login extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_Login.class);
 
+	/**
+	 * 跳转到登录页面
+	 */
 	public void nagivate_to_login() {
 		String url_login = ParseProperties.getInstance().getProperty("url") + "/Login";
 		driver.navigate().to(url_login);
 		logger.info(PageUtils.getUrl());
 	}
 
+
+	/**
+	 * 输入用户名
+	 * @param usernmae 用户名
+	 * @param param
+	 */
 	public void input_username(String username) {
+
 		WebInput input_username = objectFactory.getWebInput("loginname");
 		input_username.clearAndInput(username);
 	}
 
+	/**
+	 * 输入密码
+	 * @param password 密码
+	 */
 	public void input_password(String password) {
 		WebInput input_password = objectFactory.getWebInput("loginpwd");
 		input_password.clearAndInput(password);
 	}
 
+	/**
+	 * 输入验证码
+	 */
 	public void input_checkCode() {
 		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
@@ -38,6 +55,9 @@ public class Page_Login extends BasePage {
 		sleep(6000);
 	}
 
+	/**
+	 * 提交
+	 */
 	public void submit() {
 		WebButton button = objectFactory.getWebButton("btnlogin");
 		button.click();
