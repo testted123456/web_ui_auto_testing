@@ -166,13 +166,14 @@ public class DBUtils {
 	}
 
 	public static String getOneLineValues(String dbname, String sql) {
-		if (connection == null) {
-			connection = getConnection(dbname);
+		Connection conn = null;
+		if (conn == null) {
+			conn = getConnection(dbname);
 		}
 		Object obj = null;
 
 		do {
-			obj = getOneLine(connection, sql);
+			obj = getOneLine(conn, sql);
 			if (obj == null) {
 				try {
 					Thread.sleep(6000);
@@ -197,11 +198,14 @@ public class DBUtils {
 	}
 
 	public static List<Object> getMulLineValues(String dbname, String sql) {
-		Connection con = getConnection(dbname);
+		Connection conn = getConnection(dbname);
+		if (conn == null) {
+			conn = getConnection(dbname);
+		}
 		List<Object[]> obj = null;
 
 		do {
-			obj = getMulLine(con, sql);
+			obj = getMulLine(conn, sql);
 			if (obj == null || obj.size() == 0) {
 				try {
 					Thread.sleep(6000);
