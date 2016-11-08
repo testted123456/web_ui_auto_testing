@@ -484,7 +484,7 @@ public class Biz_Debt {
 					e.printStackTrace();
 				}
 			}
-		} while (str == null);
+		} while (str == null || str.length() == 0);
 		return str;
 	}
 
