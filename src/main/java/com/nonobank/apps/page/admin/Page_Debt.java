@@ -104,9 +104,9 @@ public class Page_Debt extends BasePage {
 			String text = string.substring(0, endIndex).replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
 			String debtCountString = string.substring(endIndex);
-			if (xpath == null) {
+			if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0 && xpath == null) {
 				return null;
-			} else if (!debtCountString.equals("(0/0)") && xpath != null) {
+			} else if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0 && xpath != null) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
 				return web;
