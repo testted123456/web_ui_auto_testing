@@ -11,7 +11,7 @@ public class Biz_Debt {
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
-		// fpId = "150：诺诺精选投资计划第150期";
+		 fpId = "150：诺诺精选投资计划第150期";
 		page_Debt.input_fpId(fpId);
 		page_Debt.click_query();
 		switch (debtType) {

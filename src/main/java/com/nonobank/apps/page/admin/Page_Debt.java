@@ -68,26 +68,27 @@ public class Page_Debt extends BasePage {
 
 	public void click_debt() {
 		logger.info("点击小债转......");
-		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+		List<WebElement> lstElements = null;
 		do {
-			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]");
 			try {
 				Thread.sleep(3000);
-				lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		} while (lstElements.size() == 0);
+
 		for (int i = 0; i < lstElements.size(); i++) {
-			System.out.println("*****************lstElements.get(" + i + ").getText()=" + lstElements.get(i).getText());
 			if (lstElements.get(i).getText().equals("债转")) {
+				System.out.println("****************************************************");
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
-				System.out.println("************=//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
 				String text = web.getText();
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
-				lstElements.get(i).click();
+				WebElement debt = objectFactory
+						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[9]/span");
+				debt.click();
 				return;
 			}
 		}
