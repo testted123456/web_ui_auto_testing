@@ -79,9 +79,11 @@ public class Page_Debt extends BasePage {
 			}
 		} while (lstElements.size() == 0);
 		for (int i = 0; i < lstElements.size(); i++) {
+			System.out.println("*****************lstElements.get(" + i + ").getText()=" + lstElements.get(i).getText());
 			if (lstElements.get(i).getText().equals("债转")) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
+				System.out.println("************=//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
 				String text = web.getText();
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
@@ -93,10 +95,6 @@ public class Page_Debt extends BasePage {
 	}
 
 	public WebElement get_debtMain(String xpath) {
-		WebElement element = objectFactory.getWebElement(By.xpath("//table[@id='table_1']/tbody/tr[2]/td[1]"));
-
-		Biz_Debt.from_id = element.getText();
-
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
 			String string = lstElements.get(i).getText();
@@ -104,12 +102,17 @@ public class Page_Debt extends BasePage {
 			String text = string.substring(0, endIndex).replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
 			String debtCountString = string.substring(endIndex);
-			if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0 && xpath == null) {
-				return null;
-			} else if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0 && xpath != null) {
-				WebElement web = objectFactory
-						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
-				return web;
+			if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0) {
+				WebElement webFromId = objectFactory
+						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[1]");
+				Biz_Debt.from_id = webFromId.getText();
+				if (xpath == null) {
+					return null;
+				} else if (xpath != null) {
+					WebElement web = objectFactory
+							.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
+					return web;
+				}
 			}
 		}
 		return null;

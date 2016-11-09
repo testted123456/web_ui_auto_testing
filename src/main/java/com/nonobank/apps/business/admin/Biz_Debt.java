@@ -11,7 +11,7 @@ public class Biz_Debt {
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
-		fpId = "150：诺诺精选投资计划第150期";
+		// fpId = "150：诺诺精选投资计划第150期";
 		page_Debt.input_fpId(fpId);
 		page_Debt.click_query();
 		switch (debtType) {
@@ -24,8 +24,8 @@ public class Biz_Debt {
 								+ amount + "  ORDER BY amount DESC LIMIT  1");
 
 			}
-			// page_Debt.select_targetFpid(targetFpid);
-			// page_Debt.click_debtMain();
+			page_Debt.select_targetFpid(targetFpid);
+			page_Debt.click_debtMain();
 			break;
 
 		case "Success":
@@ -142,14 +142,14 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_sumAmount_transAmount(String task_status, String log_status) {
-		String sql = "SELECT id from invt_debt_sale_task where 1=1";
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
-		for (Object id : lst) {
+		for (Object dsId : lst) {
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE "
-							+ " idstl.status = " + log_status + " and idst.id = " + id);
+							+ " idstl.status = " + log_status + " and idst.ds_id = " + dsId);
 			String[] strs = str.split(",");
 			System.out.println("validate_sumAmount_transAmount********str1=" + Double.parseDouble(strs[0])
 					+ "********str2=" + Double.parseDouble(strs[1]));
@@ -168,7 +168,7 @@ public class Biz_Debt {
 			String[] strs = object.toString().split(",");
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT sum(buy_num) from invt_debt_sale_task_log idstl where status = " + log_status
-							+ " and task_id = " + strs[0]);
+							+ " and ds_id = " + strs[1]);
 			String str2 = DBUtils.getOneLineValues("nono",
 					"SELECT transfer_num from debt_sale ds where id = " + strs[1]);
 			System.out.println("validate_sumBuyNum_transferNum********str1=" + Double.parseDouble(str) + "********str2="
@@ -228,7 +228,7 @@ public class Biz_Debt {
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = DBUtils.getOneLineValues("nono",
-					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id LEFT JOIN  invt_debt_sale_task idst on idst.ds_id = ds.id WHERE  idst.ds_id = "
+					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id  WHERE  ds.id = "
 							+ dsId + " and dbl.status = " + buy_status);
 			String[] strs = str.split(",");
 			System.out.println("validate_sumPriceIn_transAmount********str1=" + Double.parseDouble(strs[0])
