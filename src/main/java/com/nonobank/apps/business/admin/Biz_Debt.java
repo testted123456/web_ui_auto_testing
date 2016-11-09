@@ -7,7 +7,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id;
-	public static String from_id;
+	public static String from_id = "15474";
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
@@ -68,7 +68,7 @@ public class Biz_Debt {
 		}
 		if (bo_id == null) {
 			sb.append(
-					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =5) HAVING count(1)=1");
+					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =5) group by ds_id");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
@@ -78,8 +78,10 @@ public class Biz_Debt {
 	public boolean validate_lockNum(double exceptValue, String task_status, String sale_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
+		System.out.println("******************sb.toString()=" + sb.toString());
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
+			System.out.println("**************************dsId=" + dsId);
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT lock_num from debt_sale where status = " + sale_status + " and id =" + dsId);
 			double actualValue = Double.parseDouble(str);

@@ -19,7 +19,6 @@ public class DebtSuccess extends BaseCase {
 	public static final String BUY_STATUS = "1";
 	public static final String SALE_STATUS = "1";
 	public static final String PROOF_STATUS = "1";
-	public static final String BIZ_TYPE = "2";
 	public static final String ORDER_STATUS = "2";
 	public static final String FROM_TYPE = "1";
 	public static final String IS_PAY = "0";
@@ -54,7 +53,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 6.校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, BIZ_TYPE);
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, "1");
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 7.校验sum(price_in)=trans_amount
@@ -73,7 +72,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 10.校验debt_buy_log记录=invt_proof记录
 		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
+				BUY_STATUS, "2", PROOF_STATUS);
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		// 11.校验amount
