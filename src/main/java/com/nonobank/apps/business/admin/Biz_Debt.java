@@ -161,16 +161,14 @@ public class Biz_Debt {
 	}
 
 	public boolean validate_sumBuyNum_transferNum(String task_status, String log_status) {
-		String sql = "SELECT id,ds_id from invt_debt_sale_task where 1 = 1";
+		String sql = "SELECT ds_id from invt_debt_sale_task where 1 = 1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
-		for (Object object : lst) {
-			String[] strs = object.toString().split(",");
+		for (Object dsId : lst) {
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT sum(buy_num) from invt_debt_sale_task_log idstl where status = " + log_status
-							+ " and ds_id = " + strs[1]);
-			String str2 = DBUtils.getOneLineValues("nono",
-					"SELECT transfer_num from debt_sale ds where id = " + strs[1]);
+							+ " and ds_id = " + dsId);
+			String str2 = DBUtils.getOneLineValues("nono", "SELECT transfer_num from debt_sale ds where id = " + dsId);
 			System.out.println("validate_sumBuyNum_transferNum********str1=" + Double.parseDouble(str) + "********str2="
 					+ Double.parseDouble(str2));
 			if (Double.parseDouble(str) != Double.parseDouble(str2)) {
