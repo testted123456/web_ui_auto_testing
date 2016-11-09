@@ -53,7 +53,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 6.校验invt_debt_sale_task_log记录=invt_proof记录
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, "1");
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, BUY_STATUS);
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 7.校验sum(price_in)=trans_amount

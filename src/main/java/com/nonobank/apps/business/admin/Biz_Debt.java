@@ -7,7 +7,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id;
-	public static String from_id = "15474";
+	public static String from_id;
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
