@@ -22,12 +22,13 @@ public class DebtPartSuccess extends BaseCase {
 	public static final String ORDER_STATUS = "2";
 	public static final String FROM_TYPE = "1";
 	public static final String IS_PAY = "0";
+	public static final String BIZ_TYPE = "1";
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username, String targetFpid) {
-		 biz_Login.login(username, password);
-		 biz_Home.navigate_to_financePlanProfit();
-		 biz_Debt.debt("PartSuccess", search_username, targetFpid);
+		biz_Login.login(username, password);
+		biz_Home.navigate_to_financePlanProfit();
+		biz_Debt.debt("PartSuccess", search_username, targetFpid);
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0,测试第1点
@@ -49,7 +50,7 @@ public class DebtPartSuccess extends BaseCase {
 
 		// 校验sum(amount)=trans_amount,测试第5点
 		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(null, LOG_STATUS, PROOF_STATUS, "1");
+				.validate_countInvtDebtSaleTaskLog_countInvtProof(null, LOG_STATUS, PROOF_STATUS, BIZ_TYPE);
 		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
 
 		// 校验sum(price_in)=trans_amount,测试第6点

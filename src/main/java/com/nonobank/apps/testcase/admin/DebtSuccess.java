@@ -22,6 +22,7 @@ public class DebtSuccess extends BaseCase {
 	public static final String ORDER_STATUS = "2";
 	public static final String FROM_TYPE = "1";
 	public static final String IS_PAY = "0";
+	public static final String BIZ_TYPE = "2";
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username) {
@@ -72,7 +73,7 @@ public class DebtSuccess extends BaseCase {
 
 		// 10.校验debt_buy_log记录=invt_proof记录
 		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, "2", PROOF_STATUS);
+				BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
 		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
 
 		// 11.校验amount
