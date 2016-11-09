@@ -1,5 +1,6 @@
 package com.nonobank.apps.page.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -92,9 +93,10 @@ public class Page_Debt extends BasePage {
 	}
 
 	public WebElement get_debtMain(String xpath) {
-		// WebInput input_vaId = objectFactory.getWebInput("vaId");
 		WebElement element = objectFactory.getWebElement(By.xpath("//table[@id='table_1']/tbody/tr[2]/td[1]"));
+
 		Biz_Debt.from_id = element.getText();
+
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
 			String string = lstElements.get(i).getText();
@@ -102,7 +104,7 @@ public class Page_Debt extends BasePage {
 			String text = string.substring(0, endIndex).replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
 			String debtCountString = string.substring(endIndex);
-			if (!debtCountString.equals("(0/0)") && xpath == null) {
+			if (xpath == null) {
 				return null;
 			} else if (!debtCountString.equals("(0/0)") && xpath != null) {
 				WebElement web = objectFactory
@@ -112,4 +114,14 @@ public class Page_Debt extends BasePage {
 		}
 		return null;
 	}
+
+	public List<String> getFromIds() {
+		List<String> lst = new ArrayList<String>();
+		List<WebElement> lstElements = objectFactory.getWebElements(By.xpath("//table[@id='table_1']/tbody/tr/td[1]"));
+		for (int i = 0; i < lstElements.size(); i++) {
+			lst.add(lstElements.get(i).getText());
+		}
+		return lst;
+	}
+
 }

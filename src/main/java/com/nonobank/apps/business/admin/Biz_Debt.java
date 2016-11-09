@@ -24,8 +24,8 @@ public class Biz_Debt {
 								+ amount + "  ORDER BY amount DESC LIMIT  1");
 
 			}
-			page_Debt.select_targetFpid(targetFpid);
-			page_Debt.click_debtMain();
+			// page_Debt.select_targetFpid(targetFpid);
+			// page_Debt.click_debtMain();
 			break;
 
 		case "Success":
@@ -222,15 +222,17 @@ public class Biz_Debt {
 
 	}
 
-	public boolean validate_sumPriceIn_transAmount(String task_status, String log_status) {
+	public boolean validate_sumPriceIn_transAmount(String task_status, String buy_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> lst = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : lst) {
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id LEFT JOIN  invt_debt_sale_task idst on idst.ds_id = ds.id WHERE  idst.ds_id = "
-							+ dsId + " and dbl.status = " + log_status);
+							+ dsId + " and dbl.status = " + buy_status);
 			String[] strs = str.split(",");
+			System.out.println("validate_sumPriceIn_transAmount********str1=" + Double.parseDouble(strs[0])
+					+ "********str2=" + Double.parseDouble(strs[1]));
 			if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
 				return false;
 			}
@@ -466,4 +468,20 @@ public class Biz_Debt {
 		return true;
 	}
 
+	public String getFromId(String debtType) {
+		List<String> fromIds = page_Debt.getFromIds();
+		String sql = "SELECT * from invt_debt_sale_task where 1=1";
+		StringBuffer sb = getSql(sql, null);
+
+		for (String fromId : fromIds) {
+			from_id = fromId;
+			List<Object> object = DBUtils.getMulLineValues("nono", sb.toString());
+			if (object.size() > 0) {
+				return from_id;
+			}
+
+			return from_id;
+		}
+		return null;
+	}
 }
