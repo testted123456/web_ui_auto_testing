@@ -112,7 +112,6 @@ public class Biz_Debt {
 		StringBuffer sb = getSql(sql, task_status);
 		List<Object> list = DBUtils.getMulLineValues("nono", sb.toString());
 		for (Object dsId : list) {
-			System.out.println("******************dsId=" + dsId);
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT residue_num,transfer_Num from debt_sale where id = " + dsId);
 			String[] strs = str.split(",");
@@ -315,11 +314,11 @@ public class Biz_Debt {
 	public boolean validate_holdNum_transferNum(String task_status, String from_type) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		StringBuffer sb = getSql(sql, task_status);
-		List<Object> taskIds = DBUtils.getMulLineValues("nono", sb.toString());
-		for (Object taskId : taskIds) {
+		List<Object> dsIds = DBUtils.getMulLineValues("nono", sb.toString());
+		for (Object dsId : dsIds) {
 			String str = DBUtils.getOneLineValues("nono",
 					"SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
-							+ from_type + " and dea.bo_id = ds.bo_id AND idst.id = " + taskId);
+							+ from_type + " and dea.bo_id = ds.bo_id AND idst.ds_id = " + dsId);
 			String[] strs = str.split(",");
 			System.out.println("validate_holdNum_transferNum********str1=" + Double.parseDouble(strs[0])
 					+ "********str2=" + Double.parseDouble(strs[1]));
