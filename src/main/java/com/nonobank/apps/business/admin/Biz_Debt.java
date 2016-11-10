@@ -8,7 +8,7 @@ public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id;
 	public static String from_id;
-	public static String PartSuccessTargetFpid;
+	public static String partSuccessTargetFpid;
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
@@ -17,7 +17,7 @@ public class Biz_Debt {
 		switch (debtType) {
 		case "PartSuccess":
 			page_Debt.handle_debtMain(null);
-			page_Debt.select_targetFpid(PartSuccessTargetFpid);
+			page_Debt.select_targetFpid(partSuccessTargetFpid);
 			page_Debt.click_debtMain();
 			break;
 
@@ -32,12 +32,8 @@ public class Biz_Debt {
 			page_Debt.click_debt();
 			break;
 		}
-
-		if (page_Debt.isAlertExists(3000)) {
-			page_Debt.closeAlert();
-		}
-		if (page_Debt.isAlertExists(3000)) {
-			page_Debt.closeAlert();
+		if (page_Debt.isAlertExists(6000)) {
+			page_Debt.acceptAlert();
 		}
 
 	}

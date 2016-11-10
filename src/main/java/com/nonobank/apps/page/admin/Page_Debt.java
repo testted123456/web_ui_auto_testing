@@ -113,10 +113,10 @@ public class Page_Debt extends BasePage {
 					web.click();
 					return;
 				} else {
-					Biz_Debt.PartSuccessTargetFpid = DBUtils.getOneLineValues("nono",
+					Biz_Debt.partSuccessTargetFpid = DBUtils.getOneLineValues("nono",
 							"SELECT title  FROM ( SELECT concat(fp.id,'：',fp.title)  title ,sum(fa.balance-fa.locking) amount FROM user_info ui LEFT JOIN finance_account fa on fa.user_id = ui.id LEFT JOIN  vip_account va on va.id = fa.owner_id LEFT JOIN  vip_autobidder vab on vab.va_id = va.id  LEFT JOIN finance_plan fp on fp.id = vab.fp_id WHERE  fa.role_id = 13 and date_sub(vab.deadline, INTERVAL 3 DAY) > date(now() ) and va.is_cash =0   and fa.balance-fa.locking >100 AND fp.title is NOT NULL GROUP BY fp.id) a WHERE  amount<"
 									+ Biz_Debt.amount + "  ORDER BY amount DESC LIMIT  1");
-					if (Biz_Debt.PartSuccessTargetFpid != null) {
+					if (Biz_Debt.partSuccessTargetFpid != null) {
 						return;
 					}
 				}
