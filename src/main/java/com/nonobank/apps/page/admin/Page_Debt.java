@@ -78,7 +78,6 @@ public class Page_Debt extends BasePage {
 
 		for (int i = 0; i < lstElements.size(); i++) {
 			if (lstElements.get(i).getText().equals("债转")) {
-				System.out.println("****************************************************");
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
 				String text = web.getText();
