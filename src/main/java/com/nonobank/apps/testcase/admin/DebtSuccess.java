@@ -2,7 +2,6 @@ package com.nonobank.apps.testcase.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.admin.Biz_Debt;
 import com.nonobank.apps.business.admin.Biz_Home;
@@ -32,69 +31,49 @@ public class DebtSuccess extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 1.校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0, TASK_STATUS, SALE_STATUS);
-		Assert.assertEquals(true, result_lockNum);
+		biz_Debt.validate_lockNum(0, TASK_STATUS, SALE_STATUS);
 
 		// 2.校验residue_num字段
-		boolean result_residueNum = biz_Debt.validate_residueNum(0, TASK_STATUS);
-		Assert.assertEquals(true, result_residueNum);
+		biz_Debt.validate_residueNum(0, TASK_STATUS);
 
 		// 3.校验sum(trans_amout+pay_amount)=price
-		boolean result_price_sumTransAmountAndPayAmount = biz_Debt
-				.validate_price_sumTransAmountAndPayAmount(TASK_STATUS);
-		Assert.assertEquals(true, result_price_sumTransAmountAndPayAmount);
+		biz_Debt.validate_price_sumTransAmountAndPayAmount(TASK_STATUS);
 
 		// 4.校验trans_amount=sum(amount)
-		boolean result_sumAmount_transAmount = biz_Debt.validate_sumAmount_transAmount(TASK_STATUS, LOG_STATUS);
-		Assert.assertEquals(true, result_sumAmount_transAmount);
+		biz_Debt.validate_sumAmount_transAmount(TASK_STATUS, LOG_STATUS);
 
 		// 5.校验transfer_num=sum(buy_num)
-		boolean result_sumBuyNum_transferNum = biz_Debt.validate_sumBuyNum_transferNum(TASK_STATUS, LOG_STATUS);
-		Assert.assertEquals(true, result_sumBuyNum_transferNum);
+		biz_Debt.validate_sumBuyNum_transferNum(TASK_STATUS, LOG_STATUS);
 
 		// 6.校验invt_debt_sale_task_log记录=invt_proof记录
-		boolean result_CountInvtDebtSaleTaskLog_CountInvtProof = biz_Debt
-				.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, BUY_STATUS);
-		Assert.assertEquals(true, result_CountInvtDebtSaleTaskLog_CountInvtProof);
+		biz_Debt.validate_countInvtDebtSaleTaskLog_countInvtProof(TASK_STATUS, LOG_STATUS, PROOF_STATUS, BUY_STATUS);
 
 		// 7.校验sum(price_in)=trans_amount
-		boolean result_sumPriceIn_transAmount = biz_Debt.validate_sumPriceIn_transAmount(TASK_STATUS, BUY_STATUS);
-		Assert.assertEquals(true, result_sumPriceIn_transAmount);
+		biz_Debt.validate_sumPriceIn_transAmount(TASK_STATUS, BUY_STATUS);
 
 		// 8.校验sum(buy_num)=transfer_num
-		boolean result_sumBuyNum_transferNum2 = biz_Debt.validate_sumBuyNum_transferNum2(TASK_STATUS, BUY_STATUS,
-				SALE_STATUS);
-		Assert.assertEquals(true, result_sumBuyNum_transferNum2);
+		biz_Debt.validate_sumBuyNum_transferNum2(TASK_STATUS, BUY_STATUS, SALE_STATUS);
 
 		// 9.校验debt_buy_log记录=invt_trd_order记录
-		boolean result_CountdebtBuyLog_CountInvtTrdOrder = biz_Debt
-				.validate_countdebtBuyLog_countInvtTrdOrder(TASK_STATUS, BUY_STATUS, ORDER_STATUS);
-		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtTrdOrder);
+		biz_Debt.validate_countdebtBuyLog_countInvtTrdOrder(TASK_STATUS, BUY_STATUS, ORDER_STATUS);
 
 		// 10.校验debt_buy_log记录=invt_proof记录
-		boolean result_CountdebtBuyLog_CountInvtProof = biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS,
-				BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
-		Assert.assertEquals(true, result_CountdebtBuyLog_CountInvtProof);
+		biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS, BUY_STATUS, BIZ_TYPE, PROOF_STATUS);
 
 		// 11.校验amount
-		boolean result_amount = biz_Debt.validate_amount(TASK_STATUS, LOG_STATUS, FROM_TYPE, IS_PAY);
-		Assert.assertEquals(true, result_amount);
+		biz_Debt.validate_amount(TASK_STATUS, LOG_STATUS, FROM_TYPE, IS_PAY);
 
 		// 12.校验hold_num=0
-		boolean result_sumHoldNum = biz_Debt.validate_sumHoldNum(0);
-		Assert.assertEquals(true, result_sumHoldNum);
+		biz_Debt.validate_sumHoldNum(0);
 
 		// 13.校验sum(price_principal)=0
-		boolean result_sumpricePrincipal = biz_Debt.validate_sumPricePrincipal(0, IS_PAY, FROM_TYPE);
-		Assert.assertEquals(true, result_sumpricePrincipal);
+		biz_Debt.validate_sumPricePrincipal(0, IS_PAY, FROM_TYPE);
 
 		// 14.校验sum(price_interest)=0
-		boolean result_sumPriceInterest = biz_Debt.validate_sumPriceInterest(0, IS_PAY, FROM_TYPE);
-		Assert.assertEquals(true, result_sumPriceInterest);
+		biz_Debt.validate_sumPriceInterest(0, IS_PAY, FROM_TYPE);
 
 		// 15.校验sum(price)=0
-		boolean result_sumPrice = biz_Debt.validate_sumPrice(0, IS_PAY, FROM_TYPE);
-		Assert.assertEquals(true, result_sumPrice);
+		biz_Debt.validate_sumPrice(0, IS_PAY, FROM_TYPE);
 
 	}
 }

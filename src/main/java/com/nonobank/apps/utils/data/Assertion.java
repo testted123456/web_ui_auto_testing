@@ -19,7 +19,10 @@ public class Assertion {
 		}
 	}
 
-	public static void main(String[] args) {
-		assertEquals(1,0,Assertion.class,"比较数值");
+	public static void assertEquals(Class clazz, String msg) {
+		logger = LogManager.getLogger(clazz);
+		logger.error(msg + "执行返回为空值");
+		Assert.fail();
 	}
+
 }

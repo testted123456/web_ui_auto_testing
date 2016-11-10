@@ -2,7 +2,6 @@ package com.nonobank.apps.testcase.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.admin.Biz_Debt;
 import com.nonobank.apps.business.admin.Biz_Home;
@@ -21,25 +20,21 @@ public class DebtFail extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username, String targetFpid) {
-		 biz_Login.login(username, password);
-		 biz_Home.navigate_to_financePlanProfit();
-		 biz_Debt.debt("Fail", search_username, targetFpid);
+		biz_Login.login(username, password);
+		biz_Home.navigate_to_financePlanProfit();
+		biz_Debt.debt("Fail", search_username, targetFpid);
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
-		Assert.assertEquals(true, result_lockNum);
+		biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
 		// 校验residue_num=transfer_num
-		boolean result_residueNum_transferNum = biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
-		Assert.assertEquals(true, result_residueNum_transferNum);
+		biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
 		// 校验price_principal=price-pay_amount
-		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt
-				.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
-		Assert.assertEquals(true, result_subPriceAndPayAmount_sumPricePrincipal);
+		biz_Debt.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
 
 		// 校验hold_num=transfer_num
-		boolean result_holdNum_transferNum = biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
-		Assert.assertEquals(true, result_holdNum_transferNum);
+		biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
 
 	}
+
 }
