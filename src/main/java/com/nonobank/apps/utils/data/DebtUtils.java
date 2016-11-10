@@ -9,4 +9,9 @@ public class DebtUtils {
 		return search_fpId;
 	}
 
+	public static String getFailTargetFpid() {
+		String targetFpid = DBUtils.getOneLineValues("nono",
+				"SELECT DISTINCT concat(fp.id,'：',fp.title) title FROM  vip_account va  LEFT JOIN  finance_plan fp on fp.id = va.fp_id WHERE  va.is_cash =1 and fp.title is not NULL ORDER BY  fp.id LIMIT  1");
+		return targetFpid;
+	}
 }

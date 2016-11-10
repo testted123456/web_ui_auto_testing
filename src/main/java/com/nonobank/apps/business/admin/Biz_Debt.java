@@ -8,23 +8,16 @@ public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id;
 	public static String from_id;
+	public static String PartSuccessTargetFpid;
 	public static double amount;
 
 	public void debt(String debtType, String fpId, String targetFpid) {
-		 fpId = "150：诺诺精选投资计划第150期";
 		page_Debt.input_fpId(fpId);
 		page_Debt.click_query();
 		switch (debtType) {
 		case "PartSuccess":
-			if (targetFpid.equals("random")) {
-				page_Debt.get_debtMain(null);
-				System.out.println("*******************amount=" + amount);
-				targetFpid = DBUtils.getOneLineValues("nono",
-						"SELECT title  FROM ( SELECT concat(fp.id,'：',fp.title)  title ,sum(fa.balance-fa.locking) amount FROM user_info ui LEFT JOIN finance_account fa on fa.user_id = ui.id LEFT JOIN  vip_account va on va.id = fa.owner_id LEFT JOIN  vip_autobidder vab on vab.va_id = va.id  LEFT JOIN finance_plan fp on fp.id = vab.fp_id WHERE  fa.role_id = 13 and date_sub(vab.deadline, INTERVAL 3 DAY) > date(now() ) and va.is_cash =0   and fa.balance-fa.locking >100 AND fp.title is NOT NULL GROUP BY fp.id) a WHERE  amount<"
-								+ amount + "  ORDER BY amount DESC LIMIT  1");
-
-			}
-			page_Debt.select_targetFpid(targetFpid);
+			page_Debt.handle_debtMain(null);
+			page_Debt.select_targetFpid(PartSuccessTargetFpid);
 			page_Debt.click_debtMain();
 			break;
 
@@ -33,11 +26,7 @@ public class Biz_Debt {
 			page_Debt.click_debt();
 			break;
 		case "Fail":
-			if (targetFpid.equals("random")) {
-				targetFpid = DBUtils.getOneLineValues("nono",
-						"SELECT DISTINCT concat(fp.id,'：',fp.title) title FROM  vip_account va  LEFT JOIN  finance_plan fp on fp.id = va.fp_id WHERE  va.is_cash =1 and fp.title is not NULL ORDER BY  fp.id LIMIT  1");
 
-			}
 			page_Debt.select_targetFpid(targetFpid);
 			page_Debt.click_debtDetail();
 			page_Debt.click_debt();
@@ -68,7 +57,7 @@ public class Biz_Debt {
 		}
 		if (bo_id == null) {
 			sb.append(
-					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =5) group by ds_id");
+					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =5) group by ds_id HAVING count(1)=1");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
@@ -468,20 +457,4 @@ public class Biz_Debt {
 		return true;
 	}
 
-	public String getFromId(String debtType) {
-		List<String> fromIds = page_Debt.getFromIds();
-		String sql = "SELECT * from invt_debt_sale_task where 1=1";
-		StringBuffer sb = getSql(sql, null);
-
-		for (String fromId : fromIds) {
-			from_id = fromId;
-			List<Object> object = DBUtils.getMulLineValues("nono", sb.toString());
-			if (object.size() > 0) {
-				return from_id;
-			}
-
-			return from_id;
-		}
-		return null;
-	}
 }
