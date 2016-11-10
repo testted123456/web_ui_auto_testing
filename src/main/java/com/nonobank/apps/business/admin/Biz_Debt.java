@@ -1,5 +1,6 @@
 package com.nonobank.apps.business.admin;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import com.nonobank.apps.page.admin.Page_Debt;
 import com.nonobank.apps.utils.data.Assertion;
@@ -8,7 +9,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id;
-	public static String from_id = "15237";
+	public static String from_id = "15248";
 	public static String partSuccessTargetFpid;
 	public static double amount;
 
@@ -70,9 +71,7 @@ public class Biz_Debt {
 				sql = "SELECT lock_num from debt_sale where status = " + sale_status + " and id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				double actualValue = Double.parseDouble(str);
-				if (actualValue != exceptValue) {
-					Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -87,9 +86,7 @@ public class Biz_Debt {
 				sql = "SELECT residue_num from debt_sale where  id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				double actualValue = Double.parseDouble(str);
-				if (actualValue != exceptValue) {
-					Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -104,10 +101,7 @@ public class Biz_Debt {
 				sql = "SELECT residue_num,transfer_Num from debt_sale where id = " + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -122,10 +116,7 @@ public class Biz_Debt {
 				sql = "SELECT price,sum(trans_amount+pay_amount) from debt_sale where  id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -141,10 +132,7 @@ public class Biz_Debt {
 						+ " idstl.status = " + log_status + " and idst.ds_id = " + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -161,9 +149,7 @@ public class Biz_Debt {
 				String str = DBUtils.getOneLineValues("nono", sql);
 				sql = "SELECT transfer_num from debt_sale ds where id = " + dsId;
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -179,9 +165,7 @@ public class Biz_Debt {
 				String str = DBUtils.getOneLineValues("nono", sql);
 				sql = "SELECT transfer_num from debt_sale ds where status = " + sale_status + " and id = " + dsId;
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -201,9 +185,7 @@ public class Biz_Debt {
 						+ proof_status + " and biz_id in (SELECT id from invt_debt_sale_task_log where status = "
 						+ log_status + " and task_id = " + boId + ")";
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -219,10 +201,7 @@ public class Biz_Debt {
 						+ dsId + " and dbl.status = " + buy_status;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -239,9 +218,7 @@ public class Biz_Debt {
 				sql = "SELECT count(*) from invt_trd_order ito where status= " + order_status
 						+ " and  trans_id in (SELECT trans_id from debt_buy_log where ds_id = " + dsId + ")";
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -266,14 +243,11 @@ public class Biz_Debt {
 							+ is_pay + " and tl.id = " + id;
 					String str2 = DBUtils.getOneLineValues("nono", sql);
 					String[] strs2 = str2.split(",");
-
-					if (Double.parseDouble(strs2[1]) != (Double.parseDouble(strs[1]) / Double.parseDouble(strs[0]))
-							* Double.parseDouble(strs2[0])) {
-						Assertion.assertEquals(Double.parseDouble(strs2[1]),
-								(Double.parseDouble(strs[1]) / Double.parseDouble(strs[0]))
-										* Double.parseDouble(strs2[0]),
-								Biz_Debt.class, sql);
-					}
+					DecimalFormat df = new DecimalFormat("#.00");
+					str = df.format(Double.parseDouble(strs2[1]));
+					str2 = df.format(
+							(Double.parseDouble(strs[1]) / Double.parseDouble(strs[0])) * Double.parseDouble(strs2[0]));
+					Assertion.assertEquals(str, str2, Biz_Debt.class, sql);
 				}
 			}
 		} catch (Exception e) {
@@ -294,9 +268,7 @@ public class Biz_Debt {
 				sql = "SELECT sum(price_principal) FROM borrows_accept WHERE va_id =" + Double.parseDouble(strs[1])
 						+ " and bo_id=" + Double.parseDouble(strs[2]) + " and borrows_accept.is_pay =" + is_pay;
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -312,10 +284,7 @@ public class Biz_Debt {
 						+ from_type + " and dea.bo_id = ds.bo_id AND idst.ds_id = " + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -333,9 +302,7 @@ public class Biz_Debt {
 				sql = "SELECT count(*) from invt_proof ip where biz_type = " + biz_type + " and status = "
 						+ proof_status + " and biz_id in (SELECT id from debt_buy_log where  ds_id = " + dsId + ") ";
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -347,9 +314,7 @@ public class Biz_Debt {
 				+ bo_id + "' order by dea.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			if (Double.parseDouble(str) != exceptValue) {
-				Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
-			}
+			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -361,9 +326,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			if (Double.parseDouble(str) != exceptValue) {
-				Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
-			}
+			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -375,9 +338,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			if (Double.parseDouble(str) != exceptValue) {
-				Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
-			}
+			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -389,9 +350,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			if (Double.parseDouble(str) != exceptValue) {
-				Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
-			}
+			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -406,10 +365,7 @@ public class Biz_Debt {
 						+ from_type + " and ba.bo_id = ds.bo_id and ba.is_pay =" + is_pay + " and idst.id = " + id;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -425,11 +381,7 @@ public class Biz_Debt {
 						+ log_status + " and idstl.ds_id = " + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
 				String[] strs = str.split(",");
-
-				if (Double.parseDouble(strs[0]) != Double.parseDouble(strs[1])) {
-					Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class,
-							sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -446,9 +398,7 @@ public class Biz_Debt {
 				String str = DBUtils.getOneLineValues("nono", sql);
 				sql = "SELECT transfer_num-residue_num from debt_sale ds where id = " + dsId;
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -467,9 +417,7 @@ public class Biz_Debt {
 				String str = DBUtils.getOneLineValues("nono", sql);
 				sql = "SELECT residue_num FROM   debt_sale ds WHERE  id = " + strs[1];
 				String str2 = DBUtils.getOneLineValues("nono", sql);
-				if (Double.parseDouble(str) != Double.parseDouble(str2)) {
-					Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
-				}
+				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);

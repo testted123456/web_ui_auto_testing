@@ -31,7 +31,7 @@ public class DebtPartSuccess extends BaseCase {
 		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0,测试第1点
-		biz_Debt.validate_lockNum(0, null, "1");
+		biz_Debt.validate_lockNum(0, null, SALE_STATUS);
 
 		// 校验residue_num=Transfer_num-sum(buy_num),测试第2点
 		biz_Debt.validate_residueNum_subTransferNumSumBuyNum(null, LOG_STATUS);
