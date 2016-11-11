@@ -55,7 +55,7 @@ public class Biz_Debt {
 		}
 		if (bo_id == null) {
 			sb.append(
-					" and ds_id NOT IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status in(5,99)) group by ds_id HAVING count(1)=1");
+					" and ds_id IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =6) group by ds_id HAVING count(1)=1");
 			str = " order by create_time desc";
 		}
 		sb.append(str);
@@ -144,12 +144,11 @@ public class Biz_Debt {
 		try {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
-				sql = "SELECT sum(buy_num) from invt_debt_sale_task_log idstl where status = " + log_status
-						+ " and ds_id = " + dsId;
+				sql = "SELECT sum(idstl.buy_num),ds.transfer_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = "
+						+ log_status + " and ds.id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
-				sql = "SELECT transfer_num from debt_sale ds where id = " + dsId;
-				String str2 = DBUtils.getOneLineValues("nono", sql);
-				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
+				String[] strs = str.split(",");
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -161,11 +160,11 @@ public class Biz_Debt {
 		try {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
-				sql = "SELECT sum(buy_num) from debt_buy_log dbl where status = " + buy_log + " and ds_id  = " + dsId;
+				sql = "SELECT sum(dbl.buy_num),ds.transfer_num from debt_buy_log dbl,debt_sale ds  where dbl.ds_id  = ds.id and dbl.ds_id  = "
+						+ dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
-				sql = "SELECT transfer_num from debt_sale ds where status = " + sale_status + " and id = " + dsId;
-				String str2 = DBUtils.getOneLineValues("nono", sql);
-				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
+				String[] strs = str.split(",");
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -393,12 +392,11 @@ public class Biz_Debt {
 		try {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
-				sql = "SELECT sum(buy_num) from debt_buy_log dbl where status = " + buy_status + " and ds_id  = "
-						+ dsId;
+				sql = "SELECT sum(dbl.buy_num),ds.transfer_num-ds.residue_num from debt_buy_log dbl,debt_sale ds where dbl.ds_id=ds.id and dbl.status = "
+						+ buy_status + " and ds.id = " + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
-				sql = "SELECT transfer_num-residue_num from debt_sale ds where id = " + dsId;
-				String str2 = DBUtils.getOneLineValues("nono", sql);
-				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
+				String[] strs = str.split(",");
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);

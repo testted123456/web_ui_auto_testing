@@ -12,9 +12,9 @@ public class Assertion {
 
 		try {
 			Assert.assertEquals(expected, actual);
-			logger.info("检查点：" + msg + "-----------成功");
+			logger.info("检查点：" + msg + "-----------执行成功，预期值:" + expected + ",实际值:" + actual);
 		} catch (Error e) {
-			logger.error("检查点：" + msg + "-----------失败，预期值:" + expected + ",实际值:" + actual);
+			logger.error("检查点：" + msg + "-----------執行失败，预期值:" + expected + ",实际值:" + actual);
 			Assert.fail();
 		}
 	}

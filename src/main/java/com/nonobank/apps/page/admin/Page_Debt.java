@@ -89,7 +89,6 @@ public class Page_Debt extends BasePage {
 				return;
 			}
 		}
-
 	}
 
 	public void handle_debtMain(String xpath) {
@@ -122,5 +121,4 @@ public class Page_Debt extends BasePage {
 			}
 		}
 	}
-
 }
