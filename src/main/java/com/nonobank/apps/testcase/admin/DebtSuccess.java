@@ -28,7 +28,6 @@ public class DebtSuccess extends BaseCase {
 		biz_Login.login(username, password);
 		biz_Home.navigate_to_financePlanProfit();
 		biz_Debt.debt("Success", search_username, null);
-		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 1.校验lock_num=0
 		biz_Debt.validate_lockNum(0, TASK_STATUS, SALE_STATUS);

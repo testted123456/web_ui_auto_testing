@@ -37,25 +37,22 @@ public class Biz_Debt {
 		if (page_Debt.isAlertExists(6000)) {
 			page_Debt.acceptAlert();
 		}
-
+		System.out.println("**************bo_id=" + bo_id + "**************from_id=" + from_id);
 	}
 
 	private StringBuffer getSql(String sql, String task_status) {
 		String str = " order by update_time desc limit 1";
 		StringBuffer sb = new StringBuffer();
 		sb.append(sql);
-		if (task_status != null) {
-			sb.append(" and status =" + task_status);
-		}
-		if (bo_id != null) {
-			sb.append(" and bo_id = '" + bo_id + "'");
-		}
 		if (from_id != null) {
 			sb.append(" and from_id = '" + from_id + "'");
 		}
-		if (bo_id == null) {
-			sb.append(
-					" and ds_id IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =6) group by ds_id HAVING count(1)=1");
+		if (bo_id != null) {
+			sb.append(" and status =" + task_status);
+			sb.append(" and bo_id = '" + bo_id + "'");
+		} else {
+			sb.append(" and ds_id IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status ="
+					+ task_status + ") group by ds_id HAVING count(1)=1");
 			str = " order by update_time desc";
 		}
 		sb.append(str);

@@ -23,7 +23,6 @@ public class DebtFail extends BaseCase {
 		biz_Login.login(username, password);
 		biz_Home.navigate_to_financePlanProfit();
 		biz_Debt.debt("Fail", search_username, targetFpid);
-		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
 
 		// 校验lock_num=0
 		biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
