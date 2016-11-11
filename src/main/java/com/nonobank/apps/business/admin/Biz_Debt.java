@@ -121,8 +121,8 @@ public class Biz_Debt {
 		try {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
-				sql = "SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE "
-						+ " idstl.status = " + log_status + " and idst.ds_id = " + dsId;
+				sql = "SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN debt_sale ds on ds.id = idstl.ds_id WHERE idstl.status = "
+						+ log_status + " and ds.id = " + dsId;
 				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}

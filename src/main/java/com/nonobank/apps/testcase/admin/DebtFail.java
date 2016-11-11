@@ -24,14 +24,14 @@ public class DebtFail extends BaseCase {
 		biz_Home.navigate_to_financePlanProfit();
 		biz_Debt.debt("Fail", search_username, targetFpid);
 
-		// 校验lock_num=0
+		// 1.校验debt_sale表中lock_num=0
 		biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
-		// 校验residue_num=transfer_num
+		// 2.校验debt_sale表中residue_num=transfer_num
 		biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
-		// 校验price_principal=price-pay_amount
+		// 3.校验borrows_accept ba,debt_sale ds表中,sum(ba.price_principal)=ds.price-ds.pay_amount
 		biz_Debt.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
 
-		// 校验hold_num=transfer_num
+		// 4.校验debt_exchange_account dea,invt_debt_sale_task idst表中,其中dea.hold_num=ds.transfer_num
 		biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
 
 	}
