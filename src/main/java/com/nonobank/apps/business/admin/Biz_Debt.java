@@ -41,7 +41,7 @@ public class Biz_Debt {
 	}
 
 	private StringBuffer getSql(String sql, String task_status) {
-		String str = " order by create_time desc limit 1";
+		String str = " order by update_time desc limit 1";
 		StringBuffer sb = new StringBuffer();
 		sb.append(sql);
 		if (task_status != null) {
@@ -56,7 +56,7 @@ public class Biz_Debt {
 		if (bo_id == null) {
 			sb.append(
 					" and ds_id IN (SELECT invt_debt_sale_task.ds_id FROM invt_debt_sale_task where status =6) group by ds_id HAVING count(1)=1");
-			str = " order by create_time desc";
+			str = " order by update_time desc";
 		}
 		sb.append(str);
 		return sb;
@@ -70,8 +70,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT lock_num from debt_sale where status = " + sale_status + " and id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
-				double actualValue = Double.parseDouble(str);
-				Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
+				Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -85,8 +84,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT residue_num from debt_sale where  id =" + dsId;
 				String str = DBUtils.getOneLineValues("nono", sql);
-				double actualValue = Double.parseDouble(str);
-				Assertion.assertEquals(exceptValue, actualValue, Biz_Debt.class, sql);
+				Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
@@ -99,8 +97,7 @@ public class Biz_Debt {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
 				sql = "SELECT residue_num,transfer_Num from debt_sale where id = " + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -114,8 +111,7 @@ public class Biz_Debt {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
 			for (Object dsId : dsIds) {
 				sql = "SELECT price,sum(trans_amount+pay_amount) from debt_sale where  id =" + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -130,8 +126,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT sum(idstl.amount),ds.trans_amount FROM invt_debt_sale_task_log idstl LEFT JOIN  invt_debt_sale_task idst on idst.id = idstl.task_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE "
 						+ " idstl.status = " + log_status + " and idst.ds_id = " + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -146,8 +141,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT sum(idstl.buy_num),ds.transfer_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = "
 						+ log_status + " and ds.id =" + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -162,8 +156,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT sum(dbl.buy_num),ds.transfer_num from debt_buy_log dbl,debt_sale ds  where dbl.ds_id  = ds.id and dbl.ds_id  = "
 						+ dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -198,8 +191,7 @@ public class Biz_Debt {
 			for (Object dsId : ids) {
 				sql = "SELECT sum(dbl.price_in),ds.trans_amount FROM debt_buy_log dbl LEFT JOIN  debt_sale ds on ds.id = dbl.ds_id  WHERE  ds.id = "
 						+ dsId + " and dbl.status = " + buy_status;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -281,8 +273,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT dea.hold_num, ds.transfer_num FROM debt_exchange_account dea LEFT JOIN  invt_debt_sale_task idst on idst.from_id= dea.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
 						+ from_type + " and dea.bo_id = ds.bo_id AND idst.ds_id = " + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -313,7 +304,7 @@ public class Biz_Debt {
 				+ bo_id + "' order by dea.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
+			Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -325,7 +316,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
+			Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -337,7 +328,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
+			Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -349,7 +340,7 @@ public class Biz_Debt {
 				+ bo_id + "' and from_id = '" + from_id + "' order by ba.create_time desc";
 		try {
 			String str = DBUtils.getOneLineValues("nono", sql);
-			Assertion.assertEquals(Double.parseDouble(str), exceptValue, Biz_Debt.class, sql);
+			Assertion.assertEquals(exceptValue, Double.parseDouble(str), Biz_Debt.class, sql);
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
 		}
@@ -362,8 +353,7 @@ public class Biz_Debt {
 			for (Object id : ids) {
 				sql = "SELECT sum(ba.price_principal),ds.price-ds.pay_amount as amount FROM borrows_accept ba LEFT JOIN invt_debt_sale_task idst on idst.from_id = ba.va_id LEFT JOIN debt_sale ds on ds.id = idst.ds_id WHERE  idst.from_type="
 						+ from_type + " and ba.bo_id = ds.bo_id and ba.is_pay =" + is_pay + " and idst.id = " + id;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -378,8 +368,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT ds.transfer_num- sum(idstl.buy_num),ds.residue_num FROM invt_debt_sale_task_log idstl LEFT JOIN  debt_sale ds on ds.id = idstl.ds_id WHERE  idstl.status = "
 						+ log_status + " and idstl.ds_id = " + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
@@ -394,8 +383,7 @@ public class Biz_Debt {
 			for (Object dsId : dsIds) {
 				sql = "SELECT sum(dbl.buy_num),ds.transfer_num-ds.residue_num from debt_buy_log dbl,debt_sale ds where dbl.ds_id=ds.id and dbl.status = "
 						+ buy_status + " and ds.id = " + dsId;
-				String str = DBUtils.getOneLineValues("nono", sql);
-				String[] strs = str.split(",");
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
 				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
