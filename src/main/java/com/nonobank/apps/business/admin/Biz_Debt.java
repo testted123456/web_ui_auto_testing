@@ -8,8 +8,8 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
-	public static String bo_id;
-	public static String from_id = "15248";
+	public static String bo_id = "983616";
+	public static String from_id = "93660";
 	public static String partSuccessTargetFpid;
 	public static double amount;
 
@@ -389,18 +389,14 @@ public class Biz_Debt {
 	}
 
 	public void validate_residueNum_sumHoldNum(String task_status) {
-		String sql = getSql("SELECT bo_id,ds_id from invt_debt_sale_task where 1=1", task_status).toString();
+		String sql = getSql("SELECT ds_id from invt_debt_sale_task where 1=1", task_status).toString();
 		try {
-			List<Object> object = DBUtils.getMulLineValues("nono", sql);
-			for (Object oneLineValues : object) {
-				String value = oneLineValues.toString();
-				String[] strs = value.split(",");
-				sql = "SELECT sum(hold_num) from debt_exchange_account dea where  va_id =" + from_id + " and bo_id = "
-						+ strs[0];
-				String str = DBUtils.getOneLineValues("nono", sql);
-				sql = "SELECT residue_num FROM   debt_sale ds WHERE  id = " + strs[1];
-				String str2 = DBUtils.getOneLineValues("nono", sql);
-				Assertion.assertEquals(Double.parseDouble(str), Double.parseDouble(str2), Biz_Debt.class, sql);
+			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);
+			for (Object dsId : dsIds) {
+				sql = "SELECT dea.hold_num,ds.residue_num FROM debt_sale ds LEFT JOIN  debt_exchange_account dea   on dea.va_id = ds.va_id and ds.bo_id = dea.bo_id WHERE  ds.id = "
+						+ dsId;
+				String[] strs = DBUtils.getOneLineValues("nono", sql).split(",");
+				Assertion.assertEquals(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]), Biz_Debt.class, sql);
 			}
 		} catch (Exception e) {
 			Assertion.assertEquals(Biz_Debt.class, sql);
