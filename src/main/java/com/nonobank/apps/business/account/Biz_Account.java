@@ -3,31 +3,25 @@ package com.nonobank.apps.business.account;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.account.Page_Account;
-import com.nonobank.apps.utils.annotation.Info;
-import com.nonobank.apps.utils.annotation.Params;
+import com.nonobank.apps.utils.webintegration.Info;
+import com.nonobank.apps.utils.webintegration.Params;
+import com.nonobank.apps.utils.webintegration.Return;
 
-@Info(desc="帐户页面",dependency="com.")
+@Info(desc="账户页面",dependency="com.nonobank.apps.business.admin.Biz_Audit_VideoAuditView",isDisabled=false)
 public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
-
 	public Page_Account page_Account = new Page_Account();
 
-	/**
-	 * 跳转到银行账户页面
-	 */
+	@Info(desc="跳转到银行账户页面",dependency="tests()",isDisabled=false)
 	public void navigate_to_userbanks() {
 		logger.info("跳转到银行账户页面...");
 		page_Account.click_bank_account();
 	}
 
-	/**
-	 * 身份认证
-	 * @param myname
-	 * @param identity_ID
-	 */
-	@Info(desc="验证身份证号码",dependency="navigate_to_userbanks()")
+	@Info(desc="身份认证",dependency="navigate_to_userbanks()",isDisabled=false)
 	@Params(type={"String","String"},name={"myname","identity_ID"},desc={"用户名","身份证号码"})
-	public void IDVerification(String myname, String identity_ID) {
+	@Return(type="String",desc="test")
+	public String IDVerification(String myname, String identity_ID) {
 		logger.info("身份实名认证...");
 		page_Account.click_degreeCard();
 		page_Account.input_name(myname);
@@ -46,6 +40,7 @@ public class Biz_Account {
 				}
 			}
 		}
+		return "test";
 	}
 
 	// 设置支付密码
