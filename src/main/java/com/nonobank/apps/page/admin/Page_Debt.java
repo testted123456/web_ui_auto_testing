@@ -1,6 +1,5 @@
 package com.nonobank.apps.page.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +9,7 @@ import com.nonobank.apps.business.admin.Biz_Debt;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebSelect;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.db.DBUtils;
 
 public class Page_Debt extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_Debt.class);
@@ -56,45 +56,43 @@ public class Page_Debt extends BasePage {
 	public void click_debtDetail() {
 		logger.info("查询债转详情......");
 		switch_to_frameSet();
-		WebElement element = get_debtMain("/td[4]/span");
-		element.click();
+		handle_debtMain("/td[4]/span");
 	}
 
 	public void click_debtMain() {
 		logger.info("点击大债转......");
-		WebElement web = get_debtMain("/td[17]/span[1]/a");
-		web.click();
+		handle_debtMain("/td[17]/span[1]/a");
 	}
 
 	public void click_debt() {
 		logger.info("点击小债转......");
-		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+		List<WebElement> lstElements = null;
 		do {
-			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
+			lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]");
 			try {
 				Thread.sleep(3000);
-				lstElements = objectFactory.getWebElements("//table[@id='table_1']//table//tr/td[9]//a");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		} while (lstElements.size() == 0);
+
 		for (int i = 0; i < lstElements.size(); i++) {
-			System.out.println("*****************lstElements.get(" + i + ").getText()=" + lstElements.get(i).getText());
 			if (lstElements.get(i).getText().equals("债转")) {
 				WebElement web = objectFactory
 						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
-				System.out.println("************=//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[1]//a");
 				String text = web.getText();
 				int endIndex = text.indexOf("】");
 				Biz_Debt.bo_id = text.substring(1, endIndex);
-				lstElements.get(i).click();
+				WebElement debt = objectFactory
+						.getWebElement("//table[@id='table_1']//table//tr[" + (i + 2) + "]/td[9]/span");
+				debt.click();
 				return;
 			}
 		}
-
 	}
 
-	public WebElement get_debtMain(String xpath) {
+	public void handle_debtMain(String xpath) {
+		// 得到所有的[待收债权(个数)]
 		List<WebElement> lstElements = objectFactory.getWebElements("//table[@id='table_1']/tbody/tr/td[13]/span");
 		for (int i = 0; i < lstElements.size(); i++) {
 			String string = lstElements.get(i).getText();
@@ -102,29 +100,25 @@ public class Page_Debt extends BasePage {
 			String text = string.substring(0, endIndex).replace(",", "");
 			Biz_Debt.amount = Double.parseDouble(text);
 			String debtCountString = string.substring(endIndex);
+			// 判断[待收债权(个数)]符合条件
 			if (!debtCountString.equals("(0/0)") && Biz_Debt.amount != 0) {
 				WebElement webFromId = objectFactory
 						.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]/td[1]");
 				Biz_Debt.from_id = webFromId.getText();
-				if (xpath == null) {
-					return null;
-				} else if (xpath != null) {
+				if (xpath != null) {
 					WebElement web = objectFactory
 							.getWebElement("//table[@id='table_1']/tbody/tr[" + (i + 1) * 2 + "]" + xpath);
-					return web;
+					web.click();
+					return;
+				} else {
+					Biz_Debt.partSuccessTargetFpid = DBUtils.getOneLineValues("nono",
+							"SELECT title  FROM ( SELECT concat(fp.id,'：',fp.title)  title ,sum(fa.balance-fa.locking) amount FROM user_info ui LEFT JOIN finance_account fa on fa.user_id = ui.id LEFT JOIN  vip_account va on va.id = fa.owner_id LEFT JOIN  vip_autobidder vab on vab.va_id = va.id  LEFT JOIN finance_plan fp on fp.id = vab.fp_id WHERE  fa.role_id = 13 and date_sub(vab.deadline, INTERVAL 3 DAY) > date(now() ) and va.is_cash =0   and fa.balance-fa.locking >100 AND fp.title is NOT NULL GROUP BY fp.id) a WHERE  amount<"
+									+ Biz_Debt.amount + "  ORDER BY amount DESC LIMIT  1");
+					if (Biz_Debt.partSuccessTargetFpid != null) {
+						return;
+					}
 				}
 			}
 		}
-		return null;
 	}
-
-	public List<String> getFromIds() {
-		List<String> lst = new ArrayList<String>();
-		List<WebElement> lstElements = objectFactory.getWebElements(By.xpath("//table[@id='table_1']/tbody/tr/td[1]"));
-		for (int i = 0; i < lstElements.size(); i++) {
-			lst.add(lstElements.get(i).getText());
-		}
-		return lst;
-	}
-
 }

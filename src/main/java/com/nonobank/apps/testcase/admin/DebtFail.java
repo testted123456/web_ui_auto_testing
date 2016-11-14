@@ -2,7 +2,6 @@ package com.nonobank.apps.testcase.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.admin.Biz_Debt;
 import com.nonobank.apps.business.admin.Biz_Home;
@@ -21,25 +20,20 @@ public class DebtFail extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String username, String password, String search_username, String targetFpid) {
-		 biz_Login.login(username, password);
-		 biz_Home.navigate_to_financePlanProfit();
-		 biz_Debt.debt("Fail", search_username, targetFpid);
-		System.out.println("**************bo_id=" + Biz_Debt.bo_id + "**************from_id=" + Biz_Debt.from_id);
+		biz_Login.login(username, password);
+		biz_Home.navigate_to_financePlanProfit();
+		biz_Debt.debt("Fail", search_username, targetFpid);
 
-		// 校验lock_num=0
-		boolean result_lockNum = biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
-		Assert.assertEquals(true, result_lockNum);
-		// 校验residue_num=transfer_num
-		boolean result_residueNum_transferNum = biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
-		Assert.assertEquals(true, result_residueNum_transferNum);
-		// 校验price_principal=price-pay_amount
-		boolean result_subPriceAndPayAmount_sumPricePrincipal = biz_Debt
-				.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
-		Assert.assertEquals(true, result_subPriceAndPayAmount_sumPricePrincipal);
+		// 1.校验debt_sale表中lock_num=0
+		biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
+		// 2.校验debt_sale表中residue_num=transfer_num
+		biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
+		// 3.校验borrows_accept ba,debt_sale ds表中,sum(ba.price_principal)=ds.price-ds.pay_amount
+		biz_Debt.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
 
-		// 校验hold_num=transfer_num
-		boolean result_holdNum_transferNum = biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
-		Assert.assertEquals(true, result_holdNum_transferNum);
+		// 4.校验debt_exchange_account dea,invt_debt_sale_task idst表中,其中dea.hold_num=ds.transfer_num
+		biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
 
 	}
+
 }
