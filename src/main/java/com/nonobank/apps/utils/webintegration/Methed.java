@@ -6,6 +6,13 @@ public class Methed {
 	String name;
 	String desc;
 	String dependence;
+	boolean isDisabled;
+	public boolean isDisabled() {
+		return isDisabled;
+	}
+	public void setDisabled(boolean isDisabled) {
+		this.isDisabled = isDisabled;
+	}
 	List<Param> params;
 	public String getName() {
 		return name;

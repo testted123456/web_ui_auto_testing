@@ -6,6 +6,13 @@ public class Page {
 	String name;
 	String desc;
 	String dependence;
+	boolean isDisabled;
+	public boolean isDisabled() {
+		return isDisabled;
+	}
+	public void setDisabled(boolean isDisabled) {
+		this.isDisabled = isDisabled;
+	}
 	List<Methed> methods;
 	public String getName() {
 		return name;

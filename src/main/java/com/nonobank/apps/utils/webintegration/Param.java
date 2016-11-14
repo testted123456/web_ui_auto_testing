@@ -5,6 +5,13 @@ public class Param {
 	String name;
 	String desc;
 	String value;
+	boolean isDisabled;
+	public boolean isDisabled() {
+		return isDisabled;
+	}
+	public void setDisabled(boolean isDisabled) {
+		this.isDisabled = isDisabled;
+	}
 	public String getType() {
 		return type;
 	}

@@ -120,6 +120,7 @@ public class ClassUtils {
     		Info infclass = (Info) claz.getAnnotation(Info.class);
     		if(infclass!=null){
     			singlepage.setDesc(infclass.desc());
+    			singlepage.setDisabled(infclass.isDisabled());
     			singlepage.setDependence(infclass.dependency());
     		}
     		System.out.println(classpackagename);
@@ -136,6 +137,7 @@ public class ClassUtils {
     			if(minfo!=null){
     				siglemethod.setDesc(minfo.desc());
     				siglemethod.setDependence(minfo.dependency());
+    				siglemethod.setDisabled(minfo.isDisabled());
     			}
     			String[] paramNames = new String[]{};
     			String[] paramTypes = new String[]{};
@@ -169,8 +171,9 @@ public class ClassUtils {
     	
     }
     
-    public static void initDatas(String[] args){
-    	getClassesDetails("com.nonobank.apps.business");
+    public static void main(String[] args){
+    	FullPages full  = getClassesDetails("com.nonobank.apps.business");
+    	System.out.println(full);
 	}
 	
 }  
