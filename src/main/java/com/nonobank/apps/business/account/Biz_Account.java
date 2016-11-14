@@ -3,7 +3,10 @@ package com.nonobank.apps.business.account;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.account.Page_Account;
+import com.nonobank.apps.utils.annotation.Info;
+import com.nonobank.apps.utils.annotation.Params;
 
+@Info(desc="帐户页面",dependency="com.")
 public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
 
@@ -17,7 +20,13 @@ public class Biz_Account {
 		page_Account.click_bank_account();
 	}
 
-	// 身份认证
+	/**
+	 * 身份认证
+	 * @param myname
+	 * @param identity_ID
+	 */
+	@Info(desc="验证身份证号码",dependency="navigate_to_userbanks()")
+	@Params(type={"String","String"},name={"myname","identity_ID"},desc={"用户名","身份证号码"})
 	public void IDVerification(String myname, String identity_ID) {
 		logger.info("身份实名认证...");
 		page_Account.click_degreeCard();
