@@ -107,7 +107,7 @@ public class ClassUtils {
         }  
     } 
     
-    public static void getClassesDetails(String packageName){
+    public static FullPages getClassesDetails(String packageName){
     	List<Class<?>> clazzes = getClasses(packageName);
     	FullPages fullpages = new FullPages();
     	List<Page> pages = new ArrayList<Page>();
@@ -165,10 +165,11 @@ public class ClassUtils {
     		fullpages.setFullPages(pages);
     		System.out.println("========   ========="+pages.size());
     	}
+		return fullpages;
     	
     }
     
-    public static void main(String[] args){
+    public static void initDatas(String[] args){
     	getClassesDetails("com.nonobank.apps.business");
 	}
 	
