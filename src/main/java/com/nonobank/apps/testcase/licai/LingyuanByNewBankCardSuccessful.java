@@ -19,10 +19,10 @@ public class LingyuanByNewBankCardSuccessful extends BaseCase {
 	Biz_Portal biz_Portal;
 	Biz_Account biz_Account;
 
-	Biz_Licai_FinancePlan biz_Licai_FinancePlan = new Biz_Licai_FinancePlan();
-	Biz_Licai_Order biz_Licai_Order = new Biz_Licai_Order();
-	Biz_Licai_Payment biz_Licai_Payment = new Biz_Licai_Payment();
-	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful = new Biz_Licai_Payment_Successful();
+	Biz_Licai_FinancePlan biz_Licai_FinancePlan;
+	Biz_Licai_Order biz_Licai_Order;
+	Biz_Licai_Payment biz_Licai_Payment;
+	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String myname,

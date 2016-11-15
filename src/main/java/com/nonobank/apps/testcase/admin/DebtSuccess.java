@@ -10,9 +10,9 @@ import com.nonobank.apps.testcase.base.BaseCase;
 
 public class DebtSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(DebtSuccess.class);
-	Biz_Login biz_Login = new Biz_Login();
-	Biz_Home biz_Home = new Biz_Home();
-	Biz_Debt biz_Debt = new Biz_Debt();
+	Biz_Login biz_Login;
+	Biz_Home biz_Home;
+	Biz_Debt biz_Debt;
 	public static final String TASK_STATUS = "5";
 	public static final String LOG_STATUS = "2";
 	public static final String BUY_STATUS = "1";
@@ -74,7 +74,7 @@ public class DebtSuccess extends BaseCase {
 		biz_Debt.validate_sumPrice(0, IS_PAY, FROM_TYPE);
 
 		// 12.校验debt_buy_log记录=invt_trd_order记录
-		biz_Debt.validate_countdebtBuyLog_countInvtTrdOrder(TASK_STATUS, BUY_STATUS, ORDER_STATUS);
+		biz_Debt.validate_countDebtBuyLog_countInvtTrdOrder(TASK_STATUS, BUY_STATUS, ORDER_STATUS);
 
 		// 13.校验debt_buy_log记录=invt_proof记录
 		biz_Debt.validate_countDebtBuyLog_countInvtProof(TASK_STATUS, BUY_STATUS, BIZ_TYPE, PROOF_STATUS);

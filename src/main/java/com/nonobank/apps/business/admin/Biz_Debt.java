@@ -196,7 +196,7 @@ public class Biz_Debt {
 		}
 	}
 
-	public void validate_countdebtBuyLog_countInvtTrdOrder(String task_status, String buy_status, String order_status) {
+	public void validate_countDebtBuyLog_countInvtTrdOrder(String task_status, String buy_status, String order_status) {
 		String sql = getSql("SELECT ds_id from invt_debt_sale_task where 1=1", task_status).toString();
 		try {
 			List<Object> dsIds = DBUtils.getMulLineValues("nono", sql);

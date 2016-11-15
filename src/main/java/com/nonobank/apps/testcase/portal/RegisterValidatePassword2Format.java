@@ -6,15 +6,15 @@ import com.nonobank.apps.testcase.base.BaseCase;
 
 public class RegisterValidatePassword2Format extends BaseCase {
 
-	Biz_Register biz_Register = new Biz_Register();
+	Biz_Register biz_Register;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2) {
-		try{
+		try {
 			biz_Register.register_pwd_unconsistent(mobile, user_name, password, password2);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

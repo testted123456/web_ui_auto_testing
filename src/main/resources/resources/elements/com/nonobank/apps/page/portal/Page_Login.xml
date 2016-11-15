@@ -15,6 +15,6 @@
 	<!-- logout -->
 	<WebLink name="logout" xpath="//a[@href='/Login/logout']">
 	</WebLink>
-	<WebLink name="head_name" xpath="//a[@id='head_name']">
+	<WebLink name="account_name" xpath="//div[@class='account_name']">
 	</WebLink>
 </elements>

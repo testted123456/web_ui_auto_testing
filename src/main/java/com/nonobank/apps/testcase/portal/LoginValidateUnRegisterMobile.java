@@ -6,11 +6,11 @@ import com.nonobank.apps.testcase.base.BaseCase;
 
 public class LoginValidateUnRegisterMobile extends BaseCase {
 
-	Biz_Login biz_Login = new Biz_Login();
+	Biz_Login biz_Login;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password) {
-		biz_Login.login(mobile, password);
+		biz_Login.login(mobile, password, null);
 
 	}
 }
