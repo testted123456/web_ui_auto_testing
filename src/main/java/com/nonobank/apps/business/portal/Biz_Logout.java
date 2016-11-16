@@ -2,8 +2,9 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
+import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Logout;
+import com.nonobank.apps.utils.data.Assertion;
 
 public class Biz_Logout {
 
@@ -17,12 +18,7 @@ public class Biz_Logout {
 	public void logout() {
 		logger.info("退出登录...");
 		page_Logout.nagivate_to_logout();
-
-		if (page_Logout.isLoginExist()) {
-			logger.info("退出登录成功...");
-		} else {
-			logger.error("退出登录失败...");
-			Assert.fail("logout failed...");
-		}
+		boolean flag = page_Logout.isElementDisplayed("login_btn2", WebElementType.WebLink, 15);
+		Assertion.assertEquals(true, flag, Biz_Login.class, "注销成功脚本");
 	}
 }

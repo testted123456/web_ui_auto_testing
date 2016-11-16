@@ -33,37 +33,23 @@ public class Biz_Login {
 	 *            参数
 	 */
 	public void login(String username, String password, LoginResult loginResult) {
-		String elementName = null;
-		try {
-			nagivate_to_login();
-			logger.info("登录...");
-			page_Login.input_username(username);
-			page_Login.input_password(password);
-			page_Login.input_checkCode();
-			page_Login.submit();
-			elementName = "account_name";
-			boolean flag = login_check(elementName);
-			Assertion.assertEquals(true, flag, Biz_Login.class, "登录成功脚本");
-		} catch (Exception e) {
-			switch (loginResult.getCode()) {
-			case 2:
-
-				break;
-
-			default:
-				Assertion.assertEquals(Biz_Login.class, "查找name=" + elementName + "元素");
-				break;
-			}
-		}
+		// try {
+		nagivate_to_login();
+		logger.info("登录...");
+		page_Login.input_username(username);
+		page_Login.input_password(password);
+		page_Login.input_checkCode();
+		page_Login.submit();
+		boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
+		Assertion.assertEquals(true, flag, Biz_Login.class, "登录成功脚本");
+		// } catch (Exception e) {
+		// switch (loginResult.getCode()) {
+		// case 2:
+		//
+		// break;
+		//
+		// }
+		// }
 	}
 
-	/**
-	 * is_login_success 登录成功或失败
-	 * 
-	 * @return true:成功 false:失败
-	 */
-	public boolean login_check(String elementName) {
-		boolean flag = page_Login.isElementDisplayed(elementName, WebElementType.WebLink, 15);
-		return flag;
-	}
 }

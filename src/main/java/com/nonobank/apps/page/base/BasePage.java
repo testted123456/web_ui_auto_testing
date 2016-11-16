@@ -40,7 +40,6 @@ public class BasePage {
 
 	public BasePage() {
 		driver = WebDriverUtils.getWebDriver();
-
 		xmlFile = "resources" + File.separator + "elements" + File.separator
 				+ this.getClass().getName().replace(".", File.separator) + ".xml";
 
@@ -56,10 +55,12 @@ public class BasePage {
 		}
 	}
 
-	/** 
+	/**
 	 * 元素是否存在
+	 * 
 	 * @param by
-	 * @param time 超时时间
+	 * @param time
+	 *            超时时间
 	 * @return
 	 */
 	public boolean isElementExists(final By by, long time) {
@@ -70,12 +71,16 @@ public class BasePage {
 			return false;
 		}
 	}
-    
+
 	/**
 	 * 元素是否存在
-	 * @param elementName 元素在配置文件中名称
-	 * @param elementType 元素类型
-	 * @param time 超时时间　
+	 * 
+	 * @param elementName
+	 *            元素在配置文件中名称
+	 * @param elementType
+	 *            元素类型
+	 * @param time
+	 *            超时时间
 	 * @return
 	 */
 	public boolean isElementExists(String elementName, WebElementType elementType, long time) {
@@ -86,31 +91,32 @@ public class BasePage {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 元素是否显示
+	 * 
 	 * @param by
 	 * @param time
 	 * @return
 	 */
-	public boolean isElementDisplayed(final By by, long time){
-		for(int i=0;i<time;i++){
-			if(objectFactory.getWebElement(by).isDisplayed()){
+	public boolean isElementDisplayed(final By by, long time) {
+		for (int i = 0; i < time; i++) {
+			if (objectFactory.getWebElement(by).isDisplayed()) {
 				return true;
-			}else{
+			} else {
 				sleep(1000);
 			}
 		}
 		return false;
 	}
-	
-	public boolean isElementDisplayed(String elementName, WebElementType elementType, long time){
-		for(int i=0;i<time;i++){
+
+	public boolean isElementDisplayed(String elementName, WebElementType elementType, long time) {
+		for (int i = 0; i < time; i++) {
 			WebElement element = objectFactory.getWebElement(elementName, elementType);
-			
-			if(element.isDisplayed()){
+
+			if (element.isDisplayed()) {
 				return true;
-			}else{
+			} else {
 				sleep(1000);
 			}
 		}
@@ -119,6 +125,7 @@ public class BasePage {
 
 	/**
 	 * alert窗口是否存在
+	 * 
 	 * @param driver
 	 * @return
 	 */
@@ -144,8 +151,8 @@ public class BasePage {
 	public String getAlertText() {
 		return driver.switchTo().alert().getText();
 	}
-	
-	public void acceptAlert(){
+
+	public void acceptAlert() {
 		driver.switchTo().alert().accept();
 	}
 }

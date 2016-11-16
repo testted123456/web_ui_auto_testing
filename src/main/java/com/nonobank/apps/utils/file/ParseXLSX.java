@@ -12,10 +12,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -369,7 +372,7 @@ public class ParseXLSX {
 	public static void main(String[] args) {
 		Object[][] objects = getDataValue(
 				"resources/TestData/com/nonobank/apps/testcase/student/CreditBookVerifyTestCase.xlsx", "test");
-		System.out.println("******************objects="+objects.length);
+		System.out.println("******************objects=" + objects.length);
 		for (Object[] objects2 : objects) {
 			for (Object object : objects2) {
 				System.out.println("**************object=" + object);
@@ -423,5 +426,85 @@ public class ParseXLSX {
 		cellValue = ReplaceVariable.handleVarible(cellValue);
 		mapColumnNames.put(columnNameKey, cellValue);
 		return cellValue;
+	}
+
+	/**
+	 * 保存一个sheet页的结果
+	 * 
+	 * @param sheetName
+	 * @param resultMap
+	 */
+	public static void saveResults(String testfile, TreeMap<Long, Integer> resultMap) {
+		// 测试方法默认为test,对应sheet页也为test
+		String sheetName = "test";
+		File file = getFile(testfile);
+		FileInputStream fis = getFileInputStream(file);
+		XSSFWorkbook xssfWorkbook = getXSSFWorkbook(fis);
+		XSSFSheet xssfSheet = getXSSFSheet(xssfWorkbook, sheetName);
+		XSSFRow xssfRow = null;
+		XSSFCell xssfCell = null;
+		// result所在的列
+		int col_res = getColumnIndex("result", xssfSheet);
+		int rowEnd = xssfSheet.getLastRowNum();
+
+		for (int i = 1; i <= rowEnd; i++) {
+			xssfRow = xssfSheet.getRow(i);
+
+			// 先把结果置为空
+			setCellColor(HSSFColor.TURQUOISE.index, getCell(i, col_res - 1, xssfSheet));
+
+			xssfCell = xssfRow.getCell(0);
+
+			if (xssfCell == null) {
+				continue;
+			}
+			if (!getCellValue(xssfCell, i, col_res - 1).toString().toUpperCase().equals("Y")) {
+				continue;
+			}
+
+			xssfCell = getCell(i, col_res - 1, xssfSheet);
+			Entry<Long, Integer> entry = resultMap.pollFirstEntry();
+			int status;
+
+			if (entry != null) {
+				status = entry.getValue();
+			} else {
+				status = -99;
+			}
+
+			String res = null;
+
+			switch (status) {
+			case 1:
+				res = "passed";
+				setCellColor(HSSFColor.GREEN.index, xssfCell);
+				break;
+			case 2:
+				res = "failed";
+				setCellColor(HSSFColor.RED.index, xssfCell);
+				break;
+			case -99:
+				res = "not run";
+				break;
+			default:
+				res = "skipped";
+				break;
+			}
+
+			setCellValue(res, xssfCell);
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			xssfWorkbook.write(fos);
+			fos.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
