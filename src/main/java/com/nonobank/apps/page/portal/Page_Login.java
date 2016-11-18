@@ -23,23 +23,27 @@ public class Page_Login extends BasePage {
 		logger.info(PageUtils.getUrl());
 	}
 
-
 	/**
 	 * 输入用户名
-	 * @param usernmae 用户名
+	 * 
+	 * @param usernmae
+	 *            用户名
 	 * @param param
 	 */
 	public void input_username(String username) {
-
+		logger.info("输入用户名......");
 		WebInput input_username = objectFactory.getWebInput("loginname");
 		input_username.clearAndInput(username);
 	}
 
 	/**
 	 * 输入密码
-	 * @param password 密码
+	 * 
+	 * @param password
+	 *            密码
 	 */
 	public void input_password(String password) {
+		logger.info("输入密码......");
 		WebInput input_password = objectFactory.getWebInput("loginpwd");
 		input_password.clearAndInput(password);
 	}
@@ -48,6 +52,7 @@ public class Page_Login extends BasePage {
 	 * 输入验证码
 	 */
 	public void input_checkCode() {
+		logger.info("输入安全码......");
 		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
 			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
 			input_checkCode.clearAndInput("8888");
@@ -59,17 +64,20 @@ public class Page_Login extends BasePage {
 	 * 提交
 	 */
 	public void submit() {
+		logger.info("点击提交......");
 		WebButton button = objectFactory.getWebButton("btnlogin");
 		button.click();
 		sleep(1000);
-
-		if (isElementExists("logout", WebElementType.WebLink, 15)) {
-			WebLink logout = objectFactory.getWebLink("logout");
-			if (logout.isDisplayed()) {
-				return;
-			}
-		}
+		// if (isElementExists("logout", WebElementType.WebLink, 15)) {
+		// WebLink logout = objectFactory.getWebLink("logout");
+		// if (logout.isDisplayed()) {
+		// return;
+		// }
+		// }
 		PageUtils.waitForPageLoad();
 	}
 
+	public String get_messInfo(String elementPath) {
+		return objectFactory.getWebCommon(elementPath).getText();
+	}
 }

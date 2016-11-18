@@ -8,6 +8,7 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.withdrawal.Biz_User_Withdrawal;
 import com.nonobank.apps.business.withdrawal.Biz_User_WithdrawalConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
+import com.nonobank.apps.utils.data.LoginResult;
 
 public class WithDrawalSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(WithDrawalSuccess.class);
@@ -20,7 +21,7 @@ public class WithDrawalSuccess extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String cardno, String money, String pay_password) {
 		logger.info("begin to test...");
-		biz_Login.login(mobile, password);
+		biz_Login.login(mobile, password,LoginResult.SUCESS);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Withdrawal.navigate_to_withdrawal();

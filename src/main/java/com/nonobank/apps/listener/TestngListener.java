@@ -23,8 +23,8 @@ import com.nonobank.apps.utils.page.PageUtils;
 public class TestngListener extends TestListenerAdapter {
 
 	private static Logger logger = LogManager.getLogger(TestngListener.class);
-	
-	public void logout(){
+
+	public void logout() {
 		Properties prop = ParseProperties.getInstance();
 		String url = prop.getProperty("url");
 		PageUtils.navigateToURL(url + "/Login/logout");
@@ -52,11 +52,11 @@ public class TestngListener extends TestListenerAdapter {
 	@Override
 	public void onTestSkipped(ITestResult tr) {
 		String trName = tr.getName();
-		
+
 		if (trName.equals("comment")) {
 			return;
 		}
-		
+
 		super.onTestSkipped(tr);
 		BaseCase.resultsMap.put(tr.getStartMillis(), tr.getStatus());
 		logger.info(tr.getInstanceName() + " : " + trName + " Skipped...");
@@ -79,7 +79,7 @@ public class TestngListener extends TestListenerAdapter {
 	@Override
 	public void onFinish(ITestContext testContext) {
 		Iterator<ITestResult> listOfFailedTests = testContext.getFailedTests().getAllResults().iterator();
-		
+
 		while (listOfFailedTests.hasNext()) {
 			ITestResult failedTest = listOfFailedTests.next();
 			ITestNGMethod method = failedTest.getMethod();
@@ -104,15 +104,15 @@ public class TestngListener extends TestListenerAdapter {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		String dateString = formatter.format(currentTime);
 		WebDriver driver = WebDriverUtils.getWebDriver();
-		String dir = ParseProperties.getInstance().getProperty("screenshot_dir") + File.separator +
-				new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + File.separator + tr.getInstanceName()
+		String dir = ParseProperties.getInstance().getProperty("screenshot_dir") + File.separator
+				+ new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + File.separator + tr.getInstanceName()
 				+ File.separator;
 		File file = new File(dir);
 
 		if (!file.exists()) {
 			file.mkdir();
 		}
-		
+
 		try {
 			File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(srcFile, new File(dir + File.separator + dateString + ".jpg"));

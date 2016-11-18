@@ -10,9 +10,9 @@ import com.nonobank.apps.testcase.base.BaseCase;
 
 public class DebtFail extends BaseCase {
 	public static Logger logger = LogManager.getLogger(DebtFail.class);
-	Biz_Login biz_Login = new Biz_Login();
-	Biz_Home biz_Home = new Biz_Home();
-	Biz_Debt biz_Debt = new Biz_Debt();
+	Biz_Login biz_Login;
+	Biz_Home biz_Home;
+	Biz_Debt biz_Debt;
 	public static final String TASK_STATUS = "99";
 	public static final String IS_PAY = "0";
 	public static final String SALE_STATUS = "3";
@@ -28,10 +28,12 @@ public class DebtFail extends BaseCase {
 		biz_Debt.validate_lockNum(0.0, TASK_STATUS, SALE_STATUS);
 		// 2.校验debt_sale表中residue_num=transfer_num
 		biz_Debt.validate_residueNum_transferNum(TASK_STATUS);
-		// 3.校验borrows_accept ba,debt_sale ds表中,sum(ba.price_principal)=ds.price-ds.pay_amount
+		// 3.校验borrows_accept ba,debt_sale
+		// ds表中,sum(ba.price_principal)=ds.price-ds.pay_amount
 		biz_Debt.validate_subPriceAndPayAmount_sumPricePrincipal(TASK_STATUS, IS_PAY, FROM_TYPE);
 
-		// 4.校验debt_exchange_account dea,invt_debt_sale_task idst表中,其中dea.hold_num=ds.transfer_num
+		// 4.校验debt_exchange_account dea,invt_debt_sale_task
+		// idst表中,其中dea.hold_num=ds.transfer_num
 		biz_Debt.validate_holdNum_transferNum(TASK_STATUS, FROM_TYPE);
 
 	}

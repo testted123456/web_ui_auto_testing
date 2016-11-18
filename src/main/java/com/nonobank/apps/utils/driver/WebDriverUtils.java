@@ -15,12 +15,12 @@ public class WebDriverUtils {
 	public static Logger logger = LogManager.getLogger(WebDriverUtils.class);
 
 	private static WebDriver driver;
-	
-	public static void destoryWebDriver(){
+
+	public static void destoryWebDriver() {
 		logger.info("设置webdriver为空...");
 		driver = null;
 	}
-	
+
 	public static WebDriver getWebDriver() {
 		if (null == driver) {
 			String browser = ParseProperties.getInstance().getProperty("browser");
@@ -63,4 +63,5 @@ public class WebDriverUtils {
 		}
 		return driver;
 	}
+
 }

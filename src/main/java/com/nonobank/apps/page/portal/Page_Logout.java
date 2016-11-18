@@ -11,44 +11,16 @@ import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Logout extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_Logout.class);
-	
+
 	/**
 	 * 退出登录
 	 */
-	public void nagivate_to_logout(){
+	public void nagivate_to_logout() {
 		logger.info("退出登录...");
-		String url_logout = ParseProperties.getInstance().getProperty("url") +  "/Login/logout";
+		String url_logout = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
 		driver.navigate().to(url_logout);
 		sleep(500);
 		PageUtils.refreshPage();
-		//尝试10次退出
-		for(int i=0;i<10;i++){
-			if(isElementExists("Login", WebElementType.WebLink, 15)){
-				WebLink link_login = objectFactory.getWebLink("Login");
-				if(link_login.isDisplayed()){
-					break;
-				}else{
-					driver.navigate().to(url_logout);
-					sleep(500);
-				}
-			}
-		}
 	}
 
-	/**
-	 * 判断是否已退出登录
-	 * @return true:已退出登录 false:未退出登录
-	 */
-	public boolean isLoginExist(){
-		if(isElementExists("Login", WebElementType.WebLink, 15)){
-			WebLink link_login = objectFactory.getWebLink("Login");
-			if(link_login.isDisplayed()){
-				return true;
-			}else{
-				return false;
-			}
-		}
-		return false;
-	}
-	
 }

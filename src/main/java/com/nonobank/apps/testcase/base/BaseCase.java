@@ -65,7 +65,7 @@ public class BaseCase {
 	@BeforeClass
 	public void init_fields() {
 		logger.info("初始化business...");
-		Class clazz = this.getClass();
+		Class<? extends BaseCase> clazz = this.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 
 		for (Field f : fields) {
@@ -75,33 +75,31 @@ public class BaseCase {
 				try {
 					f.set(this, Class.forName(type).newInstance());
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
 	}
 
-//	@AfterClass
-//	public void closeDriver() {
-//		// 保存测试结果
-//		logger.info("保存测试结果...");
-//		if (testfile != null && !resultsMap.isEmpty()) {
-//			ParseXLSX.saveResults(testfile, resultsMap);
-//		}
-//		// 关闭浏览器
-//		logger.info("关闭浏览器...");
-//		driver.quit();
-//		//每个testcase执行完成后把webdriver置空
-//		WebDriverUtils.destoryWebDriver();
-//	}
+	@AfterClass
+	public void closeDriver() {
+		// 保存测试结果
+		logger.info("保存测试结果...");
+		if (testfile != null && !resultsMap.isEmpty()) {
+			ParseXLSX.saveResults(testfile, resultsMap);
+		}
+		// 关闭浏览器
+		logger.info("关闭浏览器...");
+		driver.quit();
+		// 每个testcase执行完成后把webdriver置空
+		WebDriverUtils.destoryWebDriver();
+		logger.info("========================================================================================");
+	}
+
 }

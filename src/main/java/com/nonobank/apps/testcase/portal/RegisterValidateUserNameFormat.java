@@ -6,7 +6,7 @@ import com.nonobank.apps.testcase.base.BaseCase;
 
 public class RegisterValidateUserNameFormat extends BaseCase {
 
-	Biz_Register biz_Register = new Biz_Register();
+	Biz_Register biz_Register;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2) {
