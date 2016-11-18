@@ -9,14 +9,14 @@ import com.nonobank.apps.utils.webintegration.Return;
 
 import junit.framework.Assert;
 
-@Info(desc="首页面",dependency="com.nonobank.apps.business.admin.Biz_Login",isDisabled=false)
+@Info(desc="首页面",dependency="",isDisabled=false)
 public class Biz_Home {
 	public static Logger logger = LogManager.getLogger(Biz_Home.class);
 
 	Page_Home page_admin_home = new Page_Home();
 
 	// 跳转到初审页面， 初审通过
-	@Info(desc="跳转到初审页面， 初审通过",dependency="IDVerification()",isDisabled=false)
+	@Info(desc="跳转到初审页面， 初审通过",dependency="",isDisabled=true)
 	@Params(type={"String","String"},name={"mobile_no","username"},desc={"用户手机号","用户名"})
 	public void navigate_to_firstAudit(String mobile_no, String username) {
 		page_admin_home.switch_to_frameSet();
@@ -31,7 +31,7 @@ public class Biz_Home {
 	}
 
 	// 跳转到终审页面， 终审通过
-	@Info(desc="跳转到终审页面， 终审通过",dependency="IDVerification()",isDisabled=false)
+	@Info(desc="跳转到终审页面， 终审通过",dependency="navigate_to_firstAudit()",isDisabled=true)
 	@Params(type={"String","String"},name={"mobile_no","username"},desc={"用户手机号","用户名"})
 	public void navigate_to_lastAudit(String mobile_no, String username) {
 		page_admin_home.click_videoLastCheckList();
@@ -46,11 +46,12 @@ public class Biz_Home {
 	}
 
 	// 跳到投资计划收益列表页面
-	@Info(desc="跳到投资计划收益列表页面",dependency="IDVerification()",isDisabled=false)
+	@Info(desc="跳到投资计划收益列表页面",dependency="navigate_to_lastAudit()",isDisabled=true)
 	public void navigate_to_financePlanProfit() {
 		page_admin_home.click_financePlanProfit();
 	}
 	//跳转到计划任务页面，执行名校贷非V3匹配计划
+	@Info(desc="跳转到计划任务页面，执行名校贷非V3匹配计划",dependency="navigate_to_lastAudit()",isDisabled=true)
 	public void navigate_to_v3(){
 		page_admin_home.click_taskScheduler();
 		page_admin_home.sleep(3000);
@@ -62,10 +63,12 @@ public class Biz_Home {
 		page_admin_home.acceptAlert();
 	}
 	//切换到后台管理系统页面
+	@Info(desc="切换到后台管理系统页面",dependency="navigate_to_v3()",isDisabled=true)
 	public void switch_adminHome(){
 		page_admin_home.switch_adminHome();
 	}
 	//切换到后台管理系统主菜单页面
+	@Info(desc="切换到后台管理系统主菜单页面",dependency="switch_adminHome()",isDisabled=true)
 	public void switch_adminMenu(){
 		page_admin_home.click_menu();
 	}

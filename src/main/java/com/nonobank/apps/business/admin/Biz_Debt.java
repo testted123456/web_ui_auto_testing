@@ -5,7 +5,9 @@ import java.util.List;
 import com.nonobank.apps.page.admin.Page_Debt;
 import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.db.DBUtils;
-
+import com.nonobank.apps.utils.webintegration.Info;
+import com.nonobank.apps.utils.webintegration.Params;
+@Info(desc="债务页面",dependency="com.nonobank.apps.business.admin.Biz_Home",isDisabled=true)
 public class Biz_Debt {
 	Page_Debt page_Debt = new Page_Debt();
 	public static String bo_id = "983616";
@@ -13,6 +15,8 @@ public class Biz_Debt {
 	public static String partSuccessTargetFpid;
 	public static double amount;
 
+	@Info(desc="债转页面",dependency="",isDisabled=true)
+	@Params(type={"String","String","String"},name={"debtType","fpId","targetFpid"},desc={"债务类型","债务id号","目标id号"})
 	public void debt(String debtType, String fpId, String targetFpid) {
 		page_Debt.input_fpId(fpId);
 		page_Debt.click_query();
@@ -40,6 +44,8 @@ public class Biz_Debt {
 		System.out.println("**************bo_id=" + bo_id + "**************from_id=" + from_id);
 	}
 
+	@Info(desc="获取sql",dependency="debt()",isDisabled=true)
+	@Params(type={"String","String"},name={"sql","task_status"},desc={"sql","任务状态"})
 	private StringBuffer getSql(String sql, String task_status) {
 		String str = " order by update_time desc limit 1";
 		StringBuffer sb = new StringBuffer();
@@ -59,6 +65,8 @@ public class Biz_Debt {
 		return sb;
 	}
 
+	@Info(desc="验证锁数目",dependency="getSql()",isDisabled=true)
+	@Params(type={"double","String","String"},name={"exceptValue","task_status","sale_status"},desc={"期望值","任务状态","销售状态"})
 	public void validate_lockNum(double exceptValue, String task_status, String sale_status) {
 		String sql = "SELECT ds_id from invt_debt_sale_task where 1=1";
 		try {
@@ -74,6 +82,8 @@ public class Biz_Debt {
 		}
 	}
 
+	@Info(desc="验证residue数目",dependency="validate_lockNum()",isDisabled=true)
+	@Params(type={"double","String"},name={"exceptValue","task_status"},desc={"期望值","任务状态"})
 	public void validate_residueNum(double exceptValue, String task_status) {
 		String sql = getSql("SELECT ds_id from invt_debt_sale_task where 1=1", task_status).toString();
 		try {
@@ -88,6 +98,8 @@ public class Biz_Debt {
 		}
 	}
 
+	@Info(desc="验证residue交易数目",dependency="validate_residueNum()",isDisabled=true)
+	@Params(type={"String"},name={"task_status"},desc={"任务状态"})
 	public void validate_residueNum_transferNum(String task_status) {
 		String sql = getSql("SELECT ds_id from invt_debt_sale_task where 1=1", task_status).toString();
 		try {
