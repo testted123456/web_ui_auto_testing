@@ -68,13 +68,12 @@ public class Page_Login extends BasePage {
 		WebButton button = objectFactory.getWebButton("btnlogin");
 		button.click();
 		sleep(1000);
-
-		if (isElementExists("logout", WebElementType.WebLink, 15)) {
-			WebLink logout = objectFactory.getWebLink("logout");
-			if (logout.isDisplayed()) {
-				return;
-			}
-		}
+		// if (isElementExists("logout", WebElementType.WebLink, 15)) {
+		// WebLink logout = objectFactory.getWebLink("logout");
+		// if (logout.isDisplayed()) {
+		// return;
+		// }
+		// }
 		PageUtils.waitForPageLoad();
 	}
 

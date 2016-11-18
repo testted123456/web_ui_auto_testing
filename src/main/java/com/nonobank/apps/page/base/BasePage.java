@@ -113,7 +113,6 @@ public class BasePage {
 	public boolean isElementDisplayed(String elementName, WebElementType elementType, long time) {
 		for (int i = 0; i < time; i++) {
 			WebElement element = objectFactory.getWebElement(elementName, elementType);
-
 			if (element.isDisplayed()) {
 				return true;
 			} else {
