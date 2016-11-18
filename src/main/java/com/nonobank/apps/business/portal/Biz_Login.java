@@ -33,23 +33,24 @@ public class Biz_Login {
 	 *            参数
 	 */
 	public void login(String username, String password, LoginResult loginResult) {
-		// try {
-		nagivate_to_login();
-		logger.info("登录...");
-		page_Login.input_username(username);
-		page_Login.input_password(password);
-		page_Login.input_checkCode();
-		page_Login.submit();
-		boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
-		Assertion.assertEquals(true, flag, Biz_Login.class, "登录成功脚本");
-		// } catch (Exception e) {
-		// switch (loginResult.getCode()) {
-		// case 2:
-		//
-		// break;
-		//
-		// }
-		// }
+		try {
+			nagivate_to_login();
+			logger.info("登录...");
+			page_Login.input_username(username);
+			page_Login.input_password(password);
+			page_Login.input_checkCode();
+			page_Login.submit();
+			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
+			Assertion.assertEquals(true, flag, Biz_Login.class, loginResult.getComment());
+		} catch (Exception e) {
+			switch (loginResult.getCode()) {
+			case 2:
+				String text = page_Login.get_messInfo("tips_normal");
+				Assertion.assertEquals(loginResult.getMessage(), text, Biz_Login.class, loginResult.getComment());
+				break;
+
+			}
+		}
 	}
 
 }

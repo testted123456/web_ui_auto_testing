@@ -17,4 +17,7 @@
 	</WebLink>
 	<WebLink name="account_name" xpath="//div[@class='account_name']">
 	</WebLink>
+	<WebCommon name="tips_normal"
+		xpath="//div[@class='messInfo']/p[@class='tips_normal']">
+	</WebCommon>
 </elements>

@@ -387,7 +387,7 @@ public class ParseXLSX {
 			return null;
 		}
 
-		String cellValue = null;
+		String cellValue = "";
 
 		switch (xssfCell.getCellType()) {
 		case HSSFCell.CELL_TYPE_NUMERIC: // 数字
