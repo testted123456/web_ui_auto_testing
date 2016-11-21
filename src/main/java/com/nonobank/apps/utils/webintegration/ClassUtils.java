@@ -115,7 +115,7 @@ public class ClassUtils {
     	for(Class claz : clazzes){
     		Page singlepage = new Page();
     		List<Methed> metheds = new ArrayList<Methed>();
-    		String classpackagename = claz.getPackage().getName()+"."+claz.getName();
+    		String classpackagename = claz.getName();
     		singlepage.setName(classpackagename);
     		Info infclass = (Info) claz.getAnnotation(Info.class);
     		if(infclass!=null){
