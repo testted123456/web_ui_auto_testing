@@ -47,6 +47,7 @@ public class Biz_Login {
 		case 2:
 		case 3:
 		case 4:
+		case 5:
 			String text = page_Login.get_messInfo("tips_normal");
 			Assertion.assertEquals(loginResult.getMessage(), text, Biz_Login.class, loginResult.getComment());
 			break;
