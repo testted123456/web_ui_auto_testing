@@ -15,7 +15,7 @@ public class LoginValidateLoginError extends BaseCase {
 	public static Logger logger = LogManager.getLogger(LoginValidateLoginError.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String loginName, String password) {
+	public void test(String loginName, String password) { 
 		logger.info("*******************************************start test*******************************************");
 		biz_Login.login(loginName, password, LoginResult.LOGIN_ERROR);
 		biz_Logout.logout();
