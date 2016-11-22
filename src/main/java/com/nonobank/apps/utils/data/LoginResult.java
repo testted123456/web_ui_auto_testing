@@ -4,7 +4,7 @@ public enum LoginResult {
 	SUCESS(1, "登录成功", "正例——检查登录成功脚本", LoginResult.CORRECT_CHECK_CODE), LOGINNAME_NULL(2, "请输入您的用户名或手机号！",
 			"反例——检查登录用户名为空脚本", LoginResult.CORRECT_CHECK_CODE), LOGINPWD_NULL(3, "请输入您的登录密码！", "反例——检查密码为空脚本",
 					LoginResult.CORRECT_CHECK_CODE), CHECK_CODE_NULL(4, "请输入安全码！", "反例——检查安全码为空脚本",
-							LoginResult.NULL_CHECK_CODE), LOGIN_ERROR(5, "登录用户名不存在", "反例——检查登录用户名错误",
+							LoginResult.NULL_CHECK_CODE), LOGINNAME_ERROR(5, "登录用户名不存在", "反例——检查登录用户名错误",
 									LoginResult.CORRECT_CHECK_CODE);
 
 	public final static String CORRECT_CHECK_CODE = "8888";

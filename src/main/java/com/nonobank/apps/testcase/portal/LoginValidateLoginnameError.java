@@ -8,16 +8,16 @@ import com.nonobank.apps.business.portal.Biz_Logout;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.data.LoginResult;
 
-public class LoginValidateLoginError extends BaseCase {
+public class LoginValidateLoginnameError extends BaseCase {
 
 	Biz_Login biz_Login;
 	Biz_Logout biz_Logout;
-	public static Logger logger = LogManager.getLogger(LoginValidateLoginError.class);
+	public static Logger logger = LogManager.getLogger(LoginValidateLoginnameError.class);
 
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, LoginResult.LOGIN_ERROR);
+		biz_Login.login(loginName, password, LoginResult.LOGINNAME_ERROR);
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}
