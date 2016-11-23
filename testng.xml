@@ -8,71 +8,40 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<!-- <test name="Nonobank_Debt" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.admin.DebtFail" />
-			<class name="com.nonobank.apps.testcase.admin.DebtPartSuccess" />
-			<class name="com.nonobank.apps.testcase.admin.DebtSuccess" />
-		</classes>
-	</test>
-	<test name="Nonobank_BindCard" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" />
-		</classes>
-	</test>
-
-	<test name="Nonobank_WithDrawal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
-		</classes>
-	</test>
-
-	<test name="licai" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.licai.DebtByBalanceSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.DebtByNewBankCardSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.DebtByOldBankCardSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.JingxuanByBalanceSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.JingxuanByNewBankCardSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.JingxuanByOldBankCardSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.LanrenByBalanceSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.LanrenByNewBankCardSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.LanrenByOldBankCardSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.LingyuanByBalanceSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.LingyuanByNewBankCardSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.LingyuanByOldBankCardSuccessful" />
-			<class name="com.nonobank.apps.testcase.licai.TiexinByBalanceSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.TiexinByNewBankCardSuccessful" />
-			<class
-				name="com.nonobank.apps.testcase.licai.TiexinByOldBankCardSuccessful" />
-
-		</classes>
-	</test>
+	<!-- <test name="Nonobank_Debt" preserve-order="true"> <classes> <class 
+		name="com.nonobank.apps.testcase.admin.DebtFail" /> <class name="com.nonobank.apps.testcase.admin.DebtPartSuccess" 
+		/> <class name="com.nonobank.apps.testcase.admin.DebtSuccess" /> </classes> 
+		</test> <test name="Nonobank_BindCard" preserve-order="true"> <classes> <class 
+		name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" /> </classes> 
+		</test> <test name="Nonobank_WithDrawal" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" /> 
+		<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" /> </classes> 
+		</test> <test name="licai" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.licai.DebtByBalanceSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.DebtByNewBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.DebtByOldBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.JingxuanByBalanceSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.JingxuanByNewBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.JingxuanByOldBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LanrenByBalanceSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LanrenByNewBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LanrenByOldBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LingyuanByBalanceSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LingyuanByNewBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.LingyuanByOldBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.TiexinByBalanceSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.TiexinByNewBankCardSuccessful" 
+		/> <class name="com.nonobank.apps.testcase.licai.TiexinByOldBankCardSuccessful" 
+		/> </classes> </test> -->
 	<test name="portal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.portal.LoginSuccessByMobile" />
-			<class name="com.nonobank.apps.testcase.portal.LoginSuccessByUserName" />
-			<class name="com.nonobank.apps.testcase.portal.LoginValidateUnRegisterMobile" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterSuccess" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterSuccessByInvite" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateExceptionRegisterMobile" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileFormat" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateNotexistInvite" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Format" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePasswordFormat" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateRegisterMobile" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
+			<class name="com.nonobank.apps.testcase.portal.LoginSuccess" />
+			<class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeNull" />
+			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" />
+			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameNull" />
+			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginpwdNull" />
 		</classes>
 	</test>
-
+	<!--
 	<test name="Nonobank_Recharge" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.RechargeSuccess" />
@@ -85,7 +54,7 @@
 			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
 		</classes>
 	</test>
-		<test name="student" preserve-order="true">
+	<test name="student" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsExcTestCase" />
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
@@ -94,15 +63,17 @@
 			<class name="com.nonobank.apps.testcase.student.WhiteCollarPromptTestcase" />
 		</classes>
 	</test>
-			<test name="withdrawal" preserve-order="true">
+	<test name="withdrawal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
 		</classes>
-	</test> -->
+	</test>
 	<test name="withdrawal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
 		</classes>
 	</test>
+
 </suite>

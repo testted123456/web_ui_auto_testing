@@ -16,7 +16,9 @@ public class Page_Register extends BasePage {
 
 	/**
 	 * 输入手机号
-	 * @param mobile 手机号码
+	 * 
+	 * @param mobile
+	 *            手机号码
 	 */
 	public void input_mobile(String mobile) {
 		WebInput input_mobile = objectFactory.getWebInput("mobile");
@@ -25,7 +27,9 @@ public class Page_Register extends BasePage {
 
 	/**
 	 * 输入用户名
-	 * @param user_name 用户名
+	 * 
+	 * @param user_name
+	 *            用户名
 	 */
 	public void input_username(String user_name) {
 
@@ -45,6 +49,7 @@ public class Page_Register extends BasePage {
 
 	/**
 	 * 输入错误的号码提示
+	 * 
 	 * @return true:手机号码输入错误 false:手机号码输入正确
 	 */
 	public boolean is_error_exist() {
@@ -59,33 +64,35 @@ public class Page_Register extends BasePage {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 输入的密码不一致
+	 * 
 	 * @return true:输入密码不一致 false:输入密码一致
 	 */
-	public boolean is_password_not_consistent(){
+	public boolean is_password_not_consistent() {
 		boolean flag = false;
-		if(isElementExists("error",WebElementType.WebLabel,15)){
+		if (isElementExists("error", WebElementType.WebLabel, 15)) {
 			WebLabel label_error = objectFactory.getWebLabel("error");
 			String text = label_error.getText();
-			if(text.equals("两次输入的密码不一致")){
+			if (text.equals("两次输入的密码不一致")) {
 				flag = true;
 			}
 		}
 		return flag;
 	}
-	
+
 	/**
 	 * 用户名不符合格式信息提示
+	 * 
 	 * @return true:用户名不符合格式 false:用户名符合格式
 	 */
-	public boolean is_username_not_format(){
+	public boolean is_username_not_format() {
 		boolean flag = false;
-		if(isElementExists("error",WebElementType.WebLabel,15)){
+		if (isElementExists("error", WebElementType.WebLabel, 15)) {
 			WebLabel label_error = objectFactory.getWebLabel("error");
 			String text = label_error.getText();
-			if(text.equals("6-16位字符，可以是字母、数字、下划线的组合")){
+			if (text.equals("6-16位字符，可以是字母、数字、下划线的组合")) {
 				flag = true;
 			}
 		}
@@ -94,7 +101,9 @@ public class Page_Register extends BasePage {
 
 	/**
 	 * 输入密码
-	 * @param password 密码
+	 * 
+	 * @param password
+	 *            密码
 	 */
 	public void input_password(String password) {
 		WebInput input_password = objectFactory.getWebInput("password");
@@ -103,7 +112,9 @@ public class Page_Register extends BasePage {
 
 	/**
 	 * 再次输入密码
-	 * @param password2 密码
+	 * 
+	 * @param password2
+	 *            密码
 	 */
 	public void input_password2(String password2) {
 		WebInput input_password = objectFactory.getWebInput("password2");
@@ -133,10 +144,9 @@ public class Page_Register extends BasePage {
 	/**
 	 * 输入安全码
 	 */
-	public void input_check_code() {
+	public void input_check_code(String checkCode) {
 		WebInput input_check_code = objectFactory.getWebInput("checkCode");
-//		input_check_code.clearAndInput("****");
-		input_check_code.clearAndInput("8888");
+		input_check_code.clearAndInput(checkCode);
 		sleep(5000);
 	}
 
@@ -152,11 +162,10 @@ public class Page_Register extends BasePage {
 	/**
 	 * 输入验证码
 	 */
-	public void input_sms_code() {
+	public void input_sms_code(String smsCode) {
 		WebInput input_sms_code = objectFactory.getWebInput("validation");
 		sleep(3000);
-//		input_sms_code.clearAndInput("####");
-		input_sms_code.clearAndInput("8888");
+		input_sms_code.clearAndInput(smsCode);
 	}
 
 	/**

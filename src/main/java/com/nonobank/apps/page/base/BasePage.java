@@ -122,6 +122,10 @@ public class BasePage {
 		return false;
 	}
 
+	public String getElementText(String elementPath) {
+		return objectFactory.getWebCommon(elementPath).getText();
+	}
+
 	/**
 	 * alert窗口是否存在
 	 * 

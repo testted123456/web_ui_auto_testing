@@ -70,7 +70,4 @@ public class Page_Login extends BasePage {
 		PageUtils.waitForPageLoad();
 	}
 
-	public String get_messInfo(String elementPath) {
-		return objectFactory.getWebCommon(elementPath).getText();
-	}
 }

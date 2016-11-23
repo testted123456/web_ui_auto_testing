@@ -48,11 +48,10 @@ public class Biz_Login {
 		case 3:
 		case 4:
 		case 5:
-			String text = page_Login.get_messInfo("tips_normal");
+		case 6:
+			String text = page_Login.getElementText("tips_normal");
 			Assertion.assertEquals(loginResult.getMessage(), text, Biz_Login.class, loginResult.getComment());
 			break;
-
 		}
 	}
-
 }
