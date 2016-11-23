@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
+import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.data.RegisterResult;
 
 public class Biz_Register {
@@ -54,7 +55,8 @@ public class Biz_Register {
 	private void handleResult(RegisterResult result) {
 		switch (result.getCode()) {
 		case 1:
-
+			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
+			Assertion.assertEquals(true, flag, Biz_Register.class, result.getComment());
 			break;
 
 		default:
@@ -124,22 +126,6 @@ public class Biz_Register {
 	public void navigate_to_register() {
 		logger.info("跳转到注册页面...");
 		page_Portal.click_register();
-	}
-
-	/**
-	 * 注册成功或者失败
-	 * 
-	 * @return true:注册成功 false:注册失败
-	 */
-	public boolean isRegisterSuccess() {
-		boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
-
-		if (flag == true) {
-			logger.info("注册成功...");
-		} else {
-			logger.error("注册失败...");
-		}
-		return flag;
 	}
 
 }
