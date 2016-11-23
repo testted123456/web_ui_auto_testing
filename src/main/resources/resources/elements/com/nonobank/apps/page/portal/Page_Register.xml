@@ -43,4 +43,6 @@
 	<!-- 登录 -->
 	<WebLink name="login" xpath="//a[@class='login_btn2']">
 	</WebLink>
+	<WebCommon name="moblieMessage" xpath="//label[@for='mobile']">
+	</WebCommon>
 </elements>

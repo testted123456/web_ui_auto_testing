@@ -2,6 +2,8 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.ElementNotVisibleException;
+
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
@@ -46,7 +48,7 @@ public class Biz_Register {
 			page_Register.input_sms_code(result.getValidation());
 			page_Register.click_reg_over_btn();
 			handleResult(result);
-		} catch (Exception e) {
+		} catch (Error e) {
 			handleResult(result);
 		}
 	}
@@ -57,7 +59,10 @@ public class Biz_Register {
 			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
 			Assertion.assertEquals(true, flag, Biz_Register.class, result.getComment());
 			break;
-
+		case 2:
+			String text = page_Register.getElementText("moblieMessage");
+			Assertion.assertEquals(result.getMessage(), text, Biz_Register.class, result.getComment());
+			break;
 		default:
 			break;
 		}
