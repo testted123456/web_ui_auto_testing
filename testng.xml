@@ -40,6 +40,13 @@
 				name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameNull" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginpwdNull" />
+
+			<class name="com.nonobank.apps.testcase.portal.RegisterSuccess" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterSuccessByInvite" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateExceptionRegisterMobile" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileFormat" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateNotexistInvite" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Format" />
 		</classes>
 	</test>
 	<!-- <test name="Nonobank_Recharge" preserve-order="true"> <classes> <class 

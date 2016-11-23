@@ -1,7 +1,8 @@
 package com.nonobank.apps.utils.data;
 
 public enum RegisterResult {
-	SUCCESS(1, "注册成功", "正例-检查注册成功", ConstantUtils.CORRECT_CHECK_CODE, ConstantUtils.CORRECT_VALIDATION);
+	SUCCESS(1, "注册成功", "正例-检查注册成功", ConstantUtils.CORRECT_CHECK_CODE, ConstantUtils.CORRECT_VALIDATION), MOBLIE_NULL(2,
+			"注册成功", "正例-检查注册成功", ConstantUtils.CORRECT_CHECK_CODE, ConstantUtils.CORRECT_VALIDATION);
 	private int code;
 	private String message;
 	private String comment;

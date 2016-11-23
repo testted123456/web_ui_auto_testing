@@ -37,11 +37,10 @@ public class Biz_Register {
 			page_Register.input_username(user_name);
 			page_Register.input_password(password);
 			page_Register.input_password2(password2);
-			if (invite != null) {
+			if (invite.length > 0) {
 				page_Register.input_invite(invite[0]);
 			}
 			page_Register.click_next_step();
-			page_Register.is_password_not_consistent();
 			page_Register.input_check_code(result.getCheckCode());
 			page_Register.click_sms_code();
 			page_Register.input_sms_code(result.getValidation());
@@ -89,7 +88,7 @@ public class Biz_Register {
 			page_Register.input_invite(strs[0]);
 		}
 		page_Register.click_next_step();
-		page_Register.is_password_not_consistent();
+		// page_Register.is_password_not_consistent();
 	}
 
 	/**
