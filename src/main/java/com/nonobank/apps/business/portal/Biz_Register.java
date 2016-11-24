@@ -2,8 +2,6 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.ElementNotVisibleException;
-
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
@@ -60,8 +58,15 @@ public class Biz_Register {
 			Assertion.assertEquals(true, flag, Biz_Register.class, result.getComment());
 			break;
 		case 2:
-			String text = page_Register.getElementText("moblieMessage");
-			Assertion.assertEquals(result.getMessage(), text, Biz_Register.class, result.getComment());
+		case 3:
+			String moblieMessage = page_Register.getElementText("moblieMessage");
+			Assertion.assertEquals(result.getMessage(), moblieMessage, Biz_Register.class, result.getComment());
+			break;
+		case 4:
+		case 5:
+		case 6:
+			String usernameMessage = page_Register.getElementText("usernameMessage");
+			Assertion.assertEquals(result.getMessage(), usernameMessage, Biz_Register.class, result.getComment());
 			break;
 		default:
 			break;
@@ -94,34 +99,6 @@ public class Biz_Register {
 		}
 		page_Register.click_next_step();
 		// page_Register.is_password_not_consistent();
-	}
-
-	/**
-	 * 注册用户名非法格式
-	 * 
-	 * @param mobile
-	 *            手机号
-	 * @param user_name
-	 *            用户名
-	 * @param password
-	 *            初次输入密码
-	 * @param password2
-	 *            再次输入密码
-	 * @param strs
-	 */
-	public void register_username_format(String mobile, String user_name, String password, String password2,
-			String... strs) {
-		navigate_to_register();
-		logger.info("开始输入注册信息...");
-		page_Register.input_mobile(mobile);
-		page_Register.input_username(user_name);
-		page_Register.input_password(password);
-		page_Register.input_password2(password2);
-		if (strs.length > 0) {
-			page_Register.input_invite(strs[0]);
-		}
-		page_Register.click_next_step();
-		page_Register.is_username_not_format();
 	}
 
 	/**

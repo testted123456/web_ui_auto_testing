@@ -45,4 +45,6 @@
 	</WebLink>
 	<WebCommon name="moblieMessage" xpath="//label[@for='mobile']">
 	</WebCommon>
+	<WebCommon name="usernameMessage" xpath="//label[@for='username']">
+	</WebCommon>
 </elements>
