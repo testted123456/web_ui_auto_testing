@@ -47,4 +47,8 @@
 	</WebCommon>
 	<WebCommon name="usernameMessage" xpath="//label[@for='username']">
 	</WebCommon>
+	<WebCommon name="passwordMessage" xpath="//label[@for='password']">
+	</WebCommon>
+	<WebCommon name="password2Message" xpath="//label[@for='password2']">
+	</WebCommon>
 </elements>

@@ -10,8 +10,7 @@ public class RegisterValidatePasswordError extends BaseCase {
 	Biz_Register biz_Register;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2,
-			RegisterResult registerResult) {
-		biz_Register.register(mobile, user_name, password, password2, RegisterResult.SUCCESS);
+	public void test(String mobile, String user_name, String password, String password2) {
+		biz_Register.register(mobile, user_name, password, password2, RegisterResult.PASSWORD_ERROR);
 	}
 }

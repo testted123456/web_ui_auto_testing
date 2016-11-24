@@ -68,37 +68,17 @@ public class Biz_Register {
 			String usernameMessage = page_Register.getElementText("usernameMessage");
 			Assertion.assertEquals(result.getMessage(), usernameMessage, Biz_Register.class, result.getComment());
 			break;
+		case 7:
+			String passwordMessage = page_Register.getElementText("passwordMessage");
+			Assertion.assertEquals(result.getMessage(), passwordMessage, Biz_Register.class, result.getComment());
+			break;
+		case 8:
+			String password2Message = page_Register.getElementText("password2Message");
+			Assertion.assertEquals(result.getMessage(), password2Message, Biz_Register.class, result.getComment());
+			break;
 		default:
 			break;
 		}
-	}
-
-	/**
-	 * 注册两次输入密码不一致
-	 * 
-	 * @param mobile
-	 *            手机号
-	 * @param user_name
-	 *            用户名
-	 * @param password
-	 *            初次输入密码
-	 * @param password2
-	 *            再次输入密码
-	 * @param strs
-	 */
-	public void register_pwd_unconsistent(String mobile, String user_name, String password, String password2,
-			String... strs) {
-		navigate_to_register();
-		logger.info("开始输入注册信息...");
-		page_Register.input_mobile(mobile);
-		page_Register.input_username(user_name);
-		page_Register.input_password(password);
-		page_Register.input_password2(password2);
-		if (strs.length > 0) {
-			page_Register.input_invite(strs[0]);
-		}
-		page_Register.click_next_step();
-		// page_Register.is_password_not_consistent();
 	}
 
 	/**
