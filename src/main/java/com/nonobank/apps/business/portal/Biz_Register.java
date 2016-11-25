@@ -41,7 +41,7 @@ public class Biz_Register {
 				page_Register.input_invite(invite[0]);
 			}
 			page_Register.click_next_step();
-			page_Register.input_check_code(result.getCheckCode());
+			page_Register.input_check_code("8888");
 			page_Register.click_sms_code();
 			page_Register.input_sms_code(result.getValidation());
 			page_Register.click_reg_over_btn();
@@ -77,7 +77,8 @@ public class Biz_Register {
 			Assertion.assertEquals(result.getMessage(), password2Message, Biz_Register.class, result.getComment());
 			break;
 		case 9:
-
+			String checkCodeMessage = page_Register.getElementText("checkCodeMessage");
+			Assertion.assertEquals(result.getMessage(), checkCodeMessage, Biz_Register.class, result.getComment());
 			break;
 		default:
 			break;

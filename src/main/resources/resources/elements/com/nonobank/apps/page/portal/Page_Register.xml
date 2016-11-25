@@ -51,4 +51,6 @@
 	</WebCommon>
 	<WebCommon name="password2Message" xpath="//label[@for='password2']">
 	</WebCommon>
+	<WebCommon name="checkCodeMessage" xpath="//label[@for='checkCode']">
+	</WebCommon>
 </elements>

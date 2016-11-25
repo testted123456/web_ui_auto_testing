@@ -49,8 +49,8 @@ public class Biz_Login {
 		case 4:
 		case 5:
 		case 6:
-			String text = page_Login.getElementText("tips_normal");
-			Assertion.assertEquals(loginResult.getMessage(), text, Biz_Login.class, loginResult.getComment());
+			String message = page_Login.getElementText("tips_normal");
+			Assertion.assertEquals(message, message, Biz_Login.class, loginResult.getComment());
 			break;
 		}
 	}

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
-import com.nonobank.apps.objectRepository.WebLabel;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.page.PageUtils;
@@ -46,58 +45,6 @@ public class Page_Register extends BasePage {
 		logger.info("输入邀请码......");
 		WebInput input_invite = objectFactory.getWebInput("invite");
 		input_invite.clearAndInput(invite);
-	}
-
-	/**
-	 * 输入错误的号码提示
-	 * 
-	 * @return true:手机号码输入错误 false:手机号码输入正确
-	 */
-	public boolean is_error_exist() {
-		if (isElementExists("error", WebElementType.WebLabel, 15)) {
-			WebLabel label_error = objectFactory.getWebLabel("error");
-			String text = label_error.getText();
-			if (text.equals("请输入有效的手机号码，以便找回密码")) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		return false;
-	}
-
-	// /**
-	// * 输入的密码不一致
-	// *
-	// * @return true:输入密码不一致 false:输入密码一致
-	// */
-	// public boolean is_password_not_consistent() {
-	// boolean flag = false;
-	// if (isElementExists("error", WebElementType.WebLabel, 15)) {
-	// WebLabel label_error = objectFactory.getWebLabel("error");
-	// String text = label_error.getText();
-	// if (text.equals("两次输入的密码不一致")) {
-	// flag = true;
-	// }
-	// }
-	// return flag;
-	// }
-
-	/**
-	 * 用户名不符合格式信息提示
-	 * 
-	 * @return true:用户名不符合格式 false:用户名符合格式
-	 */
-	public boolean is_username_not_format() {
-		boolean flag = false;
-		if (isElementExists("error", WebElementType.WebLabel, 15)) {
-			WebLabel label_error = objectFactory.getWebLabel("error");
-			String text = label_error.getText();
-			if (text.equals("6-16位字符，可以是字母、数字、下划线的组合")) {
-				flag = true;
-			}
-		}
-		return flag;
 	}
 
 	/**
@@ -171,6 +118,7 @@ public class Page_Register extends BasePage {
 	public void input_sms_code(String smsCode) {
 		logger.info("输入验证码......");
 		WebInput input_sms_code = objectFactory.getWebInput("validation");
+		System.out.println("*******************input_sms_code="+input_sms_code.isEnabled());
 		sleep(3000);
 		input_sms_code.clearAndInput(smsCode);
 	}

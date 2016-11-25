@@ -3,7 +3,6 @@ package com.nonobank.apps.page.portal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebButton;
-import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.file.ParseProperties;
@@ -52,11 +51,8 @@ public class Page_Login extends BasePage {
 	 */
 	public void input_checkCode(String checkCode) {
 		logger.info("输入安全码......");
-		if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
-			WebInput input_checkCode = objectFactory.getWebInput("checkCode");
-			input_checkCode.clearAndInput(checkCode);
-		}
-		sleep(6000);
+		WebInput input_checkCode = objectFactory.getWebInput("checkCode");
+		input_checkCode.clearAndInput(checkCode);
 	}
 
 	/**

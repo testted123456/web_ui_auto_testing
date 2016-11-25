@@ -66,8 +66,8 @@ public class BaseWebElement {
 				return d.findElement(By.xpath(xpath));
 			}
 		});
-		
-		if(this.webElement == null){
+
+		if (this.webElement == null) {
 			Assert.fail("找不到对象元素，xpath：" + xpath);
 		}
 	}
@@ -152,7 +152,7 @@ public class BaseWebElement {
 	 * 
 	 * @return
 	 */
-	boolean isEnabled() {
+	public boolean isEnabled() {
 		return this.webElement.isEnabled();
 	}
 
@@ -162,16 +162,24 @@ public class BaseWebElement {
 	 * @return
 	 */
 	public boolean isDisplayed() {
-		try {
-			sleep(3000);
-			return webElement.isDisplayed();
-		} catch (StaleElementReferenceException e) {
-			logger.info("element_display_error={}", e);
-			return false;
+		int time = 6000;
+		for (int i = 0; i < time; i++) {
+			if (this.webElement.isDisplayed()) {
+				return true;
+			} else {
+				sleep(1000);
+			}
 		}
+		return false;
 	}
 
-	boolean isTextPresent(String text) {
+	/**
+	 * 函数说明:获取元素错误信息
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public boolean isTextPresent(String text) {
 		try {
 			return webElement.getText().trim().toLowerCase().contains(text.trim().toLowerCase());
 		} catch (StaleElementReferenceException e) {
