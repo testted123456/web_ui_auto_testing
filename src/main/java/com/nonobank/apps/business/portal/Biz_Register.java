@@ -76,6 +76,9 @@ public class Biz_Register {
 			String password2Message = page_Register.getElementText("password2Message");
 			Assertion.assertEquals(result.getMessage(), password2Message, Biz_Register.class, result.getComment());
 			break;
+		case 9:
+
+			break;
 		default:
 			break;
 		}
