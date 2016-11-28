@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.data.LoginResult;
 
 public class Biz_Login {
 
@@ -32,25 +31,25 @@ public class Biz_Login {
 	 * @param param
 	 *            参数
 	 */
-	public void login(String username, String password, LoginResult loginResult) {
+	public void login(String username, String password, String checkCode, String checkPoint, String expectMessage) {
 		nagivate_to_login();
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
-		page_Login.input_checkCode(loginResult.getCheckCode());
+		page_Login.input_checkCode(checkCode);
 		page_Login.submit();
-		switch (loginResult.getCode()) {
-		case 1:
+		switch (checkPoint) {
+		case "success":
 			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
-			Assertion.assertEquals(true, flag, Biz_Login.class, loginResult.getComment());
+			Assertion.assertEquals(true, flag, Biz_Login.class, "login success");
 			break;
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-		case 6:
-			String message = page_Login.getElementText("tips_normal");
-			Assertion.assertEquals(message, message, Biz_Login.class, loginResult.getComment());
+		case "loginnameNull":
+		case "loginpwdNull":
+		case "checkCodeNull":
+		case "loginnameError":
+		case "checkCodeError":
+			String actualMessage = page_Login.getElementText("tips_normal");
+			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, checkPoint);
 			break;
 		}
 	}

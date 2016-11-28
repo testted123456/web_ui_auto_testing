@@ -10,7 +10,6 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.recharge.Biz_User_Recharge;
 import com.nonobank.apps.business.recharge.Biz_User_RechargeConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.LoginResult;
 
 /**
  * 用账户余额购买债券成功
@@ -30,10 +29,10 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String cardno, String money, String pay_password, String id,
-			String amount) {
+	public void test(String mobile, String password, String checkCode, String cardno, String money, String pay_password,
+			String id, String amount) {
 
-		biz_Login.login(mobile, password, LoginResult.SUCESS);
+		biz_Login.login(mobile, password, checkCode, "success", null);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge(cardno, mobile);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);

@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Logout;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.LoginResult;
 
 public class LoginValidateLoginnameError extends BaseCase {
 
@@ -15,9 +14,9 @@ public class LoginValidateLoginnameError extends BaseCase {
 	public static Logger logger = LogManager.getLogger(LoginValidateLoginnameError.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String loginName, String password) {
+	public void test(String loginName, String password, String checkCode) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, LoginResult.LOGINNAME_ERROR);
+		biz_Login.login(loginName, password, checkCode, "loginnameError","登录用户名不存在");
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}

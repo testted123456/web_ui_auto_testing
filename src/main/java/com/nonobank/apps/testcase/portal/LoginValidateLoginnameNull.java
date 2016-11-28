@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Logout;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.LoginResult;
 
 public class LoginValidateLoginnameNull extends BaseCase {
 
@@ -15,9 +14,9 @@ public class LoginValidateLoginnameNull extends BaseCase {
 	public static Logger logger = LogManager.getLogger(LoginValidateLoginnameNull.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String loginName, String password) {
+	public void test(String loginName, String password, String checkCode) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, LoginResult.LOGINNAME_NULL);
+		biz_Login.login(loginName, password, checkCode, "loginnameNull","请输入您的用户名或手机号！");
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}
