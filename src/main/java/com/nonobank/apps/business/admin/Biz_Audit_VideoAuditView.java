@@ -6,14 +6,14 @@ import org.testng.Assert;
 import com.nonobank.apps.page.admin.Page_Audit_Video_AuditView;
 import com.nonobank.apps.utils.webintegration.Info;
 
-@Info(desc="视频页面",dependency="com.nonobank.apps.business.admin.Biz_Debt",isDisabled=false)
+@Info(name="Biz_Audit_VideoAuditView",desc="视频页面",dependency="com.nonobank.apps.business.admin.Biz_Debt",isDisabled=false)
 public class Biz_Audit_VideoAuditView {
 	public static Logger logger = LogManager.getLogger(Biz_Audit_VideoAuditView.class);
 	
 	Page_Audit_Video_AuditView page_Admin_Audit_Video_AuditView = new Page_Audit_Video_AuditView();
 
 	//初审通过
-	@Info(desc="初审通过",dependency="IDVerification()",isDisabled=false)
+	@Info(name="first_audit_pass",desc="初审通过",dependency="IDVerification()",isDisabled=false)
 	public void first_audit_pass(){
 		page_Admin_Audit_Video_AuditView.audit("初审通过");
 		page_Admin_Audit_Video_AuditView.sleep(5000);
@@ -30,25 +30,25 @@ public class Biz_Audit_VideoAuditView {
 	}
 	
 	//初审拒绝
-	@Info(desc="初审拒绝",dependency="IDVerification()",isDisabled=false)
+	@Info(name="first_audit_reject",desc="初审拒绝",dependency="IDVerification()",isDisabled=false)
 	public void first_audit_reject(){
 		page_Admin_Audit_Video_AuditView.audit("初审拒绝");
 	}
 	
 	//初审回退
-	@Info(desc="初审回退",dependency="navigate_to_userbanks()",isDisabled=false)
+	@Info(name="first_audit_return",desc="初审回退",dependency="navigate_to_userbanks()",isDisabled=false)
 	public void first_audit_return(){
 		page_Admin_Audit_Video_AuditView.audit("初审回退");
 	}
 	
 	//初审取消
-	@Info(desc="初审取消",dependency="IDVerification()",isDisabled=false)
+	@Info(name="first_audit_cancel",desc="初审取消",dependency="IDVerification()",isDisabled=false)
 	public void first_audit_cancel(){
 		page_Admin_Audit_Video_AuditView.audit("初审取消");
 	}
 	
 	//终审通过
-	@Info(desc="终审通过",dependency="setPayPassword()",isDisabled=false)
+	@Info(name="last_audit_pass",desc="终审通过",dependency="setPayPassword()",isDisabled=false)
 	public void last_audit_pass(){
 		page_Admin_Audit_Video_AuditView.audit("终审通过");
 		page_Admin_Audit_Video_AuditView.sleep(5000);

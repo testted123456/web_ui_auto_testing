@@ -7,18 +7,18 @@ import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
 
-@Info(desc="账户页面",dependency="com.nonobank.apps.business.admin.Biz_Audit_VideoAuditView",isDisabled=false)
+@Info(name="Biz_Account",desc="账户页面",dependency="com.nonobank.apps.business.admin.Biz_Audit_VideoAuditView",isDisabled=false)
 public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
 	public Page_Account page_Account = new Page_Account();
 
-	@Info(desc="跳转到银行账户页面",dependency="tests()",isDisabled=false)
+	@Info(name="navigate_to_userbanks",desc="跳转到银行账户页面",dependency="tests()",isDisabled=false)
 	public void navigate_to_userbanks() {
 		logger.info("跳转到银行账户页面...");
 		page_Account.click_bank_account();
 	}
 
-	@Info(desc="身份认证",dependency="navigate_to_userbanks()",isDisabled=false)
+	@Info(name="IDVerification",desc="身份认证",dependency="navigate_to_userbanks()",isDisabled=false)
 	@Params(type={"String","String"},name={"myname","identity_ID"},desc={"用户名","身份证号码"})
 	@Return(type="String",desc="test")
 	public String IDVerification(String myname, String identity_ID) {

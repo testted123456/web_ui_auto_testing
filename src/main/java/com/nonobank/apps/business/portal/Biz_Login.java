@@ -12,7 +12,7 @@ import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
 
-@Info(desc="登录页面",dependency="",isDisabled=false)
+@Info(name="Biz_Login",desc="登录页面",dependency="",isDisabled=false)
 public class Biz_Login {
 
 	public static Logger logger = LogManager.getLogger(Biz_Login.class);
@@ -22,7 +22,7 @@ public class Biz_Login {
 	/**
 	 * nagivate_to_login 跳转到登录页面
 	 */
-	@Info(desc="跳转到登录页面",dependency="",isDisabled=false)
+	@Info(name="nagivate_to_login",desc="跳转到登录页面",dependency="",isDisabled=false)
 	public void nagivate_to_login() {
 		logger.info("跳转到登录页面...");
 		page_Login.nagivate_to_login();
@@ -39,7 +39,7 @@ public class Biz_Login {
 	 * @param param
 	 *            参数
 	 */
-	@Info(desc="登录",dependency="nagivate_to_login()",isDisabled=false)
+	@Info(name="login",desc="登录",dependency="nagivate_to_login()",isDisabled=false)
 	@Params(type={"String","String","LoginResult"},name={"username","password","loginResult"},desc={"用户名","密码","登录结果"})
 	public void login(String username, String password, LoginResult loginResult) {
 		nagivate_to_login();
