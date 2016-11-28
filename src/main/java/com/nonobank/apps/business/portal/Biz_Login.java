@@ -44,9 +44,9 @@ public class Biz_Login {
 			Assertion.assertEquals(true, flag, Biz_Login.class, "login success");
 			break;
 		case "loginnameNull":
+		case "loginnameError":
 		case "loginpwdNull":
 		case "checkCodeNull":
-		case "loginnameError":
 		case "checkCodeError":
 			String actualMessage = page_Login.getElementText("tips_normal");
 			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, checkPoint);
