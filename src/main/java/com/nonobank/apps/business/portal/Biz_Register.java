@@ -6,7 +6,6 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.data.RegisterResult;
 
 public class Biz_Register {
 
@@ -28,8 +27,8 @@ public class Biz_Register {
 	 *            再次输入密码
 	 * @param success
 	 */
-	public void register(String mobile, String user_name, String password, String password2, RegisterResult result,
-			String... invite) {
+	public void register(String mobile, String user_name, String password, String password2, String checkCode,
+			String validation, String checkPoint, String expectMessage, String... invite) {
 		try {
 			navigate_to_register();
 			logger.info("开始输入注册信息...");
@@ -41,45 +40,48 @@ public class Biz_Register {
 				page_Register.input_invite(invite[0]);
 			}
 			page_Register.click_next_step();
-			page_Register.input_check_code(result.getCheckCode());
+			page_Register.input_check_code(checkCode);
 			page_Register.click_sms_code();
-			page_Register.input_sms_code(result.getValidation());
+			page_Register.input_sms_code(validation);
 			page_Register.click_reg_over_btn();
-			handleResult(result);
+			handleResult(checkPoint, expectMessage);
 		} catch (Error e) {
-			handleResult(result);
+			handleResult(checkPoint, expectMessage);
 		}
 	}
 
-	private void handleResult(RegisterResult result) {
-		switch (result.getCode()) {
-		case 1:
+	private void handleResult(String checkPoint, String expectMessage) {
+		switch (checkPoint) {
+		case "success":
 			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
-			Assertion.assertEquals(true, flag, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(true, flag, Biz_Register.class, "register success");
 			break;
-		case 2:
-		case 3:
+		case "moblieError":
+		case "moblieExist":
 			String moblieMessage = page_Register.getElementText("moblieMessage");
-			Assertion.assertEquals(result.getMessage(), moblieMessage, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(expectMessage, moblieMessage, Biz_Register.class, checkPoint);
 			break;
-		case 4:
-		case 5:
-		case 6:
+		case "usernameError":
+		case "usernameLength":
+		case "usernameExist":
 			String usernameMessage = page_Register.getElementText("usernameMessage");
-			Assertion.assertEquals(result.getMessage(), usernameMessage, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(expectMessage, usernameMessage, Biz_Register.class, checkPoint);
 			break;
-		case 7:
+		case "passwordError":
 			String passwordMessage = page_Register.getElementText("passwordMessage");
-			Assertion.assertEquals(result.getMessage(), passwordMessage, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(expectMessage, passwordMessage, Biz_Register.class, checkPoint);
 			break;
-		case 8:
+		case "password2Error":
 			String password2Message = page_Register.getElementText("password2Message");
-			Assertion.assertEquals(result.getMessage(), password2Message, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(expectMessage, password2Message, Biz_Register.class, checkPoint);
 			break;
-		case 9:
+		case "checkCodeNull":
 			String checkCodeMessage = page_Register.getElementText("checkCodeMessage");
-			Assertion.assertEquals(result.getMessage(), checkCodeMessage, Biz_Register.class, result.getComment());
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, checkPoint);
 			break;
+		case "checkCodeError":
+			checkCodeMessage = page_Register.getAlertText();
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, checkPoint);
 		default:
 			break;
 		}

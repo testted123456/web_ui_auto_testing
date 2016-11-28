@@ -7,6 +7,7 @@ import org.testng.TestListenerAdapter;
 public class TestngListenerForRemote extends TestListenerAdapter {
 	
 	private String result;
+	private String errMsg;
 
 	public String getResult() {
 		return result;
@@ -14,6 +15,14 @@ public class TestngListenerForRemote extends TestListenerAdapter {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public String getErrMsg() {
+		return errMsg;
+	}
+
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
 	}
 
 	@Override

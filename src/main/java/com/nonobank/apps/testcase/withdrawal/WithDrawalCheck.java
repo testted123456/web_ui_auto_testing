@@ -7,7 +7,6 @@ import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.withdrawal.Biz_User_Withdrawal;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.LoginResult;
 
 public class WithDrawalCheck extends BaseCase {
 	public static Logger logger = LogManager.getLogger(WithDrawalCheck.class);
@@ -16,10 +15,10 @@ public class WithDrawalCheck extends BaseCase {
 	Biz_User_Withdrawal biz_User_Withdrawal;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password) {
+	public void test(String mobile, String password, String checkCode) {
 		logger.info("begin to test...");
 
-		biz_Login.login(mobile, password, LoginResult.SUCESS);
+		biz_Login.login(mobile, password, checkCode, "success", null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Withdrawal.navigate_to_withdrawal();

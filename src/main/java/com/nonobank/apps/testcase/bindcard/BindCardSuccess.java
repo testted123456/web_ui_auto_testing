@@ -10,7 +10,6 @@ import com.nonobank.apps.business.bank.Biz_User_BindCard2;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.portal.Biz_Register;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.RegisterResult;
 
 public class BindCardSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BindCardSuccess.class);
@@ -23,9 +22,10 @@ public class BindCardSuccess extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2, String myname,
-			String identity_ID, String payPassword, String payPassword2, String bank_name, String bankcard_no) {
-		biz_Register.register(mobile, user_name, password, password2, RegisterResult.SUCCESS);
+	public void test(String mobile, String user_name, String password, String password2, String checkCode,
+			String validation, String myname, String identity_ID, String payPassword, String payPassword2,
+			String bank_name, String bankcard_no) {
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "success", null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.IDVerification(myname, identity_ID);
