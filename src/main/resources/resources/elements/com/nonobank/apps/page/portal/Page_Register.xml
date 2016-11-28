@@ -43,4 +43,14 @@
 	<!-- 登录 -->
 	<WebLink name="login" xpath="//a[@class='login_btn2']">
 	</WebLink>
+	<WebCommon name="moblieMessage" xpath="//label[@for='mobile']">
+	</WebCommon>
+	<WebCommon name="usernameMessage" xpath="//label[@for='username']">
+	</WebCommon>
+	<WebCommon name="passwordMessage" xpath="//label[@for='password']">
+	</WebCommon>
+	<WebCommon name="password2Message" xpath="//label[@for='password2']">
+	</WebCommon>
+	<WebCommon name="checkCodeMessage" xpath="//label[@for='checkCode']">
+	</WebCommon>
 </elements>

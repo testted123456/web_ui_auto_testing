@@ -11,6 +11,7 @@ import com.nonobank.apps.business.licai.Biz_Licai_Payment_Successful;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.portal.Biz_Register;
 import com.nonobank.apps.testcase.base.BaseCase;
+import com.nonobank.apps.utils.data.RegisterResult;
 
 public class LanrenByNewBankCardSuccessful extends BaseCase {
 
@@ -28,7 +29,7 @@ public class LanrenByNewBankCardSuccessful extends BaseCase {
 	public void test(String mobile, String user_name, String password, String password2, String myname,
 			String identity_ID, String payPassword, String payPassword2, String id, String amount, String bank_name,
 			String cardNo) {
-		biz_Register.register(mobile, user_name, password, password2);
+		biz_Register.register(mobile, user_name, password, password2, RegisterResult.SUCCESS);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.IDVerification(myname, identity_ID);

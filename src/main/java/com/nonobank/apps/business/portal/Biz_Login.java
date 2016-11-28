@@ -46,7 +46,7 @@ public class Biz_Login {
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
-		page_Login.input_checkCode();
+		page_Login.input_checkCode(loginResult.getCheckCode());
 		page_Login.submit();
 		switch (loginResult.getCode()) {
 		case 1:
@@ -55,11 +55,12 @@ public class Biz_Login {
 			break;
 		case 2:
 		case 3:
-			String text = page_Login.get_messInfo("tips_normal");
-			Assertion.assertEquals(loginResult.getMessage(), text, Biz_Login.class, loginResult.getComment());
+		case 4:
+		case 5:
+		case 6:
+			String message = page_Login.getElementText("tips_normal");
+			Assertion.assertEquals(message, message, Biz_Login.class, loginResult.getComment());
 			break;
-
 		}
 	}
-
 }

@@ -47,8 +47,9 @@ public class ParseXLSX {
 
 		try {
 			path = java.net.URLDecoder.decode(url.getFile(), "UTF-8");
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -8,6 +8,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.nonobank.apps.objectRepository.ObjectFactory;
+import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 
@@ -92,24 +93,6 @@ public class BasePage {
 		}
 	}
 
-	/**
-	 * 元素是否显示
-	 * 
-	 * @param by
-	 * @param time
-	 * @return
-	 */
-	public boolean isElementDisplayed(final By by, long time) {
-		for (int i = 0; i < time; i++) {
-			if (objectFactory.getWebElement(by).isDisplayed()) {
-				return true;
-			} else {
-				sleep(1000);
-			}
-		}
-		return false;
-	}
-
 	public boolean isElementDisplayed(String elementName, WebElementType elementType, long time) {
 		for (int i = 0; i < time; i++) {
 			WebElement element = objectFactory.getWebElement(elementName, elementType);
@@ -120,6 +103,11 @@ public class BasePage {
 			}
 		}
 		return false;
+	}
+
+	public String getElementText(String elementPath) {
+		WebCommon webCommon = objectFactory.getWebCommon(elementPath);
+		return webCommon.getText();
 	}
 
 	/**
