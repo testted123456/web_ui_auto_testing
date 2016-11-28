@@ -19,6 +19,12 @@ public class Biz_Login {
 		logger.info("跳转到登录页面...");
 		page_Login.nagivate_to_login();
 	}
+	
+	public void login(String username, String password){
+		page_Login.input_username(username);
+		page_Login.input_password(password);
+		page_Login.submit();
+	}
 
 	/**
 	 * 
