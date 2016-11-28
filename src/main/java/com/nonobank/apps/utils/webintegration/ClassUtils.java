@@ -11,6 +11,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -107,14 +108,14 @@ public class ClassUtils {
         }  
     } 
     
-    public static FullPages getClassesDetails(String packageName){
+    public static List<UIPage> getClassesDetails(String packageName){
     	List<Class<?>> clazzes = getClasses(packageName);
     	FullPages fullpages = new FullPages();
-    	List<Page> pages = new ArrayList<Page>();
+    	List<UIPage> pages = new ArrayList<UIPage>();
     	System.out.println(packageName+"下面的所有字节码："+clazzes);
     	for(Class claz : clazzes){
-    		Page singlepage = new Page();
-    		List<Methed> metheds = new ArrayList<Methed>();
+    		UIPage singlepage = new UIPage();
+    		List<UIMethod> metheds = new ArrayList<UIMethod>();
     		String classpackagename = claz.getName();
     		singlepage.setName(classpackagename);
     		Info infclass = (Info) claz.getAnnotation(Info.class);
@@ -128,11 +129,11 @@ public class ClassUtils {
     		
     		Method[] methods = claz.getDeclaredMethods();
     		for(Method method : methods){
-    			List<Param> paramss = new ArrayList<Param>();
+    			TreeSet<UIParam> paramss = new TreeSet<UIParam>();
     			Info minfo = method.getAnnotation(Info.class);
     			Params mparams = method.getAnnotation(Params.class);
     			Return mreturns = method.getAnnotation(Return.class);
-    			Methed siglemethod = new Methed();
+    			UIMethod siglemethod = new UIMethod();
     			siglemethod.setName(method.getName());
     			if(minfo!=null){
     				siglemethod.setDesc(minfo.desc());
@@ -151,13 +152,16 @@ public class ClassUtils {
     			String paramnames = "";
     			String paramtypes = "";
     			String paramdescs = "";
+    			List<UIParam> uip = new ArrayList<UIParam>();
     			for(int i = 0 ; i < paramNames.length ; i++){
-    				Param p = new Param();
+    				UIParam p = new UIParam();
     				p.setName(paramNames[i]);
     				p.setType(paramTypes[i]);
     				p.setDesc(paramDescs[i]);
-    				paramss.add(p);
+//    				paramss.add(p);
+    				uip.add(p);
     			}
+    			paramss.addAll(uip);
     			siglemethod.setParams(paramss);
     			metheds.add(siglemethod);
     		}
@@ -167,13 +171,13 @@ public class ClassUtils {
     		fullpages.setFullPages(pages);
     		System.out.println("========   ========="+pages.size());
     	}
-		return fullpages;
+		return pages;
     	
     }
     
     public static void main(String[] args){
-    	FullPages full  = getClassesDetails("com.nonobank.apps.business");
-    	System.out.println(full);
+    	List<UIPage> pages  = getClassesDetails("com.nonobank.apps.business.portal");
+    	System.out.println(pages);
 	}
 	
 }  
