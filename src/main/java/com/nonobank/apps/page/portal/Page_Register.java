@@ -116,11 +116,12 @@ public class Page_Register extends BasePage {
 	 * 输入验证码
 	 */
 	public void input_sms_code(String smsCode) {
-		logger.info("输入验证码......");
 		WebInput input_sms_code = objectFactory.getWebInput("validation");
-		System.out.println("*******************input_sms_code="+input_sms_code.isEnabled());
-		sleep(3000);
-		input_sms_code.clearAndInput(smsCode);
+		if (input_sms_code.getAttribute("readonly")==null) {
+			logger.info("输入验证码......");
+			sleep(3000);
+			input_sms_code.clearAndInput(smsCode);
+		}
 	}
 
 	/**
