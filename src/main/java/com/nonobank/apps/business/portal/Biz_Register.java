@@ -28,7 +28,7 @@ public class Biz_Register {
 	 * @param success
 	 */
 	public void register(String mobile, String user_name, String password, String password2, String checkCode,
-			String validation, String checkPoint, String expectMessage, String... invite) {
+			String validation, String expectMessage, String... invite) {
 		try {
 			navigate_to_register();
 			logger.info("开始输入注册信息...");
@@ -44,45 +44,43 @@ public class Biz_Register {
 			page_Register.click_sms_code();
 			page_Register.input_sms_code(validation);
 			page_Register.click_reg_over_btn();
-			handleResult(checkPoint, expectMessage);
+			handleResult(expectMessage);
 		} catch (Error e) {
-			handleResult(checkPoint, expectMessage);
+			handleResult(expectMessage);
 		}
 	}
 
-	private void handleResult(String checkPoint, String expectMessage) {
-		switch (checkPoint) {
-		case "success":
-			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
-			Assertion.assertEquals(true, flag, Biz_Register.class, "register success");
-			break;
-		case "moblieError":
-		case "moblieExist":
+	private void handleResult(String expectMessage) {
+		switch (expectMessage) {
+		case "请输入有效的手机号码，以便找回密码":
+		case "该手机号码已存在，登录或者查看帮助":
 			String moblieMessage = page_Register.getElementText("moblieMessage");
-			Assertion.assertEquals(expectMessage, moblieMessage, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, moblieMessage, Biz_Register.class, "反例-验证手机号码");
 			break;
-		case "usernameError":
-		case "usernameLength":
-		case "usernameExist":
+		case "只能使用字母、数字或下划线":
+		case "6-16位字符，可以是字母、数字、下划线的组合":
+		case "该用户名已存在，登录":
 			String usernameMessage = page_Register.getElementText("usernameMessage");
-			Assertion.assertEquals(expectMessage, usernameMessage, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, usernameMessage, Biz_Register.class, "反例-验证用户名");
 			break;
-		case "passwordError":
+		case "应至少包含字母、数字、下划线中的两种":
 			String passwordMessage = page_Register.getElementText("passwordMessage");
-			Assertion.assertEquals(expectMessage, passwordMessage, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, passwordMessage, Biz_Register.class, "反例-验证密码");
 			break;
-		case "password2Error":
+		case "两次输入的密码不一致":
 			String password2Message = page_Register.getElementText("password2Message");
-			Assertion.assertEquals(expectMessage, password2Message, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, password2Message, Biz_Register.class, "反例-密码不一致");
 			break;
-		case "checkCodeNull":
+		case "请输入安全码！":
 			String checkCodeMessage = page_Register.getElementText("checkCodeMessage");
-			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证安全码");
 			break;
-		case "checkCodeError":
+		case "验证码输入错误！":
 			checkCodeMessage = page_Register.getAlertText();
-			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, checkPoint);
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证短信验证码");
 		default:
+			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
+			Assertion.assertEquals(true, flag, Biz_Register.class, "正例-注册成功");
 			break;
 		}
 	}

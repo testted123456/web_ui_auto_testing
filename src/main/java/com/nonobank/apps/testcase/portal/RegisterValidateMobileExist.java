@@ -11,7 +11,6 @@ public class RegisterValidateMobileExist extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation) {
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "mobileExist",
-				"该手机号码已存在，登录或者查看帮助");
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "该手机号码已存在，登录或者查看帮助");
 	}
 }

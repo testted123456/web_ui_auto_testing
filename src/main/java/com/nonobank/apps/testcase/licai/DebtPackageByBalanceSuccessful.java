@@ -32,7 +32,7 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 	public void test(String mobile, String password, String checkCode, String cardno, String money, String pay_password,
 			String id, String amount) {
 
-		biz_Login.login(mobile, password, checkCode, "success", null);
+		biz_Login.login(mobile, password, checkCode,  null);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge(cardno, mobile);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);

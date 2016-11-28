@@ -16,7 +16,7 @@ public class LoginValidateLoginnameError extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password, String checkCode) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, checkCode, "loginnameError","登录用户名不存在");
+		biz_Login.login(loginName, password, checkCode, "登录用户名不存在");
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}

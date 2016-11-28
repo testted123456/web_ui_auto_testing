@@ -16,7 +16,7 @@ public class LoginValidateLoginpwdNull extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password, String checkCode) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, checkCode, "loginpwdNull","请输入您的登录密码！");
+		biz_Login.login(loginName, password, checkCode, "请输入您的登录密码！");
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}

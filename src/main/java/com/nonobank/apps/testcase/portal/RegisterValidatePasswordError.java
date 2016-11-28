@@ -11,7 +11,6 @@ public class RegisterValidatePasswordError extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation) {
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "passwordError",
-				"应至少包含字母、数字、下划线中的两种");
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "应至少包含字母、数字、下划线中的两种");
 	}
 }

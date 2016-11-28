@@ -23,7 +23,7 @@ public class JingxuanByOldBankCardSuccessful extends BaseCase {
 	public void test(String mobile, String password, String checkCode, String id, String amount, String cardNo,
 			String payPassword) {
 
-		biz_Login.login(mobile, password, checkCode, "success", null);
+		biz_Login.login(mobile, password, checkCode, null);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByOldNewCard(cardNo, payPassword);

@@ -5,7 +5,11 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.webintegration.Info;
+import com.nonobank.apps.utils.webintegration.Params;
+import com.nonobank.apps.utils.webintegration.Return;
 
+@Info(dependency = "hTTp://T.CN/RcFeD2C", desc = "", isDisabled = false)
 public class Biz_Login {
 
 	public static Logger logger = LogManager.getLogger(Biz_Login.class);
@@ -31,25 +35,27 @@ public class Biz_Login {
 	 * @param param
 	 *            参数
 	 */
-	public void login(String username, String password, String checkCode, String checkPoint, String expectMessage) {
-		nagivate_to_login();
+	@Info(dependency = "nagivate_to_login", desc = "", isDisabled = false)
+	@Return(desc = "", type = "void")
+	@Params(type = { "String", "String" }, desc = { "" }, name = {})
+	public void login(String username, String password, String checkCode, String expectMessage) {
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
 		page_Login.input_checkCode(checkCode);
 		page_Login.submit();
-		switch (checkPoint) {
-		case "success":
-			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
-			Assertion.assertEquals(true, flag, Biz_Login.class, "login success");
-			break;
-		case "loginnameNull":
-		case "loginnameError":
-		case "loginpwdNull":
-		case "checkCodeNull":
-		case "checkCodeError":
+		switch (expectMessage) {
+		case "请输入您的用户名或手机号！":
+		case "登录用户名不存在":
+		case "请输入您的登录密码！":
+		case "请输入安全码！":
+		case "验证码错误":
 			String actualMessage = page_Login.getElementText("tips_normal");
-			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, checkPoint);
+			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-登录失败");
+			break;
+		default:
+			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
+			Assertion.assertEquals(true, flag, Biz_Login.class, "反例-登录成功");
 			break;
 		}
 	}

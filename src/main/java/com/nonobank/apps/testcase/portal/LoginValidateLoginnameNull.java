@@ -16,7 +16,7 @@ public class LoginValidateLoginnameNull extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password, String checkCode) {
 		logger.info("*******************************************start test*******************************************");
-		biz_Login.login(loginName, password, checkCode, "loginnameNull","请输入您的用户名或手机号！");
+		biz_Login.login(loginName, password, checkCode, "请输入您的用户名或手机号！");
 		biz_Logout.logout();
 		logger.info("*******************************************end test*******************************************");
 	}

@@ -28,7 +28,7 @@ public class LingyuanByNewBankCardSuccessful extends BaseCase {
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String myname, String identity_ID, String payPassword, String payPassword2, String id,
 			String amount, String bank_name, String cardNo) {
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "success", null);
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.IDVerification(myname, identity_ID);
