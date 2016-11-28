@@ -3,13 +3,13 @@ package com.nonobank.apps.utils.webintegration;
 import java.util.List;
 
 public class FullPages {
-	List<Page> fullPages;
+	List<UIPage> fullPages;
 
-	public List<Page> getFullPages() {
+	public List<UIPage> getFullPages() {
 		return fullPages;
 	}
 
-	public void setFullPages(List<Page> fullPages) {
+	public void setFullPages(List<UIPage> fullPages) {
 		this.fullPages = fullPages;
 	}
 	

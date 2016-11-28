@@ -47,8 +47,48 @@
 			<class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileFormat" />
 			<class name="com.nonobank.apps.testcase.portal.RegisterValidateNotexistInvite" />
 			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Format" />
+
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePasswordFormat" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateRegisterMobile" />
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
 		</classes>
 	</test>
+
+	<test name="Nonobank_Recharge" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.recharge.RechargeSuccess" />
+			<class name="com.nonobank.apps.testcase.recharge.RechargeCheck" />
+		</classes>
+	</test>
+	<test name="repayment" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
+			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
+		</classes>
+	</test>
+		<test name="student" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.student.BorrowsExcTestCase" />
+			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
+			<class name="com.nonobank.apps.testcase.student.CreditBookVerifyTestCase" />
+			<class name="com.nonobank.apps.testcase.student.NewStudentTestCase" />
+			<class name="com.nonobank.apps.testcase.student.WhiteCollarPromptTestcase" />
+		</classes>
+	</test>
+			<test name="withdrawal" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+		</classes>
+	</test> -->
+	<!-- <test name="withdrawal" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
+		</classes>
+	</test> 
+
+		</classes>
+	</test>-->
 	<!-- <test name="Nonobank_Recharge" preserve-order="true"> <classes> <class 
 		name="com.nonobank.apps.testcase.recharge.RechargeSuccess" /> <class name="com.nonobank.apps.testcase.recharge.RechargeCheck" 
 		/> </classes> </test> <test name="repayment" preserve-order="true"> <classes> 
@@ -63,4 +103,5 @@
 		name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" /> </classes> 
 		</test> <test name="withdrawal" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" 
 		/> </classes> </test> -->
+
 </suite>

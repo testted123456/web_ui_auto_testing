@@ -4,5 +4,5 @@ target/*
 testng.xml
 test-output/*
 ui_auto.log
-.idea
-web_ui_auto_testing.iml
+.classpath
+.project
