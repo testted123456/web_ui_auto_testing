@@ -9,7 +9,7 @@ import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
 
-@Info(dependency = "", desc = "", isDisabled = false)
+@Info(name = "Biz_Login", desc = "登录页面", dependency = "", isDisabled = false)
 public class Biz_Login {
 
 	public static Logger logger = LogManager.getLogger(Biz_Login.class);
@@ -19,6 +19,8 @@ public class Biz_Login {
 	/**
 	 * nagivate_to_login 跳转到登录页面
 	 */
+
+	@Info(name = "nagivate_to_login", desc = "跳转到登录页面", dependency = "", isDisabled = false)
 	public void nagivate_to_login() {
 		logger.info("跳转到登录页面...");
 		page_Login.nagivate_to_login();
@@ -41,11 +43,14 @@ public class Biz_Login {
 	 * @param param
 	 *            参数
 	 */
-	@Info(dependency = "nagivate_to_login", desc = "跳转到登录界面", isDisabled = false)
 	@Return(desc = "", type = "void")
 	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名", "密码", "安全码", "预期结果" }, name = {
 			"username", "password", "checkCode", "expectMessage" })
+
+	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void login(String username, String password, String checkCode, String expectMessage) {
+
+		nagivate_to_login();
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);

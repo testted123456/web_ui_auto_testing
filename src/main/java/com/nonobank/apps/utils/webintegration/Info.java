@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.METHOD,ElementType.TYPE})
 public @interface Info {
+	String name();
 	String desc();
 	String dependency();
 	boolean isDisabled();
