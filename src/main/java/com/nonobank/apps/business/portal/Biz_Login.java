@@ -49,8 +49,6 @@ public class Biz_Login {
 
 	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void login(String username, String password, String checkCode, String expectMessage) {
-
-		nagivate_to_login();
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
