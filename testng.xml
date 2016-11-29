@@ -11,19 +11,32 @@
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.LoginSuccess" />
+			<class
+				name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeError" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeNull" />
-			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" />
+			<class
+				name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameNull" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateLoginpwdNull" />
 			<class name="com.nonobank.apps.testcase.portal.RegisterSuccess" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterSuccessByInvite" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateExceptionRegisterMobile" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileFormat" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateNotexistInvite" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Format" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidatePasswordFormat" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateRegisterMobile" />
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateUserNameFormat" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateCheckCodeError" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateCheckCodeNull" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateMobileError" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateMobileExist" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Error" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidatePasswordError" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameError" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameExist" />
+			<class
+				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameLength" />
 		</classes>
 	</test>
 	<test name="Nonobank_Recharge" preserve-order="true">

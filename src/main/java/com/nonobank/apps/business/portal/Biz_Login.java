@@ -9,7 +9,7 @@ import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
 
-@Info(dependency = "hTTp://T.CN/RcFeD2C", desc = "", isDisabled = false)
+@Info(dependency = "", desc = "", isDisabled = false)
 public class Biz_Login {
 
 	public static Logger logger = LogManager.getLogger(Biz_Login.class);
@@ -23,8 +23,8 @@ public class Biz_Login {
 		logger.info("跳转到登录页面...");
 		page_Login.nagivate_to_login();
 	}
-	
-	public void login(String username, String password){
+
+	public void login(String username, String password) {
 		page_Login.input_username(username);
 		page_Login.input_password(password);
 		page_Login.submit();
@@ -41,9 +41,10 @@ public class Biz_Login {
 	 * @param param
 	 *            参数
 	 */
-	@Info(dependency = "nagivate_to_login", desc = "", isDisabled = false)
+	@Info(dependency = "nagivate_to_login", desc = "跳转到登录界面", isDisabled = false)
 	@Return(desc = "", type = "void")
-	@Params(type = { "String", "String" }, desc = { "" }, name = {})
+	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名", "密码", "安全码", "预期结果" }, name = {
+			"username", "password", "checkCode", "expectMessage" })
 	public void login(String username, String password, String checkCode, String expectMessage) {
 		logger.info("登录...");
 		page_Login.input_username(username);
