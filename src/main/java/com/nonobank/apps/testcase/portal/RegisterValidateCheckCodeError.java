@@ -11,6 +11,6 @@ public class RegisterValidateCheckCodeError extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation) {
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "验证码输入错误！");
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "安全码输入错误");
 	}
 }

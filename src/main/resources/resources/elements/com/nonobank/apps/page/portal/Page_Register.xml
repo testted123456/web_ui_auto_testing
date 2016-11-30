@@ -53,4 +53,6 @@
 	</WebCommon>
 	<WebCommon name="checkCodeMessage" xpath="//label[@for='checkCode']">
 	</WebCommon>
+	<WebCommon name="countdown" xpath="//a[@id='countdown']">
+	</WebCommon>
 </elements>

@@ -6,6 +6,9 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.webintegration.Info;
+import com.nonobank.apps.utils.webintegration.Params;
+import com.nonobank.apps.utils.webintegration.Return;
 
 public class Biz_Register {
 
@@ -27,6 +30,11 @@ public class Biz_Register {
 	 *            再次输入密码
 	 * @param success
 	 */
+	@Return(desc = "", type = "void")
+	@Params(type = { "String", "String", "String", "String", "String", "String", "String", "String" }, desc = { "手机号",
+			"用户名", "密码", "确认密码", "邀请码", "安全码", "验证码", "预期结果" }, name = { "mobile", "user_name", "password", "password2",
+					"checkCode", "validation", "expectMessage", "expectMessage" })
+	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void register(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String expectMessage, String... invite) {
 		try {
@@ -73,11 +81,18 @@ public class Biz_Register {
 			break;
 		case "请输入安全码！":
 			String checkCodeMessage = page_Register.getElementText("checkCodeMessage");
-			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证安全码");
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证安全码为空");
+			break;
+		case "安全码输入错误":
+			checkCodeMessage = page_Register.getElementText("countdown");
+			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证安全码错误");
 			break;
 		case "验证码输入错误！":
-			checkCodeMessage = page_Register.getAlertText();
-			Assertion.assertEquals(expectMessage, checkCodeMessage, Biz_Register.class, "反例-验证短信验证码");
+			if (page_Register.isAlertExists(3000)) {
+				String validation = page_Register.getAlertText();
+				Assertion.assertEquals(expectMessage, validation, Biz_Register.class, "反例-验证短信验证码");
+			}
+			break;
 		default:
 			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
 			Assertion.assertEquals(true, flag, Biz_Register.class, "正例-注册成功");

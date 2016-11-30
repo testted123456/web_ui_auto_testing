@@ -44,11 +44,11 @@ public class Biz_Login {
 	 *            参数
 	 */
 	@Return(desc = "", type = "void")
-	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名", "密码", "安全码", "预期结果" }, name = {
-			"username", "password", "checkCode", "expectMessage" })
-
+	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名/手机号/麦子通行证", "登录密码", "安全码",
+			"预期结果" }, name = { "username", "password", "checkCode", "expectMessage" })
 	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void login(String username, String password, String checkCode, String expectMessage) {
+		nagivate_to_login();
 		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
