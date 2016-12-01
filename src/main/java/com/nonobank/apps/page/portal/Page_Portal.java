@@ -23,12 +23,6 @@ public class Page_Portal extends BasePage {
 	 * 点击进入我的账户
 	 */
 	public void click_my_account() {
-		// String current_url = PageUtils.getUrl();
-		// String url = ParseProperties.getInstance().getProperty("url");
-		// if(!current_url.endsWith(url)){
-		// return;
-		// }
-
 		WebLink link_myaccount = objectFactory.getWebLink("myaccount");
 		if (link_myaccount.isDisplayed()) {
 			link_myaccount.click();

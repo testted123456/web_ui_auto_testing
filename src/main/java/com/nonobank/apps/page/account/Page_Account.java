@@ -9,6 +9,7 @@ import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSpan;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.file.ParseProperties;
 
 public class Page_Account extends BasePage {
 
@@ -19,26 +20,31 @@ public class Page_Account extends BasePage {
 		WebLink link_bank_account = objectFactory.getWebLink("Banks");
 		link_bank_account.click();
 	}
+
 	// 点击提现
 	public void click_withdrawal() {
 		WebButton link_withdrawal = objectFactory.getWebButton("withdrawal");
 		link_withdrawal.click();
 	}
+
 	// 点击充值
 	public void click_recharge() {
 		WebButton link_recharge = objectFactory.getWebButton("recharge");
 		link_recharge.click();
 	}
+
 	// 点击认证管理
 	public void click_degreeCard() {
 		WebLink link_degreeCard = objectFactory.getWebLink("degreeCard");
 		link_degreeCard.click();
 	}
+
 	// 输入真实姓名
 	public void input_name(String myname) {
 		WebInput input_myname = objectFactory.getWebInput("myname");
 		input_myname.clearAndInput(myname);
 	}
+
 	// 输入身份证号
 	public void input_mycard(String mycard) {
 		WebInput input_mycard = objectFactory.getWebInput("mycard");
@@ -64,53 +70,75 @@ public class Page_Account extends BasePage {
 		}
 		return false;
 	}
+
 	// 点击个人设置
 	public void click_profile() {
 		WebLink link_profile = objectFactory.getWebLink("profile");
 		link_profile.click();
 	}
+
 	// 点击密码设置
 	public void click_passwordSetting() {
 		WebCommon li_passwordSetting = objectFactory.getWebCommon("passwordSetting");
 		li_passwordSetting.click();
 	}
+
 	// 点击密码设置
 	public void click_paypasswordSetting() {
 		WebCommon li_payPasswordSetting = objectFactory.getWebCommon("payPasswordSetting");
 		li_payPasswordSetting.click();
 	}
+
 	// 输入支付密码
 	public void input_payPassword(String payPassword) {
 		WebInput input_payPayassword = objectFactory.getWebInput("newZFPwd");
 		input_payPayassword.clearAndInput(payPassword);
 	}
+
 	// 输入支付密码
 	public void input_payPassword_again(String payPassword) {
 		WebInput input_payPassword_again = objectFactory.getWebInput("newZFPassword");
 		input_payPassword_again.clearAndInput(payPassword);
 	}
+
 	// 确认修改密码
 	public void setPasswordbtn() {
 		WebInput setPasswordbtn = objectFactory.getWebInput("setPasswordbtn");
 		setPasswordbtn.click();
 	}
-	//点击借款记录
-	public void click_borrowsRecord(){
+
+	// 点击借款记录
+	public void click_borrowsRecord() {
 		logger.info("点击借款记录.....");
-		WebCommon click_borrowsRecord=objectFactory.getWebCommon("借款记录");
+		WebCommon click_borrowsRecord = objectFactory.getWebCommon("借款记录");
 		click_borrowsRecord.click();
 	}
-	//点击我的账单
-	public void click_myBill(){
+
+	// 点击我的账单
+	public void click_myBill() {
 		logger.info("点击我的账单.....");
-		WebCommon click_myBill=objectFactory.getWebCommon("我的账单");
+		WebCommon click_myBill = objectFactory.getWebCommon("我的账单");
 		click_myBill.click();
 	}
-	//点击借款资料
-	public void click_borrowsData(){
+
+	// 点击借款资料
+	public void click_borrowsData() {
 		logger.info("点击我的账单.....");
-		WebCommon click_borrowsData=objectFactory.getWebCommon("借款资料");
+		WebCommon click_borrowsData = objectFactory.getWebCommon("借款资料");
 		click_borrowsData.click();
 	}
-	
+
+	/**
+	 * 点击进入我的账户
+	 */
+	public void click_my_account() {
+		WebLink link_myaccount = objectFactory.getWebLink("myaccount");
+		if (link_myaccount.isDisplayed()) {
+			link_myaccount.click();
+		} else {
+			String url = ParseProperties.getInstance().getProperty("url");
+			url = url + "/Account";
+			driver.get(url);
+		}
+	}
 }
