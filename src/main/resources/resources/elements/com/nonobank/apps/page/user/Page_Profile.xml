@@ -13,5 +13,4 @@
 	<!-- 支付密码修改确认 -->
 	<WebInput name="setPasswordbtn" xpath="//input[@id='setPasswordbtn']">
 	</WebInput>
-</WebCommon>
 </elements>
