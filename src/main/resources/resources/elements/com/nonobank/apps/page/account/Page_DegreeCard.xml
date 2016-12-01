@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 真实姓名 -->
+	<WebInput name="myname" xpath="//input[@id='myname']">
+	</WebInput>
+	<!-- 身份证号 -->
+	<WebInput name="mycard" xpath="//input[@id='mycard']">
+	</WebInput>
+	<!-- 身份证号 -->
+	<WebInput name="ok" xpath="//input[@name='ok']">
+	</WebInput>
+</elements>
