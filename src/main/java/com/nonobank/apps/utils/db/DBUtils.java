@@ -61,7 +61,6 @@ public class DBUtils {
 		String url = ParseProperties.getInstance().getProperty("mySql_url_" + dbname);
 		String name = ParseProperties.getInstance().getProperty("db_name");
 		String password = ParseProperties.getInstance().getProperty("db_password");
-
 		Connection con = null;
 
 		try {
@@ -203,7 +202,6 @@ public class DBUtils {
 			conn = getConnection(dbname);
 		}
 		List<Object[]> obj = null;
-
 		do {
 			obj = getMulLine(conn, sql);
 			if (obj == null || obj.size() == 0) {
