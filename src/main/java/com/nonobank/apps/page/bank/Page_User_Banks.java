@@ -23,8 +23,9 @@ public class Page_User_Banks extends BasePage {
 	 * 跳转到认证管理页面
 	 */
 	public void navigate_to_banks() {
-		String url_login = ParseProperties.getInstance().getProperty("url") + "/User/Banks";
-		driver.navigate().to(url_login);
+		String url = ParseProperties.getInstance().getProperty("url") + "/User/Banks";
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
 		logger.info(PageUtils.getUrl());
 	}
 

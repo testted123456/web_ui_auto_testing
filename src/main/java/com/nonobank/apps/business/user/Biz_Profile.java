@@ -18,6 +18,8 @@ public class Biz_Profile {
 	// 设置支付密码
 	public void setPayPassword(String payPassword, String payPassword1) {
 		logger.info("设置支付密码...");
+		nagivate_to_profile();
+		page_Profile.click_passwordSetting();
 		page_Profile.click_paypasswordSetting();
 		page_Profile.input_payPassword(payPassword);
 		page_Profile.input_payPassword_again(payPassword1);

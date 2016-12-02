@@ -16,9 +16,16 @@ public class Page_Profile extends BasePage {
 	 * 跳转到个人认证页面
 	 */
 	public void nagivate_to_profile() {
-		String url_login = ParseProperties.getInstance().getProperty("url") + "/User/Profile";
-		driver.navigate().to(url_login);
+		String url = ParseProperties.getInstance().getProperty("url") + "/User/Profile";
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
 		logger.info(PageUtils.getUrl());
+	}
+
+	// 点击密码设置
+	public void click_passwordSetting() {
+		WebCommon li_passwordSetting = objectFactory.getWebCommon("passwordSetting");
+		li_passwordSetting.click();
 	}
 
 	// 点击支付 密码设置

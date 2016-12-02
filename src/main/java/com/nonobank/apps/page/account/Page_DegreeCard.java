@@ -14,8 +14,9 @@ public class Page_DegreeCard extends BasePage {
 	 * 跳转到认证管理页面
 	 */
 	public void nagivate_to_degreeCard() {
-		String url_login = ParseProperties.getInstance().getProperty("url") + "/Account/degreeCard";
-		driver.navigate().to(url_login);
+		String url = ParseProperties.getInstance().getProperty("url") + "/Account/degreeCard";
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
 		logger.info(PageUtils.getUrl());
 	}
 

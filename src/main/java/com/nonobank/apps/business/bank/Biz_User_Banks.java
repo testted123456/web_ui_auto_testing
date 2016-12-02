@@ -23,6 +23,7 @@ public class Biz_User_Banks extends BasePage {
 	 */
 	public void add_bankcard() {
 		logger.info("添加银行卡...");
+		navigate_to_banks();
 		page_User_Banks.click_add_bankcard();
 	}
 

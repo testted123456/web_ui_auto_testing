@@ -23,6 +23,7 @@ public class Biz_DegreeCard {
 	@Return(type = "String", desc = "test")
 	public void IDVerification(String myname, String identity_ID) {
 		logger.info("身份实名认证............");
+		nagivate_to_degreeCard();
 		page_DegreeCard.input_name(myname);
 		page_DegreeCard.input_mycard(identity_ID);
 		page_DegreeCard.submit();

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
+	<!-- 密码设置 -->
+	<WebCommon name="passwordSetting"
+		xpath="//li[contains(@onclick,'/User/ChangePassword/login')]">
+	</WebCommon>
 	<!-- 支付密码设置 -->
 	<WebCommon name="payPasswordSetting"
 		xpath="//li[contains(@onclick,'/User/ChangePassword/pay')]">
