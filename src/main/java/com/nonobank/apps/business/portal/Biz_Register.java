@@ -105,7 +105,7 @@ public class Biz_Register {
 	 */
 	public void navigate_to_register() {
 		logger.info("跳转到注册页面...");
-		page_Portal.click_register();
+		page_Portal.navigate_to_register();
 	}
 
 }

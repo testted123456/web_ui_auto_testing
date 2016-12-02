@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<!-- 密码设置 -->
+	<WebCommon name="passwordSetting"
+		xpath="//li[contains(@onclick,'/User/ChangePassword/login')]">
+	</WebCommon>
+	<!-- 支付密码设置 -->
+	<WebCommon name="payPasswordSetting"
+		xpath="//li[contains(@onclick,'/User/ChangePassword/pay')]">
+	</WebCommon>
+	<!-- 支付密码新密码 -->
+	<WebInput name="newZFPwd" xpath="//input[@id='newZFPwd']">
+	</WebInput>
+	<!-- 支付密码确认密码 -->
+	<WebInput name="newZFPassword" xpath="//input[@id='newZFPassword']">
+	</WebInput>
+	<!-- 支付密码修改确认 -->
+	<WebInput name="setPasswordbtn" xpath="//input[@id='setPasswordbtn']">
+	</WebInput>
+</elements>

@@ -17,7 +17,8 @@ public class Page_Login extends BasePage {
 	 */
 	public void nagivate_to_login() {
 		String url_login = ParseProperties.getInstance().getProperty("url") + "/Login";
-		driver.navigate().to(url_login);
+		PageUtils.openPage(url_login);
+		PageUtils.waitForPageLoad();
 		logger.info(PageUtils.getUrl());
 	}
 

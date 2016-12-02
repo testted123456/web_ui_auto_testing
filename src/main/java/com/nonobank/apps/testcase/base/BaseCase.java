@@ -15,7 +15,6 @@ import org.testng.annotations.DataProvider;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class BaseCase {
 	// 配置文件config.xml
@@ -57,9 +56,6 @@ public class BaseCase {
 		logger.info("开始执行: " + this.getClass().getName());
 		driver = WebDriverUtils.getWebDriver();
 		PageFactory.initElements(driver, this);
-		String url = prop.getProperty("url");
-		PageUtils.openPage(url);
-		PageUtils.waitForPageLoad();
 	}
 
 	@BeforeClass
