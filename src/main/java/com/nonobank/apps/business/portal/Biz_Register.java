@@ -2,8 +2,6 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.nonobank.apps.objectRepository.WebElementType;
-import com.nonobank.apps.page.portal.Page_Portal;
 import com.nonobank.apps.page.portal.Page_Register;
 import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.webintegration.Info;
@@ -14,7 +12,6 @@ public class Biz_Register {
 
 	public static Logger logger = LogManager.getLogger(Biz_Register.class);
 
-	Page_Portal page_Portal = new Page_Portal();
 	Page_Register page_Register = new Page_Register();
 
 	/**
@@ -38,7 +35,6 @@ public class Biz_Register {
 	public void register(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String expectMessage, String... invite) {
 		try {
-			navigate_to_register();
 			logger.info("开始输入注册信息...");
 			page_Register.input_mobile(mobile);
 			page_Register.input_username(user_name);
@@ -94,18 +90,9 @@ public class Biz_Register {
 			}
 			break;
 		default:
-			boolean flag = page_Register.isElementDisplayed("join", WebElementType.WebButton, 15);
-			Assertion.assertEquals(true, flag, Biz_Register.class, "正例-注册成功");
+			String successTitle = page_Register.getElementText("successTitle");
+			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例例-注册成功");
 			break;
 		}
 	}
-
-	/**
-	 * 跳转到注册页面
-	 */
-	public void navigate_to_register() {
-		logger.info("跳转到注册页面...");
-		page_Portal.navigate_to_register();
-	}
-
 }

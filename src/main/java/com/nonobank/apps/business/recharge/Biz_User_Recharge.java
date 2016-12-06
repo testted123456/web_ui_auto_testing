@@ -15,9 +15,9 @@ public class Biz_User_Recharge {
 	/**
 	 * 跳转到充值页面
 	 */
-	public void navigateToRecharge() {
+	public void navigate_to_recharge() {
 		logger.info("跳转到充值页面...");
-		page_Account.click_recharge();
+		page_User_Recharge.navigate_to_recharge();
 	}
 
 	/**
@@ -25,12 +25,9 @@ public class Biz_User_Recharge {
 	 * 
 	 * @param cardno
 	 */
-	public void recharge(String cardno, String mobile) {
-		navigateToRecharge();
+	public void recharge() {
+		navigate_to_recharge();
 		logger.info("选择银行卡");
-		int len = cardno.length();
-		cardno = cardno.substring(len - 4, len);
-//		page_User_Recharge.select_card(cardno);
 		page_User_Recharge.nextStep();
 	}
 }

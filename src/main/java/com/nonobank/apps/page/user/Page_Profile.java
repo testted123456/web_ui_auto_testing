@@ -6,21 +6,9 @@ import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.file.ParseProperties;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Profile extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_Account.class);
-
-	/**
-	 * 跳转到个人认证页面
-	 */
-	public void nagivate_to_profile() {
-		String url = ParseProperties.getInstance().getProperty("url") + "/User/Profile";
-		PageUtils.openPage(url);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
-	}
 
 	// 点击密码设置
 	public void click_passwordSetting() {

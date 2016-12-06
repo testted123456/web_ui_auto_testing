@@ -6,7 +6,6 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.file.ParseProperties;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Portal extends BasePage {
 
@@ -15,11 +14,17 @@ public class Page_Portal extends BasePage {
 	/**
 	 * 跳转到注册页
 	 */
-	public void navigate_to_register() {
-		String url_register = ParseProperties.getInstance().getProperty("url") + "/Register";
-		PageUtils.openPage(url_register);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
+	public void click_login() {
+		WebLink link_login = objectFactory.getWebLink("login");
+		link_login.click();
+	}
+
+	/**
+	 * 跳转到注册页
+	 */
+	public void click_register() {
+		WebLink link_register = objectFactory.getWebLink("register");
+		link_register.click();
 	}
 
 	/**

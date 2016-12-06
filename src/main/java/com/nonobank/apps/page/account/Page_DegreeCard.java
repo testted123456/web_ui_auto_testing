@@ -4,21 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.file.ParseProperties;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_DegreeCard extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_DegreeCard.class);
-
-	/**
-	 * 跳转到认证管理页面
-	 */
-	public void nagivate_to_degreeCard() {
-		String url = ParseProperties.getInstance().getProperty("url") + "/Account/degreeCard";
-		PageUtils.openPage(url);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
-	}
 
 	// 输入真实姓名
 	public void input_name(String myname) {

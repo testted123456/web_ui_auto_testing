@@ -15,6 +15,7 @@ import org.testng.annotations.DataProvider;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class BaseCase {
 	// 配置文件config.xml
@@ -56,6 +57,10 @@ public class BaseCase {
 		logger.info("开始执行: " + this.getClass().getName());
 		driver = WebDriverUtils.getWebDriver();
 		PageFactory.initElements(driver, this);
+		String url = ParseProperties.getInstance().getProperty("url");
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
+		logger.info(PageUtils.getUrl());
 	}
 
 	@BeforeClass
@@ -83,19 +88,19 @@ public class BaseCase {
 		}
 	}
 
-//	@AfterClass
-//	public void closeDriver() {
-//		// 保存测试结果
-//		logger.info("保存测试结果...");
-//		if (testfile != null && !resultsMap.isEmpty()) {
-//			ParseXLSX.saveResults(testfile, resultsMap);
-//		}
-//		// 关闭浏览器
-//		logger.info("关闭浏览器...");
-//		driver.quit();
-//		// 每个testcase执行完成后把webdriver置空
-//		WebDriverUtils.destoryWebDriver();
-//		logger.info("========================================================================================");
-//	}
+	// @AfterClass
+	// public void closeDriver() {
+	// // 保存测试结果
+	// logger.info("保存测试结果...");
+	// if (testfile != null && !resultsMap.isEmpty()) {
+	// ParseXLSX.saveResults(testfile, resultsMap);
+	// }
+	// // 关闭浏览器
+	// logger.info("关闭浏览器...");
+	// driver.quit();
+	// // 每个testcase执行完成后把webdriver置空
+	// WebDriverUtils.destoryWebDriver();
+	// logger.info("========================================================================================");
+	// }
 
 }

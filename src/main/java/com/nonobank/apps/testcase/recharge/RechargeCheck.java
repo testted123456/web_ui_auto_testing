@@ -18,13 +18,13 @@ public class RechargeCheck extends BaseCase {
 	Biz_User_RechargeConfirm biz_User_RechargeConfirm;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String checkCode, String cardno, String pay_password) {
+	public void test(String mobile, String password, String checkCode, String pay_password) {
 		logger.info("begin to test...");
 
 		biz_Login.login(mobile, password, checkCode, null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
-		biz_User_Recharge1.recharge(cardno, mobile);
+		biz_User_Recharge1.recharge();
 		biz_User_RechargeConfirm.checkMoney();
 		biz_User_RechargeConfirm.checkPayPassword(pay_password);
 	}

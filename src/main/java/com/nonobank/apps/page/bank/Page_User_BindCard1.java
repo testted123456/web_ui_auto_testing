@@ -26,7 +26,7 @@ public class Page_User_BindCard1 extends BasePage {
 		put("广发银行","03060000");
 		put("民生银行","03050000");
 		put("华夏银行","03040000");
-		put("建设银行","01050000");
+		put("建设银行","CCB");
 		put("农业银行","ABC");
 		put("平安银行","PAB");
 		put("浦发银行","SPDB");

@@ -21,8 +21,7 @@ public class WithDrawalSuccess extends BaseCase {
 	public void test(String mobile, String password, String checkCode, String cardno, String money,
 			String pay_password) {
 		logger.info("begin to test...");
-		biz_Login.login(mobile, password, checkCode, null);
-		biz_Portal.close_dialog();
+		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Withdrawal.navigate_to_withdrawal();
 		biz_User_Withdrawal.withDrawal(cardno, money);

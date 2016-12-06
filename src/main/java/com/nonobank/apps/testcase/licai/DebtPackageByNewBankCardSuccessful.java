@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.account.Biz_Account;
+import com.nonobank.apps.business.account.Biz_DegreeCard;
+import com.nonobank.apps.business.bank.Biz_User_Banks;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment;
@@ -23,6 +25,8 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 	Biz_Licai_Order biz_Licai_Order;
 	Biz_Licai_Payment biz_Licai_Payment;
 	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful;
+	Biz_DegreeCard biz_DegreeCard;
+	Biz_User_Banks biz_User_Banks;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
@@ -31,9 +35,8 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
-		biz_Account.IDVerification(myname, identity_ID);
-		biz_Account.setPayPassword(payPassword, payPassword2);
-
+		biz_DegreeCard.IDVerification(myname, identity_ID);
+		biz_User_Banks.add_bankcard();
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByNewCard(bank_name, cardNo, payPassword);

@@ -5,22 +5,11 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Login extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_Login.class);
-
-	/**
-	 * 跳转到登录页面
-	 */
-	public void nagivate_to_login() {
-		String url_login = ParseProperties.getInstance().getProperty("url") + "/Login";
-		PageUtils.openPage(url_login);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
-	}
 
 	/**
 	 * 输入用户名

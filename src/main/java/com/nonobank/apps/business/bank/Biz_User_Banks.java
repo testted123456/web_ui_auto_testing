@@ -11,19 +11,10 @@ public class Biz_User_Banks extends BasePage {
 	Page_User_Banks page_User_Banks = new Page_User_Banks();
 
 	/**
-	 * 跳转到认证管理页面
-	 */
-	public void navigate_to_banks() {
-		logger.info("跳转到银行账户页面...");
-		page_User_Banks.navigate_to_banks();
-	}
-
-	/**
 	 * 添加银行卡
 	 */
 	public void add_bankcard() {
 		logger.info("添加银行卡...");
-		navigate_to_banks();
 		page_User_Banks.click_add_bankcard();
 	}
 

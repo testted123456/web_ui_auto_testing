@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
 	<!-- 下一步按钮 -->
-	<WebButton name="pay_btn" xpath="//input[@id='pay_btn']">
-	</WebButton>
+	<WebLink name="pay_btn" xpath="//input[contains(@class,'pay_other_btn pay_other_btn1 mr20')]">
+	</WebLink>
 	<!-- 选择银行卡 -->
-	<WebLink name="reSelectCard3" xpath="//a[@id='reSelectCard3']">
+	<WebLink name="reSelectCard3" xpath="//a[contains(@onclick,'dialog_other_bank')]">
 	</WebLink>
 	<!-- 确认充值页面的确认按钮 -->
-	<WebButton name="paybtn" xpath="//input[@id='paybtn']">
-	</WebButton>
-	
+	<WebCommon name="paybtn" xpath="//input[@id='pay_btn']">
+	</WebCommon>
+
 </elements>
