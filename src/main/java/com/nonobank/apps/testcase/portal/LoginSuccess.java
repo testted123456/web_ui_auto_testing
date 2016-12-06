@@ -16,11 +16,9 @@ public class LoginSuccess extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String loginName, String password, String checkCode) {
-		logger.info("*******************************************start test*******************************************");
 		biz_Portal.navigate_to_login();
 		biz_Login.login(loginName, password, checkCode, "成功");
 		biz_Account.logout();
-		logger.info("*******************************************end test*******************************************");
 	}
 
 }

@@ -6,22 +6,11 @@ import org.testng.Assert;
 import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_User_Recharge extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_User_Recharge.class);
-
-	/**
-	 * 跳转到充值页面
-	 */
-	public void navigate_to_recharge() {
-		String url = ParseProperties.getInstance().getProperty("url") + "/User/Recharge1";
-		PageUtils.openPage(url);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
-	}
 
 	// 下一步按钮
 	public void nextStep() {

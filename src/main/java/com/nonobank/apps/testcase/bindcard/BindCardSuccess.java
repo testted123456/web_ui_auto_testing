@@ -3,6 +3,8 @@ package com.nonobank.apps.testcase.bindcard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
+
+import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.account.Biz_DegreeCard;
 import com.nonobank.apps.business.bank.Biz_User_Banks;
 import com.nonobank.apps.business.bank.Biz_User_BindCard1;
@@ -16,6 +18,7 @@ public class BindCardSuccess extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BindCardSuccess.class);
 	Biz_Portal biz_Portal;
 	Biz_Register biz_Register;
+	Biz_Account biz_Account;
 	Biz_Profile biz_Profile;
 	Biz_DegreeCard biz_DegreeCard;
 	Biz_User_Banks biz_User_Banks;
@@ -27,9 +30,13 @@ public class BindCardSuccess extends BaseCase {
 			String validation, String myname, String identity_ID, String payPassword, String payPassword2,
 			String bank_name, String bankcard_no) {
 		biz_Portal.navigate_to_register();
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "success");
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "恭喜您注册成功，诺诺镑客因你而精彩！");
+		biz_Portal.navigate_to_myaccount();
+		biz_Account.navigate_to_profile();
 		biz_Profile.setPayPassword(payPassword, payPassword2);
+		biz_Account.navigate_to_degreeCard();
 		biz_DegreeCard.IDVerification(myname, identity_ID);
+		biz_Account.navigate_to_banks();
 		biz_User_Banks.add_bankcard();
 		biz_User_BindCard1.select_bank(bank_name);
 		biz_User_BindCard2.bindCardSuccess(bank_name, bankcard_no);

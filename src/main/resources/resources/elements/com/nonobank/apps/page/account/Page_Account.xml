@@ -4,6 +4,19 @@
 	</WebCommon>
 	<WebCommon name="借款记录" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[2]/a">
 	</WebCommon>
+	<!-- 安全退出 -->
 	<WebLink name="logout" xpath="//a[@href='/Login/logout']">
 	</WebLink>
+	<!-- 个人设置 -->
+	<WebLink name="profile" xpath="//a[@href='/User/Profile']">
+	</WebLink>
+	<!-- 认证管理 -->
+	<WebLink name="degreeCard" xpath="//a[@href='/Account/degreeCard']">
+	</WebLink>
+	<!-- 银行账户 -->
+	<WebLink name="banks" xpath="//a[@href='/User/Banks']">
+	</WebLink>
+	<!-- 银行账户 -->
+	<WebInput name="recharge" xpath="//input[@value='充值']">
+	</WebInput>
 </elements>
