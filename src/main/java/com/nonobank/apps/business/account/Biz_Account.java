@@ -44,4 +44,9 @@ public class Biz_Account {
 		PageUtils.waitForPageLoad();
 	}
 
+	public void navigate_to_withDrawal() {
+		logger.info("点击充值......");
+		page_Account.click_withDrawal();
+		PageUtils.waitForPageLoad();
+	}
 }

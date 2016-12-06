@@ -52,13 +52,17 @@ public class Page_Account extends BasePage {
 		PageUtils.waitForPageLoad();
 	}
 
-	// 点击银行账户
+	// 点击充值
 	public void click_recharge() {
 		WebInput input_recharge = objectFactory.getWebInput("recharge");
 		input_recharge.click();
 		PageUtils.waitForPageLoad();
 	}
 
-	public void click_withdrawal() {
+	// 点击提现
+	public void click_withDrawal() {
+		WebInput input_recharge = objectFactory.getWebInput("withDrawal");
+		input_recharge.click();
+		PageUtils.waitForPageLoad();
 	}
 }

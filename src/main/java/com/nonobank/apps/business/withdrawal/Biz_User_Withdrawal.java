@@ -12,14 +12,6 @@ public class Biz_User_Withdrawal {
 	Page_Account page_Account = new Page_Account();
 
 	/**
-	 * 跳转到提现页面
-	 */
-	public void navigate_to_withdrawal() {
-		logger.info("跳转到提现页面...");
-		page_Account.click_withdrawal();
-	}
-
-	/**
 	 * 输入提现金额
 	 * 
 	 * @param cardno

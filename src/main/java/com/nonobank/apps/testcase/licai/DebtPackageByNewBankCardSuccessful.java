@@ -36,7 +36,7 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_DegreeCard.IDVerification(myname, identity_ID);
-		biz_User_Banks.add_bankcard();
+		biz_User_Banks.navigate_to_bindCard1();
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByNewCard(bank_name, cardNo, payPassword);

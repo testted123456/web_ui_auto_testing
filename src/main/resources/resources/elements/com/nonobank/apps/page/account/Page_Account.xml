@@ -16,7 +16,10 @@
 	<!-- 银行账户 -->
 	<WebLink name="banks" xpath="//a[@href='/User/Banks']">
 	</WebLink>
-	<!-- 银行账户 -->
+	<!-- 充值 -->
 	<WebInput name="recharge" xpath="//input[@value='充值']">
+	</WebInput>
+	<!-- 提现 -->
+	<WebInput name="withDrawal" xpath="//input[@value='提现']">
 	</WebInput>
 </elements>

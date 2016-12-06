@@ -13,7 +13,7 @@ public class Biz_User_Banks extends BasePage {
 	/**
 	 * 添加银行卡
 	 */
-	public void add_bankcard() {
+	public void navigate_to_bindCard1() {
 		logger.info("添加银行卡...");
 		page_User_Banks.click_add_bankcard();
 	}

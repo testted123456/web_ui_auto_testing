@@ -37,7 +37,7 @@ public class BindCardSuccess extends BaseCase {
 		biz_Account.navigate_to_degreeCard();
 		biz_DegreeCard.IDVerification(myname, identity_ID);
 		biz_Account.navigate_to_banks();
-		biz_User_Banks.add_bankcard();
+		biz_User_Banks.navigate_to_bindCard1();
 		biz_User_BindCard1.select_bank(bank_name);
 		biz_User_BindCard2.bindCardSuccess(bank_name, bankcard_no);
 	}
