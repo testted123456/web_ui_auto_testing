@@ -18,11 +18,6 @@ public class Biz_User_BindCard2 {
 	 */
 	public void bindCardSuccess(String bank_name, String bankcard_no) {
 		logger.info("输入银行卡号...");
-		if (bankcard_no.trim().toLowerCase().equals("random")) {
-			if (bank_name.equals("建设银行")) {
-				bankcard_no = BankCardUtils.getBankCard("436742121737");
-			}
-		}
 		page_User_BindCard2.input_bankcard_no(bankcard_no);
 		logger.info("获取短信验证码...");
 		page_User_BindCard2.click_getValidate();
