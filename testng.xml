@@ -62,7 +62,6 @@
 	</test>
 	<test name="withdrawal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
 		</classes>
 	</test>

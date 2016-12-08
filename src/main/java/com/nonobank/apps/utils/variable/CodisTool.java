@@ -148,23 +148,6 @@ public class CodisTool {
 //    	HttpClient client=new HttpClient(); 
 //    	   client.getState().addCookies(cookies); 
     	   
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        // Create a local instance of cookie store
-        CookieStore cookieStore = new BasicCookieStore();
-        HttpContext localContext = new BasicHttpContext();
-        localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-        
-        HttpGet httpget = new HttpGet("http://www.sit.nonobank.com"); 
-        CloseableHttpResponse response = httpclient.execute(httpget,localContext);
-        
-        httpget= new HttpGet("https://www.sit.nonobank.com/v6/Uuid");
-        CloseableHttpResponse response2 = httpclient.execute(httpget,localContext);
-        
-        if(response2.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-        	 HttpEntity entity2 = response2.getEntity();
-             System.out.println(EntityUtils.toString(entity2,"UTF-8"));        	
-        }
-                         
     }
  
 
