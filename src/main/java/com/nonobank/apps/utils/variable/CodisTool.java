@@ -1,11 +1,23 @@
 package com.nonobank.apps.utils.variable;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Set;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
@@ -103,33 +115,57 @@ public class CodisTool {
 
     public static void main(String[] args) throws IOException {
 
-        String url = "http://www.sit.nonobank.com/MicroSiteApi/getSessionId";
-        String key = "data;session_id";
-        int i=1;
-        String host = "";
-        int port = 0;
-        if( i==0){
-            host = "192.168.3.130";
-            port = 6379;
-        }else{
-            host = "192.168.4.53";
-            port = 19000;
-        }
+//    	  String url = "http://www.sit.nonobank.com/MicroSiteApi/getSessionId";
+//        String key = "data;session_id";
+//        int i=1;
+//        String host = "";
+//        int port = 0;
+//        if( i==0){
+//            host = "192.168.3.130";
+//            port = 6379;
+//        }else{
+//            host = "192.168.4.53";
+//            port = 19000;
+//        }
 
-
-        String jssonStr = CodisTool.getHttpResult(url);
-        String sessionId = CodisTool.getJssonKey(jssonStr,"data;session_id");
-        System.out.println(sessionId);
-        CodisTool.init(host,port);
-        CodisTool.setValue("mykey","mykey");
-        boolean f = CodisTool.isKeyExit("mykey");
-        boolean f2 = CodisTool.isKeyExit(sessionId+"1212");
-        System.out.println(f);
-        System.out.println(f2);
-
-
-        System.out.print(CodisTool.checkCodisKey(host,port,url,key));
+//        String jssonStr = CodisTool.getHttpResult(url);
+//        String sessionId = CodisTool.getJssonKey(jssonStr,"data;session_id");
+//        System.out.println(sessionId);
+//        CodisTool.init(host,port);
+//        CodisTool.setValue("mykey","mykey");
+//        boolean f = CodisTool.isKeyExit("mykey");
+//        boolean f2 = CodisTool.isKeyExit(sessionId+"1212");
+//        System.out.println(f);
+//        System.out.println(f2);
+//        System.out.print(CodisTool.checkCodisKey(host,port,url,key));
         //System.out.println(CodisTool.getkey("*"));
+//    	String url = "http://www.sit.nonobank.com";
+//    	CodisTool.getHttpResult(url);
+//        String url2="https://www.sit.nonobank.com/v6/Uuid";
+//        String uuid = CodisTool.getHttpResult(url2);
+//        System.out.println("uuid:"+uuid);
+//        System.out.println(CodisTool.getValue(uuid)); 
+//    	HttpClient client=new HttpClient(); 
+//    	   client.getState().addCookies(cookies); 
+    	   
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        // Create a local instance of cookie store
+        CookieStore cookieStore = new BasicCookieStore();
+        HttpContext localContext = new BasicHttpContext();
+        localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+        
+        HttpGet httpget = new HttpGet("http://www.sit.nonobank.com"); 
+        CloseableHttpResponse response = httpclient.execute(httpget,localContext);
+        
+        httpget= new HttpGet("https://www.sit.nonobank.com/v6/Uuid");
+        CloseableHttpResponse response2 = httpclient.execute(httpget,localContext);
+        
+        if(response2.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+        	 HttpEntity entity2 = response2.getEntity();
+             System.out.println(EntityUtils.toString(entity2,"UTF-8"));        	
+        }
+                         
     }
+ 
 
 }
