@@ -32,4 +32,8 @@
 	</WebButton>
 	<WebCommon name="successTitle" xpath="//div[@class='register-cnt-title']">
 	</WebCommon>
+	<WebCommon name="countdown" xpath="//a[@id='countdown']">
+	</WebCommon>
+	<WebCommon name="error" xpath="//label[@class='error']">
+	</WebCommon>
 </elements>

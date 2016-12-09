@@ -88,7 +88,7 @@ public class BaseCase {
 		}
 	}
 
-	 @AfterClass
+//	 @AfterClass
 	 public void closeDriver() {
 	 // 保存测试结果
 	 logger.info("保存测试结果...");

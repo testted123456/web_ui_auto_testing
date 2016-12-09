@@ -13,6 +13,6 @@ public class RegisterValidateCheckCodeNull extends BaseCase {
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation) {
 		biz_Portal.navigate_to_register();
-		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "请输入安全码！");
+		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "请输入安全码");
 	}
 }

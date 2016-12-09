@@ -14,4 +14,6 @@
 	</WebInput>
 	<WebCommon name="account_name" xpath="//a[@href='/Account']">
 	</WebCommon>
+	<WebCommon name="tips_normal" xpath="//p[@class='tips_normal']">
+	</WebCommon>
 </elements>
