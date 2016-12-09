@@ -42,7 +42,7 @@ public class Page_Portal extends BasePage {
 		String uuid = element2.getText();
 		System.out.println(uuid);
 		driver.navigate().back();
-		
+
 		int i = 1;
 		String host = "";
 		int port = 0;
