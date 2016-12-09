@@ -60,9 +60,13 @@
 			<class name="com.nonobank.apps.testcase.student.WhiteCollarPromptTestcase" />
 		</classes>
 	</test>
-	<test name="withdrawal" preserve-order="true">
+	<test name="bindcard" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+			<class name="com.nonobank.apps.testcase.bindcard.BindcardSuccess" />
 		</classes>
-	</test>
+		<test name="withdrawal" preserve-order="true">
+			<classes>
+				<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+			</classes>
+		</test>
 </suite>
