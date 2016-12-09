@@ -62,11 +62,12 @@
 	</test>
 	<test name="bindcard" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.BindcardSuccess" />
+			<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" />
 		</classes>
-		<test name="withdrawal" preserve-order="true">
-			<classes>
-				<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
-			</classes>
-		</test>
+	</test>
+	<test name="withdrawal" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
+		</classes>
+	</test>
 </suite>
