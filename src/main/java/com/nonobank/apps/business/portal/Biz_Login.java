@@ -2,10 +2,9 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.file.ParseProperties;
-import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
@@ -14,25 +13,26 @@ import com.nonobank.apps.utils.webintegration.Return;
 public class Biz_Login {
 
 	public static Logger logger = LogManager.getLogger(Biz_Login.class);
+
 	Page_Login page_Login = new Page_Login();
 
 	/**
-	 * 
-	 * login 登录
-	 * 
-	 * @param username
-	 *            用户名
-	 * @param password
-	 *            密码
-	 * @param param
-	 *            参数
+	 * nagivate_to_login 跳转到登录页面
 	 */
+
+	@Info(name = "nagivate_to_login", desc = "跳转到登录页面", dependency = "", isDisabled = false)
+	public void nagivate_to_login() {
+		logger.info("跳转到登录页面...");
+		page_Login.nagivate_to_login();
+	}
+
 	@Return(desc = "", type = "void")
 	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名/手机号/麦子通行证", "登录密码", "安全码",
 			"预期结果" }, name = { "username", "password", "checkCode", "expectMessage" })
 	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void login(String username, String password, String checkCode, String expectMessage) {
-		logger.info("录入登录信息......");
+		nagivate_to_login();
+		logger.info("登录...");
 		page_Login.input_username(username);
 		page_Login.input_password(password);
 		page_Login.input_checkCode(checkCode);
@@ -47,9 +47,8 @@ public class Biz_Login {
 			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-登录失败");
 			break;
 		default:
-			String actualUrl = PageUtils.getUrl();
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
-			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-登录成功");
+			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
+			Assertion.assertEquals(true, flag, Biz_Login.class, "反例-登录成功");
 			break;
 		}
 	}
