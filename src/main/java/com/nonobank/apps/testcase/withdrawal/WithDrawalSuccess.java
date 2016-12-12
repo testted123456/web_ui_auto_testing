@@ -26,7 +26,6 @@ public class WithDrawalSuccess extends BaseCase {
 		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Account.navigate_to_withDrawal();
 		biz_User_Withdrawal.withDrawal(cardno, money);
-		biz_User_WithdrawalConfirm.confirm(pay_password);
-		biz_User_WithdrawalConfirm.isWithDrawalConfirmSuccess();
+		biz_User_WithdrawalConfirm.confirm(pay_password, "成功");
 	}
 }

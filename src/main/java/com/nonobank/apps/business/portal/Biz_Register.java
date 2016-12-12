@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.portal.Page_Register;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
@@ -44,10 +45,12 @@ public class Biz_Register {
 				page_Register.input_invite(invite[0]);
 			}
 			page_Register.click_next_step();
+			PageUtils.waitForPageLoad();
 			page_Register.input_check_code(checkCode);
 			page_Register.click_sms_code();
 			page_Register.input_sms_code(validation);
 			page_Register.click_reg_over_btn();
+			PageUtils.waitForPageLoad();
 			handleResult(expectMessage);
 		} catch (Error e) {
 			handleResult(expectMessage);
