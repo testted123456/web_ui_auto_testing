@@ -3,9 +3,13 @@
 	<!-- 我的账户 -->
 	<WebLink name="myaccount" xpath="//a[@href='/Account']">
 	</WebLink>
-	<!-- 登录 -->
+	<!-- 注册 -->
 	<WebLink name="register" xpath="//a[@href='/Register']">
+	</WebLink>
+	<!-- 登录 -->
+	<WebLink name="login" xpath="//a[contains(@href,'/Login')]">
 	</WebLink>
 	<WebLink name="dialog_close" xpath="//a[@class='dialog_close']">
 	</WebLink>
+
 </elements>

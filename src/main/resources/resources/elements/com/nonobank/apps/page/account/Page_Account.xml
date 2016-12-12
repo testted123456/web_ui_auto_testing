@@ -1,51 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
-	<!-- 银行账户 -->
-	<WebLink name="Banks" xpath="//a[@href='/User/Banks']">
-	</WebLink>
-	<!-- 提现 -->
-	<WebButton name="withdrawal" xpath="//input[@class='account_button_blue']">
-	</WebButton>
-	<!-- 充值 -->
-	<WebButton name="recharge" xpath="//input[@class='account_button_yellow']">
-	</WebButton>
-	<!-- 认证管理 -->
-	<WebLink name="degreeCard" xpath="//a[@href='/Account/degreeCard']">
-	</WebLink>
-	<!-- 真实姓名  -->
-	<WebInput name="myname" xpath="//input[@id='myname']">
-	</WebInput>
-	<!-- 身份证号  -->
-	<WebInput name="mycard" xpath="//input[@id='mycard']">
-	</WebInput>
-	<!-- 身份证号  -->
-	<WebInput name="ok" xpath="//input[@name='ok']">
-	</WebInput>
-	<!-- 身份证有误 -->
-	<WebSpan name="cardMsg" xpath="//span[@id='cardMsg']">
-	</WebSpan>
-	<!-- 个人设置 -->
-	<WebLink name="profile" xpath="//a[@href='/User/Profile']">
-	</WebLink>
-	<!-- 密码设置 -->
-	<WebCommon name="passwordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/login')]">
-	</WebCommon>
-	<!-- 支付密码设置 -->
-	<WebCommon name="payPasswordSetting" xpath="//li[contains(@onclick,'/User/ChangePassword/pay')]">
-    </WebCommon>
-	<!-- 支付密码新密码  -->
-	<WebInput name="newZFPwd" xpath="//input[@id='newZFPwd']">
-	</WebInput>
-	<!-- 支付密码确认密码  -->
-	<WebInput name="newZFPassword" xpath="//input[@id='newZFPassword']">
-	</WebInput>
-	<!-- 支付密码修改确认  -->
-	<WebInput name="setPasswordbtn" xpath="//input[@id='setPasswordbtn']">
-	</WebInput>
 	<WebCommon name="我的账单" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[3]/a">
 	</WebCommon>
 	<WebCommon name="借款记录" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[2]/a">
 	</WebCommon>
-	<WebCommon name="借款资料" xpath="//div[@id='leftbar']/div[2]/ul[3]/li[4]/a">
-	</WebCommon>
+	<!-- 安全退出 -->
+	<WebLink name="logout" xpath="//a[@href='/Login/logout']">
+	</WebLink>
+	<!-- 个人设置 -->
+	<WebLink name="profile" xpath="//a[@href='/User/Profile']">
+	</WebLink>
+	<!-- 认证管理 -->
+	<WebLink name="degreeCard" xpath="//a[@href='/Account/degreeCard']">
+	</WebLink>
+	<!-- 银行账户 -->
+	<WebLink name="banks" xpath="//a[@href='/User/Banks']">
+	</WebLink>
+	<!-- 充值 -->
+	<WebInput name="recharge" xpath="//input[@value='充值']">
+	</WebInput>
+	<!-- 提现 -->
+	<WebInput name="withDrawal" xpath="//input[@value='提现']">
+	</WebInput>
 </elements>

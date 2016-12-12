@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import com.nonobank.apps.business.account.Biz_Account;
+import com.nonobank.apps.business.account.Biz_DegreeCard;
+import com.nonobank.apps.business.bank.Biz_User_Banks;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment;
@@ -18,7 +20,8 @@ public class TiexinByNewBankCardSuccessful extends BaseCase {
 	Biz_Register biz_Register;
 	Biz_Portal biz_Portal;
 	Biz_Account biz_Account;
-
+	Biz_DegreeCard biz_DegreeCard;
+	Biz_User_Banks biz_User_Banks;
 	Biz_Licai_FinancePlan biz_Licai_FinancePlan;
 	Biz_Licai_Order biz_Licai_Order;
 	Biz_Licai_Payment biz_Licai_Payment;
@@ -31,8 +34,8 @@ public class TiexinByNewBankCardSuccessful extends BaseCase {
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
-		biz_Account.IDVerification(myname, identity_ID);
-		biz_Account.setPayPassword(payPassword, payPassword2);
+		biz_DegreeCard.IDVerification(myname, identity_ID);
+		biz_User_Banks.navigate_to_bindCard1();
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();

@@ -11,7 +11,7 @@
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.LoginSuccess" />
-<!-- 			<class
+			<class
 				name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeError" />
 			<class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeNull" />
 			<class
@@ -36,10 +36,10 @@
 			<class
 				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameExist" />
 			<class
-				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameLength" /> -->
+				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameLength" />
 		</classes>
 	</test>
-<!-- 	<test name="Nonobank_Recharge" preserve-order="true">
+	<test name="Nonobank_Recharge" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.RechargeSuccess" />
 			<class name="com.nonobank.apps.testcase.recharge.RechargeCheck" />
@@ -60,10 +60,14 @@
 			<class name="com.nonobank.apps.testcase.student.WhiteCollarPromptTestcase" />
 		</classes>
 	</test>
+	<test name="bindcard" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" />
+		</classes>
+	</test>
 	<test name="withdrawal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalCheck" />
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
 		</classes>
-	</test> -->
+	</test>
 </suite>

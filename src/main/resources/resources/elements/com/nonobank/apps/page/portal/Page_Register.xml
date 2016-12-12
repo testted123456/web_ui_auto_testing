@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
-	<!-- 用户名 -->
+	<!-- 手机号 -->
 	<WebInput name="mobile" xpath="//input[@id='mobile']">
 	</WebInput>
-	<!-- -->
-	<WebLabel name="error" xpath="//label[@class='error']">
-	</WebLabel>
 	<!-- 用户名 -->
 	<WebInput name="username" xpath="//input[@id='username']">
 	</WebInput>
@@ -33,26 +30,10 @@
 	<!-- 下一步 -->
 	<WebButton name="reg_over_btn" xpath="//button[@id='reg_over_btn']">
 	</WebButton>
-	<!-- 立即加入 -->
-	<WebButton name="join"
-		xpath="//button[contains(@onclick,'javascript:location.href')]">
-	</WebButton>
-	<!-- 退出 -->
-	<WebLink name="logout" xpath="//a[@class='logout']">
-	</WebLink>
-	<!-- 登录 -->
-	<WebLink name="login" xpath="//a[@class='login_btn2']">
-	</WebLink>
-	<WebCommon name="moblieMessage" xpath="//label[@for='mobile']">
-	</WebCommon>
-	<WebCommon name="usernameMessage" xpath="//label[@for='username']">
-	</WebCommon>
-	<WebCommon name="passwordMessage" xpath="//label[@for='password']">
-	</WebCommon>
-	<WebCommon name="password2Message" xpath="//label[@for='password2']">
-	</WebCommon>
-	<WebCommon name="checkCodeMessage" xpath="//label[@for='checkCode']">
+	<WebCommon name="successTitle" xpath="//div[@class='register-cnt-title']">
 	</WebCommon>
 	<WebCommon name="countdown" xpath="//a[@id='countdown']">
+	</WebCommon>
+	<WebCommon name="error" xpath="//label[@class='error']">
 	</WebCommon>
 </elements>

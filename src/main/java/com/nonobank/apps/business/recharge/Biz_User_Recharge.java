@@ -13,24 +13,12 @@ public class Biz_User_Recharge {
 	Page_Account page_Account = new Page_Account();
 
 	/**
-	 * 跳转到充值页面
-	 */
-	public void navigateToRecharge() {
-		logger.info("跳转到充值页面...");
-		page_Account.click_recharge();
-	}
-
-	/**
 	 * 根据卡的尾号选择银行卡
 	 * 
 	 * @param cardno
 	 */
-	public void recharge(String cardno, String mobile) {
-		navigateToRecharge();
-		logger.info("选择银行卡");
-		int len = cardno.length();
-		cardno = cardno.substring(len - 4, len);
-//		page_User_Recharge.select_card(cardno);
+	public void recharge() {
+		logger.info("选择银行卡......");
 		page_User_Recharge.nextStep();
 	}
 }
