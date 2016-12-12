@@ -26,23 +26,6 @@ public class Biz_Login {
 		page_Login.nagivate_to_login();
 	}
 
-	public void login(String username, String password) {
-		page_Login.input_username(username);
-		page_Login.input_password(password);
-		page_Login.submit();
-	}
-
-	/**
-	 * 
-	 * login 登录
-	 * 
-	 * @param username
-	 *            用户名
-	 * @param password
-	 *            密码
-	 * @param param
-	 *            参数
-	 */
 	@Return(desc = "", type = "void")
 	@Params(type = { "String", "String", "String", "String" }, desc = { "用户名/手机号/麦子通行证", "登录密码", "安全码",
 			"预期结果" }, name = { "username", "password", "checkCode", "expectMessage" })

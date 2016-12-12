@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Logout;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.webintegration.Info;
 
 public class Biz_Logout {
 
@@ -15,6 +16,7 @@ public class Biz_Logout {
 	/**
 	 * 退出登录
 	 */
+	@Info(dependency="",desc="退出登录",name="logout",isDisabled=false)
 	public void logout() {
 		logger.info("退出登录...");
 		page_Logout.nagivate_to_logout();
