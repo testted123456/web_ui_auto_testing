@@ -2,9 +2,10 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.file.ParseProperties;
+import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
@@ -36,8 +37,9 @@ public class Biz_Login {
 			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-登录失败");
 			break;
 		default:
-			boolean flag = page_Login.isElementDisplayed("account_name", WebElementType.WebLink, 15);
-			Assertion.assertEquals(true, flag, Biz_Login.class, "反例-登录成功");
+			String actualUrl = PageUtils.getUrl();
+			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
+			Assertion.assertEquals(actualUrl, expectUrl, Biz_Login.class, "正例-登录成功");
 			break;
 		}
 	}
