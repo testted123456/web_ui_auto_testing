@@ -15,4 +15,6 @@
 	<!-- 手续费 -->
 	<WebSpan name="fee" xpath="//div[@class='con_card']/div[4]/span[2]">
 	</WebSpan>
+	<WebCommon name="messageInfo" xpath="//span[@id='messageInfo']">
+	</WebCommon>
 </elements>

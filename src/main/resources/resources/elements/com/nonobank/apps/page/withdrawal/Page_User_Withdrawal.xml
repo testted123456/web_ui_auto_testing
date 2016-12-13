@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
 	<!-- 提现金额 -->
-	<!-- <WebInput name="banks_price" tag="input">
-		<property name="id" value="banks_price"/>
-	</WebInput> -->
 	<WebInput name="banks_price" xpath="//input[@id='banks_price']">
 	</WebInput>
 	<!-- 提交 -->
-	<!-- <WebButton name="a_con_btn" tag="input">
-		<property name="id" value="a_con_btn"/>
-	</WebButton> -->
 	<WebButton name="a_con_btn" xpath="//input[@id='a_con_btn']">
 	</WebButton>
 	<!-- 到账金额 -->
-	<!-- <WebSapn name="account_amount" tag="sapn">
-		<property name="id" value="account_amount"/>
-	</WebSapn> -->
 	<WebSpan name="account_amount" xpath="//span[@id='account_amount']">
 	</WebSpan>
 	<!-- 手续费 -->
-	<!-- <WebFont name="poundage" tag="font">
-		<property name="id" value="poundage"/>
-	</WebFont> -->
 	<WebFont name="poundage" xpath="//font[@id='poundage']">
 	</WebFont>
 	<!-- 银行卡 -->
-	<!-- <WebRadio name="banks" tag="input">
-		<property name="name" value="banks_id"/>
-	</WebRadio> -->
 	<WebRadio name="banks" xpath="//input[@name='banks_id']">
 	</WebRadio>
 	<!-- 金额提示信息 -->
-	<!-- <WebFont name="error_msg" tag="font">
-		<property name="id" value="banks_price_font"/>
-	</WebFont> -->
-	<WebFont name="error_msg" xpath="//font[@id='banks_price_font']">
-	</WebFont>
+	<WebCommon name="error_msg" xpath="//font[@id='banks_price_font']">
+	</WebCommon>
 	<!-- 隐藏按钮：账户余额 -->
-	<!-- <WebInput name="userBalance" tag="input">
-		<property name="id" value="userBalance"/>
-	</WebInput> -->
 	<WebInput name="userBalance" xpath="//input[@id='userBalance']">
 	</WebInput>
 	<!-- 用户名 -->

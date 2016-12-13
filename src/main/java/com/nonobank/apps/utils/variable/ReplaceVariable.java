@@ -44,7 +44,6 @@ public class ReplaceVariable {
 				String params = array[1].trim();
 				if (!params.equals(")")) {
 					params = params.substring(0, params.length() - 1);
-					int lenOfParams = params.length();
 					paramsArray = params.split(",");
 				}
 			} else {
