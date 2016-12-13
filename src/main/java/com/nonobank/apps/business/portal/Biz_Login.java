@@ -27,6 +27,7 @@ public class Biz_Login {
 		page_Login.input_password(password);
 		page_Login.input_checkCode(checkCode);
 		page_Login.submit();
+		PageUtils.waitForPageLoad();
 		switch (expectMessage) {
 		case "请输入您的用户名或手机号！":
 		case "登录用户名不存在":

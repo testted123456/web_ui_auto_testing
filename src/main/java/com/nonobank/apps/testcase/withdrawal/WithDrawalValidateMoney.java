@@ -10,8 +10,8 @@ import com.nonobank.apps.business.withdrawal.Biz_User_Withdrawal;
 import com.nonobank.apps.business.withdrawal.Biz_User_WithdrawalConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
 
-public class WithDrawalSuccess extends BaseCase {
-	public static Logger logger = LogManager.getLogger(WithDrawalSuccess.class);
+public class WithDrawalValidateMoney extends BaseCase {
+	public static Logger logger = LogManager.getLogger(WithDrawalValidateMoney.class);
 	Biz_Portal biz_Portal;
 	Biz_Login biz_Login;
 	Biz_Account biz_Account;
@@ -23,7 +23,6 @@ public class WithDrawalSuccess extends BaseCase {
 		biz_Portal.navigate_to_login();
 		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Account.navigate_to_withDrawal();
-		biz_User_Withdrawal.withDrawal(money, "成功");
-		biz_User_WithdrawalConfirm.confirm(pay_password, "成功");
+		biz_User_Withdrawal.withDrawal(money, "提现金额不能小于1元！");
 	}
 }

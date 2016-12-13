@@ -31,7 +31,7 @@ public class Biz_User_WithdrawalConfirm {
 		default:
 			String actualUrl = PageUtils.getUrl();
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
-			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-提现成功");
+			Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
 			break;
 		}
 	}
