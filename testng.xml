@@ -56,6 +56,8 @@
 				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoney" />
 			<class
 				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoneyError" />
+			<class
+				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidatePayPassword" />
 		</classes>
 	</test>
 	<test name="repayment" preserve-order="true">
