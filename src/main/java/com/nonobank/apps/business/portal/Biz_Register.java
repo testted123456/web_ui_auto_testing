@@ -48,6 +48,7 @@ public class Biz_Register {
 			PageUtils.waitForPageLoad();
 			page_Register.input_check_code(checkCode);
 			page_Register.click_sms_code();
+			PageUtils.waitForPageLoad();
 			page_Register.input_sms_code(validation);
 			page_Register.click_reg_over_btn();
 			PageUtils.waitForPageLoad();
@@ -82,7 +83,7 @@ public class Biz_Register {
 			break;
 		default:
 			String successTitle = page_Register.getElementText("successTitle");
-			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例例-注册成功");
+			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例-注册成功");
 			break;
 		}
 	}

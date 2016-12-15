@@ -32,9 +32,9 @@ public class Page_User_BindCard2 extends BasePage {
 	}
 
 	// 输入验证码
-	public void input_validateCode() {
+	public void input_validateCode(String validation) {
 		WebInput input_validateCode = objectFactory.getWebInput("validNo");
-		input_validateCode.input("8888");
+		input_validateCode.input(validation);
 	}
 
 	// 提交

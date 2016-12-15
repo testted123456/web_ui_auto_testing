@@ -27,7 +27,7 @@ public class Biz_User_Withdrawal {
 			page_User_Withdrawal.input_money(money);
 			page_User_Withdrawal.goNext();
 			page_User_Withdrawal.closeAlert();
-		} catch (Exception e) {
+		} catch (Error e) {
 			switch (message) {
 			case "提现金额必须为数字":
 			case "提现金额不能小于1元！":

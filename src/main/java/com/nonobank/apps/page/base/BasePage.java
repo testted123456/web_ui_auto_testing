@@ -107,7 +107,11 @@ public class BasePage {
 
 	public String getElementText(String elementPath) {
 		WebCommon webCommon = objectFactory.getWebCommon(elementPath);
-		return webCommon.getText();
+		String text = webCommon.getText();
+		if (text == null || text.length() == 0) {
+			text = getElementText(elementPath);
+		}
+		return text;
 	}
 
 	/**

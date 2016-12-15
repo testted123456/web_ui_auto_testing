@@ -24,7 +24,7 @@ public class Biz_User_WithdrawalConfirm {
 			page_User_WithdrawalConfirm.input_pay_password(pay_password);
 			page_User_WithdrawalConfirm.submit();
 
-		} catch (Exception e) {
+		} catch (Error e) {
 			switch (message) {
 			case "请输入支付密码！":
 				String error_msg = page_User_WithdrawalConfirm.getElementText("messageInfo");
