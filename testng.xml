@@ -50,7 +50,7 @@
 			<class
 				name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNoError" />
 			<class
-				name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNull" />
+				name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNoNull" />
 			<class
 				name="com.nonobank.apps.testcase.bindcard.BindCardValidateValidationNull" />
 		</classes>
