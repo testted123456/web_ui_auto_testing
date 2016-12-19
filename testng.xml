@@ -47,17 +47,23 @@
 	<test name="bindcard" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" />
+			<class
+				name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNoError" />
+			<class
+				name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNull" />
+			<class
+				name="com.nonobank.apps.testcase.bindcard.BindCardValidateValidationNull" />
 		</classes>
 	</test>
 	<test name="withdrawal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" />
 			<class
-				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoney" />
+				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoneyValue" />
 			<class
 				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoneyError" />
 			<class
-				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidatePayPassword" />
+				name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidatePayPasswordNull" />
 		</classes>
 	</test>
 	<test name="repayment" preserve-order="true">

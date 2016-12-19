@@ -17,4 +17,6 @@
 	</WebCommon>
 	<WebCommon name="testmsg" xpath="//span[@id='testmsg']">
 	</WebCommon>
+	<WebCommon name="error" xpath="//label[@class='error']">
+	</WebCommon>
 </elements>
