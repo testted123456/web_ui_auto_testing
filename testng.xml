@@ -42,6 +42,10 @@
 	<test name="Nonobank_Recharge" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.RechargeSuccess" />
+			<class name="com.nonobank.apps.testcase.recharge.RechargeValidateMoneyMax" />
+			<class name="com.nonobank.apps.testcase.recharge.RechargeValidateMoneyMin" />
+			<class
+				name="com.nonobank.apps.testcase.recharge.RechargeValidatePayPasswordError" />
 		</classes>
 	</test>
 	<test name="bindcard" preserve-order="true">

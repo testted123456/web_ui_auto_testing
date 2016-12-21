@@ -34,7 +34,7 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 		biz_Login.login(mobile, password, checkCode, null);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge();
-		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
+//		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByBalance(pay_password);

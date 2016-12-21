@@ -37,7 +37,7 @@ public class LingyuanByBalanceSuccessful extends BaseCase {
 		biz_Login.login(mobile, password, checkCode, null);
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge();
-		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
+//		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();

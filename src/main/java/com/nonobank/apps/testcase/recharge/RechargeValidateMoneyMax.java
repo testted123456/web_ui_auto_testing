@@ -8,7 +8,7 @@ import com.nonobank.apps.business.recharge.Biz_User_Recharge;
 import com.nonobank.apps.business.recharge.Biz_User_RechargeConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
 
-public class RechargeSuccess extends BaseCase {
+public class RechargeValidateMoneyMax extends BaseCase {
 
 	Biz_Login biz_Login;
 	Biz_Portal biz_Portal;
@@ -22,6 +22,6 @@ public class RechargeSuccess extends BaseCase {
 		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Account.navigate_to_recharge();
 		biz_User_Recharge.recharge();
-		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, "成功");
+		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, "不能超过单笔限额");
 	}
 }
