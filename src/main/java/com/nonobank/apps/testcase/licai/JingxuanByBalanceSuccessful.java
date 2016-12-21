@@ -40,7 +40,7 @@ public class JingxuanByBalanceSuccessful extends BaseCase {
 
 		biz_Portal.navigate_to_myaccount();
 		biz_User_Recharge.recharge();
-		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
+//		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();

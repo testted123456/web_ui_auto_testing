@@ -28,7 +28,7 @@ public class BindCardSuccess extends BaseCase {
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String myname, String identity_ID, String payPassword, String payPassword2,
-			String bank_name, String bankcard_no) {
+			String bank_name, String bankcard_no, String validation2) {
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "恭喜您注册成功，诺诺镑客因你而精彩！");
 		biz_Portal.navigate_to_myaccount();
@@ -39,6 +39,6 @@ public class BindCardSuccess extends BaseCase {
 		biz_Account.navigate_to_banks();
 		biz_User_Banks.navigate_to_bindCard1();
 		biz_User_BindCard1.select_bank(bank_name);
-		biz_User_BindCard2.bindCard(bankcard_no, validation, "成功");
+		biz_User_BindCard2.bindCard(bankcard_no, validation2, "成功");
 	}
 }

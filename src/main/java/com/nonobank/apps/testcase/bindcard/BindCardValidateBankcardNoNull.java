@@ -21,12 +21,13 @@ public class BindCardValidateBankcardNoNull extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String checkCode, String bank_name, String bankcard_no) {
+	public void test(String mobile, String password, String checkCode, String bank_name, String bankcard_no,
+			String validation2) {
 		biz_Portal.navigate_to_login();
 		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Account.navigate_to_banks();
 		biz_User_Banks.navigate_to_bindCard1();
 		biz_User_BindCard1.select_bank(bank_name);
-		biz_User_BindCard2.bindCard(bankcard_no, checkCode, "请输入银行卡号");
+		biz_User_BindCard2.bindCard(bankcard_no, validation2, "请输入银行卡号");
 	}
 }
