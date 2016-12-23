@@ -25,7 +25,7 @@ public class IEWebDriver {
 		try {
 			logger.info("try to get ie webdriver");
 			
-			prop.load(new FileInputStream("/config/config-win.properties"));
+			prop.load(new FileInputStream("config/config-win.properties"));
 			
 			String driver_path = prop.getProperty("ieDriver");
 			
