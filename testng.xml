@@ -37,7 +37,7 @@
 				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameExist" />
 			<class
 				name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameLength" />
-		</classes>
+		</classes>  
 	</test>
 	<test name="Nonobank_Recharge" preserve-order="true">
 		<classes>
