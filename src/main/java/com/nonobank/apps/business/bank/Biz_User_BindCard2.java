@@ -20,14 +20,23 @@ public class Biz_User_BindCard2 {
 	 * @param bankcard_no
 	 */
 	public void bindCard(String bankcard_no, String validation, String expectMessage) {
-		logger.info("输入银行卡号...");
-		page_User_BindCard2.input_bankcard_no(bankcard_no);
-		logger.info("获取短信验证码...");
-		page_User_BindCard2.click_getValidate();
-		page_User_BindCard2.input_validateCode(validation);
-		logger.info("提交");
-		page_User_BindCard2.submit();
-		PageUtils.waitForPageLoad();
+		try {
+			logger.info("输入银行卡号...");
+			page_User_BindCard2.input_bankcard_no(bankcard_no);
+			logger.info("获取短信验证码...");
+			page_User_BindCard2.click_getValidate();
+			page_User_BindCard2.input_validateCode(validation);
+			logger.info("提交");
+			page_User_BindCard2.submit();
+			PageUtils.waitForPageLoad();
+			handleResult(expectMessage);
+		} catch (Error e) {
+			handleResult(expectMessage);
+		}
+
+	}
+
+	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
 		case "同一银行只能绑定一张卡，若需绑定新卡，请先解绑已绑定的卡！":
 		case "请输入验证码":
