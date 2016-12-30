@@ -39,12 +39,13 @@ public class Biz_Login {
 			break;
 		default:
 			String actualUrl = PageUtils.getUrl();
+			
 			String [] actualUrlArray = actualUrl.split("://");
 			if(actualUrlArray.length == 2){
 				actualUrl = actualUrlArray[1];
 			}
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
-			String [] expectUrlArray = actualUrl.split("://");
+			String [] expectUrlArray = expectUrl.split("://");
 			if(expectUrlArray.length == 2){
 				expectUrl = expectUrlArray[1];
 			}
