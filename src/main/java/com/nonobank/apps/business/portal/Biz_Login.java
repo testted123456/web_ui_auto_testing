@@ -39,7 +39,15 @@ public class Biz_Login {
 			break;
 		default:
 			String actualUrl = PageUtils.getUrl();
+			String [] actualUrlArray = actualUrl.split("://");
+			if(actualUrlArray.length == 2){
+				actualUrl = actualUrlArray[1];
+			}
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
+			String [] expectUrlArray = actualUrl.split("://");
+			if(expectUrlArray.length == 2){
+				expectUrl = expectUrlArray[1];
+			}
 			Assertion.assertEquals(actualUrl, expectUrl, Biz_Login.class, "正例-登录成功");
 			break;
 		}
