@@ -43,4 +43,9 @@ public class Page_User_BindCard2 extends BasePage {
 		button_submit.click();
 	}
 
+	public void close_dialog() {
+		WebLink link_getValidate = objectFactory.getWebLink("dialog_close");
+		link_getValidate.click();
+	}
+
 }

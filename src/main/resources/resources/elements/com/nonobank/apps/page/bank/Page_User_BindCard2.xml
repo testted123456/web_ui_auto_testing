@@ -19,4 +19,6 @@
 	</WebCommon>
 	<WebCommon name="error" xpath="//label[@class='error']">
 	</WebCommon>
+	<WebLink name="dialog_close" xpath="//a[@class='dialog_close']">
+	</WebLink>
 </elements>
