@@ -12,6 +12,7 @@ public class NewStudentTestCase extends BaseCase {
 	Biz_Register biz_register;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
+	//新生借款
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,
 			String password_register, String confirmPassword_register, String province_register,

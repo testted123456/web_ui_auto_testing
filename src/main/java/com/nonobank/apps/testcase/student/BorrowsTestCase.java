@@ -20,6 +20,7 @@ public class BorrowsTestCase extends BaseCase {
 
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
+	// 正常借款
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,
 			String password_register, String confirmPassword_register, String province_register,
@@ -64,6 +65,7 @@ public class BorrowsTestCase extends BaseCase {
 		// 申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(1000);
+
 		// 完善资料--借款信息检查
 		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		// 完善资料--完善联系人信息

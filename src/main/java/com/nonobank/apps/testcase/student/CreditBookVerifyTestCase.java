@@ -13,6 +13,7 @@ public class CreditBookVerifyTestCase extends BaseCase {
 	Biz_CreditBook biz_CreditBook;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
+	//信用证书查询
 	@Test(dataProvider = "dataSource")
 	public void test(String creditCode_CreditBook) {
 		logger.info("开始进行信用证书查询........");

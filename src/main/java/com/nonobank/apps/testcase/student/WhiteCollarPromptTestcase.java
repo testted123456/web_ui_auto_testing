@@ -14,6 +14,7 @@ public class WhiteCollarPromptTestcase extends BaseCase {
 	Biz_Apply biz_Apply;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
+	//白领贷
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,
 			String password_register, String confirmPassword_register, String province_register,

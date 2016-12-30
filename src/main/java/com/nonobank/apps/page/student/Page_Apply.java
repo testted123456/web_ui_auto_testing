@@ -70,18 +70,17 @@ public class Page_Apply extends BasePage{
 	//名校贷普通包借款期数
 	public void select_pieceOfCommonLoan(int index){
 		logger.info("名校贷普通包借款期数...");
-		WebInput input_expect1 = objectFactory.getWebInput("普通包12期");
-		WebInput input_expect2 = objectFactory.getWebInput("普通包24期");
-		WebInput input_expect3 = objectFactory.getWebInput("普通包36期");
-		
 		switch (index) {
 		case 12:
+			WebInput input_expect1 = objectFactory.getWebInput("普通包12期");
 			input_expect1.click();
 			break;
 		case 24:
+			WebInput input_expect2 = objectFactory.getWebInput("普通包24期");
 			input_expect2.click();
 			break;
 		case 36:
+			WebInput input_expect3 = objectFactory.getWebInput("普通包36期");
 			input_expect3.click();
 			break;
 		default:

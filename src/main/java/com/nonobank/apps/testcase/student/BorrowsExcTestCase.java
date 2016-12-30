@@ -17,6 +17,7 @@ public class BorrowsExcTestCase extends BaseCase {
 	Biz_VideoSign biz_VideoSign;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
+	//异常借款
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_exist_register, String userName_register, String qq_exist_register,
 			String qq_register, String mobile_exist_register, String mobile_register, String checkCode_error_register,

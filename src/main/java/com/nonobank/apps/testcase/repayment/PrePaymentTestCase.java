@@ -44,7 +44,6 @@ public class PrePaymentTestCase extends BaseCase {
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);
 		int int_pieces_apply = Integer.parseInt(pieces_apply);
-
 		// 注册流程--注册信息
 		biz_register.registerInformationBus(userName_register, qq_register, mobile_register, checkCode_register,
 				smsCode_register, password_register, confirmPassword_register);

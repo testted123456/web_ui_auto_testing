@@ -135,7 +135,7 @@ public class DBUtils {
 
 	public static void update(Connection con, String sql) {
 		QueryRunner qr = new QueryRunner();
-
+		
 		try {
 			qr.update(con, sql);
 		} catch (SQLException e) {

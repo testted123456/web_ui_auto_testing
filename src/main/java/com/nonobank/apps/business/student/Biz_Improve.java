@@ -184,4 +184,5 @@ public class Biz_Improve {
 			page_Improve.submit();
 		}
 	}
+
 }
