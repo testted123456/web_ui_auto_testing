@@ -40,9 +40,9 @@ public class Biz_User_BindCard2 {
 		switch (expectMessage) {
 		case "同一银行只能绑定一张卡，若需绑定新卡，请先解绑已绑定的卡！":
 		case "请输入验证码":
-			page_User_BindCard2.close_dialog();
 			String actualMessage = page_User_BindCard2.getElementText("testmsg");
 			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
+			page_User_BindCard2.close_dialog();
 			break;
 		case "请输入银行卡号":
 			actualMessage = page_User_BindCard2.getElementText("error");
