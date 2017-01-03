@@ -75,6 +75,7 @@ public class BorrowsTestCase extends BaseCase {
 				friend3Mobile_improve);
 		// 完善资料--上传身份证照片
 		biz_Improve.uploadingBus(file_improve);
+		biz_Improve.uploadingBus(file_improve);
 		// 完善资料--完善银行卡信息
 		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
 		// 完善资料--提交

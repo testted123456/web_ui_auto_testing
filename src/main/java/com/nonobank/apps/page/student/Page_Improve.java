@@ -188,7 +188,6 @@ public class Page_Improve extends BasePage {
 		WebElement input_fileupload = objectFactory.getWebElement(By.xpath("//input[@id='fileupload']"));
 		URL url = ParseXLSX.class.getClassLoader().getResource(file);
 		String file_path = url.getFile();
-		input_fileupload.click();
 		input_fileupload.sendKeys(file_path);
 		WebInput input_submit = objectFactory.getWebInput("submit");
 		input_submit.click();

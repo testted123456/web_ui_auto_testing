@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.nonobank.apps.listener.WebDriverEventListenerImpl;
+import com.nonobank.apps.utils.file.ParseProperties;
 
 public class IEWebDriver {
 	private static final Logger logger = LogManager.getLogger(IEWebDriver.class);
@@ -20,12 +21,11 @@ public class IEWebDriver {
 	
 	public  WebDriver getInstance(){
 		
-		Properties prop = new Properties();
+		Properties prop = ParseProperties.getInstance();
 		
 		try {
 			logger.info("try to get ie webdriver");
 			
-			prop.load(new FileInputStream("config/config-win.properties"));
 			
 			String driver_path = prop.getProperty("ieDriver");
 			
@@ -36,10 +36,7 @@ public class IEWebDriver {
 		    ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
 		    
 		    driver = new InternetExplorerDriver(ieCapabilities);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		}  catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
