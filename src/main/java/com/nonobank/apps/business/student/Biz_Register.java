@@ -22,7 +22,7 @@ public class Biz_Register {
 		page_Register.input_qq(qq_register);
 		page_Register.input_mobile(mobile_register);
 		page_Register.input_checkCode(checkCode_register);
-		page_Register.sleep(2000);
+		page_Register.sleep(6000);
 		// 点击获取验证码
 		page_Register.click_getSmsCode();
 		page_Register.sleep(3000);
