@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<WebLink name="大房东债权列表" xpath="//a[@href='/Admin/Licai/DfdDebtList']">
+	</WebLink>
+	<WebSelect name="targetFpid" xpath="//select[@name='target_fpid']">
+	</WebSelect>
+</elements>

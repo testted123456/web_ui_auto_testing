@@ -49,6 +49,14 @@ public class Biz_Home {
 	public void navigate_to_financePlanProfit() {
 		page_admin_home.click_financePlanProfit();
 	}
+	
+	
+	// 跳到投资计划收益列表页面
+	@Info(name = "navigate_to_financePlanProfit", desc = "跳到投资计划收益列表页面", dependency = "navigate_to_lastAudit()", isDisabled = true)
+	public void click_DfdDebtList() {
+		page_admin_home.click_financePlanProfit();
+	}
+
 
 	// 跳转到计划任务页面，执行名校贷非V3匹配计划
 	@Info(name = "navigate_to_v3", desc = "跳转到计划任务页面，执行名校贷非V3匹配计划", dependency = "navigate_to_lastAudit()", isDisabled = true)

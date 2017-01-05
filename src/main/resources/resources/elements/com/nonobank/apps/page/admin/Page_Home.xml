@@ -6,7 +6,8 @@
 	</WebLink>
 	<WebInput name="手机号码" xpath="//input[@name='mobilenum']">
 	</WebInput>
-	<WebInput name="查询" xpath="//input[@name='imageField' and @type='submit']">
+	<WebInput name="查询"
+		xpath="//input[@name='imageField' and @type='submit']">
 	</WebInput>
 	<WebSelect name="精选" xpath="//select[@name='fp_id']">
 	</WebSelect>
@@ -16,10 +17,13 @@
 	</WebLink>
 	<WebInput name="名校贷非v3自动匹配" xpath="//input[@id='no_v3_auto_auditing']">
 	</WebInput>
-	<WebCommon name="主窗口" xpath="//frame[@src='/Admin/Home/welcome' and @id='mainFrame']">
+	<WebCommon name="主窗口"
+		xpath="//frame[@src='/Admin/Home/welcome' and @id='mainFrame']">
 	</WebCommon>
-	<WebCommon name="视频签约终审列表" xpath="//div[@id='main']/div[@class='bodytitle']/div[@class='bodytitletxt']/a[@href='/Admin/Audit/VideoAudit']">
+	<WebCommon name="视频签约终审列表"
+		xpath="//div[@id='main']/div[@class='bodytitle']/div[@class='bodytitletxt']/a[@href='/Admin/Audit/VideoAudit']">
 	</WebCommon>
 	<WebLink name="菜单" xpath="//a[@href='/Admin/Home/welcome']">
 	</WebLink>
+
 </elements>
