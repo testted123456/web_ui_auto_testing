@@ -238,7 +238,8 @@ public class PageUtils {
 	 * @param driver
 	 * @param keys:Keys.ALT,Keys.SHIFT,Keys.CONTROL
 	 */
-	public static void keyUp(Keys keys) {
+	public static void keyUp() {
+		Keys keys = Keys.UP;
 		WebDriver driver = WebDriverUtils.getWebDriver();
 		Actions action = new Actions(driver);
 		action.keyUp(keys).perform();
@@ -250,9 +251,21 @@ public class PageUtils {
 	 * @param driver
 	 * @param keys:Keys.ALT,Keys.SHIFT,Keys.CONTROL
 	 */
-	public static void keyDown(Keys keys) {
+	public static void keyDown() {
+		Keys keys = Keys.DOWN;
 		WebDriver driver = WebDriverUtils.getWebDriver();
 		Actions action = new Actions(driver);
 		action.keyDown(keys).perform();
+	}
+	
+	/**
+	 * esc
+	 */
+	public static void keyEsc() {
+		Keys keys = Keys.ESCAPE;
+		WebDriver driver = WebDriverUtils.getWebDriver();
+		Actions action = new Actions(driver);
+//		action.keyDown(keys).perform();
+		action.sendKeys(keys).perform();
 	}
 }

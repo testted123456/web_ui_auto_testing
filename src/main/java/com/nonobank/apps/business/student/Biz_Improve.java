@@ -179,6 +179,8 @@ public class Biz_Improve {
 			page_Improve.closeAlert();
 			logger.info("------------开始：照片检验不合格-----------------");
 			PageUtils.sleep(3000);
+			PageUtils.keyEsc();
+			PageUtils.sleep(3000);
 			page_Improve.input_email(email);
 			PageUtils.sleep(3000);
 			page_Improve.submit();
