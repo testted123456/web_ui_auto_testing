@@ -177,13 +177,13 @@ public class Biz_Improve {
 			Assert.assertEquals(getText_photoSubmit, "照片检验不合格，请重新上传。务必：将证件放平后垂直拍摄；使照片清晰文字可辨识。");
 			PageUtils.sleep(3000);
 			page_Improve.closeAlert();
-			logger.info("------------开始：照片检验不合格-----------------");
 			PageUtils.sleep(3000);
 			PageUtils.keyEsc();
 			PageUtils.sleep(3000);
 			page_Improve.input_email(email);
 			PageUtils.sleep(3000);
 			page_Improve.submit();
+			logger.info("------------结束：照片检验不合格-----------------");
 		}
 	}
 

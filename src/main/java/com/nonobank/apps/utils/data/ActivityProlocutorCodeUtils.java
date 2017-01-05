@@ -16,7 +16,7 @@ public class ActivityProlocutorCodeUtils {
 	}
 
 	public static boolean isRegister(String prolocutor_code) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "select count(*) from activity_prolocutor_code where prolocutor_code=" + "'" + prolocutor_code
 				+ "'";
 		String count = DBUtils.getOneObject(con, sql).toString();
@@ -30,7 +30,7 @@ public class ActivityProlocutorCodeUtils {
 	}
 
 	public static String getProlocutorCode() {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "SELECT prolocutor_code from activity_prolocutor_code  limit 1";
 		String prolocutor_code = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();

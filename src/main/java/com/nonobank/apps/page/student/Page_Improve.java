@@ -1,5 +1,7 @@
 package com.nonobank.apps.page.student;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -190,6 +192,13 @@ public class Page_Improve extends BasePage {
 		WebElement input_fileupload = objectFactory.getWebElement(By.xpath("//input[@id='fileupload']"));
 		URL url = ParseXLSX.class.getClassLoader().getResource(file);
 		String file_path = url.getFile();
+		try {
+			File file11 = new File(url.toURI());
+			file_path = file11.getAbsolutePath();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		input_fileupload.sendKeys(file_path);
 		WebInput input_submit = objectFactory.getWebInput("submit");
 		input_submit.click();

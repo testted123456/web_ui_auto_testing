@@ -47,7 +47,7 @@ public class Page_User_Withdrawal extends BasePage {
 	public void select_random_card(String username) {
 		logger.info("begin to select a random bank card...");
 
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 
 		String sql = "SELECT uba.bank_card_id FROM user_bankcard_auth uba, user_info ui WHERE ui.id=uba.user_id AND ui.user_name='"
 				+ username + "' AND uba.auth_status=1 AND uba.short_no IS NOT NULL LIMIT 1";
@@ -149,7 +149,7 @@ public class Page_User_Withdrawal extends BasePage {
 	 * @return
 	 */
 	public String getBalance(String username) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "SELECT fa.balance-locking FROM finance_account fa, user_info ui WHERE fa.user_id=ui.id"
 
 				+ " AND fa.role_id=7 AND ui.user_name='" + username + "' LIMIT 1";

@@ -24,33 +24,8 @@ public class DBUtils {
 
 	public static Connection connection;
 
-	/**
-	 * 函数说明：返回db_nono的数据库连接
-	 * 
-	 * @return Connection
-	 */
-	public static Connection getNonoConnection() {
-		if (connection_nono != null) {
-			return connection_nono;
-		} else {
-			connection_nono = getConnection("nono");
-			return connection_nono;
-		}
-	}
 
-	/**
-	 * 函数说明：返回db_nono_pay的数据库连接
-	 * 
-	 * @return
-	 */
-	public static Connection getPayConnection() {
-		if (connection_pay != null) {
-			return connection_pay;
-		} else {
-			connection_pay = getConnection("pay");
-			return connection_pay;
-		}
-	}
+
 
 	/**
 	 * @param dbname

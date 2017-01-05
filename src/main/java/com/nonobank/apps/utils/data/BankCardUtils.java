@@ -79,7 +79,7 @@ public class BankCardUtils {
 		String sql = "select ubi.bank_card_no from user_info ui, user_bankcard_info ubi where ui.mobile_num='" + mobile
 				+ "' and ui.id=ubi.user_id limit 1";
 		System.out.println("sql="+sql);
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String cardno = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();
 		return cardno;
@@ -104,7 +104,7 @@ public class BankCardUtils {
 	}
 
 	public static String getUnUsedBankCard(String prefix) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 
 		while (true) {
 			String bankCard = getBankCard(prefix);

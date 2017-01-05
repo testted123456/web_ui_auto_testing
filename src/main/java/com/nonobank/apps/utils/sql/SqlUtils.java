@@ -7,7 +7,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 public class SqlUtils {
 	//视频录制
 	public static void recordVideo(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -20,7 +20,7 @@ public class SqlUtils {
 	}
 	//初审通过
 	public static void firstAuditPass(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con =DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -33,7 +33,7 @@ public class SqlUtils {
 	}
 	//初审回退
 	public static void firstAuditRollback(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con =DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -46,7 +46,7 @@ public class SqlUtils {
 	}
 	//初审拒绝
 	public static void firstAuditReject(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -59,7 +59,7 @@ public class SqlUtils {
 	}
 	//初审取消
 	public static void firstAuditCancel(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con =DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -72,7 +72,7 @@ public class SqlUtils {
 	}
 	//终审通过
 	public static void lastAuditPass(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -85,7 +85,7 @@ public class SqlUtils {
 	}
 	//终审回退
 	public static void lastAuditRollback(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -98,7 +98,7 @@ public class SqlUtils {
 	}
 	//终审拒绝
 	public static void lastAuditReject(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"
@@ -111,7 +111,7 @@ public class SqlUtils {
 	}
 	//终审取消
 	public static void lastAuditCancel(String mobile){
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
 				+ "is_confirm,is_audit,am_audit_id,am_audit_time,am_op_time) select db_nono.borrows.id,"
 				+ "'borrow_video_audit','7225627','2016-07-28 20:14:07：video_sub_mark 用户提交视频签约。',"

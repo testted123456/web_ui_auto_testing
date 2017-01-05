@@ -53,7 +53,7 @@ public class Page_Home extends BasePage {
 
 	// 视频签约初审列表，点击“视频验证”按钮
 	public void click_videoAduditView(String username, String audit) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 
 		String sql = "SELECT id FROM user_info WHERE user_name='" + username + "'";
 

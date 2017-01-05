@@ -17,7 +17,7 @@ public class UserInfoUtils {
 	}
 
 	public static boolean isRegister(String mobile) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "select count(*) from user_info where mobile_num=" + "'" + mobile + "'";
 		String count = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();
@@ -30,7 +30,7 @@ public class UserInfoUtils {
 
 	public static String getBindedCardUser(String param) {
 		String password = StringUtils.md5("it789123");
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "select " + param + " from user_info ui, user_bankcard_info ubi where password = '" + password
 				+ "' and mobile_num like '%1356421%' and bank_code=4 and  ui.id=ubi.user_id  limit 1";
 		String mobile_num = DBUtils.getOneObject(con, sql).toString();
@@ -47,7 +47,7 @@ public class UserInfoUtils {
 			prefix = "436742121737";
 		}
 
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "select ui.mobile_num, ubi.bank_card_no, count(ubi.bank_card_no) as amount from user_info ui, user_bankcard_info ubi"
 				+ " where ui.id=ubi.user_id and ui.user_name like 'BCS%' " + "group by ui.id having amount=1"
 				+ " and ubi.bank_card_no not like " + "'" + prefix + "%'" + " limit 1";
@@ -63,7 +63,7 @@ public class UserInfoUtils {
 	}
 
 	public static String getUsername(String mobile) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "select user_name from user_info where mobile_num=" + "'" + mobile + "'";
 		String user_name = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();
@@ -71,7 +71,7 @@ public class UserInfoUtils {
 	}
 
 	public static String getUnUserdUserNname() {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		RandomUtils randomUtils = new RandomUtils();
 		while (true) {
 			String user_name = randomUtils.generateUserName();

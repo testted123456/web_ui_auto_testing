@@ -5,7 +5,7 @@ import com.nonobank.apps.utils.db.DBUtils;
 
 public class FinancePlanUtils {
 	public static String getFinanceId(String scope) {
-		Connection con = DBUtils.getNonoConnection();
+		Connection con = DBUtils.getConnection("nono");
 		String sql = "SELECT id FROM finance_plan WHERE  STATUS =3 and price_finish<finance_plan.price and scope = "
 				+ scope + " limit 1";
 		String id = DBUtils.getOneObject(con, sql).toString();
