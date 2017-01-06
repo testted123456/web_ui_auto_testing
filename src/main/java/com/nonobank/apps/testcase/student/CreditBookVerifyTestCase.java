@@ -11,7 +11,7 @@ import com.nonobank.apps.testcase.base.BaseCase;
 public class CreditBookVerifyTestCase extends BaseCase {
 	Biz_Common biz_Common;
 	Biz_CreditBook biz_CreditBook;
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu1.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	//信用证书查询
 	@Test(dataProvider = "dataSource")

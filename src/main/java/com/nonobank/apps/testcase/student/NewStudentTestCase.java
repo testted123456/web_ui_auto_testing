@@ -10,7 +10,7 @@ import com.nonobank.apps.utils.page.PageUtils;
 
 public class NewStudentTestCase extends BaseCase {
 	Biz_Register biz_register;
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu1.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	//新生借款
 	@Test(dataProvider = "dataSource")

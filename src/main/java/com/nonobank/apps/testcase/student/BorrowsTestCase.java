@@ -12,13 +12,12 @@ import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.sql.SqlUtils;
 
-public class BorrowsTestCaseYJStu3 extends BaseCase {
+public class BorrowsTestCase extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
 	Biz_Improve biz_Improve;
 	Biz_VideoSign biz_VideoSign;
-
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu3.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	// 正常借款
 	@Test(dataProvider = "dataSource")
@@ -63,7 +62,7 @@ public class BorrowsTestCaseYJStu3 extends BaseCase {
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
 		PageUtils.sleep(1000);
 		// 申请流程--镑客码验证框存在通过
-		biz_Apply.bankCodeVerifyBus();
+		 biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(1000);
 
 		// 完善资料--借款信息检查
@@ -90,5 +89,7 @@ public class BorrowsTestCaseYJStu3 extends BaseCase {
 		PageUtils.sleep(1000);
 		// 视频录制--视频录制完成检查
 		biz_VideoSign.checkVideoSignSuccessBus();
+		biz_VideoSign.checkSuccess(mobile_register);
+
 	}
 }

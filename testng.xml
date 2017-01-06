@@ -49,10 +49,7 @@
 		</test>
 		<test name="student" preserve-order="true">
 			<classes>
-				<class name="com.nonobank.apps.testcase.student.BorrowsTestCaseYJStu" />
-				<class name="com.nonobank.apps.testcase.student.BorrowsTestCaseYJStu2" />
-				<class name="com.nonobank.apps.testcase.student.BorrowsTestCaseYJStu3" />
-				<class name="com.nonobank.apps.testcase.student.BorrowsTestCaseYJStu4" />
+				<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 			</classes>
 		</test>
 </suite>
