@@ -12,13 +12,13 @@ import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.sql.SqlUtils;
 
-public class BorrowsTestCaseByStu3 extends BaseCase {
+public class BorrowsTestCaseYJStu3 extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
 	Biz_Improve biz_Improve;
 	Biz_VideoSign biz_VideoSign;
 
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseByStu3.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu3.class);
 
 	// 正常借款
 	@Test(dataProvider = "dataSource")

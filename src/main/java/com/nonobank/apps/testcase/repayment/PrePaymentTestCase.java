@@ -12,7 +12,7 @@ import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.business.student.Biz_VideoSign;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.testcase.student.BorrowsTestCaseByStu1;
+import com.nonobank.apps.testcase.student.BorrowsTestCaseYJStu1;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.sql.SqlUtils;
 
@@ -25,7 +25,7 @@ public class PrePaymentTestCase extends BaseCase {
 	Biz_Account biz_Account;
 	Biz_PrePayment biz_PrePayment;
 
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseByStu1.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu1.class);
 
 	@Test(dataProvider = "dataSource")
 	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,

@@ -268,7 +268,6 @@ public class ParseXLSX {
 			ArrayList<String> itemArrayList = new ArrayList<String>();
 
 			xssfRow = xssfSheet.getRow(i);
-
 			if (null == xssfRow) {
 				continue;
 			}
@@ -277,7 +276,10 @@ public class ParseXLSX {
 			if (result_column != 0) {
 				setCellValue("", i, result_column, xssfSheet);
 			}
-
+			xssfCell = xssfRow.getCell(0);
+			if (xssfCell.toString().equals("N")) {
+				continue;
+			}
 			for (int col = 1; col < cellEnd - 1; col++) {
 				xssfCell = xssfRow.getCell(col);
 				if (null == xssfCell) {
@@ -371,8 +373,8 @@ public class ParseXLSX {
 	}
 
 	public static void main(String[] args) {
-		Object[][] objects = getDataValue(
-				"resources/TestData/com/nonobank/apps/testcase/student/CreditBookVerifyTestCase.xlsx", "test");
+		Object[][] objects = getDataValue("resources/TestData/com/nonobank/apps/testcase/portal/LoginSuccess.xlsx",
+				"test");
 		System.out.println("******************objects=" + objects.length);
 		for (Object[] objects2 : objects) {
 			for (Object object : objects2) {

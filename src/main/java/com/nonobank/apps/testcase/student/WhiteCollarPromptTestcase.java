@@ -12,7 +12,7 @@ import com.nonobank.apps.utils.page.PageUtils;
 public class WhiteCollarPromptTestcase extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
-	public static Logger logger = LogManager.getLogger(BorrowsTestCaseByStu1.class);
+	public static Logger logger = LogManager.getLogger(BorrowsTestCaseYJStu1.class);
 
 	//白领贷
 	@Test(dataProvider = "dataSource")
