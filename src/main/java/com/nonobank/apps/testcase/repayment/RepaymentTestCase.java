@@ -13,9 +13,13 @@ import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.business.student.Biz_VideoSign;
+import com.nonobank.apps.interfaces.mxd.UploadVideoTest;
+import com.nonobank.apps.interfaces.web.AjaxLoginTest;
+import com.nonobank.apps.interfaces.web.CheckCodeTest;
+import com.nonobank.apps.interfaces.web.GetBoId;
+import com.nonobank.apps.interfaces.web.V3AutoPlanTest;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
-import com.nonobank.apps.utils.sql.SqlUtils;
 
 public class RepaymentTestCase extends BaseCase {
 	Biz_Register biz_register;
@@ -74,8 +78,6 @@ public class RepaymentTestCase extends BaseCase {
 		PageUtils.sleep(3000);
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
 		PageUtils.sleep(3000);
-		// 申请流程--镑客码验证框存在通过
-		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(10000);
 
 		// 完善资料--借款信息检查
@@ -96,48 +98,27 @@ public class RepaymentTestCase extends BaseCase {
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
 		PageUtils.sleep(10000);
 		// 视频录制--借款信息检查
-		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
 		PageUtils.sleep(3000);
 		// 视频录制--上传视频信息
-		SqlUtils.recordVideo(mobile_register);
 		PageUtils.sleep(5000);
-		PageUtils.refreshPage();
-		PageUtils.sleep(5000);
+		String boId = GetBoId.getBoId(mobile_register);
+		// 上传视频+初审+终审
+		UploadVideoTest.uploadVideo(boId);
+		// 名校贷非V3自动匹配--韩浩账号登录
+		CheckCodeTest.checkCode();
+		AjaxLoginTest.ajaxLogin("hanhao", password_register, "8888", "pc", "nono");
+		// 名校贷非V3自动匹配--执行计划任务
+		V3AutoPlanTest.v3AutoPlan(boId);
+		PageUtils.sleep(3000);
 		// 视频录制--视频录制完成检查
-		biz_VideoSign.checkVideoSignSuccessBus();
-		PageUtils.sleep(5000);
-
-		// 后台登录
-		biz_Login.login(username_admin, password_admin);
-		PageUtils.sleep(10000);
-		// 后台进行初审
-		biz_Home.navigate_to_firstAudit(mobile_register, userName_register);
-		PageUtils.sleep(200000);
-		biz_Audit_VideoAuditView.first_audit_pass();
-		PageUtils.sleep(60000);
-		// 初审结束后，需要切换到后台管理系统页面
-		biz_Home.switch_adminHome();
-		PageUtils.sleep(5000);
-		// 后台进行终审
-		biz_Home.navigate_to_lastAudit(mobile_register, userName_register);
-		PageUtils.sleep(10000);
-		biz_Audit_VideoAuditView.last_audit_pass();
-		PageUtils.sleep(60000);
-		// 初审结束后，需要切换到后台管理系统页面
-		biz_Home.switch_adminHome();
-		PageUtils.sleep(5000);
-		// 切换到后台管理系统主菜单页面
-		biz_Home.switch_adminMenu();
-		// 执行名校贷非V3
-		biz_Home.navigate_to_v3();
-		PageUtils.sleep(10000);
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
 		PageUtils.sleep(3000);
+		biz_Account.recharge(mobile_register);
+		biz_Account.exec_re(mobile_register);
 		// 还款流程
 		biz_Repayment.repaymentBus();
 
 	}
 }
-

@@ -24,9 +24,35 @@ public class DBUtils {
 
 	public static Connection connection;
 
-
-
-
+	// 插入一行sql
+	public static Object[] insertOneObject(Connection con, String sql) {
+		QueryRunner qr = new QueryRunner();
+		Object[] objArr = null;
+		System.out.println("开始执行insert语句");
+		System.out.println("sql为：" + sql);
+		try {
+			objArr = qr.insert(con, sql, new ArrayHandler());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("执行insert语句成功");
+		return objArr;
+	}
+	// 更新一行sql
+	public static int updateOneObject(Connection con, String sql){
+		QueryRunner qr = new QueryRunner();
+		int objArr = 0;
+		System.out.println("开始执行update语句");
+		System.out.println("sql为："+sql);
+		try {
+			objArr = qr.update(con, sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("执行update语句成功");
+		return objArr;
+		
+	}
 	/**
 	 * @param dbname
 	 * @return
@@ -110,7 +136,7 @@ public class DBUtils {
 
 	public static void update(Connection con, String sql) {
 		QueryRunner qr = new QueryRunner();
-		
+
 		try {
 			qr.update(con, sql);
 		} catch (SQLException e) {

@@ -2,7 +2,10 @@ package com.nonobank.apps.page.account;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.objectRepository.WebSpan;
 import com.nonobank.apps.objectRepository.WebTable;
@@ -62,8 +65,12 @@ public class Page_BorrowList extends BasePage{
 	}
 	public void click_enter(){
 		logger.info("点击确定...");
-		WebSpan click_enter=objectFactory.getWebSpan("确定");
+		switch_to_frameSet();
+		WebInput click_enter=objectFactory.getWebInput("确定");
 		click_enter.click();
 	}
-	
+	public void switch_to_frameSet() {
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(driver.findElement(By.id("dialogFrame")));
+	}
 }

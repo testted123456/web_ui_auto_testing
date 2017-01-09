@@ -6,15 +6,17 @@
 	</WebInput>
 	<WebSelect name="借款类型" xpath="//select[@id='m_borrow_type']">
 	</WebSelect>
-	<WebInput name="查询" xpath="//input[@id='account_button_yellow' and@value='查询']">
+	<WebInput name="查询"
+		xpath="//input[@id='account_button_yellow' and @value='查询']">
 	</WebInput>
-	<WebLink name="提前还款" xpath="//a[@onclick='return confirm('您确定要提前还款吗？')']">
+	<WebLink name="提前还款"
+		xpath="//a[contains(@onclick,'return confirm') and contains(@onclick, '您确定要提前还款吗')]">
 	</WebLink>
 	<WebLink name="还款详情" xpath="//a[@id='bo_detail']">
 	</WebLink>
-	<WebLink name="查看借款协议" xpath="//a[@target='_blank' and@title='查看借款协议']"> 
+	<WebLink name="查看借款协议" xpath="//a[@target='_blank' and@title='查看借款协议']">
 	</WebLink>
-	<WebLink name="查看咨询及管理服务协议" xpath="//a[@target='_blank' and@title='查看咨询及管理服务协议']"> 
+	<WebLink name="查看咨询及管理服务协议" xpath="//a[@target='_blank' and@title='查看咨询及管理服务协议']">
 	</WebLink>
 	<WebTable name="借款金额" xpath="//table[@class='stripe']/tbody/tr[2]/td[2]">
 	</WebTable>
@@ -26,7 +28,7 @@
 	</WebSpan>
 	<WebSpan name="您的账户余额" xpath="//span[@id='re_m_money_html']">
 	</WebSpan>
-	<WebInput name="确定" xpath="//input[@type='image']">
+	<WebInput name="确定"
+		xpath="//input[contains(@onclick,'checkSubmitData')]">
 	</WebInput>
-	
 </elements>

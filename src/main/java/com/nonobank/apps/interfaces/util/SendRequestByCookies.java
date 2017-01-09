@@ -127,7 +127,6 @@ public class SendRequestByCookies {
 		try {
 			httpGet.setURI(new URI(url));
 			response = httpClient.execute(httpGet);
-//			System.out.println("cookie store:" + cookieStore.getCookies());
 			// 如果server端返回http 200
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				HttpEntity responseEntity = response.getEntity();

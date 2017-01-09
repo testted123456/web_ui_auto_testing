@@ -4,19 +4,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
+import com.nonobank.apps.business.account.Biz_Account;
+import com.nonobank.apps.business.common.Biz_Common;
 import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
 import com.nonobank.apps.business.student.Biz_VideoSign;
+import com.nonobank.apps.interfaces.mxd.UploadVideoTest;
+import com.nonobank.apps.interfaces.web.AjaxLoginTest;
+import com.nonobank.apps.interfaces.web.CheckCodeTest;
+import com.nonobank.apps.interfaces.web.GetBoId;
+import com.nonobank.apps.interfaces.web.V3AutoPlanTest;
 import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.page.PageUtils;
-import com.nonobank.apps.utils.sql.SqlUtils;
 
 public class BorrowsTestCase extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
 	Biz_Improve biz_Improve;
 	Biz_VideoSign biz_VideoSign;
+	Biz_Common biz_Common;
+	Biz_Account biz_Account;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	// 正常借款
@@ -62,7 +70,7 @@ public class BorrowsTestCase extends BaseCase {
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
 		PageUtils.sleep(1000);
 		// 申请流程--镑客码验证框存在通过
-		 biz_Apply.bankCodeVerifyBus();
+		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(1000);
 
 		// 完善资料--借款信息检查
@@ -80,16 +88,18 @@ public class BorrowsTestCase extends BaseCase {
 		biz_Improve.submitBus();
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
-		// 视频录制--借款信息检查
-		biz_VideoSign.videoSignInformationCheckBus(realName_register, idCard_register, int_money_apply);
-		// 视频录制--用户录制视频
-		SqlUtils.recordVideo(mobile_register);
+		// 上传视频+初审+终审
+		String boId = GetBoId.getBoId(mobile_register);
+		UploadVideoTest.uploadVideo(boId);
+		// 名校贷非V3自动匹配--韩浩账号登录
+		CheckCodeTest.checkCode();
+		AjaxLoginTest.ajaxLogin("hanhao", password_register, "8888", "pc", "nono");
+		// 名校贷非V3自动匹配--执行计划任务
+		V3AutoPlanTest.v3AutoPlan(boId);
 		PageUtils.sleep(3000);
-		PageUtils.refreshPage();
-		PageUtils.sleep(1000);
-		// 视频录制--视频录制完成检查
-		biz_VideoSign.checkVideoSignSuccessBus();
-		biz_VideoSign.checkSuccess(mobile_register);
 
+		// 点击用户名
+		biz_Common.click_userNameBus();
+		biz_Account.logout();
 	}
 }

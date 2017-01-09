@@ -12,7 +12,7 @@ public class Biz_PrePayment {
 	Page_Account page_Account = new Page_Account();
 	Page_BorrowList page_BorrowList = new Page_BorrowList();
 
-	public void prePaymentBus(String borrowsMoney_apply) {
+	public void prePaymentBus() {
 		logger.info("--------------开始：提前还款流程----------------");
 		page_Account.click_borrowsRecord();
 		PageUtils.sleep(3000);
@@ -28,13 +28,14 @@ public class Biz_PrePayment {
 		Assert.assertEquals(prePaymentPrompt, "您确定要提前还款吗？");
 		page_BorrowList.closeAlert();
 		// 检查本次应还金额、账号余额
-		String currentBalance = page_BorrowList.getText_currentBalance();
-		String balance = page_BorrowList.getText_balance();
-		float float_currentBalance = Float.parseFloat(currentBalance);
-		float float_balance = Float.parseFloat(balance);
-		if (float_balance - float_currentBalance > 0) {
+		PageUtils.sleep(3000);
+//		String currentBalance = page_BorrowList.getText_currentBalance();
+//		String balance = page_BorrowList.getText_balance();
+//		float float_currentBalance = Float.parseFloat(currentBalance);
+//		float float_balance = Float.parseFloat(balance);
+//		if (float_balance - float_currentBalance > 0) {
 			page_BorrowList.click_enter();
-		}
+//		}
 		PageUtils.sleep(5000);
 		String borrowSuccessPrompt = page_BorrowList.getAlertText();
 		Assert.assertEquals(borrowSuccessPrompt, "还款成功");
