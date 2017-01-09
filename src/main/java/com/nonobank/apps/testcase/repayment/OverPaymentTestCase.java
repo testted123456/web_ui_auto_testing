@@ -19,7 +19,7 @@ import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.testcase.student.BorrowsTestCase;
 import com.nonobank.apps.utils.page.PageUtils;
 
-public class PrePaymentTestCase extends BaseCase {
+public class OverPaymentTestCase extends BaseCase {
 	Biz_Register biz_register;
 	Biz_Apply biz_Apply;
 	Biz_Improve biz_Improve;
@@ -105,8 +105,9 @@ public class PrePaymentTestCase extends BaseCase {
 		biz_Common.click_userNameBus();
 		PageUtils.sleep(3000);
 		biz_Account.recharge(mobile_register);
+		biz_Account.exec_over(mobile_register);
 		biz_PrePayment.prePaymentBus();
-	
+
 		biz_Account.logout();
 	}
 
