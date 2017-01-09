@@ -8,8 +8,8 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<test name="portal" preserve-order="true">
-		<!-- <classes> <class name="com.nonobank.apps.testcase.portal.LoginSuccess" 
+	<!--<test name="portal" preserve-order="true">
+		 <classes> <class name="com.nonobank.apps.testcase.portal.LoginSuccess" 
 			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeError" 
 			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeNull" 
 			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" 
