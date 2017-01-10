@@ -60,16 +60,9 @@ public class Biz_Register {
 
 	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
-		case "请输入有效的手机号码，以便找回密码":
-		case "该手机号码已存在，登录或者查看帮助":
-		case "只能使用字母、数字或下划线":
-		case "6-16位字符，可以是字母、数字、下划线的组合":
-		case "该用户名已存在，登录":
-		case "应至少包含字母、数字、下划线中的两种":
-		case "两次输入的密码不一致":
-		case "请输入安全码！":
-			String error_msg = page_Register.getElementText("error");
-			Assertion.assertEquals(expectMessage, error_msg, Biz_Register.class, "反例-验证注册失败");
+		case "success":
+			String successTitle = page_Register.getElementText("successTitle");
+			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例-注册成功");
 			break;
 		case "安全码输入错误":
 			String checkCodeMessage = page_Register.getElementText("countdown");
@@ -82,8 +75,8 @@ public class Biz_Register {
 			}
 			break;
 		default:
-			String successTitle = page_Register.getElementText("successTitle");
-			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例-注册成功");
+			String error_msg = page_Register.getElementText("error");
+			Assertion.assertEquals(expectMessage, error_msg, Biz_Register.class, "反例-验证注册失败");
 			break;
 		}
 	}

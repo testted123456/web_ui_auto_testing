@@ -8,48 +8,24 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<!--<test name="portal" preserve-order="true">
-		 <classes> <class name="com.nonobank.apps.testcase.portal.LoginSuccess" 
-			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeError" 
-			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateCheckCodeNull" 
-			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameError" 
-			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateLoginnameNull" 
-			/> <class name="com.nonobank.apps.testcase.portal.LoginValidateLoginpwdNull" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterSuccess" /> <class 
-			name="com.nonobank.apps.testcase.portal.RegisterValidateCheckCodeError" /> 
-			<class name="com.nonobank.apps.testcase.portal.RegisterValidateCheckCodeNull" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileError" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidateMobileExist" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidatePassword2Error" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidatePasswordError" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameError" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameExist" 
-			/> <class name="com.nonobank.apps.testcase.portal.RegisterValidateUsernameLength" 
-			/> </classes> </test> <test name="Nonobank_Recharge" preserve-order="true"> 
-			<classes> <class name="com.nonobank.apps.testcase.recharge.RechargeSuccess" 
-			/> <class name="com.nonobank.apps.testcase.recharge.RechargeValidateMoneyMax" 
-			/> <class name="com.nonobank.apps.testcase.recharge.RechargeValidateMoneyMin" 
-			/> <class name="com.nonobank.apps.testcase.recharge.RechargeValidatePayPasswordError" 
-			/> </classes> </test> <test name="bindcard" preserve-order="true"> <classes> 
-			<class name="com.nonobank.apps.testcase.bindcard.BindCardSuccess" /> <class 
-			name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNoError" 
-			/> <class name="com.nonobank.apps.testcase.bindcard.BindCardValidateBankcardNoNull" 
-			/> <class name="com.nonobank.apps.testcase.bindcard.BindCardValidateValidationNull" 
-			/> </classes> </test> <test name="withdrawal" preserve-order="true"> <classes> 
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalSuccess" /> 
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoneyValue" 
-			/> <class name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidateMoneyError" 
-			/> <class name="com.nonobank.apps.testcase.withdrawal.WithDrawalValidatePayPasswordNull" 
-			/> </classes> </test> -->
-		<test name="repayment" preserve-order="true">
-			<classes>
-				<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
-				<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
-			</classes>
-		</test>
-		<test name="student" preserve-order="true">
-			<classes>
-				<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
-			</classes>
-		</test>
+	<test name="test" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.portal.Login" />
+			<class name="com.nonobank.apps.testcase.portal.Register" />
+			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
+			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
+		</classes>
+	</test>
+	<test name="repayment" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
+			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
+		</classes>
+	</test>
+	<test name="student" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
+		</classes>
+	</test>
 </suite>

@@ -8,16 +8,16 @@ import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.testcase.base.BaseCase;
 
-public class LoginSuccess extends BaseCase {
+public class Login extends BaseCase {
 	Biz_Portal biz_Portal;
 	Biz_Login biz_Login;
 	Biz_Account biz_Account;
-	public static Logger logger = LogManager.getLogger(LoginSuccess.class);
+	public static Logger logger = LogManager.getLogger(Login.class);
 
 	@Test(dataProvider = "dataSource")
-	public void test(String loginName, String password, String checkCode) {
+	public void test(String loginName, String password, String checkCode, String expectResult) {
 		biz_Portal.navigate_to_login();
-		biz_Login.login(loginName, password, checkCode, "成功");
+		biz_Login.login(loginName, password, checkCode, expectResult);
 		biz_Account.logout();
 	}
 

@@ -29,27 +29,23 @@ public class Biz_Login {
 		page_Login.submit();
 		PageUtils.waitForPageLoad();
 		switch (expectMessage) {
-		case "请输入您的用户名或手机号！":
-		case "登录用户名不存在":
-		case "请输入您的登录密码！":
-		case "请输入安全码！":
-		case "验证码错误":
-			String actualMessage = page_Login.getElementText("tips_normal");
-			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-登录失败");
-			break;
-		default:
+		case "success":
 			String actualUrl = PageUtils.getUrl();
-			
-			String [] actualUrlArray = actualUrl.split("://");
-			if(actualUrlArray.length == 2){
+
+			String[] actualUrlArray = actualUrl.split("://");
+			if (actualUrlArray.length == 2) {
 				actualUrl = actualUrlArray[1];
 			}
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
-			String [] expectUrlArray = expectUrl.split("://");
-			if(expectUrlArray.length == 2){
+			String[] expectUrlArray = expectUrl.split("://");
+			if (expectUrlArray.length == 2) {
 				expectUrl = expectUrlArray[1];
 			}
 			Assertion.assertEquals(actualUrl, expectUrl, Biz_Login.class, "正例-登录成功");
+			break;
+		default:
+			String actualMessage = page_Login.getElementText("tips_normal");
+			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-登录失败");
 			break;
 		}
 	}
