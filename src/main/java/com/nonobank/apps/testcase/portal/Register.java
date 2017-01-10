@@ -12,11 +12,13 @@ public class Register extends BaseCase {
 	Biz_Account biz_Account;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2, String checkCode,
-			String validation, String expectResult) {
+	public void test(String testcaseName,String testcaseDescription,  String mobile, String user_name, String password, String password2,
+			String checkCode, String validation, String expectResult) {
+		caseName = testcaseName;
+		caseDescription = testcaseDescription;
+		inputParams = mobile;
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, expectResult);
 		biz_Portal.navigate_to_myaccount();
-		biz_Account.logout();
 	}
 }

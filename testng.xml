@@ -8,13 +8,21 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<test name="test" preserve-order="true">
+	<test name="portal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.portal.Login" />
 			<class name="com.nonobank.apps.testcase.portal.Register" />
+		</classes>
+	</test>
+	
+	<test name="account" preserve-order="true">
+		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
+		</classes>
+	</test>
+
+	<test name="user" preserve-order="true">
+		<classes>
 			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
 		</classes>
 	</test>
 	<test name="repayment" preserve-order="true">

@@ -13,6 +13,7 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.portal.Biz_Register;
 import com.nonobank.apps.business.user.Biz_Profile;
 import com.nonobank.apps.testcase.base.BaseCase;
+import com.nonobank.apps.utils.data.Assertion;
 
 public class BindCard extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BindCard.class);

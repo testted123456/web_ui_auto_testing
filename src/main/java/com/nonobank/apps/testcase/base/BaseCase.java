@@ -1,8 +1,15 @@
 package com.nonobank.apps.testcase.base;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.TreeMap;
 import org.apache.logging.log4j.LogManager;
@@ -10,8 +17,12 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import com.csvreader.CsvWriter;
+import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
@@ -25,11 +36,16 @@ public class BaseCase {
 
 	// 测试数据文件，保存在recourse/TestData下
 	public String testfile;
-
+	public static List<List<String>> lst = new ArrayList<List<String>>();
 	protected static Logger logger = LogManager.getLogger(BaseCase.class);
 
 	// 保存测试结果的map
 	public static TreeMap<Long, Integer> resultsMap;
+	public static String caseName;
+	public static String caseDescription;
+	public static String inputParams;
+	public static String actualResult;
+	public static String errorMessage;
 
 	public BaseCase() {
 		logger.info("初始化类:" + this.getClass().getName());
@@ -88,7 +104,18 @@ public class BaseCase {
 		}
 	}
 
-//	@AfterClass
+	@AfterMethod
+	public void addData() {
+		List<String> newLst = new ArrayList<>();
+		newLst.add(caseName);
+		newLst.add(caseDescription);
+		newLst.add("用户手机号:"+inputParams);
+		newLst.add(actualResult);
+		newLst.add(errorMessage);
+		lst.add(newLst);
+	}
+
+	// @AfterClass
 	public void closeDriver() {
 		// 保存测试结果
 		logger.info("保存测试结果...");
@@ -103,4 +130,38 @@ public class BaseCase {
 		logger.info("========================================================================================");
 	}
 
+	public void addData(String caseName, String caseDescription, String inputParams, String actualResult,
+			String errorMessage) {
+		List<String> newLst = new ArrayList<>();
+		newLst.add(caseName);
+		newLst.add(caseDescription);
+		newLst.add(inputParams);
+		newLst.add(actualResult);
+		newLst.add(errorMessage);
+		lst.add(newLst);
+	}
+
+	@AfterSuite
+	public void bbb() {
+
+		try {
+			OutputStream os = new FileOutputStream("./1.csv");
+			CsvWriter writer = new CsvWriter(os, ',', Charset.forName("GBK"));
+			String[] contents = { "case名称", "描述", "入参", "结果", "错误日志" };
+			writer.writeRecord(contents);
+			for (List<String> rowsData : lst) {
+				List<String> list2 = new ArrayList<String>();
+				for (String rowData : rowsData) {
+					list2.add(rowData);
+				}
+				writer.writeRecord(list2.toArray(new String[list2.size()]));
+			}
+
+			writer.close();
+			System.out.println(writer.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 }
