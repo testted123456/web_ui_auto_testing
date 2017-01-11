@@ -16,6 +16,10 @@ public class Biz_Profile {
 		page_Profile.input_payPassword(payPassword);
 		page_Profile.input_payPassword_again(payPassword1);
 		page_Profile.setPasswordbtn();
-		page_Profile.closeAlert();
+		page_Profile.sleep(3000);
+		if (page_Profile.isAlertExists(10000)) {
+			page_Profile.closeAlert();
+			page_Profile.sleep(3000);
+		}
 	}
 }

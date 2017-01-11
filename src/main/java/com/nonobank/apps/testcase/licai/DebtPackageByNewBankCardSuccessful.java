@@ -32,12 +32,13 @@ public class DebtPackageByNewBankCardSuccessful extends BaseCase {
 	public void test(String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String myname, String identity_ID, String payPassword, String payPassword2, String id,
 			String amount, String bank_name, String cardNo) {
+		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, null);
 		biz_Portal.close_dialog();
 		biz_Portal.navigate_to_myaccount();
 		biz_DegreeCard.IDVerification(myname, identity_ID);
 		biz_User_Banks.navigate_to_bindCard1();
-		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
+		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByNewCard(bank_name, cardNo, payPassword);
 	}

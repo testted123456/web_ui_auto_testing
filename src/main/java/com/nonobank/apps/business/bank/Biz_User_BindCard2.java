@@ -29,7 +29,7 @@ public class Biz_User_BindCard2 {
 			logger.info("提交");
 			page_User_BindCard2.submit();
 			PageUtils.waitForPageLoad();
-			handleResult(expectMessage);
+//			handleResult(expectMessage);
 		} catch (Error e) {
 			handleResult(expectMessage);
 		}
