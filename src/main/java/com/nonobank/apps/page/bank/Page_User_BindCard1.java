@@ -50,7 +50,6 @@ public class Page_User_BindCard1 extends BasePage {
 				break;
 			}
 		}
-		
 		WebElement span_bank_name = objectFactory.getWebElement(By.xpath("//span[@data-bankcode='" + bank_code + "']"));
 		span_bank_name.click();	
 	}
