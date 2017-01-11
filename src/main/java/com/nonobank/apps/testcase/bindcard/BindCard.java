@@ -3,7 +3,6 @@ package com.nonobank.apps.testcase.bindcard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-
 import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.account.Biz_DegreeCard;
 import com.nonobank.apps.business.bank.Biz_User_Banks;
@@ -13,7 +12,6 @@ import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.business.portal.Biz_Register;
 import com.nonobank.apps.business.user.Biz_Profile;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.data.Assertion;
 
 public class BindCard extends BaseCase {
 	public static Logger logger = LogManager.getLogger(BindCard.class);
@@ -27,9 +25,13 @@ public class BindCard extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2, String checkCode,
-			String validation, String myname, String identity_ID, String payPassword, String payPassword2,
-			String bank_name, String bankcard_no, String validation2, String expectResult) {
+	public void test(String testcaseName, String testcaseDescription, String mobile, String user_name, String password,
+			String password2, String checkCode, String validation, String myname, String identity_ID,
+			String payPassword, String payPassword2, String bank_name, String bankcard_no, String validation2,
+			String expectResult) {
+		caseName = testcaseName;
+		caseDescription = testcaseDescription;
+		inputParams = mobile;
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "恭喜您注册成功，诺诺镑客因你而精彩！");
 		biz_Portal.navigate_to_myaccount();

@@ -19,7 +19,10 @@ public class WithDrawal extends BaseCase {
 	Biz_User_WithdrawalConfirm biz_User_WithdrawalConfirm;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String password, String checkCode, String money, String pay_password,String expectResult) {
+	public void test(String testcaseName, String testcaseDescription,String mobile, String password, String checkCode, String money, String pay_password,String expectResult) {
+		caseName = testcaseName;
+		caseDescription = testcaseDescription;
+		inputParams = mobile;
 		biz_Portal.navigate_to_login();
 		biz_Login.login(mobile, password, checkCode, "成功");
 		biz_Account.navigate_to_withDrawal();

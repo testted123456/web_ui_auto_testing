@@ -132,7 +132,7 @@ public class BaseCase {
 
 
 	@AfterSuite
-	public void bbb() {
+	public void saveCSV() {
 
 		try {
 			OutputStream os = new FileOutputStream("./1.csv");
