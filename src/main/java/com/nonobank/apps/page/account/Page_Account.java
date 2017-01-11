@@ -6,6 +6,7 @@ import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Account extends BasePage {
@@ -24,11 +25,12 @@ public class Page_Account extends BasePage {
 		common_myBill.click();
 	}
 
-	// 点击借款资料
+	// 退出
 	public void click_logout() {
-		WebLink link_borrowsData = objectFactory.getWebLink("logout");
-		link_borrowsData.click();
+		String url = ParseProperties.getInstance().getProperty("url")+"/Login/logout";
+		PageUtils.openPage(url);
 		PageUtils.waitForPageLoad();
+		logger.info(PageUtils.getUrl());
 	}
 
 	// 点击个人设置

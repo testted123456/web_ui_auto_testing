@@ -1,6 +1,8 @@
 package com.nonobank.apps.testcase.licai;
 
 import org.testng.annotations.Test;
+
+import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.licai.Biz_Licai_FinancePlan;
 import com.nonobank.apps.business.licai.Biz_Licai_Order;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment;
@@ -18,7 +20,7 @@ import com.nonobank.apps.testcase.base.BaseCase;
  *
  */
 public class DebtPackageByBalanceSuccessful extends BaseCase {
-
+	Biz_Account biz_Account;
 	Biz_Login biz_Login;
 	Biz_Portal biz_Portal;
 	Biz_User_Recharge biz_User_Recharge;
@@ -30,12 +32,14 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String checkCode, String cardno, String money, String pay_password,
-			String id, String amount) {
-		biz_Login.login(mobile, password, checkCode, null);
+			String id, String amount, String expectMessage) {
+		biz_Portal.navigate_to_login();
+		biz_Login.login(mobile, password, checkCode, "success");
 		biz_Portal.navigate_to_myaccount();
+		biz_Account.navigate_to_recharge();
 		biz_User_Recharge.recharge();
-//		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
-		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
+		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, "success");
+		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByBalance(pay_password);
 
