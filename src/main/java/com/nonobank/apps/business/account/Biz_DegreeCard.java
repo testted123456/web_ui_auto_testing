@@ -22,6 +22,7 @@ public class Biz_DegreeCard {
 		page_DegreeCard.submit();
 		if (page_DegreeCard.isAlertExists(10000)) {
 			page_DegreeCard.closeAlert();
+			page_DegreeCard.sleep(3000);
 		}
 	}
 }
