@@ -121,7 +121,7 @@ public class Page_Licai_Payment extends BasePage {
 	// *********************************************************************使用新银行卡**********************************************************************************
 
 	public boolean is_NewBankCard_exist() {
-		if (isElementExists("使用新银行卡", WebElementType.WebLink, 15)) {
+		if (isElementExists("使用新银行卡", WebElementType.WebLink, 5)) {
 			WebLink link_reSelectCard = objectFactory.getWebLink("使用新银行卡");
 			if (link_reSelectCard.isDisplayed()) {
 				return true;
