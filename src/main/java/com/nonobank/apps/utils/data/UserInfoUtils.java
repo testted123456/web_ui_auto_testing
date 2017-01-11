@@ -51,7 +51,6 @@ public class UserInfoUtils {
 		String sql = "select ui.mobile_num, ubi.bank_card_no, count(ubi.bank_card_no) as amount from user_info ui, user_bankcard_info ubi"
 				+ " where ui.id=ubi.user_id and ui.user_name like 'BCS%' " + "group by ui.id having amount=1"
 				+ " and ubi.bank_card_no not like " + "'" + prefix + "%'" + " limit 1";
-		System.out.println("*****************sql="+sql);
 		Object[] obj = DBUtils.getOneLine(con, sql);
 		String mobile_num = null;
 
