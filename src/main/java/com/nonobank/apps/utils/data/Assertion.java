@@ -13,7 +13,6 @@ public class Assertion {
 		logger = LogManager.getLogger(clazz);
 
 		try {
-			System.out.println("******************rrrrrrrrrrrrrrrrrrrrrrr");
 			Assert.assertEquals(expected, actual);
 			BaseCase.actualResult = "成功";
 			BaseCase.errorMessage = "无错误信息";

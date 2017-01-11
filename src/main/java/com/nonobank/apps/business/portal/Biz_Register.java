@@ -34,16 +34,13 @@ public class Biz_Register {
 					"checkCode", "validation", "expectMessage", "expectMessage" })
 	@Info(name = "login", desc = "登录", dependency = "nagivate_to_login()", isDisabled = false)
 	public void register(String mobile, String user_name, String password, String password2, String checkCode,
-			String validation, String expectMessage, String... invite) {
+			String validation, String expectMessage) {
 		try {
 			logger.info("开始输入注册信息...");
 			page_Register.input_mobile(mobile);
 			page_Register.input_username(user_name);
 			page_Register.input_password(password);
 			page_Register.input_password2(password2);
-			if (invite.length > 0) {
-				page_Register.input_invite(invite[0]);
-			}
 			page_Register.click_next_step();
 			PageUtils.waitForPageLoad();
 			page_Register.input_check_code(checkCode);
@@ -60,7 +57,7 @@ public class Biz_Register {
 
 	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
-		case "success":
+		case "恭喜您注册成功，诺诺镑客因你而精彩！":
 			String successTitle = page_Register.getElementText("successTitle");
 			Assertion.assertEquals(expectMessage, successTitle, Biz_Register.class, "正例-注册成功");
 			break;
