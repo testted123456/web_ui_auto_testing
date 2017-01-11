@@ -10,8 +10,13 @@
 	</listeners>
 	<test name="portal" preserve-order="true">
 		<classes>
-		<class name="com.nonobank.apps.testcase.portal.Login" />
-		<class name="com.nonobank.apps.testcase.portal.Register" />
+			<class name="com.nonobank.apps.testcase.portal.Login" />
+			<class name="com.nonobank.apps.testcase.portal.Register" />
+		</classes>
+	</test>
+	<test name="licai" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" />
 		</classes>
 	</test>
 	<test name="account" preserve-order="true">
@@ -28,17 +33,10 @@
 		<classes>
 			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
 		</classes>
-	</test> 
-	<!-- 
-	<test name="repayment" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
-			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
-		</classes>
 	</test>
-	<test name="student" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
-		</classes>
-	</test>-->
+	<!-- <test name="repayment" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" 
+		/> <class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" /> 
+		</classes> </test> <test name="student" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" /> </classes> 
+		</test> -->
 </suite>
