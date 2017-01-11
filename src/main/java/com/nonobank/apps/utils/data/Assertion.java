@@ -13,11 +13,12 @@ public class Assertion {
 		logger = LogManager.getLogger(clazz);
 
 		try {
+			System.out.println("******************rrrrrrrrrrrrrrrrrrrrrrr");
 			Assert.assertEquals(expected, actual);
 			BaseCase.actualResult = "成功";
 			BaseCase.errorMessage = "无错误信息";
 			logger.info("检查点：" + msg + "-----------执行成功，预期值:" + expected + ",实际值:" + actual);
-		} catch (Error e) {
+		} catch (Exception e) {
 			BaseCase.actualResult = "失败";
 			BaseCase.errorMessage = "检查点：" + msg + "-----------執行失败，预期值:" + expected + ",实际值:" + actual;
 			logger.error(BaseCase.errorMessage);

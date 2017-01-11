@@ -11,7 +11,7 @@
 	<test name="portal" preserve-order="true">
 		<classes>
 		<class name="com.nonobank.apps.testcase.portal.Login" />
-			<class name="com.nonobank.apps.testcase.portal.Register" />
+		<class name="com.nonobank.apps.testcase.portal.Register" />
 		</classes>
 	</test>
 	<test name="account" preserve-order="true">
