@@ -108,7 +108,9 @@ public class BasePage {
 	public String getElementText(String elementPath) {
 		WebCommon webCommon = objectFactory.getWebCommon(elementPath);
 		String text = webCommon.getText();
-		if (text == null || text.length() == 0) {
+		int count = 0;
+		if (text == null || text.length() == 0 && count < 10) {
+			count++;
 			text = getElementText(elementPath);
 		}
 		return text;
@@ -146,4 +148,5 @@ public class BasePage {
 	public void acceptAlert() {
 		driver.switchTo().alert().accept();
 	}
+
 }

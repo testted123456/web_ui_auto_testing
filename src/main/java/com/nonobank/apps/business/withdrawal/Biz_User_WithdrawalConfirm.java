@@ -23,20 +23,23 @@ public class Biz_User_WithdrawalConfirm {
 			logger.info("提现校验...");
 			page_User_WithdrawalConfirm.input_pay_password(pay_password);
 			page_User_WithdrawalConfirm.submit();
-
+			handleResult(message);
 		} catch (Error e) {
-			switch (message) {
-			case "请输入支付密码！":
-				String error_msg = page_User_WithdrawalConfirm.getElementText("messageInfo");
-				Assertion.assertEquals(message, error_msg, Biz_Login.class, "反例-校验支付密码");
-				break;
+			handleResult(message);
+		}
+	}
 
-			default:
-				String actualUrl = PageUtils.getUrl();
-				String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
-				Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
-				break;
-			}
+	private void handleResult(String message) {
+		switch (message) {
+		case "success":
+			String actualUrl = PageUtils.getUrl();
+			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
+			Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
+			break;
+		case "请输入支付密码！":
+			String error_msg = page_User_WithdrawalConfirm.getElementText("messageInfo");
+			Assertion.assertEquals(message, error_msg, Biz_Login.class, "反例-校验支付密码");
+			break;
 		}
 	}
 

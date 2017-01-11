@@ -34,11 +34,6 @@ public class Biz_User_Withdrawal {
 				String error_msg = page_User_Withdrawal.getElementText("error_msg");
 				Assertion.assertEquals(message, error_msg, Biz_Login.class, "反例-校验金额");
 				break;
-			default:
-				String actualUrl = PageUtils.getUrl();
-				String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
-				Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
-				break;
 			}
 		}
 	}

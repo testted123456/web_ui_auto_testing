@@ -38,20 +38,19 @@ public class Biz_User_BindCard2 {
 
 	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
-		case "同一银行只能绑定一张卡，若需绑定新卡，请先解绑已绑定的卡！":
-		case "请输入验证码":
-			String actualMessage = page_User_BindCard2.getElementText("testmsg");
-			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
-			page_User_BindCard2.close_dialog();
-			break;
-		case "请输入银行卡号":
-			actualMessage = page_User_BindCard2.getElementText("error");
-			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
-			break;
-		default:
+		case "success":
 			String actualUrl = PageUtils.getUrl();
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/BindCard3";
 			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-绑卡成功");
+			break;
+		case "请输入银行卡号":
+			String actualMessage = page_User_BindCard2.getElementText("error");
+			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
+			break;
+		default:
+			actualMessage = page_User_BindCard2.getElementText("testmsg");
+			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
+			page_User_BindCard2.close_dialog();
 			break;
 		}
 	}
