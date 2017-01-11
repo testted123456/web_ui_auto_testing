@@ -13,7 +13,7 @@
 			<class name="com.nonobank.apps.testcase.portal.Register" />
 		</classes>
 	</test>
-	
+	<!--  
 	<test name="account" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
@@ -35,5 +35,5 @@
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 		</classes>
-	</test>
+	</test>-->
 </suite>
