@@ -130,16 +130,6 @@ public class BaseCase {
 		logger.info("========================================================================================");
 	}
 
-	public void addData(String caseName, String caseDescription, String inputParams, String actualResult,
-			String errorMessage) {
-		List<String> newLst = new ArrayList<>();
-		newLst.add(caseName);
-		newLst.add(caseDescription);
-		newLst.add(inputParams);
-		newLst.add(actualResult);
-		newLst.add(errorMessage);
-		lst.add(newLst);
-	}
 
 	@AfterSuite
 	public void bbb() {
