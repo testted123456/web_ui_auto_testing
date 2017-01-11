@@ -29,7 +29,7 @@ public class Biz_User_RechargeConfirm {
 			page_User_RechargeConfirm.submit();
 			page_User_RechargeConfirm.input_smsCode("0615");
 			page_User_RechargeConfirm.submit_smsCode();
-			handleResult(payPassword, message);
+//			handleResult(payPassword, message);
 		} catch (Error e) {
 			handleResult(payPassword, message);
 		}

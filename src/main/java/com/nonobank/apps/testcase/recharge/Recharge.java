@@ -23,7 +23,7 @@ public class Recharge extends BaseCase {
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
 		biz_Portal.navigate_to_login();
-		biz_Login.login(mobile, password, checkCode, expectResult);
+		biz_Login.login(mobile, password, checkCode, "success");
 		biz_Account.navigate_to_recharge();
 		biz_User_Recharge.recharge();
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, expectResult);
