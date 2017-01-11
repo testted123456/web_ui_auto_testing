@@ -24,9 +24,9 @@ public class WithDrawal extends BaseCase {
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
 		biz_Portal.navigate_to_login();
-		biz_Login.login(mobile, password, checkCode, "成功");
+		biz_Login.login(mobile, password, checkCode, "success");
 		biz_Account.navigate_to_withDrawal();
-		biz_User_Withdrawal.withDrawal(money, "成功");
+		biz_User_Withdrawal.withDrawal(money, "success");
 		biz_User_WithdrawalConfirm.confirm(pay_password,expectResult);
 		biz_Account.logout();
 	}

@@ -31,7 +31,7 @@ public class Biz_Licai_FinancePlan {
 		}
 
 		page_Licai_FinancePlan.navigate_to_financePlan(id, newurl);
-//		page_Licai_FinancePlan.input_amount(amount);
+		page_Licai_FinancePlan.input_amount(amount);
 		page_Licai_FinancePlan.submit();
 	}
 

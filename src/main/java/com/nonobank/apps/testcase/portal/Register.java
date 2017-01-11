@@ -20,5 +20,6 @@ public class Register extends BaseCase {
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, expectResult);
 		biz_Portal.navigate_to_myaccount();
+		biz_Account.logout();
 	}
 }

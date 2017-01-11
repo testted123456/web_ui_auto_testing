@@ -29,7 +29,6 @@ public class Biz_User_RechargeConfirm {
 			page_User_RechargeConfirm.submit();
 			page_User_RechargeConfirm.input_smsCode("0615");
 			page_User_RechargeConfirm.submit_smsCode();
-			handleResult(payPassword, message);
 		} catch (Error e) {
 			handleResult(payPassword, message);
 		}
@@ -38,11 +37,6 @@ public class Biz_User_RechargeConfirm {
 
 	private void handleResult(String payPassword, String message) {
 		switch (message) {
-		case "success":
-			String actualUrl = PageUtils.getUrl();
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/RechargeSuccess";
-			Assertion.assertEquals(actualUrl.contains(expectUrl), true, Biz_Login.class, "正例-提现成功");
-			break;
 		case "单笔充值金额必须≧10元":
 			page_User_RechargeConfirm.input_money("9");
 			String msg = page_User_RechargeConfirm.getMoneyMsg();

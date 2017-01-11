@@ -6,6 +6,7 @@ import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
 import com.nonobank.apps.utils.file.ParseProperties;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_Licai_FinancePlan extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_Licai_FinancePlan.class);
@@ -14,7 +15,9 @@ public class Page_Licai_FinancePlan extends BasePage {
 	public void navigate_to_financePlan(String id, String newurl) {
 		String url = ParseProperties.getInstance().getProperty("url");
 		url = url +newurl + id;
-		driver.get(url);
+		PageUtils.openPage(url);
+		System.out.println("*************************url="+url);
+		PageUtils.waitForPageLoad();
 	}
 
 	// 输入购买份数
