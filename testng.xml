@@ -24,7 +24,7 @@
 		<classes>
 			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
 		</classes>
-	</test>
+	</test> 
 	<test name="repayment" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
