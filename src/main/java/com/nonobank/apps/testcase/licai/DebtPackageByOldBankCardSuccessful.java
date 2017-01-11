@@ -8,6 +8,7 @@ import com.nonobank.apps.business.licai.Biz_Licai_Order;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment;
 import com.nonobank.apps.business.licai.Biz_Licai_Payment_Successful;
 import com.nonobank.apps.business.portal.Biz_Login;
+import com.nonobank.apps.business.portal.Biz_Portal;
 import com.nonobank.apps.testcase.base.BaseCase;
 
 public class DebtPackageByOldBankCardSuccessful extends BaseCase {
@@ -18,13 +19,14 @@ public class DebtPackageByOldBankCardSuccessful extends BaseCase {
 	Biz_Licai_Order biz_Licai_Order;
 	Biz_Licai_Payment biz_Licai_Payment;
 	Biz_Licai_Payment_Successful biz_Licai_Payment_Successful;
+	Biz_Portal biz_Portal;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String checkCode, String id, String amount, String cardNo,
 			String payPassword) {
-
-		biz_Login.login(mobile, password, checkCode, null);
-		biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
+		biz_Portal.navigate_to_login();
+		biz_Login.login(mobile, password, checkCode, "success");
+		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByOldNewCard(cardNo, payPassword);
 	}
