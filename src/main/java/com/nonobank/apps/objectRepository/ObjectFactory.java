@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import com.nonobank.apps.testcase.base.BaseCase;
 import com.nonobank.apps.utils.file.ParseXML;
 
 public class ObjectFactory {
@@ -66,11 +68,11 @@ public class ObjectFactory {
 	public WebRadioBox getWebRadioBox(String elementPath) {
 		return (WebRadioBox) getBaseWebElement(WebElementType.WebRadioBox, elementPath);
 	}
-	
-	public WebTable getWebTable( String elementPath){
-		return (WebTable) getBaseWebElement(WebElementType.WebTable,elementPath);
+
+	public WebTable getWebTable(String elementPath) {
+		return (WebTable) getBaseWebElement(WebElementType.WebTable, elementPath);
 	}
-	
+
 	public WebTextArea getWebTextArea(String elementPath) {
 		return (WebTextArea) getBaseWebElement(WebElementType.WebTextArea, elementPath);
 	}
@@ -87,10 +89,10 @@ public class ObjectFactory {
 		return (WebCommon) getBaseWebElement(WebElementType.WebCommon, elementPath);
 	}
 
-	public WebLi getWebLi(String elementPath){
+	public WebLi getWebLi(String elementPath) {
 		return (WebLi) getBaseWebElement(WebElementType.WebLi, elementPath);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public <E extends BaseWebElement> E getBaseWebElement(WebElementType elementType, String elementName) {
 		String xpath = null;
@@ -122,30 +124,31 @@ public class ObjectFactory {
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			String msg = "调用构造函数生成页面对象失败，xpath : " + elementName;
+			BaseCase.errorMessage = msg;
 			logger.error(msg);
 			Assert.fail(msg);
 		}
 		return (E) object;
 	}
 
-	public WebElement getWebElement(String elementName, WebElementType elementType){
+	public WebElement getWebElement(String elementName, WebElementType elementType) {
 		return getWebElement(elementName, elementType, 20);
 	}
-	
-	public WebElement getWebElement(String elementName, WebElementType elementType, final long time){
-		String xpath  = ParseXML.getXPath(elementName, elementType, xmlFile);
+
+	public WebElement getWebElement(String elementName, WebElementType elementType, final long time) {
+		String xpath = ParseXML.getXPath(elementName, elementType, xmlFile);
 		return getWebElement(xpath, time);
 	}
-	
+
 	public WebElement getWebElement(String xpath) {
 		return getWebElement(xpath, 20);
 	}
-	
+
 	public WebElement getWebElement(String xpath, final long time) {
 		final By by = By.xpath(xpath);
 		return getWebElement(by, time);
 	}
-	
+
 	public WebElement getWebElement(final By by, final long time) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, time);

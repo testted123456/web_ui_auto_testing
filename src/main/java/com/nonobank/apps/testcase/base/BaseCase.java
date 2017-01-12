@@ -41,11 +41,11 @@ public class BaseCase {
 
 	// 保存测试结果的map
 	public static TreeMap<Long, Integer> resultsMap;
-	public static String caseName;
-	public static String caseDescription;
-	public static String inputParams;
-	public static String actualResult;
-	public static String errorMessage;
+	public static String caseName = "请配置测试名称";
+	public static String caseDescription = "请配置测试描述";
+	public static String inputParams = "请配置输入参数";
+	public static String actualResult = "请配置实际结果";
+	public static String errorMessage = "请配置错误信息";
 
 	public BaseCase() {
 		logger.info("初始化类:" + this.getClass().getName());
@@ -109,13 +109,13 @@ public class BaseCase {
 		List<String> newLst = new ArrayList<>();
 		newLst.add(caseName);
 		newLst.add(caseDescription);
-		newLst.add("用户手机号:"+inputParams);
+		newLst.add("用户手机号:" + inputParams);
 		newLst.add(actualResult);
 		newLst.add(errorMessage);
 		lst.add(newLst);
 	}
 
-//	 @AfterClass
+	// @AfterClass
 	public void closeDriver() {
 		// 保存测试结果
 		logger.info("保存测试结果...");
@@ -129,7 +129,6 @@ public class BaseCase {
 		WebDriverUtils.destoryWebDriver();
 		logger.info("========================================================================================");
 	}
-
 
 	@AfterSuite
 	public void saveCSV() {

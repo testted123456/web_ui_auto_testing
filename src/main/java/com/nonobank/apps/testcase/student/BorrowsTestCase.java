@@ -29,18 +29,22 @@ public class BorrowsTestCase extends BaseCase {
 
 	// 正常借款
 	@Test(dataProvider = "dataSource")
-	public void test(String userName_register, String qq_register, String mobile_register, String checkCode_register,
-			String password_register, String confirmPassword_register, String province_register,
-			String institution_register, String schoolArea_register, String year_register, String education_register,
-			String studentNumber_register, String realName_register, String idCard_register, String major_register,
-			String channel_register, String smsCode_register, String purpose_apply, String detailPurpose_apply,
-			String money_apply, String smsCode_apply, String productIndex_apply, String pieces_apply,
-			String email_improve, String address_improve, String income_index_improve, String parentName_improve,
-			String parentMobile_improve, String counselorName_improve, String counselorMobile_improve,
-			String friend1Name_improve, String friend1Mobile_improve, String friend2Name_improve,
-			String friend2Mobile_improve, String friend3Name_improve, String friend3Mobile_improve, String file_improve,
+	public void test(String testcaseName, String testcaseDescription, String userName_register, String qq_register,
+			String mobile_register, String checkCode_register, String password_register,
+			String confirmPassword_register, String province_register, String institution_register,
+			String schoolArea_register, String year_register, String education_register, String studentNumber_register,
+			String realName_register, String idCard_register, String major_register, String channel_register,
+			String smsCode_register, String purpose_apply, String detailPurpose_apply, String money_apply,
+			String smsCode_apply, String productIndex_apply, String pieces_apply, String email_improve,
+			String address_improve, String income_index_improve, String parentName_improve, String parentMobile_improve,
+			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
+			String friend1Mobile_improve, String friend2Name_improve, String friend2Mobile_improve,
+			String friend3Name_improve, String friend3Mobile_improve, String file_improve,
 			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve,
-			String smsCode_improve) {
+			String smsCode_improve,String expectResult) {
+		caseName = testcaseName;
+		caseDescription = testcaseDescription;
+		inputParams = mobile_register;
 		logger.info("开始进行借款流程测试........");
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);
