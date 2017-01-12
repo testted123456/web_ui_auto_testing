@@ -22,6 +22,7 @@ public class BasePage {
 	protected ObjectFactory objectFactory;
 	protected String xmlFile;
 	public static Logger logger = LogManager.getLogger(BasePage.class);
+	int count = 0;
 
 	public ObjectFactory getObjectFactory() {
 		return objectFactory;
@@ -106,10 +107,13 @@ public class BasePage {
 	}
 
 	public String getElementText(String elementPath) {
-		WebCommon webCommon = objectFactory.getWebCommon(elementPath);
-		String text = webCommon.getText();
-		int count = 0;
-		if (text == null || text.length() == 0 && count < 10) {
+		String text = "";
+		try {
+			WebCommon webCommon = objectFactory.getWebCommon(elementPath);
+			text = webCommon.getText();
+		} catch (Error e) {
+		}
+		if (text.length() == 0 && count < 1) {
 			count++;
 			text = getElementText(elementPath);
 		}

@@ -373,7 +373,7 @@ public class ParseXLSX {
 	}
 
 	public static void main(String[] args) {
-		Object[][] objects = getDataValue("resources/TestData/com/nonobank/apps/testcase/student/BorrowsTestCase.xlsx",
+		Object[][] objects = getDataValue("resources/TestData/com/nonobank/apps/testcase/bindcard/BindCard.xlsx",
 				"test");
 		System.out.println("******************objects=" + objects.length);
 		for (Object[] objects2 : objects) {

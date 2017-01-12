@@ -9,4 +9,7 @@
 	<!-- 身份证号 -->
 	<WebInput name="ok" xpath="//input[@name='ok']">
 	</WebInput>
+	<!-- 银行卡错误信息 -->
+	<WebCommon name="cardMsg" xpath="//span[@id='cardMsg']">
+	</WebCommon>
 </elements>

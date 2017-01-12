@@ -8,33 +8,15 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<test name="portal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.portal.Login" />
-			<class name="com.nonobank.apps.testcase.portal.Register" />
-		</classes>
-	</test>
-	<test name="licai" preserve-order="true">
-		<classes>
-			<class
-				name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" />
-		</classes>
-	</test>
-	<test name="account" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
-		</classes>
-	</test>
-	<test name="withdrawal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
-		</classes>
-	</test>
-	<test name="user" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
-		</classes>
-	</test>
+	<!-- <test name="portal" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.portal.Login" 
+		/> <class name="com.nonobank.apps.testcase.portal.Register" /> </classes> 
+		</test> <test name="licai" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" 
+		/> </classes> </test> <test name="account" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.recharge.Recharge" /> </classes> 
+		</test> <test name="withdrawal" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" 
+		/> </classes> </test> <test name="user" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.bindcard.BindCard" /> </classes> 
+		</test> -->
 	<test name="repayment" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
