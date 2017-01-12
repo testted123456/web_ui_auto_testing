@@ -42,8 +42,8 @@ public class PrePaymentTestCase extends BaseCase {
 			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
 			String friend1Mobile_improve, String friend2Name_improve, String friend2Mobile_improve,
 			String friend3Name_improve, String friend3Mobile_improve, String file_improve,
-			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve,
-			String smsCode_improve,String expectResult) {
+			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve, String smsCode_improve,
+			String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile_register;
@@ -76,8 +76,6 @@ public class PrePaymentTestCase extends BaseCase {
 		PageUtils.sleep(5000);
 		PageUtils.sleep(10000);
 
-		// 完善资料--借款信息检查
-		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		// 完善资料--完善联系人信息
 		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve, parentName_improve,
 				parentMobile_improve, counselorName_improve, counselorMobile_improve, friend1Name_improve,

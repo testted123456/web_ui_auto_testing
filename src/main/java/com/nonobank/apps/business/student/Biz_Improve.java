@@ -19,20 +19,11 @@ public class Biz_Improve {
 		logger.info("------------开始：借款信息检查-----------------");
 		page_Improve.isImprovePageLoaded();
 		HashMap<String, String> hashMap = page_Improve.check_borrows();
-		String borrowsMoney_value = hashMap.get("borrowsMoney");
 		String periods_value = hashMap.get("periods");
 		String perMoney_value = hashMap.get("perMoney");
 		// 借款金额
-		double double_borrowsMoney_value = Double.parseDouble(borrowsMoney_value);
 		double double_money_apply = int_money_apply;
-		double d_value_applyMoney = double_borrowsMoney_value - double_money_apply;
-		if (int_money_apply > 1000) {
-			if (d_value_applyMoney == 0) {
-				logger.info("借款金额与预期一致");
-			} else {
-				Assert.fail("借款金额与预期不一致，期望值为：" + double_money_apply + "实际值为：" + double_borrowsMoney_value);
-			}
-		}
+
 		// 期数
 		double double_periods_value = Double.parseDouble(periods_value);
 		double double_pieces_apply = int_pieces_apply;
@@ -173,8 +164,7 @@ public class Biz_Improve {
 	public void photoNoQualifiedPromptBus(String email) {
 		if (page_Improve.isAlertExists(3000)) {
 			logger.info("------------开始：照片检验不合格-----------------");
-			String getText_photoSubmit = page_Improve.getAlertText();
-			Assert.assertEquals(getText_photoSubmit, "照片检验不合格，请重新上传。务必：将证件放平后垂直拍摄；使照片清晰文字可辨识。");
+			page_Improve.getAlertText();
 			PageUtils.sleep(3000);
 			page_Improve.closeAlert();
 			PageUtils.sleep(3000);

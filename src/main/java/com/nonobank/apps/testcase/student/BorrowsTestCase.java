@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.common.Biz_Common;
+import com.nonobank.apps.business.repayment.Biz_PrePayment;
 import com.nonobank.apps.business.student.Biz_Apply;
 import com.nonobank.apps.business.student.Biz_Improve;
 import com.nonobank.apps.business.student.Biz_Register;
@@ -25,6 +26,7 @@ public class BorrowsTestCase extends BaseCase {
 	Biz_VideoSign biz_VideoSign;
 	Biz_Common biz_Common;
 	Biz_Account biz_Account;
+	Biz_PrePayment biz_PrePayment;
 	public static Logger logger = LogManager.getLogger(BorrowsTestCase.class);
 
 	// 正常借款
@@ -77,8 +79,6 @@ public class BorrowsTestCase extends BaseCase {
 		biz_Apply.bankCodeVerifyBus();
 		PageUtils.sleep(1000);
 
-		// 完善资料--借款信息检查
-		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		// 完善资料--完善联系人信息
 		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve, parentName_improve,
 				parentMobile_improve, counselorName_improve, counselorMobile_improve, friend1Name_improve,
@@ -104,6 +104,7 @@ public class BorrowsTestCase extends BaseCase {
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
+		biz_PrePayment.prePaymentBus();
 		biz_Account.logout();
 	}
 }
