@@ -70,6 +70,7 @@ public class Biz_Apply {
 		page_Apply.check_loanProduct();
 		// 点击下一步
 		page_Apply.click_goNext();
+		PageUtils.waitForPageLoad();
 		logger.info("--------------结束：提交后借款信息验证----------------");
 	}
 

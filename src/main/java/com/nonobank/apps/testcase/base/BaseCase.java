@@ -8,7 +8,9 @@ import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.TreeMap;
@@ -46,6 +48,8 @@ public class BaseCase {
 	public static String inputParams = "请配置输入参数";
 	public static String actualResult = "请配置实际结果";
 	public static String errorMessage = "请配置错误信息";
+	public static int passCount = 0;
+	public static int failCount = 0;
 
 	public BaseCase() {
 		logger.info("初始化类:" + this.getClass().getName());
@@ -106,6 +110,11 @@ public class BaseCase {
 
 	@AfterMethod
 	public void addData() {
+		if (actualResult.equals("成功")) {
+			passCount++;
+		} else {
+			failCount++;
+		}
 		List<String> newLst = new ArrayList<>();
 		newLst.add(caseName);
 		newLst.add(caseDescription);
@@ -132,7 +141,6 @@ public class BaseCase {
 
 	@AfterSuite
 	public void saveCSV() {
-
 		try {
 			OutputStream os = new FileOutputStream("./1.csv");
 			CsvWriter writer = new CsvWriter(os, ',', Charset.forName("GBK"));
@@ -145,7 +153,16 @@ public class BaseCase {
 				}
 				writer.writeRecord(list2.toArray(new String[list2.size()]));
 			}
-
+			String pass = ((double) passCount / (passCount + failCount)) * 100 + "%";
+			String fail = (1 - ((double) passCount / (passCount + failCount))) * 100 + "%";
+			String[] text = { "", "" };
+			writer.writeRecord(text);
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
+			String strDate = df.format(new Date());
+			String[] endsTitle = { "最近一次运行时间", "成功case", "失败case", "成功率", "失败率" };
+			writer.writeRecord(endsTitle);
+			String[] endsValue = { strDate, passCount + "个", failCount + "个", pass, fail };
+			writer.writeRecord(endsValue);
 			writer.close();
 			System.out.println(writer.toString());
 		} catch (IOException e) {
@@ -153,4 +170,5 @@ public class BaseCase {
 		}
 
 	}
+
 }

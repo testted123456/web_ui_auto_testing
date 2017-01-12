@@ -111,6 +111,8 @@ public class Biz_Register {
 		page_Register.sleep(1000);
 		page_Register.select_intoSchoolYearByValue(year_register);
 		page_Register.sleep(1000);
+		page_Register.select_educationByValue(education_register);
+		page_Register.sleep(1000);
 		page_Register.input_studentNum(studentNumber_register);
 		page_Register.sleep(1000);
 		page_Register.input_realName(realName_register);

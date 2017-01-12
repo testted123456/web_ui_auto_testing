@@ -125,6 +125,7 @@ public class ObjectFactory {
 			// TODO Auto-generated catch block
 			String msg = "调用构造函数生成页面对象失败，xpath : " + elementName;
 			BaseCase.errorMessage = msg;
+			BaseCase.actualResult = "失败";
 			logger.error(msg);
 			Assert.fail(msg);
 		}

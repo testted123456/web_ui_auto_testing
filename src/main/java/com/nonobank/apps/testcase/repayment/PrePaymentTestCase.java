@@ -42,8 +42,8 @@ public class PrePaymentTestCase extends BaseCase {
 			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
 			String friend1Mobile_improve, String friend2Name_improve, String friend2Mobile_improve,
 			String friend3Name_improve, String friend3Mobile_improve, String file_improve,
-			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve, String smsCode_improve,
-			String expectResult) {
+			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve,
+			String smsCode_improve,String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile_register;
@@ -61,8 +61,10 @@ public class PrePaymentTestCase extends BaseCase {
 		biz_register.channelBus(channel_register);
 		// 注册流程-提交
 		biz_register.submitBus();
+		PageUtils.sleep(10000);
 		// 注册成功信息验证
 		biz_register.registerPromptBus();
+		PageUtils.sleep(10000);
 
 		// 申请流程--借款用途、金额
 		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
@@ -71,7 +73,11 @@ public class PrePaymentTestCase extends BaseCase {
 		// 申请流程--提交
 		biz_Apply.submitBus();
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
+		PageUtils.sleep(5000);
+		PageUtils.sleep(10000);
 
+		// 完善资料--借款信息检查
+		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
 		// 完善资料--完善联系人信息
 		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve, parentName_improve,
 				parentMobile_improve, counselorName_improve, counselorMobile_improve, friend1Name_improve,
@@ -83,8 +89,10 @@ public class PrePaymentTestCase extends BaseCase {
 		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
 		// 完善资料--提交
 		biz_Improve.submitBus();
+		PageUtils.sleep(10000);
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
+		PageUtils.sleep(10000);
 
 		String boId = GetBoId.getBoId(mobile_register);
 		// 上传视频+初审+终审
@@ -99,6 +107,7 @@ public class PrePaymentTestCase extends BaseCase {
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
+		PageUtils.sleep(3000);
 		biz_Account.recharge(mobile_register);
 		biz_PrePayment.prePaymentBus();
 
