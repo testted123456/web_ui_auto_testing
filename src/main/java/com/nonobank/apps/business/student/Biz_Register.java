@@ -111,8 +111,6 @@ public class Biz_Register {
 		page_Register.sleep(1000);
 		page_Register.select_intoSchoolYearByValue(year_register);
 		page_Register.sleep(1000);
-		page_Register.select_educationByValue(education_register);
-		page_Register.sleep(1000);
 		page_Register.input_studentNum(studentNumber_register);
 		page_Register.sleep(1000);
 		page_Register.input_realName(realName_register);
@@ -133,6 +131,7 @@ public class Biz_Register {
 	// 注册流程-提交
 	public void submitBus() {
 		page_Register.click_submit();
+		PageUtils.waitForPageLoad();
 	}
 
 	// 身份证号码已经存在

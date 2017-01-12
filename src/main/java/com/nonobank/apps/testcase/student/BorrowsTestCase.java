@@ -3,7 +3,6 @@ package com.nonobank.apps.testcase.student;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-
 import com.nonobank.apps.business.account.Biz_Account;
 import com.nonobank.apps.business.common.Biz_Common;
 import com.nonobank.apps.business.repayment.Biz_PrePayment;
@@ -17,7 +16,6 @@ import com.nonobank.apps.interfaces.web.CheckCodeTest;
 import com.nonobank.apps.interfaces.web.GetBoId;
 import com.nonobank.apps.interfaces.web.V3AutoPlanTest;
 import com.nonobank.apps.testcase.base.BaseCase;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class BorrowsTestCase extends BaseCase {
 	Biz_Register biz_register;
@@ -42,8 +40,8 @@ public class BorrowsTestCase extends BaseCase {
 			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
 			String friend1Mobile_improve, String friend2Name_improve, String friend2Mobile_improve,
 			String friend3Name_improve, String friend3Mobile_improve, String file_improve,
-			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve,
-			String smsCode_improve,String expectResult) {
+			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve, String smsCode_improve,
+			String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile_register;
@@ -51,7 +49,7 @@ public class BorrowsTestCase extends BaseCase {
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);
 		int int_pieces_apply = Integer.parseInt(pieces_apply);
-
+		// *****************************************注册信息*****************************************
 		// 注册流程--注册信息
 		biz_register.registerInformationBus(userName_register, qq_register, mobile_register, checkCode_register,
 				smsCode_register, password_register, confirmPassword_register);
@@ -62,11 +60,9 @@ public class BorrowsTestCase extends BaseCase {
 		biz_register.channelBus(channel_register);
 		// 注册流程-提交
 		biz_register.submitBus();
-		PageUtils.sleep(1000);
 		// 注册成功信息验证
 		biz_register.registerPromptBus();
-		PageUtils.sleep(1000);
-
+		// *****************************************申请信息*****************************************
 		// 申请流程--借款用途、金额
 		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
 		// 申请流程--借款产品
@@ -74,11 +70,9 @@ public class BorrowsTestCase extends BaseCase {
 		// 申请流程--提交
 		biz_Apply.submitBus();
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
-		PageUtils.sleep(1000);
 		// 申请流程--镑客码验证框存在通过
 		biz_Apply.bankCodeVerifyBus();
-		PageUtils.sleep(1000);
-
+		// *****************************************联系人信息*****************************************
 		// 完善资料--完善联系人信息
 		biz_Improve.personalInformationBus(email_improve, address_improve, income_index_improve, parentName_improve,
 				parentMobile_improve, counselorName_improve, counselorMobile_improve, friend1Name_improve,
@@ -100,11 +94,9 @@ public class BorrowsTestCase extends BaseCase {
 		AjaxLoginTest.ajaxLogin("hanhao", password_register, "8888", "pc", "nono");
 		// 名校贷非V3自动匹配--执行计划任务
 		V3AutoPlanTest.v3AutoPlan(boId);
-		PageUtils.sleep(3000);
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
-		biz_PrePayment.prePaymentBus();
 		biz_Account.logout();
 	}
 }
