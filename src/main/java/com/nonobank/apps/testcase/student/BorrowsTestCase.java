@@ -104,6 +104,5 @@ public class BorrowsTestCase extends BaseCase {
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
-		biz_Account.logout();
 	}
 }

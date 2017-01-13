@@ -48,7 +48,7 @@ public class Biz_Register {
 			PageUtils.waitForPageLoad();
 			page_Register.input_sms_code(validation);
 			page_Register.click_reg_over_btn();
-			PageUtils.waitForPageLoad();
+			PageUtils.sleep(3000);
 			handleResult(expectMessage);
 		} catch (Error e) {
 			handleResult(expectMessage);

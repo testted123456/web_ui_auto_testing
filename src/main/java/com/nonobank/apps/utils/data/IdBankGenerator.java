@@ -49,77 +49,77 @@ public class IdBankGenerator {
 
 			switch (bankName) {
 			// 建设银行-CCB
-			case "建设银行":
+			case "CCB":
 				cardNo = "621700" + sb;
 				bankCode = "105";
 				break;
 			// 民生银行-CMBC
-			case "民生银行":
+			case "CMBC":
 				cardNo = "621691" + sb;
 				bankCode = "305";
 				break;
 			// 农业银行-ABC
-			case "农业银行":
+			case "ABC":
 				cardNo = "622827" + sb;
 				bankCode = "103";
 				break;
 			// 交通银行-BCOM
-			case "交通银行":
+			case "BCOM":
 				cardNo = "622262" + sb;
 				bankCode = "301";
 				break;
 			// 招商银行-CMB
-			case "招商银行":
+			case "CMB":
 				cardNo = "621486" + sb;
 				bankCode = "308";
 				break;
 			// 浦发银行-SPDB
-			case "浦发银行":
+			case "SPDB":
 				cardNo = "622521" + sb;
 				bankCode = "310";
 				break;
 			// 广发银行-GDB
-			case "广发银行":
+			case "GDB":
 				cardNo = "622568" + sb;
 				bankCode = "306";
 				break;
 			// 华夏银行-HXB
-			case "华夏银行":
+			case "HXB":
 				cardNo = "622632" + sb;
 				bankCode = "304";
 				break;
 			// 平安银行-PAB
-			case "平安银行":
+			case "PAB":
 				cardNo = "622298" + sb;
 				bankCode = "783";
 				break;
 			// 中信银行-CITIC
-			case "中信银行":
+			case "CITIC":
 				cardNo = "622696" + sb;
 				bankCode = "302";
 				break;
 			// 工商银行-ICBC
-			case "工商银行":
+			case "ICBC":
 				cardNo = "620058" + sb;
 				bankCode = "102";
 				break;
 			// 中国银行-BOC
-			case "中国银行":
+			case "BOC":
 				cardNo = "620061" + sb;
 				bankCode = "104";
 				break;
 			// 兴业银行-CIB
-			case "兴业银行":
+			case "CIB":
 				cardNo = "622908" + sb;
 				bankCode = "309";
 				break;
 			// 光大银行-CEB
-			case "光大银行":
+			case "CEB":
 				cardNo = "622660" + sb;
 				bankCode = "303";
 				break;
 			// 储蓄银行-PSBC
-			case "储蓄银行":
+			case "PSBC":
 				cardNo = "621799" + sb;
 				bankCode = "403";
 				break;
@@ -128,11 +128,11 @@ public class IdBankGenerator {
 				bankCode = "105";
 			}
 
-			if (luhmCheck(cardNo)) {
+			if (luhmCheck(cardNo) == true) {
 				return cardNo;
 			}
 		}
-		return cardNo;
+		return randomCreateBankID(bankName);
 	}
 
 	public static boolean luhmCheck(String bankno) {
@@ -199,7 +199,6 @@ public class IdBankGenerator {
 
 	public static String getUnUsedBankCard(String bankName) {
 		Connection con = DBUtils.getConnection("nono");
-
 		while (true) {
 			String bankCard = randomCreateBankID(bankName);
 			String sql = "select count(*) from user_bankcard_info WHERE bank_card_no='" + bankCard + "'";

@@ -22,7 +22,6 @@ public class Login extends BaseCase {
 		inputParams = loginName;
 		biz_Portal.navigate_to_login();
 		biz_Login.login(loginName, password, checkCode, expectResult);
-		biz_Account.logout();
 	}
 
 }

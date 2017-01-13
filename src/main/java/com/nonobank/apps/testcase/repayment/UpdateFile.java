@@ -1,17 +1,9 @@
 package com.nonobank.apps.testcase.repayment;
 
-import java.util.Properties;
-import java.net.URL;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-
 import com.nonobank.apps.utils.driver.WebDriverUtils;
-import com.nonobank.apps.utils.file.ParseProperties;
-import com.nonobank.apps.utils.file.ParseXLSX;
 
 /**
  * @author Coderinfo
@@ -30,10 +22,10 @@ public class UpdateFile {
 		WebElement bbb = driver.findElement(bybbb);
 		bbb.sendKeys("woshisb");
 		WebElement aaa = driver.findElement(byaaa);
-//		URL url = ParseXLSX.class.getClassLoader().getResource("id.jpg");
+		// URL url = ParseXLSX.class.getClassLoader().getResource("id.jpg");
 		String file_path = "D:\\project\\web_ui_auto_testing\\target\\classes\\png\\id.jpg";
 		String file_path2 = "/D:/project/web_ui_auto_testing/target/classes/png/id.jpg";
-		System.out.println("*********************file_path="+file_path2);
+		System.out.println("*********************file_path=" + file_path2);
 		aaa.sendKeys(file_path);
 		System.out.println("****************aaa=" + aaa.getAttribute("type"));
 		// Use API:sendKeys to update file

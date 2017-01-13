@@ -108,7 +108,6 @@ public class OverPaymentTestCase extends BaseCase {
 		biz_Account.exec_over(mobile_register);
 		biz_PrePayment.prePaymentBus();
 
-		biz_Account.logout();
 	}
 
 }

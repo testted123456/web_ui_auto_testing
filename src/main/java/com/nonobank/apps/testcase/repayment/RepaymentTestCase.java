@@ -119,7 +119,6 @@ public class RepaymentTestCase extends BaseCase {
 		biz_Account.exec_re(mobile_register);
 		// 还款流程
 		biz_Repayment.repaymentBus();
-		biz_Account.logout();
 
 	}
 }

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
@@ -24,7 +25,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import com.csvreader.CsvWriter;
-import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
@@ -122,9 +122,13 @@ public class BaseCase {
 		newLst.add(actualResult);
 		newLst.add(errorMessage);
 		lst.add(newLst);
+		String url = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
+		logger.info(PageUtils.getUrl());
 	}
 
-	// @AfterClass
+	 @AfterClass
 	public void closeDriver() {
 		// 保存测试结果
 		logger.info("保存测试结果...");
@@ -143,15 +147,17 @@ public class BaseCase {
 	public void saveCSV() {
 		try {
 			OutputStream os = new FileOutputStream("./1.csv");
-			CsvWriter writer = new CsvWriter(os, ',', Charset.forName("GBK"));
+			OutputStreamWriter fw = new OutputStreamWriter(os, "GBK");
+			fw.write("sep=;\n");
+			CsvWriter writer = new CsvWriter(fw, ';');
 			String[] contents = { "case名称", "描述", "入参", "结果", "错误日志" };
 			writer.writeRecord(contents);
 			for (List<String> rowsData : lst) {
-				List<String> list2 = new ArrayList<String>();
+				List<String> listData = new ArrayList<String>();
 				for (String rowData : rowsData) {
-					list2.add(rowData);
+					listData.add(rowData);
 				}
-				writer.writeRecord(list2.toArray(new String[list2.size()]));
+				writer.writeRecord(listData.toArray(new String[listData.size()]));
 			}
 			String pass = ((double) passCount / (passCount + failCount)) * 100 + "%";
 			String fail = (1 - ((double) passCount / (passCount + failCount))) * 100 + "%";

@@ -28,11 +28,21 @@ public class UserInfoUtils {
 		}
 	}
 
-	public static String getBindedCardUser(String param) {
+	public static String getBindedCardUser(String filedName) {
+		return correctUser(filedName, "4");
+	}
+
+	public static String getBankUser(String bank_code) {
+		return correctUser("mobile_num", bank_code);
+	}
+
+	public static String correctUser(String filedName, String bank_code) {
 		String password = StringUtils.md5("it789123");
+		String pay_password = StringUtils.md5("it7891234");
 		Connection con = DBUtils.getConnection("nono");
-		String sql = "select " + param + " from user_info ui, user_bankcard_info ubi where password = '" + password
-				+ "' and mobile_num like '%1356421%' and bank_code=4 and  ui.id=ubi.user_id  limit 1";
+		String sql = "select " + filedName + " from user_info ui, user_bankcard_info ubi,user_bankcard_auth uba where password = '" + password
+				+ "' and pay_password = '" + pay_password + "'  and bank_code=" + bank_code
+				+ " and auth_status =1 and  ui.id=ubi.user_id and ui.id=uba.user_id and ubi.id =uba.bank_card_id  ORDER BY ui.id desc  limit 1";
 		String mobile_num = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();
 		return mobile_num;

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.bank.Page_User_Banks;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_Banks extends BasePage {
 	public static Logger logger = LogManager.getLogger(Biz_User_Banks.class);
@@ -16,6 +17,7 @@ public class Biz_User_Banks extends BasePage {
 	public void navigate_to_bindCard1() {
 		logger.info("添加银行卡...");
 		page_User_Banks.click_add_bankcard();
+		PageUtils.waitForPageLoad();
 	}
 
 	public void verifyNameID(String realName, String idNo) {

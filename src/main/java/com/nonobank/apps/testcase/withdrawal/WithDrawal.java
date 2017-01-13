@@ -28,6 +28,5 @@ public class WithDrawal extends BaseCase {
 		biz_Account.navigate_to_withDrawal();
 		biz_User_Withdrawal.withDrawal(money, "success");
 		biz_User_WithdrawalConfirm.confirm(pay_password,expectResult);
-		biz_Account.logout();
 	}
 }

@@ -34,12 +34,12 @@ public class JingxuanByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String mobile, String password, String checkCode, String cardno, String money, String pay_password,
-			String id, String amount) {
+			String bankName,String id, String amount) {
 
 		biz_Login.login(mobile, password, checkCode, null);
 
 		biz_Portal.navigate_to_myaccount();
-		biz_User_Recharge.recharge();
+		biz_User_Recharge.recharge(bankName);
 //		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password);
 
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");

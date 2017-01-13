@@ -19,14 +19,7 @@ public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
 	public Page_Account page_Account = new Page_Account();
 
-	/**
-	 * 退出登录
-	 */
-	public void logout() {
-		logger.info("退出登录......");
-		page_Account.click_logout();
-		PageUtils.waitForPageLoad();
-	}
+
 
 	public void navigate_to_profile() {
 		logger.info("点击个人设置......");
@@ -49,6 +42,9 @@ public class Biz_Account {
 	public void navigate_to_recharge() {
 		logger.info("点击充值......");
 		page_Account.click_recharge();
+		if (1 != 0) {
+			
+		}
 		PageUtils.waitForPageLoad();
 	}
 

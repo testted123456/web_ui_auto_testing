@@ -111,7 +111,6 @@ public class PrePaymentTestCase extends BaseCase {
 		biz_Account.recharge(mobile_register);
 		biz_PrePayment.prePaymentBus();
 
-		biz_Account.logout();
 	}
 
 }

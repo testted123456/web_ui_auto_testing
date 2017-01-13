@@ -32,7 +32,7 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String mobile, String password, String checkCode,
-			String cardno, String money, String pay_password, String id, String amount, String expectMessage) {
+			String cardno,String bankName, String money, String pay_password, String id, String amount, String expectMessage) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
@@ -40,7 +40,7 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 		biz_Login.login(mobile, password, checkCode, "success");
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.navigate_to_recharge();
-		biz_User_Recharge.recharge();
+		biz_User_Recharge.recharge(bankName);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, "success");
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();

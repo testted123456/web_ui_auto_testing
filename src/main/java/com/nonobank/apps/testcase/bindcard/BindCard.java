@@ -43,6 +43,5 @@ public class BindCard extends BaseCase {
 		biz_User_Banks.navigate_to_bindCard1();
 		biz_User_BindCard1.select_bank(bank_name);
 		biz_User_BindCard2.bindCard(bankcard_no, validation2, expectResult);
-		biz_Account.logout();
 	}
 }
