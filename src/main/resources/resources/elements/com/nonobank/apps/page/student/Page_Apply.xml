@@ -8,7 +8,7 @@
 	</WebInput>
 	<WebInput name="验证码" xpath="//input[@name='validate']">
 	</WebInput>
-	<WebInput name="普通包12期" xpath="//input[@value='12']">
+	<WebInput name="普通包12期" xpath="//input[@value='expect1']">
 	</WebInput>
 	<WebInput name="普通包24期" xpath="//input[@id='expect2']">
 	</WebInput>

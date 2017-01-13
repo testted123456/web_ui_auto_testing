@@ -22,21 +22,23 @@ public class Page_User_BindCard1 extends BasePage {
 		private static final long serialVersionUID = 1L;
 
 	{
-		put("光大银行","03030000");
-		put("广发银行","03060000");
-		put("民生银行","03050000");
-		put("华夏银行","03040000");
-		put("建设银行","CCB");
-		put("农业银行","ABC");
-		put("平安银行","PAB");
-		put("浦发银行","SPDB");
-		put("中信银行","03020000");
-		put("兴业银行","CIB");
-		put("招商银行","03080000");
-		put("中国银行","01040000");
-		put("工商银行","ICBC");
-		put("交通银行","03010000");
-		put("邮政储蓄","01000000");
+		put("建设银行", "CCB");
+		put("中信银行", "CITIC");
+		put("华夏银行", "HXB");
+		put("广发银行", "GDB");
+		put("平安银行", "PAB");
+
+		put("农业银行", "ABC");
+		put("中国银行", "BOC");
+		put("招商银行", "CMB");
+		put("光大银行", "CEB");
+		put("交通银行", "BCOM");
+
+		put("民生银行", "CMBC");
+		put("浦发银行", "SPDB");
+		put("工商银行", "ICBC");
+		put("兴业银行", "CIB");
+		put("邮政储蓄", "PSBC");
 	}};
 	
 	//选择银行
@@ -50,7 +52,7 @@ public class Page_User_BindCard1 extends BasePage {
 				break;
 			}
 		}
-		WebElement span_bank_name = objectFactory.getWebElement(By.xpath("//span[@data-bankcode='" + bank_code + "']"));
+		WebElement span_bank_name = objectFactory.getWebElement(By.xpath("//span[@class='" + bank_code + "']"));
 		span_bank_name.click();	
 	}
 	 

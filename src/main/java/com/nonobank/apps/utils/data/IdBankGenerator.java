@@ -210,4 +210,12 @@ public class IdBankGenerator {
 		}
 	}
 
+	public static void main(String[] args) {
+		System.out.println(randomCreateBankID("CCB"));
+		System.out.println(randomCreateBankID("GDB"));
+		System.out.println(randomCreateBankID("ABC"));
+		System.out.println(randomCreateBankID("ICBC"));
+		System.out.println(randomCreateBankID("CIB"));
+
+	}
 }

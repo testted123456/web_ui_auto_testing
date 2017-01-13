@@ -6,6 +6,7 @@ import com.nonobank.apps.objectRepository.WebButton;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.page.PageUtils;
 
 /**
  * 添加银行卡号页面
@@ -23,12 +24,14 @@ public class Page_User_BindCard2 extends BasePage {
 	public void click_getValidate() {
 		WebLink link_getValidate = objectFactory.getWebLink("getValidate");
 		link_getValidate.click();
+		PageUtils.sleep(3000);
 		link_getValidate = objectFactory.getWebLink("getValidate");
 		String text = link_getValidate.getText();
 		if (!text.startsWith("重新获取")) {
+			click_getValidate();
 			logger.error("获取验证码失败.");
 		}
-		sleep(2000);
+		sleep(1000);
 	}
 
 	// 输入验证码

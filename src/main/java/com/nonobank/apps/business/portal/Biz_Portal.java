@@ -41,6 +41,7 @@ public class Biz_Portal {
 		logger.info("点击注册...");
 		page_Portal.click_register();
 		PageUtils.waitForPageLoad();
+		PageUtils.sleep(1000);
 	}
 
 	/**
