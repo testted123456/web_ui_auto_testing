@@ -19,8 +19,6 @@ public class Biz_Account {
 	public static Logger logger = LogManager.getLogger(Biz_Account.class);
 	public Page_Account page_Account = new Page_Account();
 
-
-
 	public void navigate_to_profile() {
 		logger.info("点击个人设置......");
 		page_Account.click_profile();
@@ -43,13 +41,13 @@ public class Biz_Account {
 		logger.info("点击充值......");
 		page_Account.click_recharge();
 		if (1 != 0) {
-			
+
 		}
 		PageUtils.waitForPageLoad();
 	}
 
 	public void navigate_to_withDrawal() {
-		logger.info("点击充值......");
+		logger.info("点击提现......");
 		page_Account.click_withDrawal();
 		PageUtils.waitForPageLoad();
 	}

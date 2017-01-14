@@ -2,11 +2,9 @@ package com.nonobank.apps.business.recharge;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.recharge.Page_User_RechargeConfirm;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_RechargeConfirm {
@@ -29,6 +27,7 @@ public class Biz_User_RechargeConfirm {
 			page_User_RechargeConfirm.submit();
 			page_User_RechargeConfirm.input_smsCode("0615");
 			page_User_RechargeConfirm.submit_smsCode();
+			PageUtils.sleep(5000);
 			handleResult(payPassword, message);
 		} catch (Error e) {
 			handleResult(payPassword, message);
@@ -40,8 +39,7 @@ public class Biz_User_RechargeConfirm {
 		switch (message) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/BindCard3";
-			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-绑卡成功");
+			Assertion.assertEquals(actualUrl.contains("/User/RechargeSuccess"), true, Biz_Login.class, "正例-绑卡成功");
 			break;
 		case "单笔充值金额必须≧10元":
 		case "不能超过单笔限额":

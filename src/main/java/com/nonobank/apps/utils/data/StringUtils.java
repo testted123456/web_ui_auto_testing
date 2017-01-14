@@ -179,7 +179,7 @@ public class StringUtils {
 	}
 
 	public static void main(String[] args) {
-		String str = md5("it789123");
+		String str = md5("it7891234");
 		System.out.println(str);
 	}
 

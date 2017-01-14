@@ -3,6 +3,9 @@
 	<!-- 我的账户 -->
 	<WebLink name="myaccount" xpath="//a[@href='/Account']">
 	</WebLink>
+	<!-- 用户名 -->
+	<WebLink name="head_name" xpath="//a[@id='head_name']">
+	</WebLink>
 	<!-- 注册 -->
 	<WebLink name="register" xpath="//a[@href='/Register']">
 	</WebLink>

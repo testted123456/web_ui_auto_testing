@@ -27,5 +27,6 @@ public class Recharge extends BaseCase {
 		biz_Account.navigate_to_recharge();
 		biz_User_Recharge.recharge(bankName);
 		biz_User_RechargeConfirm.rechargeConfirm(money, pay_password, expectResult);
+		biz_Portal.navigate_to_myaccountByName();
 	}
 }

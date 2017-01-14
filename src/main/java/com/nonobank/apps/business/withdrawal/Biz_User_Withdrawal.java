@@ -31,8 +31,9 @@ public class Biz_User_Withdrawal {
 			switch (message) {
 			case "提现金额必须为数字":
 			case "提现金额不能小于1元！":
+			case "本次最多可提现":
 				String error_msg = page_User_Withdrawal.getElementText("error_msg");
-				Assertion.assertEquals(message, error_msg, Biz_Login.class, "反例-校验金额");
+				Assertion.assertEquals(error_msg.contains(message), true, Biz_Login.class, "反例-校验金额");
 				break;
 			}
 		}

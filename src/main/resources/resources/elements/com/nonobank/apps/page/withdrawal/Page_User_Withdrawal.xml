@@ -27,4 +27,7 @@
 	<!-- 提现确认页面的‘提交’按钮 -->
 	<WebButton name="t_con_btn" xpath="//input[@id='t_con_btn']">
 	</WebButton>
+	<!-- 账户余额 -->
+	<WebInput name="balance" xpath="//table[@class='a_table']//tr[1]//span">
+	</WebInput>
 </elements>

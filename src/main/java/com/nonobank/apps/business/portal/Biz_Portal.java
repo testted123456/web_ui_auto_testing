@@ -23,6 +23,12 @@ public class Biz_Portal {
 		PageUtils.waitForPageLoad();
 	}
 
+	public void navigate_to_myaccountByName() {
+		logger.info("点击我的用户名...");
+		page_Portal.click_my_account();
+		PageUtils.waitForPageLoad();
+	}
+
 	/**
 	 * 跳转到我的账户页面
 	 */

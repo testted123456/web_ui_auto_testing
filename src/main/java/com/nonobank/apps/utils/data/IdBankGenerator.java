@@ -2,7 +2,10 @@ package com.nonobank.apps.utils.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.nonobank.apps.utils.db.DBUtils;
 //-建设银行 ------快钱通道
 //-中信银行-连连通道
@@ -22,6 +25,32 @@ import com.nonobank.apps.utils.db.DBUtils;
 // -兴业银行 ------快钱通道
 // -邮政储蓄-连连通道
 public class IdBankGenerator {
+	public static Map<String, String> map = new HashMap<String, String>() {
+		/**
+		* 
+		*/
+		private static final long serialVersionUID = 1L;
+
+		{
+			put("建设银行", "CCB");
+			put("中信银行", "CITIC");
+			put("华夏银行", "HXB");
+			put("广发银行", "GDB");
+			put("平安银行", "PAB");
+
+			put("农业银行", "ABC");
+			put("中国银行", "BOC");
+			put("招商银行", "CMB");
+			put("光大银行", "CEB");
+			put("交通银行", "BCOM");
+
+			put("民生银行", "CMBC");
+			put("浦发银行", "SPDB");
+			put("工商银行", "ICBC");
+			put("兴业银行", "CIB");
+			put("邮政储蓄", "PSBC");
+		}
+	};
 	public static StringBuilder sb;
 	// public static String bankType = "CCB";
 	// public static String bankName = "中国建设银行";

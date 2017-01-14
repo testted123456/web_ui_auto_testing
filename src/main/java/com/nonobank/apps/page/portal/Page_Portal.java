@@ -70,6 +70,14 @@ public class Page_Portal extends BasePage {
 	}
 
 	/**
+	 * 点击进入我的账户
+	 */
+	public void click_my_accountByName() {
+		WebLink link_myaccount = objectFactory.getWebLink("hean_name");
+		link_myaccount.click();
+	}
+
+	/**
 	 * 关闭首页悬浮框
 	 */
 	public void close_dialog() {

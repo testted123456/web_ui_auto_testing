@@ -23,7 +23,7 @@ public class Biz_User_WithdrawalConfirm {
 			logger.info("提现校验...");
 			page_User_WithdrawalConfirm.input_pay_password(pay_password);
 			page_User_WithdrawalConfirm.submit();
-			PageUtils.sleep(2000);
+			PageUtils.sleep(3000);
 			handleResult(message);
 		} catch (Error e) {
 			handleResult(message);
@@ -35,8 +35,6 @@ public class Biz_User_WithdrawalConfirm {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
 			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
-			System.out.println("*********************actualUrl="+actualUrl);
-			System.out.println("*********************expectUrl="+expectUrl);
 			Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
 			break;
 		case "请输入支付密码！":
