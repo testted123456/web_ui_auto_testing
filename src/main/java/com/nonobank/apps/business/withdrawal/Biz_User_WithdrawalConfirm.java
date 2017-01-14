@@ -22,6 +22,7 @@ public class Biz_User_WithdrawalConfirm {
 		try {
 			logger.info("提现校验...");
 			page_User_WithdrawalConfirm.input_pay_password(pay_password);
+			PageUtils.sleep(2000);
 			page_User_WithdrawalConfirm.submit();
 			PageUtils.sleep(3000);
 			handleResult(message);
