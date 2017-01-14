@@ -14,6 +14,8 @@ import com.nonobank.apps.utils.page.PageUtils;
 public class Page_User_BindCard2 extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_User_BindCard2.class);
 
+	public static int count = 0;
+
 	// 输入银行卡号
 	public void input_bankcard_no(String bankcard_no) {
 		WebInput input_bankcard_no = objectFactory.getWebInput("bankCard_Input");
@@ -27,7 +29,8 @@ public class Page_User_BindCard2 extends BasePage {
 		PageUtils.sleep(3000);
 		link_getValidate = objectFactory.getWebLink("getValidate");
 		String text = link_getValidate.getText();
-		if (!text.startsWith("重新获取")) {
+		if (!text.startsWith("重新获取") && count < 1) {
+			count++;
 			click_getValidate();
 			logger.error("获取验证码失败.");
 		}

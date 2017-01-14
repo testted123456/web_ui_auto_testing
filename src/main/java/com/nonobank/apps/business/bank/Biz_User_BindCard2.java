@@ -44,6 +44,7 @@ public class Biz_User_BindCard2 {
 			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-绑卡成功");
 			break;
 		case "请输入银行卡号":
+		case "请输入有效的银行卡号":
 			String actualMessage = page_User_BindCard2.getElementText("error");
 			Assertion.assertEquals(expectMessage, actualMessage, Biz_Login.class, "反例-银行卡绑定失败");
 			break;

@@ -26,7 +26,6 @@ public class Page_User_BindCard1 extends BasePage {
 		}
 		WebElement span_bank_name = objectFactory
 				.getWebElement(By.xpath("//span[@class='bankIcon " + bank_code + "']"));
-		System.out.println("***********************span_bank_name=" + span_bank_name.getText());
 		span_bank_name.click();
 	}
 
