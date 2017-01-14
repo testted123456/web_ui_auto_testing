@@ -23,9 +23,13 @@ public class Biz_User_RechargeConfirm {
 		try {
 			logger.info("充值确认...");
 			page_User_RechargeConfirm.input_money(money);
+			PageUtils.sleep(2000);
 			page_User_RechargeConfirm.input_pay_password(payPassword);
+			PageUtils.sleep(2000);
 			page_User_RechargeConfirm.submit();
+			PageUtils.sleep(2000);
 			page_User_RechargeConfirm.input_smsCode("0615");
+			PageUtils.sleep(2000);
 			page_User_RechargeConfirm.submit_smsCode();
 			PageUtils.sleep(5000);
 			handleResult(payPassword, message);

@@ -30,11 +30,6 @@
 			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
 		</classes>
 	</test>
-	<test name="recharge" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
-		</classes>
-	</test>
 	<test name="withdrawal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
