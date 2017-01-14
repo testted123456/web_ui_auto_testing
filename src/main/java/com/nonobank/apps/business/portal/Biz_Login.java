@@ -2,6 +2,9 @@ package com.nonobank.apps.business.portal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.file.ParseProperties;
@@ -27,7 +30,11 @@ public class Biz_Login {
 		page_Login.input_password(password);
 		page_Login.input_checkCode(checkCode);
 		page_Login.submit();
-		PageUtils.waitForPageLoad();
+		PageUtils.sleep(3000);
+		if (page_Login.isElementExists(By.id("accountFrozen"), 3)) {
+			WebElement webElement = page_Login.getObjectFactory().getWebElement(By.id("accountFrozen"));
+			webElement.click();
+		}
 		switch (expectMessage) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();

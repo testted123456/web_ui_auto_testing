@@ -57,7 +57,7 @@ public class IdBankGenerator {
 	public static String bankCode = "105";
 
 	/** 随机生成一个卡号 */
-	public static String randomCreateBankID(String bankName) {
+	public static String randomCreateBankID(String bankName, boolean flag) {
 		String cardNo = "";
 		for (int i = 0; i < 1; i++) {
 			if (bankName.equals("工商银行") || bankName.equals("建设银行") || bankName.equals("农业银行") || bankName.equals("储蓄银行")
@@ -157,11 +157,11 @@ public class IdBankGenerator {
 				bankCode = "105";
 			}
 
-			if (luhmCheck(cardNo) == true) {
+			if (luhmCheck(cardNo) == flag) {
 				return cardNo;
 			}
 		}
-		return randomCreateBankID(bankName);
+		return randomCreateBankID(bankName, flag);
 	}
 
 	public static boolean luhmCheck(String bankno) {
@@ -229,7 +229,7 @@ public class IdBankGenerator {
 	public static String getUnUsedBankCard(String bankName) {
 		Connection con = DBUtils.getConnection("nono");
 		while (true) {
-			String bankCard = randomCreateBankID(bankName);
+			String bankCard = randomCreateBankID(bankName, true);
 			String sql = "select count(*) from user_bankcard_info WHERE bank_card_no='" + bankCard + "'";
 			String count = DBUtils.getOneObject(con, sql).toString();
 
@@ -239,12 +239,30 @@ public class IdBankGenerator {
 		}
 	}
 
+	public static String getUsedBankCard(String bankCode) {
+		Connection con = DBUtils.getConnection("nono");
+
+		while (true) {
+			String sql = "select ubi.bank_card_no from user_info ui, user_bankcard_info ubi where  ui.id=ubi.user_id and bank_code ='"
+					+ bankCode + "' ";
+			List<Object[]> lst = DBUtils.getMulLine(con, sql);
+			for (Object[] objects : lst) {
+				String bankno = objects[0].toString();
+				if (luhmCheck(bankno)) {
+					System.out.println("************************bankno=" + bankno);
+					return bankno;
+				}
+			}
+
+		}
+	}
+
+	public static String getInvalidBankCard(String bankCode) {
+		return randomCreateBankID(bankCode, false);
+	}
+
 	public static void main(String[] args) {
-		System.out.println(randomCreateBankID("CCB"));
-		System.out.println(randomCreateBankID("GDB"));
-		System.out.println(randomCreateBankID("ABC"));
-		System.out.println(randomCreateBankID("ICBC"));
-		System.out.println(randomCreateBankID("CIB"));
+		System.out.println(getUnUsedBankCard("4"));
 
 	}
 }

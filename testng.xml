@@ -8,7 +8,6 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	<!--  
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
@@ -36,6 +35,11 @@
 			<class name="com.nonobank.apps.testcase.bindcard.RegisterBindCard" />
 		</classes>
 	</test>
+	<test name="bindcard" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.bindcard.LoginBindCard" />
+		</classes>
+	</test>
 	<test name="repayment" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
@@ -47,18 +51,8 @@
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 		</classes>
 	</test>
--->
 
 
 
-	<test name="bindcard" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.RegisterBindCard" />
-		</classes>
-	</test>
-	<test name="withdrawal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
-		</classes>
-	</test>
+
 </suite>

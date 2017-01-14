@@ -23,12 +23,14 @@ public class Biz_User_BindCard2 {
 		try {
 			logger.info("输入银行卡号...");
 			page_User_BindCard2.input_bankcard_no(bankcard_no);
+			PageUtils.sleep(2000);
 			logger.info("获取短信验证码...");
 			page_User_BindCard2.click_getValidate();
 			page_User_BindCard2.input_validateCode(validation);
+			PageUtils.sleep(2000);
 			logger.info("提交");
 			page_User_BindCard2.submit();
-			PageUtils.waitForPageLoad();
+			PageUtils.sleep(2000);
 			handleResult(expectMessage);
 		} catch (Error e) {
 			handleResult(expectMessage);

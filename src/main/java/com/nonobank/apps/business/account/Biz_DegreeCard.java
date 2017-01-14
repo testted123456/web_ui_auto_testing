@@ -22,13 +22,16 @@ public class Biz_DegreeCard {
 		page_DegreeCard.input_name(myname);
 		// 如果身份证有误,则重新输入
 		String cardMsg = "";
-		do {
-			page_DegreeCard.input_mycard(identity_ID);
-			page_DegreeCard.submit();
-			cardMsg = page_DegreeCard.getElementText("cardMsg");
-			identity_ID = IdCardGenerator.generateUnUsedIdCardNumberByAge("20");
-			PageUtils.sleep(3000);
-		} while (cardMsg.equals("身份格式有误"));
+		try {
+			do {
+				page_DegreeCard.input_mycard(identity_ID);
+				page_DegreeCard.submit();
+				cardMsg = page_DegreeCard.getElementText("cardMsg");
+				identity_ID = IdCardGenerator.generateUnUsedIdCardNumberByAge("20");
+				PageUtils.sleep(3000);
+			} while (cardMsg.equals("身份格式有误"));
+		} catch (Error e) {
+		}
 		if (page_DegreeCard.isAlertExists(10000)) {
 			page_DegreeCard.closeAlert();
 			page_DegreeCard.sleep(3000);
