@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_DegreeCard extends BasePage {
 	public static Logger logger = LogManager.getLogger(Page_DegreeCard.class);
@@ -28,7 +27,6 @@ public class Page_DegreeCard extends BasePage {
 		logger.info("点击提交....");
 		WebInput submit = objectFactory.getWebInput("ok");
 		submit.click();
-		PageUtils.sleep(3000);
 	}
 
 }

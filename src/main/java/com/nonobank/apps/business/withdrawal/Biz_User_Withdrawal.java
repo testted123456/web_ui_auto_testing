@@ -6,6 +6,7 @@ import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.page.withdrawal.Page_User_Withdrawal;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_Withdrawal {
 	public static Logger logger = LogManager.getLogger(Biz_User_Withdrawal.class);
@@ -25,6 +26,7 @@ public class Biz_User_Withdrawal {
 			page_User_Withdrawal.input_money(money);
 			page_User_Withdrawal.goNext();
 			page_User_Withdrawal.closeAlert();
+			PageUtils.sleep(2000);
 		} catch (Exception e) {
 			switch (message) {
 			case "提现金额必须为数字":

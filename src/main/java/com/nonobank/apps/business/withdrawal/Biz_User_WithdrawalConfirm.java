@@ -23,6 +23,7 @@ public class Biz_User_WithdrawalConfirm {
 			logger.info("提现校验...");
 			page_User_WithdrawalConfirm.input_pay_password(pay_password);
 			page_User_WithdrawalConfirm.submit();
+			PageUtils.sleep(2000);
 			handleResult(message);
 		} catch (Error e) {
 			handleResult(message);
