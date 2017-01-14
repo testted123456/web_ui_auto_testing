@@ -8,20 +8,29 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-<!-- 
-	<test name="portal" preserve-order="true">
+	<!-- <test name="portal" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.portal.Login" 
+		/> <class name="com.nonobank.apps.testcase.portal.Register" /> </classes> 
+		</test> <test name="licai" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" 
+		/> </classes> </test> <test name="recharge" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.recharge.Recharge" /> </classes> 
+		</test> <test name="withdrawal" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" 
+		/> </classes> </test> <test name="bindcard" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.bindcard.BindCard" /> </classes> 
+		</test> <test name="repayment" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" 
+		/> <class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" /> 
+		</classes> </test> <test name="student" preserve-order="true"> <classes> 
+		<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" /> </classes> 
+		</test> -->
+
+
+
+
+	<test name="bindcard" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.portal.Login" />
-			<class name="com.nonobank.apps.testcase.portal.Register" />
+			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
 		</classes>
 	</test>
-	<test name="licai" preserve-order="true">
-		<classes>
-			<class
-				name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" />
-		</classes>
-	</test>
-	<test name="account" preserve-order="true">
+	<test name="recharge" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
 		</classes>
@@ -29,32 +38,6 @@
 	<test name="withdrawal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
-		</classes>
-	</test>
-	<test name="bindcard" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
-		</classes>
-	</test>
-	<test name="repayment" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
-			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
-		</classes>
-	</test>
-	<test name="student" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
-		</classes>
-	</test>
-	 -->
-	
-	
-	
-	
-	<test name="bindcard" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.BindCard" />
 		</classes>
 	</test>
 </suite>

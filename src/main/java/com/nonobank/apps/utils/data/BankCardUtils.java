@@ -105,8 +105,8 @@ public class BankCardUtils {
 		return cardno;
 	}
 
-	public static String getUsedBankCard() {
-		String sql = "select ubi.bank_card_no from user_info ui, user_bankcard_info ubi where  ui.id=ubi.user_id limit 1";
+	public static String getUsedBankCard(String bankCode) {
+		String sql = "select ubi.bank_card_no from user_info ui, user_bankcard_info ubi where  ui.id=ubi.user_id WHERE bank_code ='" + bankCode + "'  limit 1";
 		Connection con = DBUtils.getConnection("nono");
 		String cardno = DBUtils.getOneObject(con, sql).toString();
 		DBUtils.closeConnection();

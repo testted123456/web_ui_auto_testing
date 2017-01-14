@@ -40,8 +40,8 @@ public class BorrowsTestCase extends BaseCase {
 			String counselorName_improve, String counselorMobile_improve, String friend1Name_improve,
 			String friend1Mobile_improve, String friend2Name_improve, String friend2Mobile_improve,
 			String friend3Name_improve, String friend3Mobile_improve, String file_improve,
-			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve,
-			String smsCode_improve,String expectResult) {
+			String bankcardAccount_improve, String banksType_improve, String bankMobile_improve, String smsCode_improve,
+			String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile_register;
@@ -49,7 +49,6 @@ public class BorrowsTestCase extends BaseCase {
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);
 		int int_pieces_apply = Integer.parseInt(pieces_apply);
-
 		// 注册流程--注册信息
 		biz_register.registerInformationBus(userName_register, qq_register, mobile_register, checkCode_register,
 				smsCode_register, password_register, confirmPassword_register);
@@ -60,10 +59,10 @@ public class BorrowsTestCase extends BaseCase {
 		biz_register.channelBus(channel_register);
 		// 注册流程-提交
 		biz_register.submitBus();
-		PageUtils.sleep(1000);
+		PageUtils.sleep(10000);
 		// 注册成功信息验证
 		biz_register.registerPromptBus();
-		PageUtils.sleep(1000);
+		PageUtils.sleep(10000);
 
 		// 申请流程--借款用途、金额
 		biz_Apply.borrowsUseBus(purpose_apply, detailPurpose_apply, int_money_apply, smsCode_apply);
@@ -72,10 +71,8 @@ public class BorrowsTestCase extends BaseCase {
 		// 申请流程--提交
 		biz_Apply.submitBus();
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
-		PageUtils.sleep(1000);
-		// 申请流程--镑客码验证框存在通过
-		biz_Apply.bankCodeVerifyBus();
-		PageUtils.sleep(1000);
+		PageUtils.sleep(5000);
+		PageUtils.sleep(10000);
 
 		// 完善资料--借款信息检查
 		biz_Improve.borrowsInformationVerifyBus(int_money_apply, int_pieces_apply);
@@ -90,10 +87,13 @@ public class BorrowsTestCase extends BaseCase {
 		biz_Improve.bankCardBus(bankcardAccount_improve, banksType_improve, bankMobile_improve, smsCode_improve);
 		// 完善资料--提交
 		biz_Improve.submitBus();
+		PageUtils.sleep(10000);
 		// 照片检验不合格提示
 		biz_Improve.photoNoQualifiedPromptBus(email_improve);
-		// 上传视频+初审+终审
+		PageUtils.sleep(10000);
+
 		String boId = GetBoId.getBoId(mobile_register);
+		// 上传视频+初审+终审
 		UploadVideoTest.uploadVideo(boId);
 		// 名校贷非V3自动匹配--韩浩账号登录
 		CheckCodeTest.checkCode();
@@ -101,6 +101,7 @@ public class BorrowsTestCase extends BaseCase {
 		// 名校贷非V3自动匹配--执行计划任务
 		V3AutoPlanTest.v3AutoPlan(boId);
 		PageUtils.sleep(3000);
+		// 视频录制--视频录制完成检查
 
 		// 点击用户名
 		biz_Common.click_userNameBus();
