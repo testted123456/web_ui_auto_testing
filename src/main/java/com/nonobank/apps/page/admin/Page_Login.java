@@ -59,7 +59,6 @@ public class Page_Login extends BasePage {
 				input_login = objectFactory.getWebInput("login");
 				if (input_login.isDisplayed()) {
 					input_login.click();
-					sleep(1000);
 				} else {
 					break;
 				}

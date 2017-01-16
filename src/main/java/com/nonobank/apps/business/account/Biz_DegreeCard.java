@@ -3,8 +3,6 @@ package com.nonobank.apps.business.account;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.account.Page_DegreeCard;
-import com.nonobank.apps.utils.data.IdCardGenerator;
-import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
 import com.nonobank.apps.utils.webintegration.Return;
@@ -20,18 +18,8 @@ public class Biz_DegreeCard {
 	public void IDVerification(String myname, String identity_ID) {
 		logger.info("身份实名认证............");
 		page_DegreeCard.input_name(myname);
-		// 如果身份证有误,则重新输入
-		String cardMsg = "";
-		try {
-			do {
-				page_DegreeCard.input_mycard(identity_ID);
-				page_DegreeCard.submit();
-				cardMsg = page_DegreeCard.getElementText("cardMsg");
-				identity_ID = IdCardGenerator.generateUnUsedIdCardNumberByAge("20");
-				PageUtils.sleep(3000);
-			} while (cardMsg.equals("身份格式有误"));
-		} catch (Error e) {
-		}
+		page_DegreeCard.input_mycard(identity_ID);
+		page_DegreeCard.submit();
 		if (page_DegreeCard.isAlertExists(10000)) {
 			page_DegreeCard.closeAlert();
 			page_DegreeCard.sleep(3000);

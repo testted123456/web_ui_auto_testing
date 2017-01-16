@@ -241,10 +241,8 @@ public class IdBankGenerator {
 
 	public static String getUsedBankCard(String bankCode) {
 		Connection con = DBUtils.getConnection("nono");
-
 		while (true) {
-			String sql = "select ubi.bank_card_no from user_info ui, user_bankcard_info ubi where  ui.id=ubi.user_id and bank_code ='"
-					+ bankCode + "' ";
+			String sql = "select ubi.bank_card_no from user_bankcard_info ubi where   bank_code ='" + bankCode + "' ";
 			List<Object[]> lst = DBUtils.getMulLine(con, sql);
 			for (Object[] objects : lst) {
 				String bankno = objects[0].toString();
@@ -253,7 +251,6 @@ public class IdBankGenerator {
 					return bankno;
 				}
 			}
-
 		}
 	}
 

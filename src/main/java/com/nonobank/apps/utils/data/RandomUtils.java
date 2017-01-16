@@ -91,18 +91,7 @@ public class RandomUtils {
 		return random.nextInt(28);
 	}
 
-	public String generateIdCardNumberByAge(int age) {
-		IdCardGenerator generator = new IdCardGenerator();
-		return generator.generate(age);
 
-	}
-
-	public String generateIdCardNumber() {
-
-		IdCardGenerator generator = new IdCardGenerator();
-		return generator.generate(generateAge());
-
-	}
 
 	public String generateReferenceId() {
 

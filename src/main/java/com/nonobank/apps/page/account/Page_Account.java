@@ -27,7 +27,7 @@ public class Page_Account extends BasePage {
 
 	// 退出
 	public void click_logout() {
-		String url = ParseProperties.getInstance().getProperty("url")+"/Login/logout";
+		String url = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
 		PageUtils.openPage(url);
 		PageUtils.waitForPageLoad();
 		logger.info(PageUtils.getUrl());
@@ -37,34 +37,29 @@ public class Page_Account extends BasePage {
 	public void click_profile() {
 		WebLink link_profile = objectFactory.getWebLink("profile");
 		link_profile.click();
-		PageUtils.waitForPageLoad();
 	}
 
 	// 点击认证管理
 	public void click_degreeCard() {
 		WebLink link_degreeCard = objectFactory.getWebLink("degreeCard");
 		link_degreeCard.click();
-		PageUtils.waitForPageLoad();
 	}
 
 	// 点击银行账户
 	public void click_banks() {
 		WebLink link_banks = objectFactory.getWebLink("banks");
 		link_banks.click();
-		PageUtils.waitForPageLoad();
 	}
 
 	// 点击充值
 	public void click_recharge() {
 		WebInput input_recharge = objectFactory.getWebInput("recharge");
 		input_recharge.click();
-		PageUtils.waitForPageLoad();
 	}
 
 	// 点击提现
 	public void click_withDrawal() {
 		WebInput input_recharge = objectFactory.getWebInput("withDrawal");
 		input_recharge.click();
-		PageUtils.waitForPageLoad();
 	}
 }

@@ -52,7 +52,6 @@ public class Page_Login extends BasePage {
 		logger.info("点击提交......");
 		WebButton button = objectFactory.getWebButton("btnlogin");
 		button.click();
-		sleep(1000);
 		PageUtils.waitForPageLoad();
 	}
 

@@ -79,7 +79,6 @@ public class Page_Register extends BasePage {
 		WebButton button_next_step = objectFactory.getWebButton("nextStep");
 		button_next_step.click();
 		PageUtils.waitForPageLoad();
-		sleep(1500);
 
 		for (int i = 0; i < 15; i++) {
 			if (isElementExists("checkCode", WebElementType.WebInput, 15)) {
@@ -99,7 +98,6 @@ public class Page_Register extends BasePage {
 		logger.info("输入安全码......");
 		WebInput input_check_code = objectFactory.getWebInput("checkCode");
 		input_check_code.clearAndInput(checkCode);
-		sleep(5000);
 	}
 
 	/**
@@ -119,7 +117,6 @@ public class Page_Register extends BasePage {
 		try {
 			WebInput input_sms_code = objectFactory.getWebInput("validation");
 			logger.info("输入验证码......");
-			sleep(3000);
 			input_sms_code.clearAndInput(smsCode);
 		} catch (Error e) {
 		}

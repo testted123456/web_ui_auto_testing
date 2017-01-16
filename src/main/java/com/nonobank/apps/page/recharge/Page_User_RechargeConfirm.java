@@ -49,7 +49,6 @@ public class Page_User_RechargeConfirm extends BasePage {
 	public void submit_smsCode() {
 		if (isElementExists("btn_submit", WebElementType.WebInput, 15)) {
 			WebInput submit_smsCode = objectFactory.getWebInput("btn_submit");
-			sleep(2000);
 			submit_smsCode.click();
 		}
 	}
@@ -82,12 +81,13 @@ public class Page_User_RechargeConfirm extends BasePage {
 
 	/**
 	 * 充值校验
+	 * 
 	 * @param money
 	 * @param counterFee
 	 */
 	public boolean isRechargeConfirmSuccess(String money, String counterFee) {
 		WebLink link_rechargebtn = objectFactory.getWebLink("rechargebtn");
-		
+
 		if (link_rechargebtn.isDisplayed()) {
 			WebCommon number = objectFactory.getWebCommon("number");
 			String m = number.getText();
@@ -98,6 +98,7 @@ public class Page_User_RechargeConfirm extends BasePage {
 
 	/**
 	 * 获取银行名称
+	 * 
 	 * @return
 	 */
 	public String getBankName() {
@@ -108,6 +109,7 @@ public class Page_User_RechargeConfirm extends BasePage {
 
 	/**
 	 * 获取金额提示信息
+	 * 
 	 * @return
 	 */
 	public String getMoneyMsg() {

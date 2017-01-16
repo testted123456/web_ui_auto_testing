@@ -79,7 +79,7 @@ public class UserInfoUtils {
 		return user_name;
 	}
 
-	public static String getUnUserdUserNname() {
+	public static String getUnUsedUserName() {
 		Connection con = DBUtils.getConnection("nono");
 		RandomUtils randomUtils = new RandomUtils();
 		while (true) {

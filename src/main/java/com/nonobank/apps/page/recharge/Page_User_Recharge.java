@@ -1,7 +1,6 @@
 package com.nonobank.apps.page.recharge;
 
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,14 +10,13 @@ import com.nonobank.apps.objectRepository.WebCommon;
 import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
-import com.nonobank.apps.utils.page.PageUtils;
 
 public class Page_User_Recharge extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_User_Recharge.class);
 
 	// 选择其他银行
-	public void click_otherBank(String bankCode,String bankName) {
+	public void click_otherBank(String bankCode, String bankName) {
 		// WebLink link = objectFactory.getWebLink("reSelectCard3");
 		// link.click();
 		WebElement elementUl = objectFactory.getWebElement(By.id("hasbind_card_list"));
@@ -44,8 +42,6 @@ public class Page_User_Recharge extends BasePage {
 
 	// 下一步按钮
 	public void nextStep() {
-		PageUtils.waitForPageLoad();
-		sleep(1000);
 		WebCommon input = objectFactory.getWebCommon("paybtn");
 		input.click();
 	}
