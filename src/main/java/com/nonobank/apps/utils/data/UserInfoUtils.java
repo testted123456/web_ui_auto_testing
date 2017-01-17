@@ -292,8 +292,10 @@ public class UserInfoUtils {
 	public static String getCorrectUserInfo(String filedName, String userId) {
 		String loginName = null;
 		try {
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUserId(userId);
 			Connection con = DBUtils.getConnection("nono");
-			String sql = "select user_name,mobile_num from user_info where id = " + userId;
+			String sql = "select user_name,mobile_num from user_info  " + UserInfo.getCondition();
 			String userName = DBUtils.getOneLine(con, sql)[0].toString();
 			String mobileNum = DBUtils.getOneLine(con, sql)[1].toString();
 			if (isMobileNO(mobileNum) && isUserName(userName)) {
@@ -306,9 +308,11 @@ public class UserInfoUtils {
 		return loginName;
 	}
 
-	public static String getCorrectUserBankcardInfo(String filedName, UserBankcardInfo userBankcardInfo) {
+	public static String getCorrectUserBankcardInfo(String filedName,String userId) {
 		String loginName = null;
 		try {
+			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
+			userBankcardInfo.setUserId(userId);
 			Connection con = DBUtils.getConnection("nono");
 			UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
 			String sql = "select " + filedName + " from user_bankcard_info" + UserBankcardInfo.getCondition();
@@ -327,9 +331,7 @@ public class UserInfoUtils {
 		userInfo.setMobileNum(mobileNum);
 		List<String> userInfos = getUserInfos(userInfo, ">", "0", "id");
 		String userId = userInfos.get(0);
-		UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
-		userBankcardInfo.setUserId(userId);
-		return getCorrectUserBankcardInfo("bank_card_no", userBankcardInfo);
+		return getCorrectUserBankcardInfo("bank_card_no", userId);
 	}
 
 	public static void main(String[] args) {
