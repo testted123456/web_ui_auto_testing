@@ -17,6 +17,7 @@ public class SqlUtils {
 		DBUtils.update(con, sql);
 		DBUtils.closeConnection();
 	}
+
 	public static void recordVideo_yingjibao(String mobile) {
 		Connection con = DBUtils.getConnection("nono");
 		String sql = "insert into db_nono.borrows_archive(bo_id,keyword,bo_ext_param,content,"
@@ -29,13 +30,14 @@ public class SqlUtils {
 		DBUtils.closeConnection();
 	}
 
-
 	// 初审通过
-	public static void firstAuditPass(String mobile){
-//		Connection con =DBUtils.getConnection("nono");
-//		String sql2="update borrows set bo_sign_result=0,bo_finish_price=0,bo_finish_rate=0,bo_can_success=3,bo_is_success=0,bo_is_finish='0' where id="+boId";
-//		DBUtils.update(con, sql);
-//		DBUtils.closeConnection();
+	public static void firstAuditPass(String mobile) {
+		// Connection con =DBUtils.getConnection("nono");
+		// String sql2="update borrows set
+		// bo_sign_result=0,bo_finish_price=0,bo_finish_rate=0,bo_can_success=3,bo_is_success=0,bo_is_finish='0'
+		// where id="+boId";
+		// DBUtils.update(con, sql);
+		// DBUtils.closeConnection();
 	}
 
 	// 初审回退

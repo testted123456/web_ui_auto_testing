@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.nonobank.apps.utils.db.DBUtils;
+import com.nonobank.apps.utils.entity.UserBankcardInfo;
 //-建设银行 ------快钱通道
 //-中信银行-连连通道
 //-华夏银行-连连通道
@@ -227,28 +227,27 @@ public class IdBankGenerator {
 	}
 
 	public static String getUnUsedBankCard(String bankName) {
-		Connection con = DBUtils.getConnection("nono");
 		while (true) {
-			String bankCard = randomCreateBankID(bankName, true);
-			String sql = "select count(*) from user_bankcard_info WHERE bank_card_no='" + bankCard + "'";
-			String count = DBUtils.getOneObject(con, sql).toString();
-
-			if (count.equals("0")) {
-				return bankCard;
+			String bankCardNo = randomCreateBankID(bankName, true);
+			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
+			userBankcardInfo.setBankCardNo(bankCardNo);
+			List<String> UserBankcardInfos = getUserBankcardInfos(userBankcardInfo, null, null);
+			if (UserBankcardInfos.size() == 0) {
+				return bankCardNo;
 			}
 		}
 	}
 
 	public static String getUsedBankCard(String bankCode) {
-		Connection con = DBUtils.getConnection("nono");
 		while (true) {
-			String sql = "select ubi.bank_card_no from user_bankcard_info ubi where   bank_code ='" + bankCode + "' ";
-			List<Object[]> lst = DBUtils.getMulLine(con, sql);
-			for (Object[] objects : lst) {
-				String bankno = objects[0].toString();
-				if (luhmCheck(bankno)) {
-					System.out.println("************************bankno=" + bankno);
-					return bankno;
+			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
+			userBankcardInfo.setBankCode(bankCode);
+			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, null, null);
+			if (userBankcardInfos.size() > 0) {
+				for (String bankno : userBankcardInfos) {
+					if (luhmCheck(bankno)) {
+						return bankno;
+					}
 				}
 			}
 		}
@@ -256,6 +255,23 @@ public class IdBankGenerator {
 
 	public static String getInvalidBankCard(String bankCode) {
 		return randomCreateBankID(bankCode, false);
+	}
+
+	public static List<String> getUserBankcardInfos(UserBankcardInfo userBankcardInfo, String operatorType,
+			String operatorValue) {
+		List<String> userInfos = new ArrayList<>();
+		try {
+			Connection con = DBUtils.getConnection("nono");
+			UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
+			UserBankcardInfo.setLimit(ConstantUtils.LIMIT);
+			String sql = "select id from user_bankcard_info " + UserBankcardInfo.getCondition();
+			List<Object[]> lst = DBUtils.getMulLine(con, sql);
+			for (Object[] objects : lst) {
+				userInfos.add(objects[0].toString());
+			}
+		} catch (Exception e) {
+		}
+		return userInfos;
 	}
 
 	public static void main(String[] args) {

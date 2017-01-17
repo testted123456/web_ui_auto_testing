@@ -19,7 +19,7 @@ public class sendMessageByValidateCodeTest {
 
 	public void dataProvider() {
 		String sessionId = getSessionIdTest.getImgSessionId();
-		String phone = UserInfoUtils.getUnregisterMobile();
+		String phone = UserInfoUtils.getUnUsedMobileNum();
 		String sms_type = "4";
 		String black_box = "";
 		String validateCode = "0615";

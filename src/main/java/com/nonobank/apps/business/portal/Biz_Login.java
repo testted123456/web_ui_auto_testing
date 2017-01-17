@@ -31,10 +31,7 @@ public class Biz_Login {
 		page_Login.input_checkCode(checkCode);
 		page_Login.submit();
 		PageUtils.sleep(3000);
-		if (page_Login.isElementExists(By.id("accountFrozen"), 3)) {
-			WebElement webElement = page_Login.getObjectFactory().getWebElement(By.id("accountFrozen"));
-			webElement.click();
-		}
+
 		switch (expectMessage) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
@@ -49,6 +46,10 @@ public class Biz_Login {
 				expectUrl = expectUrlArray[1];
 			}
 			Assertion.assertEquals(actualUrl, expectUrl, Biz_Login.class, "正例-登录成功");
+			break;
+		case "specialSuccess":
+			WebElement webElement = page_Login.getObjectFactory().getWebElement(By.id("accountFrozen"));
+			webElement.click();
 			break;
 		default:
 			String actualMessage = page_Login.getElementText("tips_normal");

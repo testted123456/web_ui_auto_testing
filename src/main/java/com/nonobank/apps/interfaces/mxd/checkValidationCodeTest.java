@@ -21,7 +21,7 @@ public class checkValidationCodeTest {
 	public static String url = "/msapi/user/checkValidationCode";
 	
 	public void dataProvider(){
-		String phone=UserInfoUtils.getUnregisterMobile();
+		String phone=UserInfoUtils.getUnUsedMobileNum();
 		String imgSessionId=getSessionIdTest.getImgSessionId();
 		String smscodeSessionId=sendMessageByValidateCodeTest.getSmscodeSessionId(imgSessionId, phone);
 		String smsCode=sendMessageByValidateCodeTest.getSmsCode(imgSessionId, phone);

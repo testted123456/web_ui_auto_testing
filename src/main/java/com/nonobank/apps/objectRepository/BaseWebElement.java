@@ -12,9 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.nonobank.apps.utils.page.PageUtils;
-
 import junit.framework.Assert;
 
 public class BaseWebElement {
@@ -102,8 +99,7 @@ public class BaseWebElement {
 	 */
 	public void click() {
 		this.webElement.click();
-		sleep(3000);
-		PageUtils.waitForPageLoad();
+		sleep(5000);
 	}
 
 	/**

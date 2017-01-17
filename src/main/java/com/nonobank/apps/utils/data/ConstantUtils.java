@@ -1,6 +1,7 @@
 package com.nonobank.apps.utils.data;
 
 public class ConstantUtils {
+	public final static String GREATER_THAN = ">";
 	public final static String CORRECT_CHECK_CODE = "8888";
 	public final static String ERROR_CHECK_CODE = "1234";
 	public final static String CORRECT_VALIDATION = "888888";
@@ -9,6 +10,7 @@ public class ConstantUtils {
 	public final static String ERROR_LOGIN_PASSWORD = "1234";
 	public final static String CORRECT_PAY_PASSWORD = "it7891234";
 	public final static String ERROR_PAY_PASSWORD = "1234";
+	public final static int LIMIT = 1000;
 
 	public static String getCorrectCheckCode() {
 		return CORRECT_CHECK_CODE;

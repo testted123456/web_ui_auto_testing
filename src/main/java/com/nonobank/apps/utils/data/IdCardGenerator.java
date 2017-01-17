@@ -1,8 +1,7 @@
 package com.nonobank.apps.utils.data;
 
-import java.sql.Connection;
-
-import com.nonobank.apps.utils.db.DBUtils;
+import java.util.List;
+import com.nonobank.apps.utils.entity.UserInfo;
 
 public class IdCardGenerator {
 	// wi =2(n-1)(mod 11)
@@ -223,22 +222,42 @@ public class IdCardGenerator {
 		// 身份证号前17位为：51010119840906487
 		// 身份证号为：570104197007104472
 
-		String str = getUnUsedIDCard();
-		System.out.println(str);
+		IdCardGenerator card = new IdCardGenerator();
+
+		for (int i = 0; i < 1000; i++) {
+			String idcard = card.getIDCard();
+			System.out.println(card.getIDCard() + "************************" + IDCardVerify.verify(idcard));
+		}
 	}
 
 	public static String getUnUsedIDCard() {
-		Connection con = DBUtils.getConnection("nono");
 		IdCardGenerator card = new IdCardGenerator();
-		String idcard = "";
 		while (true) {
-			idcard = card.getIDCard();
-			String sql = "select count(*) from user_info WHERE id_num='" + idcard + "'";
-			String count = DBUtils.getOneObject(con, sql).toString();
-			if (count.equals("0")) {
-				return idcard;
+			String idNum = card.getIDCard();
+			boolean flag = IDCardVerify.verify(idNum);
+			if (flag) {
+				UserInfo userInfo = new UserInfo();
+				userInfo.setIdNum(idNum);
+				List<String> userInfos = UserInfoUtils.getUserInfos(userInfo, ">", "0", "mobile_num");
+				if (userInfos.size() == 0) {
+					return idNum;
+				}
 			}
-			return idcard;
 		}
 	}
+
+	public static String getUsedIDCard() {
+		IdCardGenerator card = new IdCardGenerator();
+		String idNum = null;
+		idNum = card.getIDCard();
+		UserInfo userInfo = new UserInfo();
+		List<String> userInfos = UserInfoUtils.getUserInfos(userInfo, ">", "0", "mobile_num");
+		for (String idcard : userInfos) {
+			if (IDCardVerify.verify(idcard)) {
+				return idcard;
+			}
+		}
+		return idNum;
+	}
+
 }

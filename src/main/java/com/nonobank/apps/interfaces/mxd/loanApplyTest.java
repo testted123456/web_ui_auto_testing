@@ -21,7 +21,7 @@ public class loanApplyTest {
 	public static String url = "/msapi/rebuild/reloan/loanApply";
 	
 	public void dataProvider(){
-		String phone=UserInfoUtils.getUnregisterMobile();
+		String phone=UserInfoUtils.getUnUsedMobileNum();
 		String imgSessionId=getSessionIdTest.getImgSessionId();
 		String smsCode=sendMessageByValidateCodeTest.getSmsCode(imgSessionId, phone);
 		String smscodeSessionId=sendMessageByValidateCodeTest.getSmscodeSessionId(imgSessionId, phone);

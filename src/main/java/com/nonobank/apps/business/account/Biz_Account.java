@@ -28,7 +28,6 @@ public class Biz_Account {
 	public void navigate_to_degreeCard() {
 		logger.info("点击认证管理......");
 		page_Account.click_degreeCard();
-		PageUtils.waitForPageLoad();
 	}
 
 	public void navigate_to_banks() {
