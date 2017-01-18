@@ -228,6 +228,7 @@ public class IdCardGenerator {
 			String idcard = card.getIDCard();
 			System.out.println(card.getIDCard() + "************************" + IDCardVerify.verify(idcard));
 		}
+//		System.out.println(IDCardVerify.verify("211422199411142478"));
 	}
 
 	public static String getUnUsedIDCard() {
@@ -253,8 +254,8 @@ public class IdCardGenerator {
 		UserInfo userInfo = new UserInfo();
 		List<String> userInfos = UserInfoUtils.getUserInfos(userInfo, ">", "0", "mobile_num");
 		for (String idcard : userInfos) {
-			if (IDCardVerify.verify(idcard)) {
-				return idcard;
+			if (IDCardVerify.verify(idcard.toString())) {
+				return idcard.toString();
 			}
 		}
 		return idNum;

@@ -170,8 +170,6 @@ public class UserLoginInfo {
 			newsb.append(",");
 		}
 		String userIds = newsb.substring(0, newsb.toString().length() - 1);
-		sb = new StringBuffer();
-		sb.append(" where 1=1 ");
 		if (userIds != null) {
 			sb.append(" and user_id in");
 			sb.append(" (");

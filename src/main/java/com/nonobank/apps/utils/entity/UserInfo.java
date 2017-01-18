@@ -337,9 +337,9 @@ public class UserInfo {
 	public static void setUserInfoCondition(UserInfo userInfo) {
 		sb = new StringBuffer();
 		sb.append(" where 1=1");
-		sb.append(" and ( mobile_num like '13%'");
-		sb.append(" or mobile_num like '15%'");
-		sb.append(" or mobile_num like '18%') ");
+//		sb.append(" and user_name REGEXP '^[0-9a-zA-Z_]{6,16}$'");
+//		sb.append(" and mobile_num REGEXP '^((13[0-9])|(15[^4,\\D])|(18[0-9]))[0-9]{8}$'");
+//		sb.append(" and length(id_num) > 0");
 		if (userInfo.getUserId() != null) {
 			sb.append(" and id= '" + userInfo.getUserId() + "'");
 		}
@@ -465,8 +465,11 @@ public class UserInfo {
 		}
 	}
 
-	public static void setLimit(int limit) {
+	public static void setLimit(int minLimit, int maxLimit) {
+		sb.append(" order by id asc");
 		sb.append(" limit ");
-		sb.append(limit);
+		sb.append(minLimit);
+		sb.append(",");
+		sb.append(maxLimit);
 	}
 }
