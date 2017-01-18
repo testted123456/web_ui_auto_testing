@@ -275,7 +275,9 @@ public class IdBankGenerator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getUnUsedBankCard("4"));
+//		System.out.println(getUnUsedBankCard("4"));
+		
+		System.out.println(luhmCheck("621700207000149051"));
 
 	}
 }
