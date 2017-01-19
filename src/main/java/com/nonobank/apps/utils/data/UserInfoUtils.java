@@ -2,6 +2,7 @@ package com.nonobank.apps.utils.data;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -155,6 +156,14 @@ public class UserInfoUtils {
 		return getUnUsedUser("mobile_num");
 	}
 
+	public static String getUsedUserName() {
+		return getUsedUser("user_name");
+	}
+
+	public static String getUsedMobileNum() {
+		return getUsedUser("mobile_num");
+	}
+
 	public static String getSpecifalUserName() {
 		return getSpecialUser("user_name");
 	}
@@ -171,28 +180,6 @@ public class UserInfoUtils {
 		return getNormalUser("mobile_num");
 	}
 
-	public static String getUnUsedUser(String fieldName) {
-		String loginName = null;
-		UserInfo userInfo = new UserInfo();
-		while (true) {
-			switch (fieldName) {
-			case "mobile_num":
-				loginName = generateMobilePhoneNumber();
-				userInfo.setMobileNum(loginName);
-				break;
-
-			case "user_name":
-				loginName = generateUserName();
-				userInfo.setUserName(loginName);
-				break;
-			}
-			List<String> userInfos = getUserInfos(userInfo, ">", "0", fieldName);
-			if (userInfos.size() == 0) {
-				return loginName;
-			}
-		}
-	}
-
 	public static boolean isMobileNO(String mobile) {
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
 		Matcher m = p.matcher(mobile);
@@ -206,21 +193,82 @@ public class UserInfoUtils {
 
 	}
 
+	public static String getUnUsedUser(String fieldName) {
+		Date startdate = new Date();
+		index_limit = -1;
+		String loginName = null;
+		UserInfo userInfo = new UserInfo();
+		while (true) {
+			switch (fieldName) {
+			case "mobile_num":
+				loginName = generateMobilePhoneNumber();
+				userInfo.setMobileNum(loginName);
+				break;
+			case "user_name":
+				loginName = generateUserName();
+				userInfo.setUserName(loginName);
+				break;
+			case "id_num":
+				IdCardGenerator idCardGenerator = new IdCardGenerator();
+				loginName = idCardGenerator.getIDCard();
+				userInfo.setIdNum(loginName);
+				break;
+			}
+			List<String> userInfos = getUserInfos(userInfo, new ArrayList<String>());
+			if (userInfos.size() == 0) {
+				Date enddate = new Date();
+				int seconds = getSeconds(startdate, enddate);
+				System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+				return loginName;
+			}
+		}
+	}
+
+	public static String getUsedUser(String fieldName) {
+		Date startdate = new Date();
+		index_limit = 0;
+		String loginName = null;
+		while (true) {
+			List<String> userInfos = getUserInfos(null, null, null);
+			int index = userInfos.size();
+
+			for (String userId : userInfos) {
+				UserInfo userInfo = new UserInfo();
+				userInfo.setUserId(userId);
+				loginName = getCorrectUserInfo(fieldName, userId);
+				if (loginName != null) {
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					return loginName;
+				}
+				index_limit += index;
+			}
+		}
+	}
+
 	public static String getSpecialUser(String fieldName) {
+		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
 			UserInfo userInfo = new UserInfo();
+			List<String> userInfos = getUserInfos(">", "1", "mobile_num");
+			int index = userInfos.size();
+			userInfo.setStatus("1");
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+			userInfos = getUserInfos(userInfo, userInfos);
+
 			UserLoginInfo userLoginInfo = new UserLoginInfo();
 			userLoginInfo.setErrorCount("0");
-			List<String> userInfos = getUserInfos(userInfo, ">", "1", "mobile_num");
-			int index = userInfos.size();
 			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
 			userInfos.retainAll(userLoginInfos);
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -229,20 +277,27 @@ public class UserInfoUtils {
 	}
 
 	public static String getNormalUser(String fieldName) {
+		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
 			UserInfo userInfo = new UserInfo();
-			UserLoginInfo userLoginInfo = new UserLoginInfo();
-			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userLoginInfo.setErrorCount("0");
-			List<String> userInfos = getUserInfos(userInfo, "=", "1", "mobile_num");
+			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
 			int index = userInfos.size();
+			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+			userInfo.setStatus("1");
+			userInfos = getUserInfos(userInfo, userInfos);
+
+			UserLoginInfo userLoginInfo = new UserLoginInfo();
+			userLoginInfo.setErrorCount("0");
 			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
 			userInfos.retainAll(userLoginInfos);
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -251,14 +306,18 @@ public class UserInfoUtils {
 	}
 
 	public static String getBankUser(String bankCode) {
+		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
 			UserInfo userInfo = new UserInfo();
-			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfo.setIsCard("1");
-			List<String> userInfos = getUserInfos(userInfo, "=", "1", "mobile_num");
+			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
 			int index = userInfos.size();
+			userInfo.setIsCard("1");
+			userInfo.setStatus("1");
+			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+			userInfos = getUserInfos(userInfo, userInfos);
+
 			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
 			userBankcardInfo.setBankCode(bankCode);
 			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
@@ -266,6 +325,9 @@ public class UserInfoUtils {
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo("mobile_num", userId);
 				if (loginName != null) {
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -273,23 +335,33 @@ public class UserInfoUtils {
 		}
 	}
 
-	public static List<String> getUserInfos(UserInfo userInfo, String operatorType, String operatorValue,
-			String fieldName) {
+	public static List<String> getUserInfos(String operatorType, String operatorValue, String fieldName) {
 		List<String> userInfos = new ArrayList<>();
-		try {
-			Connection con = DBUtils.getConnection("nono");
-			UserInfo.setUserInfoCondition(userInfo);
-			UserInfo.setUserInfoGroupBy(fieldName, operatorType, operatorValue);
-			UserInfo.setLimit(index_limit, ConstantUtils.max_limit);
-			String sql = "select id from user_info " + UserInfo.getCondition();
-			System.out.println("*************************sql=" + sql);
-			List<Object[]> lst = DBUtils.getMulLine(con, sql);
-			for (Object[] objects : lst) {
-				userInfos.add(objects[0].toString());
-			}
-		} catch (Exception e) {
+		List<Object[]> lst = new ArrayList<Object[]>();
+		Connection con = DBUtils.getConnection("nono");
+		UserInfo.setUserInfoGroupBy(fieldName, operatorType, operatorValue);
+		UserInfo.setLimit(index_limit, ConstantUtils.max_limit);
+		String sql = "select id from user_info " + UserInfo.getCondition();
+		System.out.println("********首先对user_info表对手机号码进行过滤=" + sql);
+		lst = DBUtils.getMulLine(con, sql);
+		for (Object[] objects : lst) {
+			userInfos.add(objects[0].toString());
 		}
 		return userInfos;
+	}
+
+	public static List<String> getUserInfos(UserInfo userInfo, List<String> userInfos) {
+		List<String> newUserInfos = new ArrayList<>();
+		Connection con = DBUtils.getConnection("nono");
+		UserInfo.setUserInfoCondition(userInfo);
+		UserInfo.setUserInfoConditions(userInfos);
+		String sql = "select id from user_info " + UserInfo.getCondition();
+		System.out.println("********然后对user_info表加条件sql=" + sql);
+		List<Object[]> objects = DBUtils.getMulLine(con, sql);
+		for (Object[] user_id : objects) {
+			newUserInfos.add(user_id[0].toString());
+		}
+		return newUserInfos;
 	}
 
 	public static List<String> getUserLoginInfos(UserLoginInfo userLoginInfo, List<String> userInfos) {
@@ -318,49 +390,87 @@ public class UserInfoUtils {
 		return userLoginInfos;
 	}
 
+	//精确查询user_info表，通过user_id
 	public static String getCorrectUserInfo(String filedName, String userId) {
-		String loginName = null;
-		try {
-			Connection con = DBUtils.getConnection("nono");
-			String sql = "select " + filedName + " from user_info where id = " + userId;
-			loginName = DBUtils.getOneLine(con, sql)[0].toString();
-			return loginName;
-		} catch (Exception e) {
+		String filedValue = null;
+		Connection con = DBUtils.getConnection("nono");
+		String sql = "select " + filedName + " from user_info where id = " + userId;
+		System.out.println("**************************精确查询用户信息sql=" + sql);
+		Object[] objects = DBUtils.getOneLine(con, sql);
+		if (objects.length == 0) {
+			return filedValue;
 		}
-		return loginName;
+		filedValue = objects[0].toString();
+		switch (filedName) {
+		case "id_num":
+			if (IDCardVerify.verify(filedValue)) {
+				return filedValue;
+			}
+			break;
+		case "mobile_num":
+			if (isMobileNO(filedValue)) {
+				return filedValue;
+			}
+			break;
+		case "user_name":
+			if (isUserName(filedValue)) {
+				return filedValue;
+			}
+			break;
+		default:
+			return filedValue;
+		}
+		return null;
 	}
 
 	public static String getCorrectUserBankcardInfo(String filedName, String userId) {
 		String loginName = null;
-		try {
-			Connection con = DBUtils.getConnection("nono");
-			String sql = "select " + filedName + " from user_bankcard_info where user_id =" + userId;
-			String value = DBUtils.getOneLine(con, sql)[0].toString();
-			if (value != null) {
-				return value;
-			}
-		} catch (Exception e) {
+		Connection con = DBUtils.getConnection("nono");
+		String sql = "select " + filedName + " from user_bankcard_info where user_id =" + userId;
+		Object[] objects = DBUtils.getOneLine(con, sql);
+		if (objects.length == 0) {
+			return loginName;
 		}
+		loginName = objects[0].toString();
 		return loginName;
 	}
 
 	public static String getBankCardByMobile(String mobileNum) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setMobileNum(mobileNum);
-		List<String> userInfos = getUserInfos(userInfo, ">", "0", "mobile_num");
+		List<String> userInfos = getUserInfos(">", "0", "mobile_num");
 		String userId = userInfos.get(0);
 		return getCorrectUserBankcardInfo("bank_card_no", userId);
 	}
 
 	public static void main(String[] args) {
-
-		System.out.println(getNormalMobileNum());
-		System.out.println(getNormalUserName());
-		System.out.println(getUnUsedMobileNum());
-		System.out.println(getUnUsedUserName());
-		System.out.println(getSpecifalMobileNum());
-		System.out.println(getSpecifalUserName());
+		// System.out.println(getNormalMobileNum());
+		// System.out.println(getNormalUserName());
+		// System.out.println(getUnUsedMobileNum());
+		// System.out.println(getUnUsedUserName());
+		//
+		// System.out.println(getUsedMobileNum());
+		// System.out.println(getUsedUserName());
+		//
+		// System.out.println(getSpecifalMobileNum());
+		// System.out.println(getSpecifalUserName());
+		//
+		System.out.println(getBankUser("4"));
 
 	}
 
+	/**
+	 * 取得enddate 之间 startdate的秒
+	 * 
+	 * @param startdate
+	 *            Date
+	 * @param enddate
+	 *            Date
+	 * @return int
+	 */
+	public static int getSeconds(Date startdate, Date enddate) {
+		long time = enddate.getTime() - startdate.getTime();
+		int totalS = new Long(time / 1000).intValue();
+		return totalS;
+	}
 }

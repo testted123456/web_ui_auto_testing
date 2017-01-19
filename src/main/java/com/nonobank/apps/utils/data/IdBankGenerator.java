@@ -260,23 +260,21 @@ public class IdBankGenerator {
 	public static List<String> getUserBankcardInfos(UserBankcardInfo userBankcardInfo, String operatorType,
 			String operatorValue) {
 		List<String> userInfos = new ArrayList<>();
-		try {
-			Connection con = DBUtils.getConnection("nono");
-			UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
-			UserBankcardInfo.setLimit(ConstantUtils.LIMIT);
-			String sql = "select id from user_bankcard_info " + UserBankcardInfo.getCondition();
-			List<Object[]> lst = DBUtils.getMulLine(con, sql);
-			for (Object[] objects : lst) {
-				userInfos.add(objects[0].toString());
-			}
-		} catch (Exception e) {
+		List<Object[]> lst = new ArrayList<Object[]>();
+		Connection con = DBUtils.getConnection("nono");
+		UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
+		UserBankcardInfo.setLimit(ConstantUtils.LIMIT);
+		String sql = "select id from user_bankcard_info " + UserBankcardInfo.getCondition();
+		lst = DBUtils.getMulLine(con, sql);
+		for (Object[] objects : lst) {
+			userInfos.add(objects[0].toString());
 		}
 		return userInfos;
 	}
 
 	public static void main(String[] args) {
-//		System.out.println(getUnUsedBankCard("4"));
-		
+		// System.out.println(getUnUsedBankCard("4"));
+
 		System.out.println(luhmCheck("621700207000149051"));
 
 	}

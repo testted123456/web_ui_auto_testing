@@ -1,8 +1,5 @@
 package com.nonobank.apps.utils.data;
 
-import java.util.List;
-import com.nonobank.apps.utils.entity.UserInfo;
-
 public class IdCardGenerator {
 	// wi =2(n-1)(mod 11)
 	final int[] wi = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 }; //
@@ -193,13 +190,17 @@ public class IdCardGenerator {
 	}
 
 	public String getIDCard() {
+		String idcard = null;
 		String str = null;
 		str = this.get17ID();
-		str = str + this.getVerify(str);
+		idcard = str + this.getVerify(str);
 		// String test = this.get17ID();
 		// System.out.println("身份证号前17位："+test);
 		// System.out.println("身份证号："+test+this.getVerify(test));
-		return str;
+		if (IDCardVerify.verify(idcard)) {
+			return idcard;
+		}
+		return idcard;
 	}
 
 	public static void main(String[] args) {
@@ -222,43 +223,13 @@ public class IdCardGenerator {
 		// 身份证号前17位为：51010119840906487
 		// 身份证号为：570104197007104472
 
-		IdCardGenerator card = new IdCardGenerator();
+		// System.out.println("**************************getUnUsedIDCard()=" +
+		// getUnUsedIDCard());
 
-		for (int i = 0; i < 1000; i++) {
-			String idcard = card.getIDCard();
-			System.out.println(card.getIDCard() + "************************" + IDCardVerify.verify(idcard));
-		}
-//		System.out.println(IDCardVerify.verify("211422199411142478"));
 	}
 
 	public static String getUnUsedIDCard() {
-		IdCardGenerator card = new IdCardGenerator();
-		while (true) {
-			String idNum = card.getIDCard();
-			boolean flag = IDCardVerify.verify(idNum);
-			if (flag) {
-				UserInfo userInfo = new UserInfo();
-				userInfo.setIdNum(idNum);
-				List<String> userInfos = UserInfoUtils.getUserInfos(userInfo, ">", "0", "mobile_num");
-				if (userInfos.size() == 0) {
-					return idNum;
-				}
-			}
-		}
-	}
-
-	public static String getUsedIDCard() {
-		IdCardGenerator card = new IdCardGenerator();
-		String idNum = null;
-		idNum = card.getIDCard();
-		UserInfo userInfo = new UserInfo();
-		List<String> userInfos = UserInfoUtils.getUserInfos(userInfo, ">", "0", "mobile_num");
-		for (String idcard : userInfos) {
-			if (IDCardVerify.verify(idcard.toString())) {
-				return idcard.toString();
-			}
-		}
-		return idNum;
+		return UserInfoUtils.getUnUsedUser("id_num");
 	}
 
 }

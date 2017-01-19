@@ -10,8 +10,8 @@ public class ConstantUtils {
 	public final static String ERROR_LOGIN_PASSWORD = "1234";
 	public final static String CORRECT_PAY_PASSWORD = "it7891234";
 	public final static String ERROR_PAY_PASSWORD = "1234";
-	public final static String AUTO_REAL_NAME = "1234";
-	public static int max_limit = 1000;
+	public final static String AUTO_REAL_NAME = "李双双";
+	public static int max_limit = 10000;
 	public final static int LIMIT = 10000000;
 
 	public static String getCorrectCheckCode() {

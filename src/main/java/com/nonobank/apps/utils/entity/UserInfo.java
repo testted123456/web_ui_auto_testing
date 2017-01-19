@@ -1,5 +1,7 @@
 package com.nonobank.apps.utils.entity;
 
+import java.util.List;
+
 import com.nonobank.apps.utils.data.StringUtils;
 
 public class UserInfo {
@@ -337,9 +339,10 @@ public class UserInfo {
 	public static void setUserInfoCondition(UserInfo userInfo) {
 		sb = new StringBuffer();
 		sb.append(" where 1=1");
-//		sb.append(" and user_name REGEXP '^[0-9a-zA-Z_]{6,16}$'");
-//		sb.append(" and mobile_num REGEXP '^((13[0-9])|(15[^4,\\D])|(18[0-9]))[0-9]{8}$'");
-//		sb.append(" and length(id_num) > 0");
+		// sb.append(" and user_name REGEXP '^[0-9a-zA-Z_]{6,16}$'");
+		// sb.append(" and mobile_num REGEXP
+		// '^((13[0-9])|(15[^4,\\D])|(18[0-9]))[0-9]{8}$'");
+		// sb.append(" and length(id_num) > 0");
 		if (userInfo.getUserId() != null) {
 			sb.append(" and id= '" + userInfo.getUserId() + "'");
 		}
@@ -452,8 +455,24 @@ public class UserInfo {
 		}
 	}
 
+	public static void setUserInfoConditions(List<String> list) {
+		StringBuffer newsb = new StringBuffer();
+		for (String s : list) {
+			newsb.append(s);
+			newsb.append(",");
+		}
+		if (newsb.length() > 0) {
+			String userIds = newsb.substring(0, newsb.toString().length() - 1);
+			sb.append(" and id in");
+			sb.append(" (");
+			sb.append(userIds);
+			sb.append(" )");
+		}
+	}
+
 	public static void setUserInfoGroupBy(String fileName, String operatorType, String operatorValue) {
-		if (!(operatorType.equals(">") && operatorValue.equals("0"))) {
+		sb = new StringBuffer();
+		if (fileName != null && operatorType != null && operatorValue != null) {
 			sb.append(" group by  ");
 			sb.append(fileName);
 			sb.append(" having ");
@@ -462,14 +481,16 @@ public class UserInfo {
 			sb.append(") ");
 			sb.append(operatorType);
 			sb.append(operatorValue);
+			sb.append(" order by id asc");
 		}
 	}
 
 	public static void setLimit(int minLimit, int maxLimit) {
-		sb.append(" order by id asc");
-		sb.append(" limit ");
-		sb.append(minLimit);
-		sb.append(",");
-		sb.append(maxLimit);
+		if (minLimit != -1) {
+			sb.append(" limit ");
+			sb.append(minLimit);
+			sb.append(",");
+			sb.append(maxLimit);
+		}
 	}
 }

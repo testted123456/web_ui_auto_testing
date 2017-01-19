@@ -374,10 +374,10 @@ public class ParseXLSX {
 
 	public static void main(String[] args) {
 		List<String> lst = new ArrayList<String>();
-		 lst.add("/bindcard/LoginBindCard.xlsx");
+//		 lst.add("/bindcard/LoginBindCard.xlsx");
 		// lst.add("/bindcard/RegisterBindCard.xlsx");
 		// lst.add("/portal/Login.xlsx");
-		// lst.add("/portal/Register.xlsx");
+		 lst.add("/portal/Register2.xlsx");
 		// lst.add("/recharge/Recharge.xlsx");
 		// lst.add("/repayment/PrePaymentTestCase.xlsx");
 		// lst.add("/student/BorrowsTestCase.xlsx");
