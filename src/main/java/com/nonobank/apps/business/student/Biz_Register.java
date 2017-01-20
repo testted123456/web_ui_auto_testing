@@ -133,7 +133,6 @@ public class Biz_Register {
 	// 注册流程-提交
 	public void submitBus() {
 		page_Register.click_submit();
-		PageUtils.waitForPageLoad();
 	}
 
 	// 身份证号码已经存在

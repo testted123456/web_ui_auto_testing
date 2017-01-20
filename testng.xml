@@ -18,7 +18,7 @@
 	<test name="licai" preserve-order="true">
 		<classes>
 			<class
-				name="com.nonobank.apps.testcase.licai.DebtPackageByBalanceSuccessful" />
+				name="com.nonobank.apps.testcase.licai.PaymentByBalance" />
 		</classes>
 	</test>
 	<test name="recharge" preserve-order="true">

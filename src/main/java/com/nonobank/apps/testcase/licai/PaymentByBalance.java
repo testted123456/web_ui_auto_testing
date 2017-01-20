@@ -19,7 +19,7 @@ import com.nonobank.apps.testcase.base.BaseCase;
  * @author ted
  *
  */
-public class DebtPackageByBalanceSuccessful extends BaseCase {
+public class PaymentByBalance extends BaseCase {
 	Biz_Account biz_Account;
 	Biz_Login biz_Login;
 	Biz_Portal biz_Portal;
@@ -32,7 +32,7 @@ public class DebtPackageByBalanceSuccessful extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String mobile, String password, String checkCode,
-			String cardno,String bankName, String money, String pay_password, String id, String amount, String expectMessage) {
+			String bankName, String money, String pay_password, String id, String amount, String expectMessage) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;

@@ -73,7 +73,6 @@ public class PrePaymentTestCase extends BaseCase {
 		// 申请流程--提交
 		biz_Apply.submitBus();
 		biz_Apply.submitAfterVerify(int_productIndex_apply, int_pieces_apply, int_money_apply);
-		PageUtils.sleep(5000);
 		PageUtils.sleep(10000);
 
 		// 完善资料--借款信息检查

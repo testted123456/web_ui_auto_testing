@@ -190,17 +190,18 @@ public class IdCardGenerator {
 	}
 
 	public String getIDCard() {
-		String idcard = null;
-		String str = null;
-		str = this.get17ID();
-		idcard = str + this.getVerify(str);
-		// String test = this.get17ID();
-		// System.out.println("身份证号前17位："+test);
-		// System.out.println("身份证号："+test+this.getVerify(test));
-		if (IDCardVerify.verify(idcard)) {
-			return idcard;
+		while (true) {
+			String idcard = null;
+			String str = null;
+			str = this.get17ID();
+			idcard = str + this.getVerify(str);
+			// String test = this.get17ID();
+			// System.out.println("身份证号前17位："+test);
+			// System.out.println("身份证号："+test+this.getVerify(test));
+			if (IDCardVerify.verify(idcard)) {
+				return idcard;
+			}
 		}
-		return idcard;
 	}
 
 	public static void main(String[] args) {
