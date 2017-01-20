@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Nonobank">
-<!-- 
+
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
@@ -9,6 +9,9 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
+	
+	
+	<!-- 
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
@@ -19,6 +22,8 @@
 		<classes>
 			<class
 				name="com.nonobank.apps.testcase.licai.PaymentByBalance" />
+							<class
+				name="com.nonobank.apps.testcase.licai.PaymentByOldBank" />
 		</classes>
 	</test>
 	<test name="recharge" preserve-order="true">
@@ -52,11 +57,12 @@
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 		</classes>
 	</test>
-
  -->
-	<test name="portal" preserve-order="true">
+
+
+	<test name="withdrawal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.portal.Login" />
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
 		</classes>
 	</test>
 
