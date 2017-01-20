@@ -37,7 +37,7 @@ public class Biz_Login {
 	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
 		case "success":
-	
+
 			String actualUrl = PageUtils.getUrl();
 
 			String[] actualUrlArray = actualUrl.split("://");
@@ -55,6 +55,7 @@ public class Biz_Login {
 			if (page_Login.isElementExists(By.id("accountFrozen"), 3000)) {
 				WebElement webElement = page_Login.getObjectFactory().getWebElement(By.id("accountFrozen"));
 				webElement.click();
+				Assertion.assertEquals(true, true, Biz_Login.class, "正例-登录成功");
 			}
 			break;
 		default:

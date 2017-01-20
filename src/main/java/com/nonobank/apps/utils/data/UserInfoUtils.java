@@ -180,11 +180,11 @@ public class UserInfoUtils {
 		return getNormalUser("mobile_num");
 	}
 	public static String getLockUserName() {
-		return getNormalUser("user_name");
+		return getLockUser("user_name");
 	}
 
 	public static String getNormalMobileNum() {
-		return getNormalUser("mobile_num");
+		return getLockUser("mobile_num");
 	}
 	public static boolean isMobileNO(String mobile) {
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
@@ -288,7 +288,7 @@ public class UserInfoUtils {
 			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
 			int index = userInfos.size();
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfo.setStatus("0");
+			userInfo.setStatus("1");
 			userInfos = getUserInfos(userInfo, userInfos);
 
 
