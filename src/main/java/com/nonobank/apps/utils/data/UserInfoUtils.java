@@ -259,10 +259,10 @@ public class UserInfoUtils {
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfos = getUserInfos(userInfo, userInfos);
 
-			UserLoginInfo userLoginInfo = new UserLoginInfo();
-			userLoginInfo.setErrorCount("0");
-			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
-			userInfos.retainAll(userLoginInfos);
+//			UserLoginInfo userLoginInfo = new UserLoginInfo();
+//			userLoginInfo.setErrorCount("0");
+//			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
+//			userInfos.retainAll(userLoginInfos);
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
@@ -288,10 +288,10 @@ public class UserInfoUtils {
 			userInfo.setStatus("1");
 			userInfos = getUserInfos(userInfo, userInfos);
 
-			UserLoginInfo userLoginInfo = new UserLoginInfo();
-			userLoginInfo.setErrorCount("0");
-			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
-			userInfos.retainAll(userLoginInfos);
+//			UserLoginInfo userLoginInfo = new UserLoginInfo();
+//			userLoginInfo.setErrorCount("0");
+//			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
+//			userInfos.retainAll(userLoginInfos);
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
@@ -444,16 +444,16 @@ public class UserInfoUtils {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(getNormalMobileNum());
-		// System.out.println(getNormalUserName());
-		// System.out.println(getUnUsedMobileNum());
-		// System.out.println(getUnUsedUserName());
-		//
-		// System.out.println(getUsedMobileNum());
-		// System.out.println(getUsedUserName());
-		//
-		// System.out.println(getSpecifalMobileNum());
-		// System.out.println(getSpecifalUserName());
+		 System.out.println(getNormalMobileNum());
+		 System.out.println(getNormalUserName());
+		 System.out.println(getUnUsedMobileNum());
+		 System.out.println(getUnUsedUserName());
+		
+		 System.out.println(getUsedMobileNum());
+		 System.out.println(getUsedUserName());
+		
+		 System.out.println(getSpecifalMobileNum());
+		 System.out.println(getSpecifalUserName());
 		//
 		System.out.println(getBankUser("4"));
 

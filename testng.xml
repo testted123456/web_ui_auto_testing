@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Nonobank">
+<!-- 
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
@@ -49,6 +50,13 @@
 	<test name="student" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
+		</classes>
+	</test>
+
+ -->
+	<test name="loginBindCard" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.bindcard.LoginBindCard" />
 		</classes>
 	</test>
 
