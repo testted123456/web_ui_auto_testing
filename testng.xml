@@ -54,9 +54,9 @@
 	</test>
 
  -->
-	<test name="loginBindCard" preserve-order="true">
+	<test name="portal" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.LoginBindCard" />
+			<class name="com.nonobank.apps.testcase.portal.Login" />
 		</classes>
 	</test>
 

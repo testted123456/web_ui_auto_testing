@@ -176,10 +176,16 @@ public class UserInfoUtils {
 		return getNormalUser("user_name");
 	}
 
+	public static String getLockMobileNum() {
+		return getNormalUser("mobile_num");
+	}
+	public static String getLockUserName() {
+		return getNormalUser("user_name");
+	}
+
 	public static String getNormalMobileNum() {
 		return getNormalUser("mobile_num");
 	}
-
 	public static boolean isMobileNO(String mobile) {
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
 		Matcher m = p.matcher(mobile);
@@ -259,10 +265,7 @@ public class UserInfoUtils {
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfos = getUserInfos(userInfo, userInfos);
 
-//			UserLoginInfo userLoginInfo = new UserLoginInfo();
-//			userLoginInfo.setErrorCount("0");
-//			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
-//			userInfos.retainAll(userLoginInfos);
+
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
@@ -285,13 +288,10 @@ public class UserInfoUtils {
 			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
 			int index = userInfos.size();
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfo.setStatus("1");
+			userInfo.setStatus("0");
 			userInfos = getUserInfos(userInfo, userInfos);
 
-//			UserLoginInfo userLoginInfo = new UserLoginInfo();
-//			userLoginInfo.setErrorCount("0");
-//			List<String> userLoginInfos = getUserLoginInfos(userLoginInfo, userInfos);
-//			userInfos.retainAll(userLoginInfos);
+
 			for (String userId : userInfos) {
 				loginName = getCorrectUserInfo(fieldName, userId);
 				if (loginName != null) {
@@ -304,7 +304,31 @@ public class UserInfoUtils {
 			index_limit += index;
 		}
 	}
+	public static String getLockUser(String fieldName) {
+		Date startdate = new Date();
+		index_limit = 0;
+		String loginName = null;
+		while (true) {
+			UserInfo userInfo = new UserInfo();
+			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
+			int index = userInfos.size();
+			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+			userInfo.setStatus("0");
+			userInfos = getUserInfos(userInfo, userInfos);
 
+
+			for (String userId : userInfos) {
+				loginName = getCorrectUserInfo(fieldName, userId);
+				if (loginName != null) {
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					return loginName;
+				}
+			}
+			index_limit += index;
+		}
+	}
 	public static String getBankUser(String bankCode) {
 		Date startdate = new Date();
 		index_limit = 0;
