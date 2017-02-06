@@ -57,11 +57,6 @@
  -->
 
 
-	<test name="repayment" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
-		</classes>
-	</test>
 	<test name="student" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
