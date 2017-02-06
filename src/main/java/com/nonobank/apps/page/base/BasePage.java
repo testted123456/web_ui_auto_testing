@@ -22,7 +22,6 @@ public class BasePage {
 	protected ObjectFactory objectFactory;
 	protected String xmlFile;
 	public static Logger logger = LogManager.getLogger(BasePage.class);
-	int count = 0;
 
 	public ObjectFactory getObjectFactory() {
 		return objectFactory;
@@ -52,7 +51,6 @@ public class BasePage {
 		try {
 			Thread.sleep(t);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -108,11 +106,15 @@ public class BasePage {
 
 	public String getElementText(String elementPath) {
 		String text = "";
-		WebCommon webCommon = objectFactory.getWebCommon(elementPath);
-		text = webCommon.getText();
-		if (text.length() == 0 && count < 1) {
-			count++;
-			text = getElementText(elementPath);
+		for (int i = 0; i <3; i++) {
+			WebCommon webCommon = objectFactory.getWebCommon(elementPath);
+			text = webCommon.getText();
+			if(text.length()>0){
+				return text;
+			}
+			else{
+				sleep(1000);
+			}
 		}
 		return text;
 	}

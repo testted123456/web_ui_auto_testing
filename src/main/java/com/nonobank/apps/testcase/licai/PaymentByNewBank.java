@@ -34,41 +34,23 @@ public class PaymentByNewBank extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String mobile, String user_name, String password, String password2, String checkCode,
+	public void test(String testcaseName, String testcaseDescription,String mobile, String user_name, String password, String password2, String checkCode,
 			String validation, String myname, String identity_ID, String payPassword, String payPassword2, String id,
-			String amount, String bank_name, String bankcard_no) {
+			String amount, String bank_name, String bankcard_no, String expectMessage) {
+		caseName = testcaseName;
+		caseDescription = testcaseDescription;
+		inputParams = mobile;
+		
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "恭喜您注册成功，诺诺镑客因你而精彩！");
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.navigate_to_profile();
-		biz_Profile.setPayPassword(payPassword, payPassword2);
-		
+		biz_Profile.setPayPassword(payPassword, payPassword2);	
 		biz_Account.navigate_to_degreeCard();
-		biz_DegreeCard.IDVerification(myname, identity_ID);
-//		biz_Account.navigate_to_banks();
-//		biz_User_Banks.navigate_to_bindCard1();
-//		biz_User_BindCard1.select_bank(bank_name);
-//		biz_User_BindCard2.bindCard(bankcard_no, validation, "success");
-		
+		biz_DegreeCard.IDVerification(myname, identity_ID);		
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByNewCard(bank_name, bankcard_no, payPassword);
 	}
 
-	// @Test(dataProvider = "dataSource")
-	// public void test(String mobile, String password, String id, String
-	// amount, String bank_name, String cardNo,
-	// String validationCode, String payPassword) {
-	// biz_Register.register(mobile, user_name, password, password2, check_code,
-	// sms_code);
-	// biz_Portal.close_dialog();
-	// biz_Portal.navigate_to_myaccount();
-	// biz_Account.IDVerification(myname, identity_ID);
-	// biz_Account.setPayPassword(payPassword, payPassword1);
-	//
-	// biz_Licai_FinancePlan.purchase(id, amount, "/Debt/ViewDebtPackage/");
-	// biz_Licai_Order.submit();
-	// biz_Licai_Payment.payByNewCard(bank_name, cardNo, validationCode,
-	// payPassword);
-	// }
 }

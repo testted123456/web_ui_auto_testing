@@ -9,8 +9,8 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-	
-	
+
+
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
@@ -19,10 +19,9 @@
 	</test>
 	<test name="licai" preserve-order="true">
 		<classes>
-			<class
-				name="com.nonobank.apps.testcase.licai.PaymentByBalance" />
-							<class
-				name="com.nonobank.apps.testcase.licai.PaymentByOldBank" />
+			<class name="com.nonobank.apps.testcase.licai.PaymentByBalance" />
+			<class name="com.nonobank.apps.testcase.licai.PaymentByNewBank" />
+			<class name="com.nonobank.apps.testcase.licai.PaymentByOldBank" />
 		</classes>
 	</test>
 	<test name="recharge" preserve-order="true">

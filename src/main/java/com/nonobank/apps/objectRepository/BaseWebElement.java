@@ -161,8 +161,7 @@ public class BaseWebElement {
 	 * @return
 	 */
 	public boolean isDisplayed() {
-		int time = 6000;
-		for (int i = 0; i < time; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (this.webElement.isDisplayed()) {
 				return true;
 			} else {

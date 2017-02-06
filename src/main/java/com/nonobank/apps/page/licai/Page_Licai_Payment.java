@@ -1,8 +1,6 @@
 package com.nonobank.apps.page.licai;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -14,30 +12,13 @@ import com.nonobank.apps.objectRepository.WebElementType;
 import com.nonobank.apps.objectRepository.WebInput;
 import com.nonobank.apps.objectRepository.WebLink;
 import com.nonobank.apps.page.base.BasePage;
+import com.nonobank.apps.utils.data.IdBankGenerator;
 
 public class Page_Licai_Payment extends BasePage {
 
 	public static Logger logger = LogManager.getLogger(Page_Licai_Payment.class);
 
-	public static Map<String, String> map = new HashMap<String, String>() {
-		{
-			put("光大银行", "03030000");
-			put("广发银行", "03060000");
-			put("民生银行", "03050000");
-			put("华夏银行", "HXB");
-			put("建设银行", "CCB");
-			put("农业银行", "ABC");
-			put("平安银行", "PAB");
-			put("浦发银行", "SPDB");
-			put("中信银行", "CITIC");
-			put("兴业银行", "CIB");
-			put("招商银行", "CMB");
-			put("中国银行", "BOC");
-			put("工商银行", "ICBC");
-			put("交通银行", "BCOM");
-			put("邮政储蓄", "01000000");
-		}
-	};
+	
 
 	// 下一步
 	public void click_nextStep() {
@@ -137,21 +118,16 @@ public class Page_Licai_Payment extends BasePage {
 	}
 
 	// 选择新银行卡
-	public void select_newBank(String bank_name, boolean flag) {
-		String bank_code = map.get(bank_name);
+	public void select_newBank(String bank_name) {
+		String bank_code = IdBankGenerator.map.get(bank_name);
 
 		String xpath = null;
 
-		if (flag) {
-			xpath = "//li[@data-bankcode='" + bank_code + "']/span[contains(@class,'bank') and contains(@class,'"
-					+ bank_code + "')]";
-		} else {
-			xpath = "//li[@data-bankcode='" + bank_code + "' and "
-					+ "@data-banktype='2']/span[contains(@class,'bank') and contains(@class,'" + bank_code + "')]";
-		}
+		xpath = "//span[@class='bank " + bank_code + "']";
+
 		List<WebElement> lst = objectFactory.getWebElements(By.xpath(xpath));
 		for (WebElement webElement : lst) {
-			if (webElement.getText().equals("建设银行")) {
+			if (webElement.getText().equals(bank_name)) {
 				webElement.click();
 				break;
 			}

@@ -39,10 +39,10 @@ public class Biz_Licai_Payment {
 
 		if (flag) {
 			page_Licai_Payment.click_newBankCard();
-			page_Licai_Payment.select_newBank(bank_name, flag);
+			page_Licai_Payment.select_newBank(bank_name);
 			page_Licai_Payment.click_nextStepForNewCard();
 		} else {
-			page_Licai_Payment.select_newBank(bank_name, flag);
+			page_Licai_Payment.select_newBank(bank_name);
 			page_Licai_Payment.click_nextStep();
 		}
 

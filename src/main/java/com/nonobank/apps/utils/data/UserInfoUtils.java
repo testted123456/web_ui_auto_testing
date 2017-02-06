@@ -241,7 +241,7 @@ public class UserInfoUtils {
 			for (String userId : userInfos) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setUserId(userId);
-				loginName = getCorrectUserInfo(fieldName, userId);
+				loginName = gettUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -267,7 +267,7 @@ public class UserInfoUtils {
 
 
 			for (String userId : userInfos) {
-				loginName = getCorrectUserInfo(fieldName, userId);
+				loginName = gettUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -293,7 +293,7 @@ public class UserInfoUtils {
 
 
 			for (String userId : userInfos) {
-				loginName = getCorrectUserInfo(fieldName, userId);
+				loginName = gettUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -318,7 +318,7 @@ public class UserInfoUtils {
 
 
 			for (String userId : userInfos) {
-				loginName = getCorrectUserInfo(fieldName, userId);
+				loginName = gettUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -347,7 +347,7 @@ public class UserInfoUtils {
 			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
 			userInfos.retainAll(userBankcardInfos);
 			for (String userId : userInfos) {
-				loginName = getCorrectUserInfo("mobile_num", userId);
+				loginName = gettUserInfo("mobile_num", userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -415,7 +415,7 @@ public class UserInfoUtils {
 	}
 
 	//精确查询user_info表，通过user_id
-	public static String getCorrectUserInfo(String filedName, String userId) {
+	public static String gettUserInfo(String filedName, String userId) {
 		String filedValue = null;
 		Connection con = DBUtils.getConnection("nono");
 		String sql = "select " + filedName + " from user_info where id = " + userId;
