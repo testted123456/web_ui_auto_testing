@@ -1,5 +1,6 @@
 package com.nonobank.apps.utils.entity;
 
+
 public class FinancePlan {
 	private String fpId;
 	private String title;

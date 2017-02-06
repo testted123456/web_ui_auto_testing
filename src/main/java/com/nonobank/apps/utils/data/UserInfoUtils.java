@@ -19,6 +19,19 @@ public class UserInfoUtils {
 	public static Random random = new Random();
 	public final static int USER_NAME_MIN_LENGTH = 6;
 	public final static int USER_NAME_MAX_LENGTH = 16;
+	public static String newuserId = null;
+
+	public static String getNewuserId2() {
+		return "53";
+	}
+	public static String getNewuserId() {
+		return newuserId;
+	}
+
+	public static void setNewuserId(String newuserId) {
+		UserInfoUtils.newuserId = newuserId;
+	}
+
 	public static int index_limit = 0;
 	static {
 		MOBILE_OPERATOR_LIST.add("130");
@@ -179,6 +192,7 @@ public class UserInfoUtils {
 	public static String getLockMobileNum() {
 		return getNormalUser("mobile_num");
 	}
+
 	public static String getLockUserName() {
 		return getLockUser("user_name");
 	}
@@ -186,6 +200,7 @@ public class UserInfoUtils {
 	public static String getNormalMobileNum() {
 		return getLockUser("mobile_num");
 	}
+
 	public static boolean isMobileNO(String mobile) {
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
 		Matcher m = p.matcher(mobile);
@@ -241,7 +256,7 @@ public class UserInfoUtils {
 			for (String userId : userInfos) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setUserId(userId);
-				loginName = gettUserInfo(fieldName, userId);
+				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -265,9 +280,8 @@ public class UserInfoUtils {
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfos = getUserInfos(userInfo, userInfos);
 
-
 			for (String userId : userInfos) {
-				loginName = gettUserInfo(fieldName, userId);
+				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -291,9 +305,8 @@ public class UserInfoUtils {
 			userInfo.setStatus("1");
 			userInfos = getUserInfos(userInfo, userInfos);
 
-
 			for (String userId : userInfos) {
-				loginName = gettUserInfo(fieldName, userId);
+				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -304,6 +317,7 @@ public class UserInfoUtils {
 			index_limit += index;
 		}
 	}
+
 	public static String getLockUser(String fieldName) {
 		Date startdate = new Date();
 		index_limit = 0;
@@ -316,9 +330,8 @@ public class UserInfoUtils {
 			userInfo.setStatus("0");
 			userInfos = getUserInfos(userInfo, userInfos);
 
-
 			for (String userId : userInfos) {
-				loginName = gettUserInfo(fieldName, userId);
+				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
@@ -329,6 +342,7 @@ public class UserInfoUtils {
 			index_limit += index;
 		}
 	}
+
 	public static String getBankUser(String bankCode) {
 		Date startdate = new Date();
 		index_limit = 0;
@@ -347,8 +361,9 @@ public class UserInfoUtils {
 			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
 			userInfos.retainAll(userBankcardInfos);
 			for (String userId : userInfos) {
-				loginName = gettUserInfo("mobile_num", userId);
+				loginName = getUserInfo("mobile_num", userId);
 				if (loginName != null) {
+					newuserId=userId;
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
 					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
@@ -414,8 +429,8 @@ public class UserInfoUtils {
 		return userLoginInfos;
 	}
 
-	//精确查询user_info表，通过user_id
-	public static String gettUserInfo(String filedName, String userId) {
+	// 精确查询user_info表，通过user_id
+	public static String getUserInfo(String filedName, String userId) {
 		String filedValue = null;
 		Connection con = DBUtils.getConnection("nono");
 		String sql = "select " + filedName + " from user_info where id = " + userId;
@@ -468,18 +483,19 @@ public class UserInfoUtils {
 	}
 
 	public static void main(String[] args) {
-		 System.out.println(getNormalMobileNum());
-		 System.out.println(getNormalUserName());
-		 System.out.println(getUnUsedMobileNum());
-		 System.out.println(getUnUsedUserName());
-		
-		 System.out.println(getUsedMobileNum());
-		 System.out.println(getUsedUserName());
-		
-		 System.out.println(getSpecifalMobileNum());
-		 System.out.println(getSpecifalUserName());
+//		System.out.println(getNormalMobileNum());
+//		System.out.println(getNormalUserName());
+//		System.out.println(getUnUsedMobileNum());
+//		System.out.println(getUnUsedUserName());
+//
+//		System.out.println(getUsedMobileNum());
+//		System.out.println(getUsedUserName());
+//
+//		System.out.println(getSpecifalMobileNum());
+//		System.out.println(getSpecifalUserName());
 		//
 		System.out.println(getBankUser("4"));
+		System.out.println(getNewuserId());
 
 	}
 
