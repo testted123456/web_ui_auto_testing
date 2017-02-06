@@ -44,8 +44,8 @@ public class BaseCase {
 	public static String caseName = "请配置测试名称";
 	public static String caseDescription = "请配置测试描述";
 	public static String inputParams = "请配置输入参数";
-	public static String actualResult = "请配置实际结果";
-	public static String errorMessage = "请配置错误信息";
+	public static String actualResult = "成功";
+	public static String errorMessage = "无错误信息";
 	public static int passCount = 0;
 	public static int failCount = 0;
 
