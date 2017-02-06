@@ -34,7 +34,7 @@ public class FinancePlanUtils {
 	}
 
 	public static String getNormalfpId() {
-		String userId = UserInfoUtils.newuserId;
+		String	userId=	UserInfoUtils.getNewuserId();
 		System.out.println("*******************userId=" + userId);
 		FinancePlan financePlan = new FinancePlan();
 		financePlan.setStatus("3");
