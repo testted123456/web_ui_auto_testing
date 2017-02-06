@@ -53,14 +53,14 @@ public class FinancePlan {
 	private String isAutoClone;
 	private String productType;
 	private String rateDesc;
-	private String publishDateOperate;
+	private String finishDateOperate;
 
-	public String getPublishDateOperate() {
-		return publishDateOperate;
+	public String getFinishDateOperate() {
+		return finishDateOperate;
 	}
 
-	public void setPublishDateOperate(String publishDateOperate) {
-		this.publishDateOperate = publishDateOperate;
+	public void setFinishDateOperate(String finishDateOperate) {
+		this.finishDateOperate = finishDateOperate;
 	}
 
 	public static StringBuffer sb = null;
@@ -540,10 +540,10 @@ public class FinancePlan {
 			sb.append(" and redeem_other_way= '" + financePlan.getRedeemOtherWay() + "'");
 		}
 		if (financePlan.getPublishDate() != null) {
-			sb.append(" and publish_date " + financePlan.getPublishDateOperate() + financePlan.getPublishDate() );
+			sb.append(" and publish_date =" + financePlan.getPublishDate());
 		}
 		if (financePlan.getFinishDate() != null) {
-			sb.append(" and finish_date= '" + financePlan.getFinishDate() + "'");
+			sb.append(" and finish_date " + financePlan.getFinishDateOperate() + financePlan.getFinishDate());
 		}
 		if (financePlan.getSlogan() != null) {
 			sb.append(" and slogan= '" + financePlan.getSlogan() + "'");

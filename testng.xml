@@ -10,7 +10,7 @@
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
 
-
+<!-- 
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
@@ -47,7 +47,6 @@
 	<test name="repayment" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
-			<class name="com.nonobank.apps.testcase.repayment.RepaymentTestCase" />
 		</classes>
 	</test>
 	<test name="student" preserve-order="true">
@@ -55,7 +54,18 @@
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 		</classes>
 	</test>
+ -->
 
 
+	<test name="repayment" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
+		</classes>
+	</test>
+	<test name="student" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
+		</classes>
+	</test>
 
 </suite>

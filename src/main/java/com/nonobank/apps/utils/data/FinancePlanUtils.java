@@ -37,8 +37,9 @@ public class FinancePlanUtils {
 		FinancePlan financePlan = new FinancePlan();
 		financePlan.setStatus("3");
 		financePlan.setScope("11");
-		financePlan.setPublishDateOperate(">=");
-		financePlan.setPublishDate("DATE(NOW())");
+		financePlan.setFinishDate(">=");
+		financePlan.setFinishDateOperate(">=");
+		financePlan.setFinishDate("DATE(NOW())");
 		List<String> fpIds = getfpIds(financePlan);
 		for (String fpId : fpIds) {
 			String amount = getVipAccount("amount", userId, fpId);

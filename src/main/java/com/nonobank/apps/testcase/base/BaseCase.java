@@ -106,7 +106,7 @@ public class BaseCase {
 		}
 	}
 
-//	@AfterMethod
+	@AfterMethod
 	public void addData() {
 		if (actualResult.equals("成功")) {
 			passCount++;
@@ -126,7 +126,7 @@ public class BaseCase {
 		logger.info(PageUtils.getUrl());
 	}
 
-//	 @AfterClass
+	 @AfterClass
 	public void closeDriver() {
 		// 保存测试结果
 		logger.info("保存测试结果...");
