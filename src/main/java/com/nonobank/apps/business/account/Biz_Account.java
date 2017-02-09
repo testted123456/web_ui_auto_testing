@@ -22,7 +22,7 @@ public class Biz_Account {
 	public void navigate_to_profile() {
 		logger.info("点击个人设置......");
 		page_Account.click_profile();
-		PageUtils.waitForPageLoad();
+		PageUtils.sleep(3000);
 	}
 
 	public void navigate_to_degreeCard() {
@@ -33,7 +33,7 @@ public class Biz_Account {
 	public void navigate_to_banks() {
 		logger.info("点击银行账户......");
 		page_Account.click_banks();
-		PageUtils.waitForPageLoad();
+		PageUtils.sleep(3000);
 	}
 
 	public void navigate_to_recharge() {
@@ -48,7 +48,7 @@ public class Biz_Account {
 	public void navigate_to_withDrawal() {
 		logger.info("点击提现......");
 		page_Account.click_withDrawal();
-		PageUtils.waitForPageLoad();
+		PageUtils.sleep(3000);
 	}
 
 	public void recharge(String mobile_num) {

@@ -43,7 +43,7 @@ public class Biz_User_RechargeConfirm {
 		switch (message) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
-			Assertion.assertEquals(actualUrl.contains("/User/RechargeSuccess"), true, Biz_Login.class, "正例-绑卡成功");
+			Assertion.assertEquals(actualUrl.contains("/User/RechargeSuccess"), true, Biz_Login.class, "正例-充值成功");
 			break;
 		case "单笔充值金额必须≧10元":
 		case "不能超过单笔限额":
