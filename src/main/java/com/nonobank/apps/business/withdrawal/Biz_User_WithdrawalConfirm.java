@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.withdrawal.Page_User_WithdrawalConfirm;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_WithdrawalConfirm {

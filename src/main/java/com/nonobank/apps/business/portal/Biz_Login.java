@@ -4,10 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.nonobank.apps.page.portal.Page_Login;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 import com.nonobank.apps.utils.webintegration.Params;
@@ -39,17 +37,9 @@ public class Biz_Login {
 		case "success":
 
 			String actualUrl = PageUtils.getUrl();
-
-			String[] actualUrlArray = actualUrl.split("://");
-			if (actualUrlArray.length == 2) {
-				actualUrl = actualUrlArray[1];
-			}
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/Account";
-			String[] expectUrlArray = expectUrl.split("://");
-			if (expectUrlArray.length == 2) {
-				expectUrl = expectUrlArray[1];
-			}
-			Assertion.assertEquals(actualUrl, expectUrl, Biz_Login.class, "正例-登录成功");
+			String url = "/Account";
+			Assertion.assertEquals(actualUrl.contains(url), true, Biz_Login.class,
+					"登录跳转到" + actualUrl + ",判断路径是否包含" + url + "字符");
 			break;
 		case "specialSuccess":
 			if (page_Login.isElementExists(By.id("accountFrozen"), 3000)) {

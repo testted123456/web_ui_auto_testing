@@ -186,7 +186,12 @@ public class BaseCase {
 		try {
 			String[] strs = caseName.split("-");
 			String fileName = strs[1];
-			OutputStream os = new FileOutputStream("./"+fileName+".csv");
+			if (fileName.equals("贷款") || fileName.equals("还款")) {
+				fileName = "贷还款";
+			} else {
+				fileName = "理财";
+			}
+			OutputStream os = new FileOutputStream("./web" + fileName + ".csv");
 			OutputStreamWriter fw = new OutputStreamWriter(os, "GBK");
 			fw.write("sep=;\n");
 			CsvWriter writer = new CsvWriter(fw, ';');
@@ -211,6 +216,8 @@ public class BaseCase {
 			writer.writeRecord(endsValue);
 			writer.close();
 			System.out.println(writer.toString());
+			//重新清理数据
+			lst = new ArrayList<List<String>>();
 			passCount = 0;
 			failCount = 0;
 		} catch (IOException e) {
