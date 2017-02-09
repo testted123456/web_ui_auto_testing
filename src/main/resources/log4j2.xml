@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="info" packages="com.nonobank.apps.utils.log4j2Extend">
 <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
         <PatternLayout charset="UTF-8" pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
@@ -7,15 +7,20 @@
     <File name="log" fileName="ui_auto.log" append="false">
         <PatternLayout charset="UTF-8" pattern="%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
     </File>
+    <MyCustomAppender  name="MyCustomAppender">
+    	<PatternLayout charset="UTF-8" pattern="%d{YYYY-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+    </MyCustomAppender>
 </Appenders>   
 <Loggers>
     <Logger name="com.nonobank.apps" level="all" additivity="false">
         <AppenderRef ref="Console"/>
         <AppenderRef ref="log"/>
+        <AppenderRef ref="MyCustomAppender"/>
     </Logger>
     <Root level="trace">
         <AppenderRef ref="Console"/>
         <AppenderRef ref="log"/>
+        <AppenderRef ref="MyCustomAppender"/>
     </Root>
   </Loggers>
 </Configuration>
