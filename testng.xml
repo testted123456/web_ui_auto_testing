@@ -9,8 +9,6 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
-
-<!-- 
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
@@ -46,20 +44,12 @@
 	</test>
 	<test name="repayment" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.repayment.PrePaymentTestCase" />
+			<class name="com.nonobank.apps.testcase.repayment.RePaymentTestCase" />
 		</classes>
 	</test>
 	<test name="student" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
-		</classes>
-	</test>
- -->
-
-
-	<test name="portal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.portal.Login" />
 		</classes>
 	</test>
 

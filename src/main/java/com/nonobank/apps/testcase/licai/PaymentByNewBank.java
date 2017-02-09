@@ -34,20 +34,23 @@ public class PaymentByNewBank extends BaseCase {
 	Biz_User_BindCard2 biz_User_BindCard2;
 
 	@Test(dataProvider = "dataSource")
-	public void test(String testcaseName, String testcaseDescription,String mobile, String user_name, String password, String password2, String checkCode,
-			String validation, String myname, String identity_ID, String payPassword, String payPassword2, String id,
-			String amount, String bank_name, String bankcard_no, String expectMessage) {
+	public void test(String testcaseName, String testcaseDescription, String mobile, String user_name, String password,
+			String password2, String checkCode, String validation, String myname, String identity_ID,
+			String payPassword, String payPassword2, String id, String amount, String bank_name, String bankcard_no,
+			String expectMessage) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
-		
+		actualResult = "成功";
+		errorMessage = "无错误信息";
+
 		biz_Portal.navigate_to_register();
 		biz_Register.register(mobile, user_name, password, password2, checkCode, validation, "恭喜您注册成功，诺诺镑客因你而精彩！");
 		biz_Portal.navigate_to_myaccount();
 		biz_Account.navigate_to_profile();
-		biz_Profile.setPayPassword(payPassword, payPassword2);	
+		biz_Profile.setPayPassword(payPassword, payPassword2);
 		biz_Account.navigate_to_degreeCard();
-		biz_DegreeCard.IDVerification(myname, identity_ID);		
+		biz_DegreeCard.IDVerification(myname, identity_ID);
 		biz_Licai_FinancePlan.purchase(id, amount, "/Licai/FinancePlan/");
 		biz_Licai_Order.submit();
 		biz_Licai_Payment.payByNewCard(bank_name, bankcard_no, payPassword);

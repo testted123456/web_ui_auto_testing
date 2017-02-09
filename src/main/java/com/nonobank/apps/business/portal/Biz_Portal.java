@@ -3,6 +3,7 @@ package com.nonobank.apps.business.portal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.page.portal.Page_Portal;
+import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
 
@@ -57,5 +58,9 @@ public class Biz_Portal {
 	public void close_dialog() {
 		logger.info("关闭首页悬浮窗口...");
 		page_Portal.close_dialog();
+	}
+
+	public void test(String testcaseName) {
+		Assertion.assertEquals(testcaseName, "正例-登录", Biz_Portal.class, "aaaaaaaaaaa");
 	}
 }

@@ -122,10 +122,10 @@ public class ObjectFactory {
 		} catch (IllegalArgumentException e) {
 			Assert.fail(e.getMessage());
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			String msg = "调用构造函数生成页面对象失败，xpath : " + elementName;
-			BaseCase.errorMessage = msg;
-			BaseCase.actualResult = "失败";
+			BaseCase baseCase = new BaseCase();
+			baseCase.setErrorMessage(msg);
+			baseCase.setActualResult("失败");
 			logger.error(msg);
 			Assert.fail(msg);
 		}

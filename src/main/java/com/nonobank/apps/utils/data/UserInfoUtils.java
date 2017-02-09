@@ -189,16 +189,16 @@ public class UserInfoUtils {
 		return getNormalUser("user_name");
 	}
 
-	public static String getLockMobileNum() {
+	public static String getNormalMobileNum() {
 		return getNormalUser("mobile_num");
+	}
+
+	public static String getLockMobileNum() {
+		return getLockUser("mobile_num");
 	}
 
 	public static String getLockUserName() {
 		return getLockUser("user_name");
-	}
-
-	public static String getNormalMobileNum() {
-		return getLockUser("mobile_num");
 	}
 
 	public static boolean isMobileNO(String mobile) {
@@ -364,7 +364,7 @@ public class UserInfoUtils {
 			for (String userId : userInfos) {
 				loginName = getUserInfo("mobile_num", userId);
 				if (loginName != null) {
-			
+
 					new UserInfoUtils().setNewuserId(userId);
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);

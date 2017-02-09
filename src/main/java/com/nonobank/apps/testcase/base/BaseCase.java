@@ -18,10 +18,14 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import com.csvreader.CsvWriter;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
@@ -41,13 +45,53 @@ public class BaseCase {
 
 	// 保存测试结果的map
 	public static TreeMap<Long, Integer> resultsMap;
-	public static String caseName = "请配置测试名称";
-	public static String caseDescription = "请配置测试描述";
-	public static String inputParams = "请配置输入参数";
+	public String caseName = "请配置测试名称";
+	public String caseDescription = "请配置测试描述";
+	public String inputParams = "请配置输入参数";
 	public static String actualResult = "成功";
 	public static String errorMessage = "无错误信息";
 	public static int passCount = 0;
 	public static int failCount = 0;
+
+	public String getCaseName() {
+		return caseName;
+	}
+
+	public void setCaseName(String caseName) {
+		this.caseName = caseName;
+	}
+
+	public String getCaseDescription() {
+		return caseDescription;
+	}
+
+	public void setCaseDescription(String caseDescription) {
+		this.caseDescription = caseDescription;
+	}
+
+	public String getInputParams() {
+		return inputParams;
+	}
+
+	public void setInputParams(String inputParams) {
+		this.inputParams = inputParams;
+	}
+
+	public String getActualResult() {
+		return actualResult;
+	}
+
+	public void setActualResult(String newactualResult) {
+		actualResult = newactualResult;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String newerrorMessage) {
+		errorMessage = newerrorMessage;
+	}
 
 	public BaseCase() {
 		logger.info("初始化类:" + this.getClass().getName());
@@ -106,27 +150,7 @@ public class BaseCase {
 		}
 	}
 
-	@AfterMethod
-	public void addData() {
-		if (actualResult.equals("成功")) {
-			passCount++;
-		} else {
-			failCount++;
-		}
-		List<String> newLst = new ArrayList<>();
-		newLst.add(caseName);
-		newLst.add(caseDescription);
-		newLst.add("用户手机号:" + inputParams);
-		newLst.add(actualResult);
-		newLst.add(errorMessage);
-		lst.add(newLst);
-		String url = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
-		PageUtils.openPage(url);
-		PageUtils.waitForPageLoad();
-		logger.info(PageUtils.getUrl());
-	}
-
-	 @AfterClass
+	@AfterClass
 	public void closeDriver() {
 		// 保存测试结果
 		logger.info("保存测试结果...");
@@ -140,6 +164,28 @@ public class BaseCase {
 		WebDriverUtils.destoryWebDriver();
 		logger.info("========================================================================================");
 	}
+
+
+	@AfterMethod
+	public void addData() {
+		if (getActualResult().equals("成功")) {
+			passCount++;
+		} else {
+			failCount++;
+		}
+		List<String> newLst = new ArrayList<>();
+		newLst.add(getCaseName());
+		newLst.add(getCaseDescription());
+		newLst.add("用户手机号:" + inputParams);
+		newLst.add(getActualResult());
+		newLst.add(getErrorMessage());
+		lst.add(newLst);
+		String url = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
+		PageUtils.openPage(url);
+		PageUtils.waitForPageLoad();
+		logger.info(PageUtils.getUrl());
+	}
+
 
 	@AfterSuite
 	public void saveCSV() {

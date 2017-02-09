@@ -36,6 +36,9 @@ public class PaymentByBalance extends BaseCase {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
+		actualResult = "成功";
+		errorMessage = "无错误信息";
+
 		biz_Portal.navigate_to_login();
 		biz_Login.login(mobile, password, checkCode, "success");
 		biz_Portal.navigate_to_myaccount();

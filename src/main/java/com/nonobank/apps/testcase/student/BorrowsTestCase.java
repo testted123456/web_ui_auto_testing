@@ -45,6 +45,9 @@ public class BorrowsTestCase extends BaseCase {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile_register;
+		actualResult = "成功";
+		errorMessage = "无错误信息";
+
 		logger.info("开始进行借款流程测试........");
 		int int_money_apply = Integer.parseInt(money_apply);
 		int int_productIndex_apply = Integer.parseInt(productIndex_apply);

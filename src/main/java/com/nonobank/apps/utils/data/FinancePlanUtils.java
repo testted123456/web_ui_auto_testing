@@ -34,11 +34,13 @@ public class FinancePlanUtils {
 	}
 
 	public static String getNormalfpId() {
-		String	userId=	UserInfoUtils.getNewuserId();
+		String userId = UserInfoUtils.getNewuserId();
 		System.out.println("*******************userId=" + userId);
 		FinancePlan financePlan = new FinancePlan();
 		financePlan.setStatus("3");
 		financePlan.setScope("11");
+		financePlan.setFinishDateOperate(">=");
+		financePlan.setFinishDate("DATE(NOW())");
 		List<String> fpIds = getfpIds(financePlan);
 		List<String> newfpIds = new ArrayList<String>();
 		for (String fpId : fpIds) {
@@ -48,7 +50,7 @@ public class FinancePlanUtils {
 				newfpIds.add(fpId);
 			}
 		}
-		return getnewfpIds(fpIds).get(0);
+				return getnewfpIds(fpIds).get(0);
 	}
 
 	public static String getVipAccount(String filedName, String userId, String fpId) {

@@ -28,6 +28,9 @@ public class WithDrawal extends BaseCase {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;
+		actualResult = "成功";
+		errorMessage = "无错误信息";
+
 		biz_Portal.navigate_to_login();
 		biz_Login.login(mobile, password, checkCode, "success");
 
@@ -35,7 +38,7 @@ public class WithDrawal extends BaseCase {
 		biz_User_Recharge.recharge(bankName);
 		biz_User_RechargeConfirm.rechargeConfirm("11", pay_password, "success");
 		biz_Portal.navigate_to_myaccountByName();
-		
+
 		biz_Account.navigate_to_withDrawal();
 		biz_User_Withdrawal.withDrawal(money, "success");
 		biz_User_WithdrawalConfirm.confirm(pay_password, expectResult);

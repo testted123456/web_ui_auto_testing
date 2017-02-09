@@ -264,7 +264,7 @@ public class IdBankGenerator {
 		Connection con = DBUtils.getConnection("nono");
 		UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
 		UserBankcardInfo.setLimit(ConstantUtils.LIMIT);
-		String sql = "select id from user_bankcard_info " + UserBankcardInfo.getCondition();
+		String sql = "select bank_card_no from user_bankcard_info " + UserBankcardInfo.getCondition();
 		lst = DBUtils.getMulLine(con, sql);
 		for (Object[] objects : lst) {
 			userInfos.add(objects[0].toString());
@@ -275,7 +275,7 @@ public class IdBankGenerator {
 	public static void main(String[] args) {
 		// System.out.println(getUnUsedBankCard("4"));
 
-		System.out.println(luhmCheck("621700207000149051"));
+		System.out.println(getUsedBankCard("4"));
 
 	}
 }

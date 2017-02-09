@@ -20,8 +20,10 @@ public class Login extends BaseCase {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = loginName;
+		actualResult = "成功";
+		errorMessage = "无错误信息";
+
 		biz_Portal.navigate_to_login();
 		biz_Login.login(loginName, password, checkCode, expectResult);
 	}
-
 }
