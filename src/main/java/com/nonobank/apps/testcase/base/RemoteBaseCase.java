@@ -26,7 +26,7 @@ public class RemoteBaseCase {
 	@BeforeClass
 	public void init_fields() {
 		logger.info("初始化business...");
-		Class clazz = this.getClass();
+		Class<?> clazz = this.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 
 		for (Field f : fields) {
@@ -36,16 +36,12 @@ public class RemoteBaseCase {
 				try {
 					f.set(this, Class.forName(type).newInstance());
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -8,10 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -30,9 +28,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.alibaba.fastjson.JSONObject;
-import com.nonobank.apps.utils.file.ParseProperties;
 
 public class SendRequestByCookiesAbsoluteURL {
 	public static Logger logger = LogManager.getLogger(SendRequestByCookies.class);
@@ -44,7 +40,7 @@ public class SendRequestByCookiesAbsoluteURL {
 		System.out.println("----setCookieStore");
 		String[] cookies;
 		String[] cooks;
-		HashMap cook = new HashMap();
+		HashMap<String,String> cook = new HashMap<String,String>();
 		cookieStore = new BasicCookieStore();
 		CookieStore cookieStore = new BasicCookieStore();
 		for (int i = 0; i < httpResponse.getHeaders("Set-Cookie").length; i++) {

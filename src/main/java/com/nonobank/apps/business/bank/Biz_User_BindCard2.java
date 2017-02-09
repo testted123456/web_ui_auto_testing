@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.bank.Page_User_BindCard2;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_BindCard2 {
@@ -42,8 +41,9 @@ public class Biz_User_BindCard2 {
 		switch (expectMessage) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/BindCard3";
-			Assertion.assertEquals(expectUrl, actualUrl, Biz_Login.class, "正例-绑卡成功");
+			String url = "/User/BindCard3";
+			Assertion.assertEquals(actualUrl.contains(url), true, Biz_Login.class,
+					"绑卡跳转到" + actualUrl + ",判断路径是否包含" + url + "字符");
 			break;
 		case "请输入银行卡号":
 		case "请输入有效的银行卡号":

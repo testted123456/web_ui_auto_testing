@@ -35,8 +35,9 @@ public class Biz_User_WithdrawalConfirm {
 		switch (message) {
 		case "success":
 			String actualUrl = PageUtils.getUrl();
-			String expectUrl = ParseProperties.getInstance().getProperty("url") + "/User/withdrawalsuccess";
-			Assertion.assertEquals("跳转到-" + expectUrl, "跳转到-" + actualUrl, Biz_Login.class, "正例-提现成功");
+			String url = "/User/withdrawalsuccess";
+			Assertion.assertEquals(actualUrl.contains(url), true, Biz_Login.class,
+					"提现跳转到" + actualUrl + ",判断路径是否包含" + url + "字符");
 			break;
 		case "请输入支付密码！":
 			String error_msg = page_User_WithdrawalConfirm.getElementText("messageInfo");

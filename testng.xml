@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Nonobank">
-
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
@@ -9,10 +8,15 @@
 		<listener class-name="org.testng.reporters.FailedReporter" />
 		<listener class-name="com.nonobank.apps.listener.TestngRetryListener" />
 	</listeners>
+<!--  
 	<test name="portal" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.portal.Login" />
 			<class name="com.nonobank.apps.testcase.portal.Register" />
+			<class name="com.nonobank.apps.testcase.bindcard.RegisterBindCard" />
+			<class name="com.nonobank.apps.testcase.bindcard.LoginBindCard" />
+			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
+			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
 		</classes>
 	</test>
 	<test name="licai" preserve-order="true">
@@ -22,31 +26,49 @@
 			<class name="com.nonobank.apps.testcase.licai.PaymentByOldBank" />
 		</classes>
 	</test>
-	<test name="recharge" preserve-order="true">
+
+	<test name="mxd" preserve-order="true">
 		<classes>
-			<class name="com.nonobank.apps.testcase.recharge.Recharge" />
-		</classes>
-	</test>
-	<test name="withdrawal" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.withdrawal.WithDrawal" />
-		</classes>
-	</test>
-	<test name="bindCard" preserve-order="true">
-		<classes>
-			<class name="com.nonobank.apps.testcase.bindcard.RegisterBindCard" />
-			<class name="com.nonobank.apps.testcase.bindcard.LoginBindCard" />
-		</classes>
-	</test>
-	<test name="repayment" preserve-order="true">
-		<classes>
+			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
 			<class name="com.nonobank.apps.testcase.repayment.RePaymentTestCase" />
 		</classes>
 	</test>
-	<test name="student" preserve-order="true">
+-->
+
+
+
+
+
+
+	<test name="login" preserve-order="true">
 		<classes>
 			<class name="com.nonobank.apps.testcase.student.BorrowsTestCase" />
+			<class name="com.nonobank.apps.testcase.repayment.RePaymentTestCase" />
 		</classes>
 	</test>
 
+
+
+
+
+
+
+<!--  
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="org.testng.reporters.FailedReporter" />
+	</listeners>
+	<test name="test1" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.test.OtherTest" />
+			<class name="com.nonobank.apps.testcase.test.SystemTest" />
+		</classes>
+	</test>
+		<test name="test2" preserve-order="true">
+		<classes>
+			<class name="com.nonobank.apps.testcase.test.FunctionTest" />
+		</classes>
+	</test>
+	-->
 </suite>

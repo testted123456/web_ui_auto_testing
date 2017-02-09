@@ -19,10 +19,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-
 import com.csvreader.CsvWriter;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
@@ -162,7 +161,6 @@ public class BaseCase {
 		logger.info("========================================================================================");
 	}
 
-
 	@AfterMethod
 	public void addData() {
 		if (getActualResult().equals("成功")) {
@@ -183,11 +181,12 @@ public class BaseCase {
 		logger.info(PageUtils.getUrl());
 	}
 
-
-	@AfterSuite
+	@AfterTest
 	public void saveCSV() {
 		try {
-			OutputStream os = new FileOutputStream("./1.csv");
+			String[] strs = caseName.split("-");
+			String fileName = strs[1];
+			OutputStream os = new FileOutputStream("./"+fileName+".csv");
 			OutputStreamWriter fw = new OutputStreamWriter(os, "GBK");
 			fw.write("sep=;\n");
 			CsvWriter writer = new CsvWriter(fw, ';');
@@ -212,6 +211,8 @@ public class BaseCase {
 			writer.writeRecord(endsValue);
 			writer.close();
 			System.out.println(writer.toString());
+			passCount = 0;
+			failCount = 0;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
