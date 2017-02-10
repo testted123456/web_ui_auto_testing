@@ -7,9 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.nonobank.apps.business.admin.Biz_Debt;
+import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.business.student.Biz_VideoSign;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.data.ConstantUtils;
 import com.nonobank.apps.utils.db.DBUtils;
 import com.nonobank.apps.utils.page.PageUtils;
 import com.nonobank.apps.utils.webintegration.Info;
@@ -45,9 +47,15 @@ public class Biz_Account {
 		PageUtils.waitForPageLoad();
 	}
 
-	public void navigate_to_withDrawal() {
+	public void navigate_to_withDrawal(String message) {
 		logger.info("点击提现......");
 		page_Account.click_withDrawal();
+		if (message.equals("您的账户无法进行本操作！")) {
+			Assertion.assertEquals(page_Account.getAlertText(), "您的账户无法进行本操作！", Biz_Login.class, "校验逾期用户");
+			PageUtils.sleep(2000);
+			page_Account.acceptAlert();
+			ConstantUtils.setIs_dunning(true);
+		}
 		PageUtils.sleep(3000);
 	}
 

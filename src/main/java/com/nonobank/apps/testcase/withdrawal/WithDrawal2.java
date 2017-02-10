@@ -12,8 +12,8 @@ import com.nonobank.apps.business.withdrawal.Biz_User_Withdrawal;
 import com.nonobank.apps.business.withdrawal.Biz_User_WithdrawalConfirm;
 import com.nonobank.apps.testcase.base.BaseCase;
 
-public class WithDrawal extends BaseCase {
-	public static Logger logger = LogManager.getLogger(WithDrawal.class);
+public class WithDrawal2 extends BaseCase {
+	public static Logger logger = LogManager.getLogger(WithDrawal2.class);
 	Biz_Portal biz_Portal;
 	Biz_Login biz_Login;
 	Biz_Account biz_Account;
@@ -24,7 +24,7 @@ public class WithDrawal extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String mobile, String password, String checkCode,
-			String bankName,String rechargeMoney, String rechargePay_password,String money, String pay_password, String expectResult) {
+			String bankName, String rechargeMoney, String rechargePay_password,String money, String pay_password, String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;

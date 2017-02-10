@@ -6,6 +6,7 @@ import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.page.withdrawal.Page_User_Withdrawal;
 import com.nonobank.apps.utils.data.Assertion;
+import com.nonobank.apps.utils.data.ConstantUtils;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_Withdrawal {
@@ -22,6 +23,9 @@ public class Biz_User_Withdrawal {
 	 */
 	public void withDrawal(String money, String message) {
 		try {
+			if (ConstantUtils.isIs_dunning()) {
+				return;
+			}
 			logger.info("选择银行卡、输入提现金额...");
 			page_User_Withdrawal.input_money(money);
 			PageUtils.sleep(2000);
@@ -36,7 +40,6 @@ public class Biz_User_Withdrawal {
 			case "本次最多可提现":
 				String error_msg = page_User_Withdrawal.getElementText("error_msg");
 				Assertion.assertEquals(error_msg.contains(message), true, Biz_Login.class, "反例-校验金额");
-				
 				break;
 			}
 		}

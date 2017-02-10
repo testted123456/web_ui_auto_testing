@@ -29,18 +29,4 @@
 		</classes>
 	</test>
 
-
-
-
-
-	<!-- <test name="login" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.portal.Login" 
-		/> </classes> </test> <test name="register" preserve-order="true"> <classes> 
-		<class name="com.nonobank.apps.testcase.portal.Register" /> </classes> </test> 
-		<listeners> <listener class-name="org.uncommons.reportng.HTMLReporter" /> 
-		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" /> <listener 
-		class-name="org.testng.reporters.FailedReporter" /> </listeners> <test name="test1" 
-		preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.test.OtherTest" 
-		/> <class name="com.nonobank.apps.testcase.test.SystemTest" /> </classes> 
-		</test> <test name="test2" preserve-order="true"> <classes> <class name="com.nonobank.apps.testcase.test.FunctionTest" 
-		/> </classes> </test> -->
 </suite>

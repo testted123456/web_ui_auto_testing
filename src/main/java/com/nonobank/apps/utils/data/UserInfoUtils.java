@@ -240,7 +240,8 @@ public class UserInfoUtils {
 			if (userInfos.size() == 0) {
 				Date enddate = new Date();
 				int seconds = getSeconds(startdate, enddate);
-//				System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+				// System.out.println("********************************查询所用时间为seconds="
+				// + seconds + "秒");
 				return loginName;
 			}
 		}
@@ -261,7 +262,8 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-//					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
 					return loginName;
 				}
 				index_limit += index;
@@ -286,7 +288,8 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-//					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -311,7 +314,8 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-//					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -336,7 +340,8 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-//					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -354,6 +359,7 @@ public class UserInfoUtils {
 			int index = userInfos.size();
 			userInfo.setIsCard("1");
 			userInfo.setStatus("1");
+			userInfo.setIsDunning("0");
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfos = getUserInfos(userInfo, userInfos);
 
@@ -368,7 +374,8 @@ public class UserInfoUtils {
 					new UserInfoUtils().setNewuserId(userId);
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-//					System.out.println("********************************查询所用时间为seconds=" + seconds + "秒");
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -376,6 +383,43 @@ public class UserInfoUtils {
 		}
 	}
 
+	public static String getIsDunningBankUser(String bankCode) {
+		Date startdate = new Date();
+		index_limit = 0;
+		String loginName = null;
+		while (true) {
+			UserInfo userInfo = new UserInfo();
+			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
+			int index = userInfos.size();
+			userInfo.setIsCard("1");
+			userInfo.setStatus("1");
+			userInfo.setIsDunning("1");
+			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+			userInfos = getUserInfos(userInfo, userInfos);
+
+			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
+			userBankcardInfo.setBankCode(bankCode);
+			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
+			userInfos.retainAll(userBankcardInfos);
+			for (String userId : userInfos) {
+				loginName = getUserInfo("mobile_num", userId);
+				if (loginName != null) {
+
+					new UserInfoUtils().setNewuserId(userId);
+					Date enddate = new Date();
+					int seconds = getSeconds(startdate, enddate);
+					// System.out.println("********************************查询所用时间为seconds="
+					// + seconds + "秒");
+					return loginName;
+				}
+			}
+			index_limit += index;
+		}
+	}
+
+	
+	
+	
 	public static List<String> getUserInfos(String operatorType, String operatorValue, String fieldName) {
 		List<String> userInfos = new ArrayList<>();
 		List<Object[]> lst = new ArrayList<Object[]>();
@@ -383,7 +427,7 @@ public class UserInfoUtils {
 		UserInfo.setUserInfoGroupBy(fieldName, operatorType, operatorValue);
 		UserInfo.setLimit(index_limit, ConstantUtils.max_limit);
 		String sql = "select id from user_info " + UserInfo.getCondition();
-//		System.out.println("********首先对user_info表对手机号码进行过滤=" + sql);
+		// System.out.println("********首先对user_info表对手机号码进行过滤=" + sql);
 		lst = DBUtils.getMulLine(con, sql);
 		for (Object[] objects : lst) {
 			userInfos.add(objects[0].toString());
@@ -397,7 +441,7 @@ public class UserInfoUtils {
 		UserInfo.setUserInfoCondition(userInfo);
 		UserInfo.setUserInfoConditions(userInfos);
 		String sql = "select id from user_info " + UserInfo.getCondition();
-//		System.out.println("********然后对user_info表加条件sql=" + sql);
+		// System.out.println("********然后对user_info表加条件sql=" + sql);
 		List<Object[]> objects = DBUtils.getMulLine(con, sql);
 		for (Object[] user_id : objects) {
 			newUserInfos.add(user_id[0].toString());
@@ -423,7 +467,7 @@ public class UserInfoUtils {
 		String filedValue = null;
 		Connection con = DBUtils.getConnection("nono");
 		String sql = "select " + filedName + " from user_info where id = " + userId;
-//		System.out.println("**************************精确查询用户信息sql=" + sql);
+		// System.out.println("**************************精确查询用户信息sql=" + sql);
 		Object[] objects = DBUtils.getOneLine(con, sql);
 		if (objects.length == 0) {
 			return filedValue;

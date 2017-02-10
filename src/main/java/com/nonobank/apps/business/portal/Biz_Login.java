@@ -35,7 +35,6 @@ public class Biz_Login {
 	private void handleResult(String expectMessage) {
 		switch (expectMessage) {
 		case "success":
-
 			String actualUrl = PageUtils.getUrl();
 			String url = "/Account";
 			Assertion.assertEquals(actualUrl.contains(url), true, Biz_Login.class,
