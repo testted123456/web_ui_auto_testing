@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.account.Page_Account;
 import com.nonobank.apps.page.withdrawal.Page_User_Withdrawal;
+import com.nonobank.apps.testcase.withdrawal.WithDrawal;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.data.ConstantUtils;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_Withdrawal {
@@ -23,7 +23,7 @@ public class Biz_User_Withdrawal {
 	 */
 	public void withDrawal(String money, String message) {
 		try {
-			if (ConstantUtils.isIs_dunning()) {
+			if (WithDrawal.is_dunning == true) {
 				return;
 			}
 			logger.info("选择银行卡、输入提现金额...");

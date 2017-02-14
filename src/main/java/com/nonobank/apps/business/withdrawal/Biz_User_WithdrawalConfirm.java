@@ -4,8 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.withdrawal.Page_User_WithdrawalConfirm;
+import com.nonobank.apps.testcase.withdrawal.WithDrawal;
 import com.nonobank.apps.utils.data.Assertion;
-import com.nonobank.apps.utils.data.ConstantUtils;
 import com.nonobank.apps.utils.page.PageUtils;
 
 public class Biz_User_WithdrawalConfirm {
@@ -20,7 +20,7 @@ public class Biz_User_WithdrawalConfirm {
 	 */
 	public void confirm(String pay_password, String message) {
 		try {
-			if (ConstantUtils.isIs_dunning()) {
+			if (WithDrawal.is_dunning == true) {
 				return;
 			}
 			logger.info("提现校验...");

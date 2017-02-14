@@ -21,10 +21,12 @@ public class WithDrawal extends BaseCase {
 	Biz_User_RechargeConfirm biz_User_RechargeConfirm;
 	Biz_User_Withdrawal biz_User_Withdrawal;
 	Biz_User_WithdrawalConfirm biz_User_WithdrawalConfirm;
+	public static boolean is_dunning = false;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String mobile, String password, String checkCode,
-			String bankName,String rechargeMoney, String rechargePay_password,String money, String pay_password, String expectResult) {
+			String bankName, String rechargeMoney, String rechargePay_password, String money, String pay_password,
+			String expectResult) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;

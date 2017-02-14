@@ -372,14 +372,14 @@ public class ParseXLSX {
 
 	public static void main(String[] args) {
 		List<String> lst = new ArrayList<String>();
-		// lst.add("/bindcard/LoginBindCard.xlsx");
-		// lst.add("/bindcard/RegisterBindCard.xlsx");
+//		lst.add("/bindcard/LoginBindCard2.xlsx");
+		 lst.add("/bindcard/RegisterBindCard2.xlsx");
 		// lst.add("/portal/Login2.xlsx");
 		// lst.add("/portal/Register2.xlsx");
 		// lst.add("/recharge/Recharge.xlsx");
 		// lst.add("/repayment/PrePaymentTestCase.xlsx");
 		// lst.add("/student/BorrowsTestCase.xlsx");
-		lst.add("/withdrawal/WithDrawal2.xlsx");
+		// lst.add("/withdrawal/WithDrawal2.xlsx");
 		// lst.add("/licai/PaymentByBalance.xlsx");
 		// lst.add("/licai/PaymentByNewBank.xlsx");
 		Object[][] objects = getDataValue("resources/TestData/com/nonobank/apps/testcase" + lst.get(0), "test");

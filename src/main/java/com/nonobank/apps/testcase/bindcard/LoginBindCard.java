@@ -19,6 +19,7 @@ public class LoginBindCard extends BaseCase {
 	Biz_User_BindCard1 biz_User_BindCard1;
 	Biz_User_BindCard2 biz_User_BindCard2;
 	Biz_Login biz_Login;
+	public static boolean is_bindcard = false;
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String loginName, String password,
@@ -28,12 +29,12 @@ public class LoginBindCard extends BaseCase {
 		inputParams = loginName;
 		actualResult = "成功";
 		errorMessage = "无错误信息";
-		
+
 		biz_Portal.navigate_to_login();
 		biz_Login.login(loginName, password, checkCode, "success");
-		
+
 		biz_Account.navigate_to_banks();
-		biz_User_Banks.navigate_to_bindCard1();
+		biz_User_Banks.navigate_to_bindCard1(expectResult);
 		biz_User_BindCard1.select_bank(bank_name);
 		biz_User_BindCard2.bindCard(bankcard_no, validation, expectResult);
 	}

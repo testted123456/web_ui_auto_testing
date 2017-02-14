@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.business.portal.Biz_Login;
 import com.nonobank.apps.page.bank.Page_User_BindCard2;
+import com.nonobank.apps.testcase.bindcard.LoginBindCard;
 import com.nonobank.apps.utils.data.Assertion;
 import com.nonobank.apps.utils.page.PageUtils;
 
@@ -20,6 +21,9 @@ public class Biz_User_BindCard2 {
 	 */
 	public void bindCard(String bankcard_no, String validation, String expectMessage) {
 		try {
+			if (LoginBindCard.is_bindcard == true) {
+				return;
+			}
 			logger.info("输入银行卡号...");
 			page_User_BindCard2.input_bankcard_no(bankcard_no);
 			PageUtils.sleep(2000);

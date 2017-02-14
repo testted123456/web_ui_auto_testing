@@ -43,7 +43,7 @@ public class RegisterBindCard extends BaseCase {
 		biz_Account.navigate_to_degreeCard();
 		biz_DegreeCard.IDVerification(myname, identity_ID);
 		biz_Account.navigate_to_banks();
-		biz_User_Banks.navigate_to_bindCard1();
+		biz_User_Banks.navigate_to_bindCard1(expectResult);
 		biz_User_BindCard1.select_bank(bank_name);
 		biz_User_BindCard2.bindCard(bankcard_no, validation2, expectResult);
 	}

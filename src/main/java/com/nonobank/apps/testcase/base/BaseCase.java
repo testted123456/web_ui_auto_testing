@@ -163,7 +163,7 @@ public class BaseCase {
 
 	@AfterMethod
 	public void addData() {
-		if (getActualResult().equals("成功")) {
+		if (actualResult.equals("成功")) {
 			passCount++;
 		} else {
 			failCount++;
@@ -172,8 +172,8 @@ public class BaseCase {
 		newLst.add(getCaseName());
 		newLst.add(getCaseDescription());
 		newLst.add("用户手机号:" + inputParams);
-		newLst.add(getActualResult());
-		newLst.add(getErrorMessage());
+		newLst.add(actualResult);
+		newLst.add(errorMessage);
 		lst.add(newLst);
 		String url = ParseProperties.getInstance().getProperty("url") + "/Login/logout";
 		PageUtils.openPage(url);
@@ -216,7 +216,7 @@ public class BaseCase {
 			writer.writeRecord(endsValue);
 			writer.close();
 			System.out.println(writer.toString());
-			//重新清理数据
+			// 重新清理数据
 			lst = new ArrayList<List<String>>();
 			passCount = 0;
 			failCount = 0;
