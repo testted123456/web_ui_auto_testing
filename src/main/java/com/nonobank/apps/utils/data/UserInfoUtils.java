@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.utils.db.DBUtils;
+import com.nonobank.apps.utils.entity.FinanceAccount;
 import com.nonobank.apps.utils.entity.UserBankcardInfo;
 import com.nonobank.apps.utils.entity.UserInfo;
 
@@ -19,6 +22,7 @@ public class UserInfoUtils {
 	public final static int USER_NAME_MIN_LENGTH = 6;
 	public final static int USER_NAME_MAX_LENGTH = 16;
 	private static String newuserId;
+	public static Logger logger = LogManager.getLogger(UserInfoUtils.class);
 
 	public String getNewuserId2() {
 		return "53";
@@ -240,8 +244,7 @@ public class UserInfoUtils {
 			if (userInfos.size() == 0) {
 				Date enddate = new Date();
 				int seconds = getSeconds(startdate, enddate);
-				// System.out.println("********************************查询所用时间为seconds="
-				// + seconds + "秒");
+				logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 				return loginName;
 			}
 		}
@@ -262,8 +265,7 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 				index_limit += index;
@@ -288,8 +290,7 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -314,8 +315,7 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -340,8 +340,7 @@ public class UserInfoUtils {
 				if (loginName != null) {
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -367,6 +366,13 @@ public class UserInfoUtils {
 			userBankcardInfo.setBankCode(bankCode);
 			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
 			userInfos.retainAll(userBankcardInfos);
+
+			FinanceAccount financeAccount = new FinanceAccount();
+			financeAccount.setBalance("0");
+			financeAccount.setLocking("0");
+			financeAccount.setRoleId("7");
+			List<String> financeAccounts = getFinanceAccounts(financeAccount, userInfos);
+			userInfos.retainAll(financeAccounts);
 			for (String userId : userInfos) {
 				loginName = getUserInfo("mobile_num", userId);
 				if (loginName != null) {
@@ -374,8 +380,7 @@ public class UserInfoUtils {
 					new UserInfoUtils().setNewuserId(userId);
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -408,8 +413,7 @@ public class UserInfoUtils {
 					new UserInfoUtils().setNewuserId(userId);
 					Date enddate = new Date();
 					int seconds = getSeconds(startdate, enddate);
-					// System.out.println("********************************查询所用时间为seconds="
-					// + seconds + "秒");
+					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
 					return loginName;
 				}
 			}
@@ -417,9 +421,6 @@ public class UserInfoUtils {
 		}
 	}
 
-	
-	
-	
 	public static List<String> getUserInfos(String operatorType, String operatorValue, String fieldName) {
 		List<String> userInfos = new ArrayList<>();
 		List<Object[]> lst = new ArrayList<Object[]>();
@@ -450,16 +451,29 @@ public class UserInfoUtils {
 	}
 
 	public static List<String> getUserBankcardInfos(UserBankcardInfo userBankcardInfo, List<String> userInfos) {
-		List<String> userLoginInfos = new ArrayList<>();
+		List<String> userIds = new ArrayList<>();
 		Connection con = DBUtils.getConnection("nono");
 		UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
 		UserBankcardInfo.setUserLoginInfoConditions(userInfos);
 		String sql = "select user_id from user_bankcard_info " + UserBankcardInfo.getCondition();
 		List<Object[]> objects = DBUtils.getMulLine(con, sql);
 		for (Object[] user_id : objects) {
-			userLoginInfos.add(user_id[0].toString());
+			userIds.add(user_id[0].toString());
 		}
-		return userLoginInfos;
+		return userIds;
+	}
+
+	public static List<String> getFinanceAccounts(FinanceAccount financeAccount, List<String> userInfos) {
+		List<String> userIds = new ArrayList<>();
+		Connection con = DBUtils.getConnection("nono");
+		FinanceAccount.setFinanceAccountCondition(financeAccount);
+		FinanceAccount.setFinanceAccountConditions(userInfos);
+		String sql = "select user_id from finance_account " + FinanceAccount.getCondition();
+		List<Object[]> objects = DBUtils.getMulLine(con, sql);
+		for (Object[] user_id : objects) {
+			userIds.add(user_id[0].toString());
+		}
+		return userIds;
 	}
 
 	// 精确查询user_info表，通过user_id

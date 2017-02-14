@@ -32,7 +32,7 @@ public class PaymentByBalance extends BaseCase {
 
 	@Test(dataProvider = "dataSource")
 	public void test(String testcaseName, String testcaseDescription, String mobile, String password, String checkCode,
-			String bankName, String money, String pay_password, String id, String amount, String expectMessage) {
+			String id, String amount, String bankName, String money, String pay_password, String expectMessage) {
 		caseName = testcaseName;
 		caseDescription = testcaseDescription;
 		inputParams = mobile;

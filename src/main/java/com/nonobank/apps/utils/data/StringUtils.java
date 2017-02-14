@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -178,9 +179,15 @@ public class StringUtils {
 		}
 	}
 
+	public static String formatDouble(double number) {
+		DecimalFormat df = new DecimalFormat(".00");
+		return df.format(number);
+	}
+
 	public static void main(String[] args) {
 		String str = md5("it7891234");
 		System.out.println(str);
 	}
 
 }
+ 

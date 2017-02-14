@@ -23,6 +23,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import com.csvreader.CsvWriter;
+import com.nonobank.apps.utils.data.StringUtils;
 import com.nonobank.apps.utils.driver.WebDriverUtils;
 import com.nonobank.apps.utils.file.ParseProperties;
 import com.nonobank.apps.utils.file.ParseXLSX;
@@ -204,8 +205,10 @@ public class BaseCase {
 				}
 				writer.writeRecord(listData.toArray(new String[listData.size()]));
 			}
-			String pass = ((double) passCount / (passCount + failCount)) * 100 + "%";
-			String fail = (1 - ((double) passCount / (passCount + failCount))) * 100 + "%";
+			String passTotal = StringUtils.formatDouble(((double) passCount / (passCount + failCount)) * 100);
+			String pass = passTotal + "%";
+			String failTotal = StringUtils.formatDouble((1 - ((double) passCount / (passCount + failCount))) * 100);
+			String fail = failTotal + "%";
 			String[] text = { "", "" };
 			writer.writeRecord(text);
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
@@ -225,5 +228,6 @@ public class BaseCase {
 		}
 
 	}
+
 
 }
