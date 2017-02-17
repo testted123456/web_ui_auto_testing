@@ -21,11 +21,7 @@ public class UserBankcardInfo {
 	private String creater;
 	private String updater;
 	private String version;
-	public static StringBuffer sb = null;
 
-	public static String getCondition() {
-		return sb.toString();
-	}
 
 	public String getBankcardId() {
 		return bankcardId;
@@ -163,9 +159,7 @@ public class UserBankcardInfo {
 		this.version = version;
 	}
 
-	public static void setUserInfoCondition(UserBankcardInfo userBankcardInfo) {
-		sb = new StringBuffer();
-		sb.append(" where 1=1");
+	public static void setUserInfoCondition(UserBankcardInfo userBankcardInfo,StringBuffer sb) {
 		if (userBankcardInfo.getBankcardId() != null) {
 			sb.append(" and id= '" + userBankcardInfo.getBankcardId() + "'");
 		}
@@ -219,12 +213,12 @@ public class UserBankcardInfo {
 		}
 	}
 
-	public static void setLimit(int limit) {
+	public static void setLimit(int limit,StringBuffer sb) {
 		sb.append(" limit ");
 		sb.append(limit);
 	}
 
-	public static void setUserLoginInfoConditions(List<String> list) {
+	public static void setUserLoginInfoConditions(List<String> list,StringBuffer sb) {
 		StringBuffer newsb = new StringBuffer();
 		for (String s : list) {
 			newsb.append(s);

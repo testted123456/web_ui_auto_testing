@@ -259,15 +259,18 @@ public class IdBankGenerator {
 
 	public static List<String> getUserBankcardInfos(UserBankcardInfo userBankcardInfo, String operatorType,
 			String operatorValue) {
+		StringBuffer sb = new StringBuffer();
 		List<String> userInfos = new ArrayList<>();
 		List<Object[]> lst = new ArrayList<Object[]>();
 		Connection con = DBUtils.getConnection("nono");
-		UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
-		UserBankcardInfo.setLimit(ConstantUtils.LIMIT);
-		String sql = "select bank_card_no from user_bankcard_info " + UserBankcardInfo.getCondition();
+		UserBankcardInfo.setUserInfoCondition(userBankcardInfo, sb);
+		UserBankcardInfo.setLimit(ConstantUtils.LIMIT, sb);
+		String sql = "select bank_card_no from user_bankcard_info " + sb;
 		lst = DBUtils.getMulLine(con, sql);
 		for (Object[] objects : lst) {
-			userInfos.add(objects[0].toString());
+			if (objects[0] != null) {
+				userInfos.add(objects[0].toString());
+			}
 		}
 		return userInfos;
 	}

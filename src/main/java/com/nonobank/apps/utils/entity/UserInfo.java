@@ -42,11 +42,6 @@ public class UserInfo {
 	private String creater;
 	private String updater;
 	private String version;
-	public static StringBuffer sb = null;
-
-	public static String getCondition() {
-		return sb.toString();
-	}
 
 	public String getUserId() {
 		return userId;
@@ -336,15 +331,13 @@ public class UserInfo {
 		this.version = version;
 	}
 
-	public static void setUserInfoCondition(UserInfo userInfo) {
-		sb = new StringBuffer();
-		sb.append(" where 1=1");
+	public static void setUserInfoCondition(UserInfo userInfo, StringBuffer sb) {
 		// sb.append(" and user_name REGEXP '^[0-9a-zA-Z_]{6,16}$'");
 		// sb.append(" and mobile_num REGEXP
 		// '^((13[0-9])|(15[^4,\\D])|(18[0-9]))[0-9]{8}$'");
 		// sb.append(" and length(id_num) > 0");
 		if (userInfo.getUserId() != null) {
-			sb.append(" and id= '" + userInfo.getUserId() + "'");
+			sb.append(" and ui.id= '" + userInfo.getUserId() + "'");
 		}
 		if (userInfo.getUserKey() != null) {
 			sb.append(" and user_key= '" + userInfo.getUserKey() + "'");
@@ -455,7 +448,7 @@ public class UserInfo {
 		}
 	}
 
-	public static void setUserInfoConditions(List<String> list) {
+	public static void setUserInfoConditions(List<String> list, StringBuffer sb) {
 		StringBuffer newsb = new StringBuffer();
 		for (String s : list) {
 			newsb.append(s);
@@ -463,15 +456,14 @@ public class UserInfo {
 		}
 		if (newsb.length() > 0) {
 			String userIds = newsb.substring(0, newsb.toString().length() - 1);
-			sb.append(" and id in");
+			sb.append(" and ui.id in");
 			sb.append(" (");
 			sb.append(userIds);
 			sb.append(" )");
 		}
 	}
 
-	public static void setUserInfoGroupBy(String fileName, String operatorType, String operatorValue) {
-		sb = new StringBuffer();
+	public static void setUserInfoGroupBy(String fileName, String operatorType, String operatorValue,StringBuffer sb) {
 		if (fileName != null && operatorType != null && operatorValue != null) {
 			sb.append(" group by  ");
 			sb.append(fileName);
@@ -485,12 +477,10 @@ public class UserInfo {
 		}
 	}
 
-	public static void setLimit(int minLimit, int maxLimit) {
-		if (minLimit != -1) {
+	public static void setLimit(int minLimit, int maxLimit,StringBuffer sb) {
 			sb.append(" limit ");
 			sb.append(minLimit);
 			sb.append(",");
 			sb.append(maxLimit);
-		}
 	}
 }

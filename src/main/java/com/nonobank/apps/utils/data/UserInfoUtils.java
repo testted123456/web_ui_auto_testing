@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.nonobank.apps.utils.db.DBUtils;
 import com.nonobank.apps.utils.entity.FinanceAccount;
+import com.nonobank.apps.utils.entity.UserBankcardAuth;
 import com.nonobank.apps.utils.entity.UserBankcardInfo;
 import com.nonobank.apps.utils.entity.UserInfo;
 
@@ -23,10 +24,6 @@ public class UserInfoUtils {
 	public final static int USER_NAME_MAX_LENGTH = 16;
 	private static String newuserId;
 	public static Logger logger = LogManager.getLogger(UserInfoUtils.class);
-
-	public String getNewuserId2() {
-		return "53";
-	}
 
 	public static String getNewuserId() {
 		return newuserId;
@@ -240,7 +237,10 @@ public class UserInfoUtils {
 				break;
 			}
 			new UserInfoUtils().setNewuserId(null);
-			List<String> userInfos = getUserInfos(userInfo, new ArrayList<String>());
+			StringBuffer sb = new StringBuffer();
+			String sql = "select id from user_info ui where 1 = 1";
+			UserInfo.setUserInfoCondition(userInfo, sb);
+			List<String> userInfos = getUserInfos(sql, sb);
 			if (userInfos.size() == 0) {
 				Date enddate = new Date();
 				int seconds = getSeconds(startdate, enddate);
@@ -251,13 +251,16 @@ public class UserInfoUtils {
 	}
 
 	public static String getUsedUser(String fieldName) {
+		int index = 0;
 		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
-			List<String> userInfos = getUserInfos(null, null, null);
-			int index = userInfos.size();
-
+			StringBuffer sb = new StringBuffer();
+			String sql = "select id from user_info ui where 1 = 1";
+			UserInfo.setLimit(index_limit, ConstantUtils.max_limit, sb);
+			List<String> userInfos = getUserInfos(sql, sb);
+			index = userInfos.size();
 			for (String userId : userInfos) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setUserId(userId);
@@ -274,18 +277,27 @@ public class UserInfoUtils {
 	}
 
 	public static String getSpecialUser(String fieldName) {
+		int index = 0;
 		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
+			StringBuffer sb = new StringBuffer();
+			String sql = "select id from user_info ui where 1 = 1";
+			UserInfo.setUserInfoGroupBy("mobile_num", ">", "1", sb);
+			UserInfo.setLimit(index_limit, ConstantUtils.max_limit, sb);
+			List<String> userInfos = getUserInfos(sql, sb);
+			index = userInfos.size();
+
+			sb = new StringBuffer();
 			UserInfo userInfo = new UserInfo();
-			List<String> userInfos = getUserInfos(">", "1", "mobile_num");
-			int index = userInfos.size();
 			userInfo.setStatus("1");
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfos = getUserInfos(userInfo, userInfos);
+			UserInfo.setUserInfoCondition(userInfo, sb);
+			UserInfo.setUserInfoConditions(userInfos, sb);
+			List<String> newUserInfos = getUserInfos(sql, sb);
 
-			for (String userId : userInfos) {
+			for (String userId : newUserInfos) {
 				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
@@ -299,18 +311,27 @@ public class UserInfoUtils {
 	}
 
 	public static String getNormalUser(String fieldName) {
+		int index = 0;
 		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
+			StringBuffer sb = new StringBuffer();
+			String sql = "select id from user_info ui where 1 = 1";
+			UserInfo.setUserInfoGroupBy("mobile_num", "=", "1", sb);
+			UserInfo.setLimit(index_limit, ConstantUtils.max_limit, sb);
+			List<String> userInfos = getUserInfos(sql, sb);
+			index = userInfos.size();
+
+			sb = new StringBuffer();
 			UserInfo userInfo = new UserInfo();
-			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
-			int index = userInfos.size();
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfo.setStatus("1");
-			userInfos = getUserInfos(userInfo, userInfos);
+			UserInfo.setUserInfoCondition(userInfo, sb);
+			UserInfo.setUserInfoConditions(userInfos, sb);
+			List<String> newUserInfos = getUserInfos(sql, sb);
 
-			for (String userId : userInfos) {
+			for (String userId : newUserInfos) {
 				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
@@ -324,18 +345,27 @@ public class UserInfoUtils {
 	}
 
 	public static String getLockUser(String fieldName) {
+		int index = 0;
 		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
+			StringBuffer sb = new StringBuffer();
+			String sql = "select id from user_info ui where 1 = 1";
+			UserInfo.setUserInfoGroupBy("mobile_num", "=", "1", sb);
+			UserInfo.setLimit(index_limit, ConstantUtils.max_limit, sb);
+			List<String> userInfos = getUserInfos(sql, sb);
+			index = userInfos.size();
+
+			sb = new StringBuffer();
 			UserInfo userInfo = new UserInfo();
-			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
-			int index = userInfos.size();
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
 			userInfo.setStatus("0");
-			userInfos = getUserInfos(userInfo, userInfos);
+			UserInfo.setUserInfoCondition(userInfo, sb);
+			UserInfo.setUserInfoConditions(userInfos, sb);
+			List<String> newUserInfos = getUserInfos(sql, sb);
 
-			for (String userId : userInfos) {
+			for (String userId : newUserInfos) {
 				loginName = getUserInfo(fieldName, userId);
 				if (loginName != null) {
 					Date enddate = new Date();
@@ -349,30 +379,56 @@ public class UserInfoUtils {
 	}
 
 	public static String getBankUser(String bankCode) {
+		int index = 0;
+		System.out.println("**************************************bankCode=" + bankCode);
 		Date startdate = new Date();
 		index_limit = 0;
 		String loginName = null;
 		while (true) {
+			StringBuffer sb = new StringBuffer();
+
+			StringBuffer sql = new StringBuffer();
+			sql.append(
+					"select ui.id from user_info ui,user_bankcard_info ubi,finance_account fa,user_bankcard_auth uba");
+			sql.append(" where ui.id=ubi.user_id");
+			sql.append(" and ui.id = fa.user_id");
+			sql.append(" and ubi.user_id  = fa.user_id");
+			sql.append(" and ui.id=uba.user_id");
+			sql.append(" and fa.user_id=uba.user_id");
+			sql.append(" and ubi.user_id=uba.user_id");
+			sql.append(" and ubi.id = uba.bank_card_id");
+			sb = new StringBuffer();
 			UserInfo userInfo = new UserInfo();
-			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
-			int index = userInfos.size();
 			userInfo.setIsCard("1");
 			userInfo.setStatus("1");
 			userInfo.setIsDunning("0");
 			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfos = getUserInfos(userInfo, userInfos);
+			UserInfo.setUserInfoCondition(userInfo, sb);
 
 			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
 			userBankcardInfo.setBankCode(bankCode);
-			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
-			userInfos.retainAll(userBankcardInfos);
+			userBankcardInfo.setIsDeleted("0");
+			UserBankcardInfo.setUserInfoCondition(userBankcardInfo, sb);
 
 			FinanceAccount financeAccount = new FinanceAccount();
 			financeAccount.setBalance("0");
 			financeAccount.setLocking("0");
 			financeAccount.setRoleId("7");
-			List<String> financeAccounts = getFinanceAccounts(financeAccount, userInfos);
-			userInfos.retainAll(financeAccounts);
+			FinanceAccount.setFinanceAccountCondition(financeAccount, sb);
+
+			UserBankcardAuth userBankcardAuth = new UserBankcardAuth();
+			userBankcardAuth.setAuthStatus("1");
+
+			UserInfo.setLimit(index_limit, ConstantUtils.max_limit, sb);
+			List<String> list = getUserInfos(sql.toString(), sb);
+			index = list.size();
+			sb = new StringBuffer();
+			String newsql = "select id from user_info ui where 1 = 1";
+			UserInfo.setUserInfoConditions(list, sb);
+			UserInfo.setUserInfoGroupBy("mobile_num", "=", "1", sb);
+
+			List<String> userInfos = getUserInfos(newsql, sb);
+
 			for (String userId : userInfos) {
 				loginName = getUserInfo("mobile_num", userId);
 				if (loginName != null) {
@@ -385,95 +441,56 @@ public class UserInfoUtils {
 				}
 			}
 			index_limit += index;
+
 		}
 	}
 
-	public static String getIsDunningBankUser(String bankCode) {
-		Date startdate = new Date();
-		index_limit = 0;
-		String loginName = null;
-		while (true) {
-			UserInfo userInfo = new UserInfo();
-			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
-			int index = userInfos.size();
-			userInfo.setIsCard("1");
-			userInfo.setStatus("1");
-			userInfo.setIsDunning("1");
-			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
-			userInfos = getUserInfos(userInfo, userInfos);
+//	public static String getIsDunningBankUser(String bankCode) {
+//		int index = 0;
+//		Date startdate = new Date();
+//		index_limit = 0;
+//		String loginName = null;
+//		while (true) {
+//
+//			List<String> userInfos = getUserInfos("=", "1", "mobile_num");
+//			index = userInfos.size();
+//
+//			StringBuffer sql = new StringBuffer();
+//			UserInfo userInfo = new UserInfo();
+//			userInfo.setIsCard("1");
+//			userInfo.setStatus("1");
+//			userInfo.setIsDunning("1");
+//			userInfo.setPassword(ConstantUtils.CORRECT_LOGIN_PASSWORD);
+//			userInfos = getUserInfos(userInfo, userInfos);
+//
+//			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
+//			userBankcardInfo.setBankCode(bankCode);
+//			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
+//			userInfos.retainAll(userBankcardInfos);
+//			for (String userId : userInfos) {
+//				loginName = getUserInfo("mobile_num", userId);
+//				if (loginName != null) {
+//
+//					new UserInfoUtils().setNewuserId(userId);
+//					Date enddate = new Date();
+//					int seconds = getSeconds(startdate, enddate);
+//					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
+//					return loginName;
+//				}
+//			}
+//			index_limit += index;
+//		}
+//	}
 
-			UserBankcardInfo userBankcardInfo = new UserBankcardInfo();
-			userBankcardInfo.setBankCode(bankCode);
-			List<String> userBankcardInfos = getUserBankcardInfos(userBankcardInfo, userInfos);
-			userInfos.retainAll(userBankcardInfos);
-			for (String userId : userInfos) {
-				loginName = getUserInfo("mobile_num", userId);
-				if (loginName != null) {
-
-					new UserInfoUtils().setNewuserId(userId);
-					Date enddate = new Date();
-					int seconds = getSeconds(startdate, enddate);
-					logger.debug("********************************查询所用时间为seconds=" + seconds + "秒");
-					return loginName;
-				}
-			}
-			index_limit += index;
-		}
-	}
-
-	public static List<String> getUserInfos(String operatorType, String operatorValue, String fieldName) {
-		List<String> userInfos = new ArrayList<>();
-		List<Object[]> lst = new ArrayList<Object[]>();
-		Connection con = DBUtils.getConnection("nono");
-		UserInfo.setUserInfoGroupBy(fieldName, operatorType, operatorValue);
-		UserInfo.setLimit(index_limit, ConstantUtils.max_limit);
-		String sql = "select id from user_info " + UserInfo.getCondition();
-		// System.out.println("********首先对user_info表对手机号码进行过滤=" + sql);
-		lst = DBUtils.getMulLine(con, sql);
-		for (Object[] objects : lst) {
-			userInfos.add(objects[0].toString());
-		}
-		return userInfos;
-	}
-
-	public static List<String> getUserInfos(UserInfo userInfo, List<String> userInfos) {
+	public static List<String> getUserInfos(String sql, StringBuffer sbConditon) {
 		List<String> newUserInfos = new ArrayList<>();
 		Connection con = DBUtils.getConnection("nono");
-		UserInfo.setUserInfoCondition(userInfo);
-		UserInfo.setUserInfoConditions(userInfos);
-		String sql = "select id from user_info " + UserInfo.getCondition();
-		// System.out.println("********然后对user_info表加条件sql=" + sql);
-		List<Object[]> objects = DBUtils.getMulLine(con, sql);
+		System.out.println("*********************** sql + sbConditon=" + sql + sbConditon);
+		List<Object[]> objects = DBUtils.getMulLine(con, sql + sbConditon);
 		for (Object[] user_id : objects) {
 			newUserInfos.add(user_id[0].toString());
 		}
 		return newUserInfos;
-	}
-
-	public static List<String> getUserBankcardInfos(UserBankcardInfo userBankcardInfo, List<String> userInfos) {
-		List<String> userIds = new ArrayList<>();
-		Connection con = DBUtils.getConnection("nono");
-		UserBankcardInfo.setUserInfoCondition(userBankcardInfo);
-		UserBankcardInfo.setUserLoginInfoConditions(userInfos);
-		String sql = "select user_id from user_bankcard_info " + UserBankcardInfo.getCondition();
-		List<Object[]> objects = DBUtils.getMulLine(con, sql);
-		for (Object[] user_id : objects) {
-			userIds.add(user_id[0].toString());
-		}
-		return userIds;
-	}
-
-	public static List<String> getFinanceAccounts(FinanceAccount financeAccount, List<String> userInfos) {
-		List<String> userIds = new ArrayList<>();
-		Connection con = DBUtils.getConnection("nono");
-		FinanceAccount.setFinanceAccountCondition(financeAccount);
-		FinanceAccount.setFinanceAccountConditions(userInfos);
-		String sql = "select user_id from finance_account " + FinanceAccount.getCondition();
-		List<Object[]> objects = DBUtils.getMulLine(con, sql);
-		for (Object[] user_id : objects) {
-			userIds.add(user_id[0].toString());
-		}
-		return userIds;
 	}
 
 	// 精确查询user_info表，通过user_id
@@ -509,7 +526,7 @@ public class UserInfoUtils {
 		return null;
 	}
 
-	public static String getCorrectUserBankcardInfo(String filedName, String userId) {
+	public static String getUserBankcardInfo(String filedName, String userId) {
 		String loginName = null;
 		Connection con = DBUtils.getConnection("nono");
 		String sql = "select " + filedName + " from user_bankcard_info where user_id =" + userId;
@@ -521,26 +538,23 @@ public class UserInfoUtils {
 		return loginName;
 	}
 
-	public static String getBankCardByMobile(String mobileNum) {
-		UserInfo userInfo = new UserInfo();
-		userInfo.setMobileNum(mobileNum);
-		List<String> userInfos = getUserInfos(">", "0", "mobile_num");
-		String userId = userInfos.get(0);
-		return getCorrectUserBankcardInfo("bank_card_no", userId);
-	}
-
 	public static void main(String[] args) {
-		// System.out.println(getNormalMobileNum());
-		// System.out.println(getNormalUserName());
 		// System.out.println(getUnUsedMobileNum());
 		// System.out.println(getUnUsedUserName());
-		//
+
 		// System.out.println(getUsedMobileNum());
 		// System.out.println(getUsedUserName());
 		//
 		// System.out.println(getSpecifalMobileNum());
 		// System.out.println(getSpecifalUserName());
 		//
+		//
+		// System.out.println(getLockMobileNum());
+		// System.out.println(getLockUserName());
+
+		// System.out.println(getNormalMobileNum());
+		// System.out.println(getNormalUserName());
+
 		System.out.println(getBankUser("4"));
 
 	}
